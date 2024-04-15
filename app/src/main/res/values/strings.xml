@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Pet_Finder_App</string>
+    <string name="apply_before_for_a_gram_before_adoption">Apply for a gram before adoption</string>
+    <string name="date_demo">08-09-2023</string>
+    <string name="registration_date">Registration Date</string>
+    <string name="appearance">Yellow, White, Black</string>
+    <string name="apperance_text">Apperance</string>
+    <string name="was_castracted">Was Castracted</string>
+    <string name="status">Status</string>
+    <string name="age">6</string>
+    <string name="age_text">Age</string>
+    <string name="can_adopt">Can Adopt</string>
+    <string name="ready">Ready</string>
+    <string name="yellow_cat">Yellow Cat</string>
+    <string name="please_read_before_applying">Please read before applying</string>
+    <string name="abandoned_pet">Abandoned pet</string>
+    <string name="place_of_care">Place of care</string>
+    <string name="tempory_care">Tempory care</string>
+    <string name="adopt_a_animal">ADOPT A ANIMAL</string>
+    <string name="searches">360 Searches</string>
 </resources>
