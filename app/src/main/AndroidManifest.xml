@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pet_Finder_App"
         tools:targetApi="31">
+        <activity android:name=".SearchingLostPetActivity"
+            android:parentActivityName=".MainActivity"
+            >
+
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
