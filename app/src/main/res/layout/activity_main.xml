@@ -20,4 +20,11 @@
         android:layout_height="wrap_content"
         android:text="Adopt"
         app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <Button
+        android:id="@+id/buttonHomepage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Homepage"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAdopt" />
 </androidx.constraintlayout.widget.ConstraintLayout>
