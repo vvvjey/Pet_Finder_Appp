@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Pet_Finder_App</string>
+    <string name="default_location">123 Pham Van Dong</string>
 </resources>

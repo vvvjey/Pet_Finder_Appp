@@ -15,6 +15,7 @@
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:src="@drawable/xample"
+
         />
 
     <ImageButton
@@ -31,6 +32,7 @@
         android:layout_height="wrap_content"
         android:background="none"
         android:src="@drawable/love"
+
         tools:layout_editor_absoluteX="343dp"
         tools:layout_editor_absoluteY="0dp" />
 
