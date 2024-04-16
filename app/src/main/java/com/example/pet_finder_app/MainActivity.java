@@ -15,6 +15,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
     Button btn;
     Button btn_adopt;
+    Button btnAdoptForm;
+    Button btnLostPetForm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),AdoptingPetActivity.class));
+            }
+        });
+        btnAdoptForm = findViewById(R.id.buttonAdoptForm);
+        btnAdoptForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),FillInforToAdoptActivity.class));
+            }
+        });
+        btnLostPetForm = findViewById(R.id.buttonFormLostPet);
+        btnLostPetForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),FillInforAboutLostPet.class));
             }
         });
     }

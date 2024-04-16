@@ -22,6 +22,16 @@
             >
 
         </activity>
+        <activity android:name=".FillInforToAdoptActivity"
+            android:parentActivityName=".MainActivity"
+            >
+
+        </activity>
+        <activity android:name=".FillInforAboutLostPet"
+            android:parentActivityName=".MainActivity"
+            >
+
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -31,6 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

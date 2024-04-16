@@ -20,4 +20,22 @@
         android:layout_height="wrap_content"
         android:text="Adopt"
         app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <Button
+        android:id="@+id/buttonAdoptForm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="AdoptForm"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAdopt"
+        tools:layout_editor_absoluteX="7dp" />
+
+    <Button
+        android:id="@+id/buttonFormLostPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:text="LostPetForm"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAdoptForm"
+        tools:layout_editor_absoluteX="7dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
