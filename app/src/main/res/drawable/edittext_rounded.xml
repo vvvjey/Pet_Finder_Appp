@@ -1,0 +1,11 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FFFFFF" /> <!-- Màu nền của EditText -->
+    <corners android:radius="7dp" /> <!-- Bán kính bo tròn của EditText -->
+
+    <stroke
+        android:width="2dp"
+        android:color="@color/gray" /> <!-- Màu sắc của khung bo tròn -->
+    <padding
+        android:left="10dp"
+        android:right="10dp" /> <!-- Độ dài của khung bo tròn -->
+</shape>
