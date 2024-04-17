@@ -13,13 +13,15 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ShowPassword extends AppCompatActivity {
 
     EditText password;
-    boolean isPasswordVisible;
+    boolean isPasswordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         password = findViewById(R.id.edtPassword);
+
+
 
         password.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {

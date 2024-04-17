@@ -1,0 +1,14 @@
+<!-- thumb_text.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/custom_thumb" />
+    <item android:width="48dp" android:height="48dp" android:gravity="center">
+        <TextView
+            android:id="@+id/thumbText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50%"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:gravity="center" />
+    </item>
+</layer-list>

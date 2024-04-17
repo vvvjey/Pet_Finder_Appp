@@ -22,6 +22,8 @@
             android:parentActivityName=".MainActivity"
             >
         </activity>
+        <activity android:name=".ShowPassword"
+            android:parentActivityName=".MainActivity"/>
 
         <activity android:name=".AdoptingPetActivity"
             android:parentActivityName=".MainActivity"

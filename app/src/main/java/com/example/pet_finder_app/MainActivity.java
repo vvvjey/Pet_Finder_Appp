@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     Button btn;
-    Button btn_adopt, btn_homepage;
+    Button btn_adopt, btn_homepage, btn_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
+            }
+        });
+
+        btn_login = findViewById(R.id.login);
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ShowPassword.class));
             }
         });
     }
