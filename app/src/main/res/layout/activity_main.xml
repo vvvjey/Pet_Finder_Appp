@@ -56,4 +56,13 @@
         android:text="Rescue"
         app:layout_constraintTop_toBottomOf="@+id/buttonFormLostPet" />
 
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Login"
+        app:layout_constraintTop_toBottomOf="@+id/buttonRescue"
+        tools:layout_editor_absoluteX="2dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
