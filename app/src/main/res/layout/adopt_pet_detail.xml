@@ -18,19 +18,17 @@
 
         />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/back_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src ="@drawable/back"
-        android:background="none"
-        />
+        app:srcCompat="@drawable/back" />
 
     <ImageButton
         android:id="@+id/love_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="none"
+        android:background="#00FFFFFF"
         android:src="@drawable/love"
 
         tools:layout_editor_absoluteX="343dp"
@@ -256,23 +254,22 @@
                 android:id="@+id/owner_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Me"
+                android:text="Me"/>
         </LinearLayout>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/love"
-            android:background="none"
-            />
+            android:background="#00FFFFFF"
+            android:src="@drawable/love" />
+
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@drawable/love"
-            android:background="none"
-            />
+            android:background="#00FFFDFD"
+            android:src="@drawable/love" />
     </LinearLayout>
     <TextView
         android:id="@+id/pet_describe"

@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn;
     Button btnAdoptForm;
     Button btnLostPetForm;
-    Button btn_adopt, btn_homepage;
+    Button btn_adopt, btn_homepage, btn_rescue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +64,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
+
+            }
+        });
+
+        btn_rescue = findViewById(R.id.buttonRescue);
+        btn_rescue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RescueCategoryActivity.class));
 
             }
         });

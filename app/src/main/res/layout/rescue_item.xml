@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginBottom="20dp"
+    android:outlineAmbientShadowColor="@color/shadow"
+    android:outlineSpotShadowColor="@color/shadow"
+    app:cardElevation="16dp"
+    app:strokeColor="@null">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:background="@color/white">
+
+
+        <TextView
+            android:id="@+id/rescue_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quan 9, TPHCM"
+            android:letterSpacing="0.04"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="@+id/rescue_name"
+            app:layout_constraintTop_toBottomOf="@+id/rescue_name" />
+
+        <ImageView
+            android:id="@+id/rescue_pic"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/rescue_station1" />
+
+        <TextView
+            android:id="@+id/rescue_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="SaiGon Pet Adoption"
+            android:textColor="@color/black"
+            android:letterSpacing="0.04"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/rescue_pic"
+            app:layout_constraintTop_toTopOf="@+id/rescue_pic" />
+
+        <ImageView
+            android:id="@+id/phone_show"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="18dp"
+            android:background="@drawable/rounded_ready"
+            android:padding="8dp"
+            app:layout_constraintStart_toEndOf="@+id/rescue_name"
+            app:layout_constraintTop_toTopOf="@+id/rescue_name"
+            app:srcCompat="@drawable/phone_stroke" />
+
+        <ImageView
+            android:id="@+id/location_show"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rectangle_blue"
+            android:padding="8dp"
+            app:layout_constraintStart_toStartOf="@+id/phone_show"
+            app:layout_constraintTop_toBottomOf="@+id/phone_show"
+            app:srcCompat="@drawable/location_stroke" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/rescue_location"
+            app:layout_constraintTop_toBottomOf="@+id/rescue_location">
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/location_gray" />
+
+            <TextView
+                android:id="@+id/rescue_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:letterSpacing="0.04"
+                android:text="0.4 kms"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView10"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

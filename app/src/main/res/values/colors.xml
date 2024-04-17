@@ -10,4 +10,7 @@
     <color name="shadow">#9A9A9A</color>
     <color name="light_purple">#827397</color>
     <color name="dark_yellow">#F59245</color>
+    <color name="dark_purple">#4F5475</color>
+    <color name="dark_gray">#5F5B5B</color>
+    <color name="green">#00B91E</color>
 </resources>
