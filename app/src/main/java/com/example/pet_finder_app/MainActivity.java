@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         btnLostPetForm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), FillInforAboutLostPet.class));
+                startActivity(new Intent(getApplicationContext(),FillInforAboutLostPet.class));
             }
         });
 
