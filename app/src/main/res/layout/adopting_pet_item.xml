@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginBottom="10dp"
+    app:strokeColor="@color/blue"
+    app:strokeWidth="3dp"
+    app:cardCornerRadius="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/catImg"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cat1"
+            tools:ignore="ContentDescription" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/catImg">
+
+            <TextView
+                android:id="@+id/date_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/date_demo"
+                app:layout_constraintBottom_toBottomOf="@+id/date"
+                app:layout_constraintStart_toEndOf="@+id/date"
+                app:layout_constraintTop_toTopOf="@+id/date" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:text="@string/registration_date"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/apperance"
+                app:layout_constraintTop_toBottomOf="@+id/apperance" />
+
+            <TextView
+                android:id="@+id/apperance_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/appearance"
+                app:layout_constraintBottom_toBottomOf="@+id/apperance"
+                app:layout_constraintStart_toEndOf="@+id/apperance"
+                app:layout_constraintTop_toTopOf="@+id/apperance" />
+
+            <TextView
+                android:id="@+id/apperance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"
+                android:text="@string/apperance_text"
+                app:layout_constraintStart_toStartOf="@+id/age"
+                app:layout_constraintTop_toBottomOf="@+id/age" />
+
+            <TextView
+                android:id="@+id/status_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/was_castracted"
+
+                app:layout_constraintBottom_toBottomOf="@+id/status"
+                app:layout_constraintStart_toEndOf="@+id/status"
+                app:layout_constraintTop_toTopOf="@+id/status" />
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30pt"
+                android:textStyle="bold"
+                android:text="@string/status"
+                app:layout_constraintBottom_toBottomOf="@+id/age_value"
+                app:layout_constraintStart_toEndOf="@+id/age_value"
+                app:layout_constraintTop_toTopOf="@+id/age_value" />
+
+            <TextView
+                android:id="@+id/age_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/age"
+                app:layout_constraintBottom_toBottomOf="@+id/age"
+                app:layout_constraintStart_toEndOf="@+id/age"
+                app:layout_constraintTop_toTopOf="@+id/age" />
+
+            <TextView
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"
+                android:text="@string/age_text"
+                app:layout_constraintStart_toStartOf="@+id/nameCat"
+                app:layout_constraintTop_toBottomOf="@+id/nameCat" />
+
+            <TextView
+                android:id="@+id/can_adp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/rounded_adopt"
+                android:padding="5dp"
+                android:text="@string/can_adopt"
+                android:textColor="#53AF50"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/gender"
+                app:layout_constraintStart_toEndOf="@+id/button"
+                app:layout_constraintTop_toTopOf="@+id/gender"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_ready"
+                android:paddingLeft="13dp"
+                android:paddingTop="5dp"
+                android:paddingRight="13dp"
+                android:paddingBottom="5dp"
+                android:text="@string/ready"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@+id/gender"
+                app:layout_constraintStart_toStartOf="@+id/status"
+                app:layout_constraintTop_toTopOf="@+id/gender"
+                tools:ignore="SmallSp" />
+
+            <ImageView
+                android:id="@+id/gender"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="8dp"
+
+                app:layout_constraintBottom_toBottomOf="@+id/nameCat"
+                app:layout_constraintStart_toEndOf="@+id/nameCat"
+                app:layout_constraintTop_toTopOf="@+id/nameCat"
+                app:srcCompat="@drawable/female"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/nameCat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/yellow_cat"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -12,7 +12,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pet_Finder_App"
         tools:targetApi="31">
+
+        <activity android:name=".HomepageActivity"
+            android:parentActivityName=".MainActivity"
+            >
+        </activity>
+
         <activity android:name=".SearchingLostPetActivity"
+            android:parentActivityName=".MainActivity"
+            >
+        </activity>
+
+        <activity android:name=".AdoptingPetActivity"
+            android:parentActivityName=".MainActivity"
+            >
+        </activity>
+        <activity android:name=".FillInforToAdoptActivity"
+            android:parentActivityName=".MainActivity"
+            >
+
+        </activity>
+        <activity android:name=".FillInforAboutLostPet"
             android:parentActivityName=".MainActivity"
             >
 
@@ -26,6 +46,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
