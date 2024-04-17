@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn;
     Button btnAdoptForm;
     Button btnLostPetForm;
+    Button btnLogin;
     Button btn_adopt, btn_homepage, btn_rescue;
 
     @Override
@@ -73,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), RescueCategoryActivity.class));
+
+            }
+        });
+        btnLogin = findViewById(R.id.buttonLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
 
             }
         });
