@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(),FillInforAboutLostPet.class));
-
+            }
+        });
 
         btn_homepage = findViewById(R.id.buttonHomepage);
         btn_homepage.setOnClickListener(new View.OnClickListener() {
