@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Pet_Finder_App</string>
+
+    <string name="default_location">123 Pham Van Dong</string>
+
     <string name="apply_before_for_a_gram_before_adoption">Apply for a gram before adoption</string>
     <string name="date_demo">08-09-2023</string>
     <string name="registration_date">Registration Date</string>
@@ -18,4 +21,5 @@
     <string name="tempory_care">Tempory care</string>
     <string name="adopt_a_animal">ADOPT A ANIMAL</string>
     <string name="searches">360 Searches</string>
+
 </resources>
