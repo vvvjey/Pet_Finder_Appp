@@ -1,7 +1,7 @@
 package com.example.pet_finder_app;
 
 public class AdoptingCategoryDomain {
-    private int image_id, gender, favorite, status;
+    private int image_id, gender, favorite, status, width, height;
     private String name, location;
 
     public AdoptingCategoryDomain() {
@@ -30,6 +30,22 @@ public class AdoptingCategoryDomain {
 
     public void setGender(int gender) {
         this.gender = gender;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     public int getStatus() {

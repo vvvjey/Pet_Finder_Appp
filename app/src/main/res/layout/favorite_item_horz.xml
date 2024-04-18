@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView"
-    android:layout_width="290dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:outlineAmbientShadowColor="@color/shadow"
     android:outlineSpotShadowColor="@color/shadow"
@@ -16,11 +16,10 @@
 
         <ImageView
             android:id="@+id/catImg"
-            android:layout_width="0dp"
-            android:layout_height="270dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/cat_category1"
@@ -28,24 +27,24 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout3"
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_width="250dp"
+            android:layout_height="0dp"
             android:background="@color/white"
             android:padding="10dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/catImg">
+            app:layout_constraintStart_toEndOf="@+id/catImg"
+            app:layout_constraintTop_toTopOf="@+id/catImg">
 
             <TextView
                 android:id="@+id/nameCat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="14dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Samantha"
-                android:textSize="21dp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -54,7 +53,7 @@
                 android:id="@+id/constraintLayout4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="4dp"
                 app:layout_constraintStart_toStartOf="@+id/nameCat"
                 app:layout_constraintTop_toBottomOf="@+id/nameCat">
 
@@ -66,6 +65,7 @@
                     android:fontFamily="@font/poppins"
                     android:text="Thu Duc ( 2,5km )"
                     android:textColor="@color/gray"
+                    android:textSize="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView7"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -84,27 +84,27 @@
             <ImageView
                 android:id="@+id/status"
                 android:layout_width="80dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="5dp"
+                android:layout_height="25dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/constraintLayout4"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
                 app:srcCompat="@drawable/mising" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="42dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="22dp"
             android:background="@drawable/circle_gender"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
             <ImageView
                 android:id="@+id/genderImg"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -114,18 +114,20 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="30dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/rectangle_shape"
-            app:layout_constraintEnd_toEndOf="parent"
+
+
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/favorateImg"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="17dp"
+                android:layout_height="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
