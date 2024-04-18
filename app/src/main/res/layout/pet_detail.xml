@@ -6,6 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarArrowBack3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:navigationIcon="@drawable/arrow_back_ios_24" />
 
     <ImageView
         android:id="@+id/pet_view"
@@ -15,21 +23,21 @@
         android:maxHeight="250dp"
         android:scaleType="centerCrop"
         android:src="@drawable/xample"
-
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="43dp" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#00FFFFFF"
-        android:paddingLeft="10dp"
-        android:src="@drawable/arrow_back_ios_24" />
+
+
+<!--    <ImageButton-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#00FFFFFF"-->
+<!--        android:paddingLeft="10dp"-->
+<!--        android:src="@drawable/arrow_back_ios_24" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
         android:orientation="vertical"
 
         app:layout_constraintTop_toBottomOf="@+id/pet_view"
@@ -54,18 +62,21 @@
             >
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/icon_location" />
+                android:id="@+id/gender"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                app:srcCompat="@drawable/female"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/pet_sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="Sex"
-
 
                 />
 
@@ -73,6 +84,7 @@
                 android:id="@+id/pet_youth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="Youth" />
@@ -81,6 +93,7 @@
                 android:id="@+id/pet_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:text="Size" />
