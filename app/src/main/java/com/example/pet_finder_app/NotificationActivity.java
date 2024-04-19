@@ -17,15 +17,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RescueCategoryActivity extends AppCompatActivity {
+public class NotificationActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     Toolbar arrowBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.rescue_pet);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.rescue_pet), (v, insets) -> {
+        setContentView(R.layout.notification);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.notification), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -39,18 +39,17 @@ public class RescueCategoryActivity extends AppCompatActivity {
             }
         });
 
-        List<RescueCategoryDomain> RescueList = new ArrayList<RescueCategoryDomain>();
-        RescueList.add(new RescueCategoryDomain(R.drawable.rescue_station1, "SaiGon Pet Adoption","Quan 9, TPHCM", "0.4 kms"));
-        RescueList.add(new RescueCategoryDomain(R.drawable.rescue_station1, "SaiGon Pet Adoption","Quan 9, TPHCM", "0.4 kms"));
-        RescueList.add(new RescueCategoryDomain(R.drawable.rescue_station1, "SaiGon Pet Adoption","Quan 9, TPHCM", "0.4 kms"));
-        RescueList.add(new RescueCategoryDomain(R.drawable.rescue_station1, "SaiGon Pet Adoption","Quan 9, TPHCM", "0.4 kms"));
-        RescueList.add(new RescueCategoryDomain(R.drawable.rescue_station1, "SaiGon Pet Adoption","Quan 9, TPHCM", "0.4 kms"));
+        List<NotificationDomain> NotifiList = new ArrayList<NotificationDomain>();
+        NotifiList.add(new NotificationDomain(R.drawable.avatar, "Pickle","Xin chào! Có điều gì tôi có thể giúp bạn hôm nay không?", "Now"));
+        NotifiList.add(new NotificationDomain(R.drawable.avatar, "Pickle","Xin chào! Có điều gì tôi có thể giúp bạn hôm nay không?", "Now"));
+        NotifiList.add(new NotificationDomain(R.drawable.avatar, "Pickle","Xin chào! Có điều gì tôi có thể giúp bạn hôm nay không?", "Now"));
+        NotifiList.add(new NotificationDomain(R.drawable.avatar, "Pickle","Xin chào! Có điều gì tôi có thể giúp bạn hôm nay không?", "Now"));
+        NotifiList.add(new NotificationDomain(R.drawable.avatar, "Pickle","Xin chào! Có điều gì tôi có thể giúp bạn hôm nay không?", "Now"));
 
-
-
-        recyclerView = findViewById(R.id.rescue_view);
-        RescueCategoryAdapter rescueAdapter = new RescueCategoryAdapter(RescueList);
-        recyclerView.setAdapter(rescueAdapter);
+        recyclerView = findViewById(R.id.notifi_view);
+        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 40,40));
+        NotificationAdapter notificationAdapter = new NotificationAdapter(NotifiList);
+        recyclerView.setAdapter(notificationAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
 
     }

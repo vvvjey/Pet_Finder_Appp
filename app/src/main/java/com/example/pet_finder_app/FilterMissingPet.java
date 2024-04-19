@@ -1,5 +1,6 @@
 package com.example.pet_finder_app;
 
+
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.SeekBar;
@@ -9,7 +10,6 @@ import android.view.View;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
-
 
 public class FilterMissingPet extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String[] breed = { "India", "USA", "China", "Japan", "Other"};
