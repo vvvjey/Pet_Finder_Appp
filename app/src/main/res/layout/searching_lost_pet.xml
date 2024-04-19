@@ -7,12 +7,12 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:orientation="horizontal"
 
             >
@@ -20,8 +20,7 @@
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbarArrowBack"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
+                android:layout_height="fill_parent"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
                 app:navigationIcon="@drawable/arrow_back_ios_24" />
@@ -30,18 +29,90 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="1dp"
                 android:gravity="center_vertical|fill_vertical"
                 android:text="SEARCHING FOR A LOST PET"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="4dp"
+                android:layout_weight="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bell" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:layout_weight="0"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/title_home"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/chat_vector" />
 
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/lv"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content">
+
+            <ListView
+                android:id="@+id/lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </ListView>
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="-200dp"
+                android:layout_marginBottom="100dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/lv" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarCreate"
+                android:layout_width="36dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="-200dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/circle_yellow"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lv"
+                app:navigationIcon="@drawable/add_icon2" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarFavorite"
+                android:layout_width="36dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="-250dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/circle_yellow"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lv"
+                app:navigationIcon="@drawable/add_icon2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
