@@ -43,6 +43,12 @@
             android:parentActivityName=".MainActivity"
             >
         </activity>
+
+        <activity android:name=".FilterMissingPet"
+            android:parentActivityName=".MainActivity"
+            >
+        </activity>
+
         <activity android:name=".LoginActivity"
             android:parentActivityName=".MainActivity"
             >
