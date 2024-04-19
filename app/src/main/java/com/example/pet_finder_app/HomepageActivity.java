@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +31,38 @@ public class HomepageActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+//        NAVIGATION
+        LinearLayout homeSection = findViewById(R.id.home_sec);
+        LinearLayout missingSection = findViewById(R.id.missing_sec);
+        LinearLayout adoptSection = findViewById(R.id.adopt_sec);
+        LinearLayout rescueSection = findViewById(R.id.rescue_sec);
+        LinearLayout profileSection = findViewById(R.id.profile_sec);
+        missingSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SearchingLostPetActivity.class));
+            }
+        });
+        adoptSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AdoptingPetActivity.class));
+            }
+        });
+        rescueSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RescueCategoryActivity.class));
+            }
+        });
+//        profileSection.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), SearchingLostPetActivity.class));
+//            }
+//        });
+
+
 
         List<AdoptingCategoryDomain> AdoptingList = new ArrayList<AdoptingCategoryDomain>();
         AdoptingList.add(new AdoptingCategoryDomain(R.drawable.cat_category1, "Samantha", R.drawable.favorate, "Thu Duc ( 2,5 km )", R.drawable.male, 0));

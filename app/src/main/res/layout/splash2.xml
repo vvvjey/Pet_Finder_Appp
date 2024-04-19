@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/skipSplash2"
         android:layout_width="68dp"
         android:layout_height="26dp"
         android:layout_marginTop="37dp"
@@ -27,53 +27,58 @@
         android:layout_marginTop="88dp"
         android:layout_marginEnd="40dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/skipSplash2"
         app:srcCompat="@drawable/splash2_img" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="117dp"
         android:layout_marginTop="20dp"
         android:text="Make A New Friend"
         android:textColor="#5F5B5B"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        tools:layout_editor_absoluteX="117dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="260dp"
         android:layout_height="41dp"
+        android:layout_marginStart="75dp"
         android:layout_marginTop="28dp"
         android:text="Make your life more happy with us to have a little new friends"
         android:textAlignment="center"
         android:textColor="#A0A3B4"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
-        tools:layout_editor_absoluteX="75dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <ImageView
         android:id="@+id/imageView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="178dp"
         android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:srcCompat="@drawable/splash2_state"
-        tools:layout_editor_absoluteX="178dp" />
+        app:layout_constraintBottom_toTopOf="@+id/nextSplash2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/splash2_state" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/nextSplash2"
         android:layout_width="198dp"
         android:layout_height="52dp"
+        android:layout_marginStart="106dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="47dp"
         android:background="@drawable/border_radius_splash_skip"
         android:backgroundTint="#59A9F2"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
-        tools:layout_editor_absoluteX="106dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 </androidx.constraintlayout.widget.ConstraintLayout>

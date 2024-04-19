@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/skipSplash3"
         android:layout_width="68dp"
         android:layout_height="26dp"
         android:layout_marginTop="37dp"
@@ -23,54 +23,61 @@
         android:id="@+id/imageView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="88dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView12"
-        app:srcCompat="@drawable/lost_1"
-        tools:layout_editor_absoluteX="36dp" />
+        android:layout_marginEnd="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/skipSplash3"
+        app:srcCompat="@drawable/lost_1" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="122dp"
         android:layout_marginTop="20dp"
         android:text="Find Your Lost Pet"
         android:textColor="#5F5B5B"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12"
-        tools:layout_editor_absoluteX="122dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="260dp"
         android:layout_height="41dp"
+        android:layout_marginStart="75dp"
         android:layout_marginTop="28dp"
         android:text="By sharing information, you can find your lost pet easily and quickly"
         android:textAlignment="center"
         android:textColor="#A0A3B4"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
-        tools:layout_editor_absoluteX="75dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <ImageView
         android:id="@+id/imageView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="178dp"
         android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:srcCompat="@drawable/group_74__1_"
-        tools:layout_editor_absoluteX="178dp" />
+        app:layout_constraintBottom_toTopOf="@+id/nextSplash3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/group_74__1_" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/nextSplash3"
         android:layout_width="198dp"
         android:layout_height="52dp"
+        android:layout_marginStart="106dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="47dp"
         android:background="@drawable/border_radius_splash_skip"
         android:backgroundTint="#59A9F2"
         android:text="Get Started"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10"
-        tools:layout_editor_absoluteX="106dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 </androidx.constraintlayout.widget.ConstraintLayout>
