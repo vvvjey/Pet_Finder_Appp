@@ -46,10 +46,8 @@ public class NotificationActivity extends AppCompatActivity {
         NotifiList.add(new NotificationDomain(R.drawable.avatar, "Pickle","Xin chào! Có điều gì tôi có thể giúp bạn hôm nay không?", "Now"));
         NotifiList.add(new NotificationDomain(R.drawable.avatar, "Pickle","Xin chào! Có điều gì tôi có thể giúp bạn hôm nay không?", "Now"));
 
-
-
-
         recyclerView = findViewById(R.id.notifi_view);
+        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 40,40));
         NotificationAdapter notificationAdapter = new NotificationAdapter(NotifiList);
         recyclerView.setAdapter(notificationAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
