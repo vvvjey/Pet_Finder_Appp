@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn;
     Button btnAdoptForm;
     Button btnLostPetForm;
-    Button btnLogin;
+    Button btnLogin , btn_login;
 
     Button btnFavorite;
     Button btn_adopt, btn_homepage, btn_rescue;
