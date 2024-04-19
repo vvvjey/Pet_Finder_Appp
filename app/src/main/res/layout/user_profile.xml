@@ -17,7 +17,7 @@
         android:paddingTop="20dp"
         android:paddingLeft="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:foregroundGravity="center_vertical||center_horizontal"
+        android:foregroundGravity="center_vertical"
        >
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarArrowBack"
@@ -29,7 +29,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center_horizontal||center_vertical"
+            android:gravity="center_horizontal"
             app:navigationIcon="@drawable/arrow_back_ios_24" />
 
         <TextView

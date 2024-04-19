@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
@@ -37,6 +38,7 @@ public class HomepageActivity extends AppCompatActivity {
         LinearLayout adoptSection = findViewById(R.id.adopt_sec);
         LinearLayout rescueSection = findViewById(R.id.rescue_sec);
         LinearLayout profileSection = findViewById(R.id.profile_sec);
+        ImageView notifiImg = findViewById(R.id.notification_homepage);
         missingSection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +63,13 @@ public class HomepageActivity extends AppCompatActivity {
 //                startActivity(new Intent(getApplicationContext(), SearchingLostPetActivity.class));
 //            }
 //        });
+
+        notifiImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+            }
+        });
 
 
 
