@@ -1,5 +1,6 @@
 package com.example.pet_finder_app;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,15 +15,17 @@ import java.util.List;
 
 public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCategoryAdapter.MyViewHolder>{
     private List<AdoptingCategoryDomain> listPet;
+    private int layoutResourceId;
 
-    public AdoptingCategoryAdapter(List<AdoptingCategoryDomain> listPet){
+    public AdoptingCategoryAdapter(List<AdoptingCategoryDomain> listPet, int layoutResourceId){
         this.listPet = listPet;
+        this.layoutResourceId = layoutResourceId;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adopting_pet_category, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(layoutResourceId, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -33,6 +36,16 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        AdoptingCategoryDomain pet = listPet.get(position);
+        holder.image_id.setImageResource(pet.getImage_id());
+        holder.gender.setImageResource(pet.getGender());
+        holder.name.setText(pet.getName());
+        holder.location.setText(pet.getLocation());
+        holder.favorite.setImageResource(pet.getFavorite());
+        holder.status.setImageResource(pet.getStatus());
+    }
+
+    public void changeSizeHolder(@NonNull MyViewHolder holder, int position) {
         AdoptingCategoryDomain pet = listPet.get(position);
         holder.image_id.setImageResource(pet.getImage_id());
         holder.gender.setImageResource(pet.getGender());
@@ -57,5 +70,7 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
             location = itemView.findViewById(R.id.location_text);
             status = itemView.findViewById(R.id.status);
         }
+
+
     }
 }

@@ -122,21 +122,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin"
         />
+
     <Button
         android:id="@+id/btnLoginGG"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:text="Register with Google"
         android:layout_marginTop="10dp"
-        android:drawableLeft="@drawable/icons8_google"
-        android:textSize="25sp"
-        android:textColor="#B7B7B7"
         android:background="@drawable/button_rounded_gray"
+        android:drawableLeft="@drawable/icons8_google"
+        android:text="Register with Google"
+        android:textColor="#B7B7B7"
+        android:textSize="25sp"
         app:backgroundTint="@null"
         app:layout_constraintTop_toBottomOf="@+id/tvOther"
-        />
+        tools:layout_editor_absoluteX="20dp" />
+
+    <TextView
+        android:id="@+id/toLoginTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="24dp"
+        android:text="Return to login"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLoginGG" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

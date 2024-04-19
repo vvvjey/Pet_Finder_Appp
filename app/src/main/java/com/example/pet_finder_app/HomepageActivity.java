@@ -38,9 +38,10 @@ public class HomepageActivity extends AppCompatActivity {
         AdoptingList.add(new AdoptingCategoryDomain(R.drawable.cat_category1, "Samantha", R.drawable.non_favorate, "Thu Duc ( 2,5 km )", R.drawable.male, 0));
         AdoptingList.add(new AdoptingCategoryDomain(R.drawable.cat_category2, "Tigri", R.drawable.non_favorate, "Thu Duc ( 2,5 km )", R.drawable.female, 0));
 
-
         recyclerView = findViewById(R.id.adoptCategoryView);
-        AdoptingCategoryAdapter petAdapter = new AdoptingCategoryAdapter(AdoptingList);
+        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 40,40));
+
+        AdoptingCategoryAdapter petAdapter = new AdoptingCategoryAdapter(AdoptingList, R.layout.adopting_pet_category);
         recyclerView.setAdapter(petAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.HORIZONTAL, false));
 
@@ -52,7 +53,8 @@ public class HomepageActivity extends AppCompatActivity {
         MissingList.add(new AdoptingCategoryDomain(R.drawable.dog_category1, "Tigri", R.drawable.non_favorate, "Thu Duc ( 2,5 km )", R.drawable.female, R.drawable.seen));
 
         recyclerView = findViewById(R.id.missingCategoryView);
-        AdoptingCategoryAdapter missingAdapter = new AdoptingCategoryAdapter(MissingList);
+        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 40,40));
+        AdoptingCategoryAdapter missingAdapter = new AdoptingCategoryAdapter(MissingList, R.layout.adopting_pet_category);
         recyclerView.setAdapter(missingAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.HORIZONTAL, false));
     }

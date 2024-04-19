@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/favorite"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FavoritePetActivity">
+
+    <TextView
+        android:id="@+id/favorite_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Favorites"
+        android:textColor="@color/black"
+        android:textSize="19dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/grid_view"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="65dp"
+        app:layout_constraintBottom_toBottomOf="@+id/favorite_title"
+        app:layout_constraintStart_toEndOf="@+id/favorite_title"
+        app:layout_constraintTop_toTopOf="@+id/favorite_title"
+        app:srcCompat="@drawable/grid_black" />
+
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/favorite_title"
+        app:layout_constraintStart_toEndOf="@+id/grid_view"
+        app:layout_constraintTop_toTopOf="@+id/favorite_title"
+        app:srcCompat="@drawable/filter_black" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/favoriteView"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/favorite_title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

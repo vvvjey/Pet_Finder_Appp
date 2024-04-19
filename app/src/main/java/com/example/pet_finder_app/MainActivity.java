@@ -3,18 +3,30 @@ package com.example.pet_finder_app;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity {
     Button btn;
-    Button btn_adopt, btn_homepage, btn_login;
+    Button btnAdoptForm;
+    Button btnLostPetForm;
+    Button btnLogin;
+
+    Button btnFavorite;
+    Button btn_adopt, btn_homepage, btn_rescue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +54,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnAdoptForm = findViewById(R.id.buttonAdoptForm);
+        btnAdoptForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),FillInforToAdoptActivity.class));
+            }
+        });
+        btnLostPetForm = findViewById(R.id.buttonFormLostPet);
+        btnLostPetForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),FillInforAboutLostPet.class));
+            }
+        });
+
         btn_homepage = findViewById(R.id.buttonHomepage);
         btn_homepage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
+
+            }
+        });
+
+        btn_rescue = findViewById(R.id.buttonRescue);
+        btn_rescue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RescueCategoryActivity.class));
+
+            }
+        });
+        btnLogin = findViewById(R.id.buttonLogin);
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
             }
         });
 
@@ -57,5 +102,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), ShowPassword.class));
             }
         });
+        btnFavorite = findViewById(R.id.buttonFavorite);
+        btnFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FavoritePetActivity.class));
+
+            }
+        });
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
     }
 }
