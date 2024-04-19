@@ -57,12 +57,12 @@ public class HomepageActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), RescueCategoryActivity.class));
             }
         });
-//        profileSection.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplicationContext(), SearchingLostPetActivity.class));
-//            }
-//        });
+        profileSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            }
+        });
 
         notifiImg.setOnClickListener(new View.OnClickListener() {
             @Override

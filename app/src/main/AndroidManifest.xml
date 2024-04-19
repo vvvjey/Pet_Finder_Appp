@@ -51,6 +51,10 @@
             android:parentActivityName=".SearchingLostPetActivity"
             >
         </activity>
+        <activity android:name=".ProfileActivity"
+            android:parentActivityName=".HomepageActivity"
+            >
+        </activity>
         <activity android:name=".Splash1Activity"
             android:parentActivityName=".LoginActivity"
             >
