@@ -95,6 +95,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn_login = findViewById(R.id.login);
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ShowPassword.class));
+            }
+        });
         btnFavorite = findViewById(R.id.buttonFavorite);
         btnFavorite.setOnClickListener(new View.OnClickListener() {
             @Override

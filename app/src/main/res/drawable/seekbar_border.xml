@@ -1,0 +1,9 @@
+<!-- seekbar_border.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <stroke
+        android:width="2dp"
+        android:color="#CCCCCC" /> <!-- Border color -->
+    <corners
+        android:radius="4dp" /> <!-- Optional: Rounded corners -->
+</shape>

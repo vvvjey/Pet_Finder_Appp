@@ -5,18 +5,28 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ShowPassword">
 
-
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarArrowBack"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_weight="0"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/arrow_back_ios_24" />
 
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarArrowBack"
         app:srcCompat="@drawable/logo"
         />
     <TextView

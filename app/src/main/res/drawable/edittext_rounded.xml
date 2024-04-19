@@ -4,7 +4,7 @@
 
     <stroke
         android:width="2dp"
-        android:color="@color/gray" /> <!-- Màu sắc của khung bo tròn -->
+        android:color="@color/light_gray" /> <!-- Màu sắc của khung bo tròn -->
     <padding
         android:left="10dp"
         android:right="10dp" /> <!-- Độ dài của khung bo tròn -->
