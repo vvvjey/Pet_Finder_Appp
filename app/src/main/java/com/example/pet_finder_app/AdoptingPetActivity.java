@@ -53,10 +53,16 @@ public class AdoptingPetActivity extends AppCompatActivity {
             return insets;
         });
 
-        List<AdoptingPetItem> petList = new ArrayList<>();
+        List<AdoptingPetItem> petList = new ArrayList<AdoptingPetItem>();
         petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.female, 6));
         petList.add(new AdoptingPetItem(R.drawable.cat2, "White cat", "Was Castrated", "White, Blue eyes", "08-09-2023", R.drawable.male, 6));
-        // Add more pet items here...
+        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.female, 6));
+        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.male, 6));
+        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.female, 6));
+        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.male, 6));
+        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.female, 6));
+        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.male, 6));
+        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.female, 6));
 
         arrowBack = findViewById(R.id.toolbarArrowBack);
         arrowBack.setOnClickListener(new View.OnClickListener() {

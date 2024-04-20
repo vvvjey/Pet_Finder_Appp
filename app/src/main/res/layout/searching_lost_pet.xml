@@ -75,31 +75,60 @@
                 app:layout_constraintTop_toTopOf="parent">
         </ListView>
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarCreate"
-                android:layout_width="36dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="-200dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/circle_yellow"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lv"
-                app:navigationIcon="@drawable/add_icon2" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="42dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarFavorite"
-                android:layout_width="36dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="-250dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/circle_yellow"
-                android:minHeight="?attr/actionBarSize"
-                android:theme="?attr/actionBarTheme"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lv"
-                app:navigationIcon="@drawable/add_icon2" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/add_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/blue"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/add"
+                    app:tint="@color/white"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circular"/>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/add_missing_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/dark_yellow"
+                    android:clickable="true"
+                    android:visibility="invisible"
+                    android:focusable="true"
+                    app:tint="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/add_btn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/edit"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circular"/>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/favorite_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:backgroundTint="@color/dark_yellow"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:visibility="invisible"
+                    app:tint="@color/white"
+                    app:layout_constraintBottom_toTopOf="@+id/add_missing_btn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/favorate"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circular"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
