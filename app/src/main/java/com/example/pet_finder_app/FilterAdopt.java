@@ -11,9 +11,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
 
-import com.google.android.material.slider.Slider;
-
-public class FilterMissingPet extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class FilterAdopt extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String[] breed = { "India", "USA", "China", "Japan", "Other"};
     String[] color = { "Red", "Green", "Blue", "Pink", "Other"};
 
@@ -28,7 +26,7 @@ public class FilterMissingPet extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.filtter_missing_pet);
+        setContentView(R.layout.filter_adopt);
 
         TextView catCheck = findViewById(R.id.catCheck);
         catCheck.setOnClickListener(new View.OnClickListener() {
@@ -57,26 +55,7 @@ public class FilterMissingPet extends AppCompatActivity implements AdapterView.O
                 v.setSelected(!v.isSelected());
             }
         });
-        TextView missingCheck = findViewById(R.id.missingCheck);
-        missingCheck.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                v.setSelected(!v.isSelected());
-            }
-        });
 
-        TextView seenCheck = findViewById(R.id.seenCheck);
-        seenCheck.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                v.setSelected(!v.isSelected());
-            }
-        });
-
-        TextView protectedCheck = findViewById(R.id.protectedCheck);
-        protectedCheck.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                v.setSelected(!v.isSelected());
-            }
-        });
 
         TextView femaleCheck = findViewById(R.id.femaleCheck);
         TextView maleCheck = findViewById(R.id.maleCheck);
@@ -159,5 +138,6 @@ public class FilterMissingPet extends AppCompatActivity implements AdapterView.O
         cl.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spincolor.setAdapter(cl);
+
     }
 }

@@ -79,7 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#5F5B5B"
-        android:text="Distance: 20km"
+        android:text="Distance"
         android:textSize="22sp"
         android:textStyle="bold"
         android:layout_marginTop="10dp"
@@ -98,16 +98,20 @@
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@+id/tvDistance">
 
-        <SeekBar
+        <com.google.android.material.slider.Slider
             android:id="@+id/seekBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:progress="20"
-            android:progressTint="@color/blue"
-            android:progressBackgroundTint="@color/light_blue"
-            android:thumb="@drawable/custom_thumb"
-            android:max="100"
+            android:value="20"
+            android:background="@drawable/unselected_background"
+            app:thumbColor="@color/blue"
+            app:trackColorActive="@color/blue"
+            app:trackColorInactive="@color/light_blue"
+            android:valueFrom="0"
+            android:valueTo="100"
+            app:haloColor="@color/light_blue"
+            app:tickColor="@color/blue"
             />
 
 
@@ -467,7 +471,7 @@
         android:id="@+id/tvAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Size"
+        android:text="Age"
         android:textSize="22sp"
         android:textColor="#5F5B5B"
         android:textStyle="bold"

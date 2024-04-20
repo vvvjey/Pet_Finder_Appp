@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnFavorite;
     Button btn_adopt, btn_homepage, btn_rescue;
-    Button btn_filter_missing_pet;
+    Button btn_filter_missing_pet, btn_filter_adopt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +113,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btn_filter_adopt = findViewById(R.id.buttonFilterAdopt);
+        btn_filter_adopt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FilterAdopt.class));
+
+            }
+        });
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
