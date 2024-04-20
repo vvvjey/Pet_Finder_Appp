@@ -5,16 +5,20 @@ import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
 
+import com.google.android.material.slider.Slider;
+
 public class FilterMissingPet extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String[] breed = { "India", "USA", "China", "Japan", "Other"};
     String[] color = { "Red", "Green", "Blue", "Pink", "Other"};
-    SeekBar seekBar;
+    Slider seekbar;
     TextView distance;
 
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
@@ -160,25 +164,13 @@ public class FilterMissingPet extends AppCompatActivity implements AdapterView.O
         //Setting the ArrayAdapter data on the Spinner
         spincolor.setAdapter(cl);
 
-        seekBar = (SeekBar)findViewById(R.id.seekBar);
-        distance = (TextView)findViewById(R.id.tvDistance);
-
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        distance = (TextView) findViewById(R.id.tvDistance);
+        seekbar = (Slider) findViewById(R.id.seekBar);
+        seekbar.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                distance.setText("Distance: " + String.valueOf(progress) + "km");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
+            public void onValueChange(@NonNull Slider slider, float v, boolean b) {
+                distance.setText("Distance: " + String.valueOf(v) + "km");
             }
         });
-
     }
 }

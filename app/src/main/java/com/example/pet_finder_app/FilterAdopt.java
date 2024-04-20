@@ -3,17 +3,28 @@ package com.example.pet_finder_app;
 
 import android.os.Bundle;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Spinner;
-import android.widget.Toast;
 import android.widget.ArrayAdapter;
+import java.util.List;
+import java.lang.Integer;
+
+import com.google.android.material.slider.RangeSlider;
+import com.google.android.material.slider.Slider;
 
 public class FilterAdopt extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String[] breed = { "India", "USA", "China", "Japan", "Other"};
     String[] color = { "Red", "Green", "Blue", "Pink", "Other"};
+    EditText min, max;
+    RangeSlider priceBar;
+    TextView distance;
+    Slider seekbar;
 
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 
@@ -138,6 +149,29 @@ public class FilterAdopt extends AppCompatActivity implements AdapterView.OnItem
         cl.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spincolor.setAdapter(cl);
+
+        distance = (TextView) findViewById(R.id.tvDistance);
+        seekbar = (Slider) findViewById(R.id.seekBar);
+
+        seekbar.addOnChangeListener(new Slider.OnChangeListener() {
+            @Override
+            public void onValueChange(@NonNull Slider slider, float v, boolean b) {
+                distance.setText("Distance: " + String.valueOf(v) + "km");
+            }
+        });
+
+
+        min = (EditText) findViewById(R.id.editMin);
+        max = (EditText) findViewById(R.id.editMax);
+        priceBar = (RangeSlider) findViewById(R.id.priceBar);
+
+        priceBar.addOnChangeListener(new RangeSlider.OnChangeListener() {
+            @Override
+            public void onValueChange(@NonNull RangeSlider rangeSlider, float v, boolean b) {
+                min.setText(String.valueOf(priceBar.getValues().get(0)));
+                max.setText(String.valueOf(priceBar.getValues().get(1)));
+            }
+        });
 
     }
 }

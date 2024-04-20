@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#5F5B5B"
-                android:text="Distance"
+                android:text="Distance: 20km"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:layout_marginTop="10dp"
@@ -104,6 +104,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:value="20"
+                    android:stepSize="5"
                     android:background="@drawable/unselected_background"
                     app:thumbColor="@color/blue"
                     app:trackColorActive="@color/blue"
@@ -518,9 +519,10 @@
                     app:trackColorActive="@color/blue"
                     app:trackColorInactive="@color/light_blue"
                     android:valueFrom="0"
-                    android:valueTo="100"
+                    android:valueTo="9000000"
                     app:haloColor="@color/light_blue"
                     app:tickColor="@color/blue"
+                    android:stepSize="500000"
                     />
 
 
@@ -574,6 +576,7 @@
                         android:textSize="19sp"
                         android:layout_marginStart="19dp"
                         android:textColor="@color/black"
+                        android:text="2000000.0"
                         />
 
                     <TextView
@@ -601,6 +604,7 @@
                         android:textSize="19sp"
                         android:layout_marginStart="40dp"
                         android:textColor="@color/black"
+                        android:text="7000000.0"
                         />
 
                     <TextView
