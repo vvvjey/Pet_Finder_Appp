@@ -11,11 +11,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
 
-import com.google.android.material.slider.Slider;
-
 public class FilterMissingPet extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String[] breed = { "India", "USA", "China", "Japan", "Other"};
     String[] color = { "Red", "Green", "Blue", "Pink", "Other"};
+    SeekBar seekBar;
+    TextView distance;
 
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 
@@ -159,5 +159,26 @@ public class FilterMissingPet extends AppCompatActivity implements AdapterView.O
         cl.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //Setting the ArrayAdapter data on the Spinner
         spincolor.setAdapter(cl);
+
+        seekBar = (SeekBar)findViewById(R.id.seekBar);
+        distance = (TextView)findViewById(R.id.tvDistance);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                distance.setText("Distance: " + String.valueOf(progress) + "km");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
     }
 }
