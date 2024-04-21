@@ -16,7 +16,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile);
 
-        ConstraintLayout myShop = findViewById(R.id.item_account);
+        ConstraintLayout myShop = findViewById(R.id.item_myshop);
         arrowBack = findViewById(R.id.toolbarArrowBack);
         profileMyShop = findViewById(R.id.profileMyShop);
         profileMissingAnimalsPost = findViewById(R.id.profileMissingAnimalsPost);
@@ -27,17 +27,24 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this, HomepageActivity.class));
             }
         });
+<<<<<<< HEAD
         profileMyShop.setOnClickListener(new View.OnClickListener() {
+=======
+        myShop.setOnClickListener(new View.OnClickListener() {
+>>>>>>> sonha
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ProfileActivity.this, MyShopActivity.class));
             }
         });
+<<<<<<< HEAD
 //        myShop.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                startActivity(new Intent(ProfileActivity.this, MyShopActivity.class));
 //            }
 //        });
+=======
+>>>>>>> sonha
     }
 }
