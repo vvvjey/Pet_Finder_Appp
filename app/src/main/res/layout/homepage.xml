@@ -388,7 +388,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/see_all"
+                        android:id="@+id/seeAllAdopt"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:fontFamily="@font/poppins"
@@ -448,7 +448,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/see_all2"
+                        android:id="@+id/seeAllMissing"
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:fontFamily="@font/poppins"
