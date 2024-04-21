@@ -28,6 +28,16 @@ public class AdoptingCategoryDomain {
         this.age = age;
     }
 
+    public AdoptingCategoryDomain(int image_id, String name, float price, int gender, String breed, int age) {
+        this.image_id = image_id;
+        this.name = name;
+        this.price = price;
+        this.gender = gender;
+        this.breed = breed;
+        this.age = age;
+    }
+
+
     public int getImage_id() {
         return image_id;
     }

@@ -87,6 +87,10 @@
             android:parentActivityName=".ProfileActivity"
             >
         </activity>
+        <activity android:name=".MyPetActivity"
+            android:parentActivityName=".MyShopActivity"
+            >
+        </activity>
 
         <activity
             android:name=".LoginActivity"

@@ -54,16 +54,6 @@
                     android:layout_height="50dp"
                     >
 
-                    <ImageView
-                        android:id="@+id/view_adopt_status"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_marginEnd="20dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/arrow" />
-
                     <TextView
                         android:id="@+id/statistics"
                         android:layout_width="wrap_content"
@@ -78,19 +68,39 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/view_history"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/history_view"
                         android:layout_width="wrap_content"
-                        android:layout_height="22dp"
-                        android:layout_marginEnd="23dp"
-                        android:fontFamily="@font/poppins"
-                        android:text="View History"
-                        android:textColor="@color/light_purple"
-                        android:textSize="12dp"
-                        android:textStyle="bold"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:paddingHorizontal="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/view_adopt_status"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/view_history"
+                            android:layout_width="wrap_content"
+                            android:layout_height="22dp"
+                            android:layout_marginEnd="15dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="View History"
+                            android:textColor="@color/light_purple"
+                            android:textSize="12dp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@+id/view_adopt_status" />
+
+                        <ImageView
+                            android:id="@+id/view_adopt_status"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/arrow" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
@@ -320,29 +330,40 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/see_all"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/see_all_view"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_marginEnd="23dp"
-                        android:fontFamily="@font/poppins"
-                        android:text="See all"
-                        android:textColor="@color/light_purple"
-                        android:textSize="12dp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/view_mypet"
-                        app:layout_constraintTop_toTopOf="@+id/adopt_pet" />
-
-                    <ImageView
-                        android:id="@+id/view_mypet"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:layout_marginEnd="20dp"
+                        android:paddingHorizontal="10dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/arrow" />
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/see_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="22dp"
+                            android:layout_marginEnd="15dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="See All"
+                            android:textColor="@color/light_purple"
+                            android:textSize="12dp"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@+id/see_all_arrow" />
+
+                        <ImageView
+                            android:id="@+id/see_all_arrow"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/arrow" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
                     <TextView
