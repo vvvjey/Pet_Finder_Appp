@@ -1,5 +1,7 @@
 package com.example.pet_finder_app;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +16,11 @@ import java.util.List;
 
 public class RescueCategoryAdapter extends RecyclerView.Adapter<RescueCategoryAdapter.MyViewHolder>{
     private List<RescueCategoryDomain> listRescue;
+    private Context context;
 
-    public RescueCategoryAdapter(List<RescueCategoryDomain> listRescue){
+    public RescueCategoryAdapter(List<RescueCategoryDomain> listRescue,Context context){
         this.listRescue = listRescue;
+        this.context = context;
     }
 
     @NonNull
@@ -39,6 +43,14 @@ public class RescueCategoryAdapter extends RecyclerView.Adapter<RescueCategoryAd
         holder.name.setText(rescue.getName());
         holder.location.setText(rescue.getLocation());
         holder.distance.setText(rescue.getDistance());
+
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, RescueDetailActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
