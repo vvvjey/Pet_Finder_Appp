@@ -45,12 +45,12 @@
         </activity>
 
         <activity android:name=".FilterMissingPet"
-            android:parentActivityName=".HomepageActivity"
+            android:parentActivityName=".SearchingLostPetActivity"
             >
         </activity>
 
         <activity android:name=".FilterAdopt"
-            android:parentActivityName=".HomepageActivity"
+            android:parentActivityName=".AdoptingPetActivity"
             >
         </activity>
 
@@ -82,7 +82,14 @@
             android:parentActivityName=".HomepageActivity"
             >
         </activity>
-
+        <activity android:name=".PetDetailActivity"
+            android:parentActivityName=".SearchingLostPetActivity"
+            >
+        </activity>
+        <activity android:name=".DetailRequetAdoptActivity"
+            android:parentActivityName=".LoginActivity"
+            >
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
