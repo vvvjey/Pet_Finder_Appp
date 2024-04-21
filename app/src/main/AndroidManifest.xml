@@ -107,6 +107,9 @@
             android:parentActivityName=".AddingPetActivity"
             >
         </activity>
+        <activity android:name=".AdoptStatusActivity">
+                  </activity>
+
         <activity android:name=".HistoryAdoptActivity"
             android:parentActivityName=".MyShopActivity"
             >
@@ -153,6 +156,8 @@
             >
         </activity>
 
+
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">

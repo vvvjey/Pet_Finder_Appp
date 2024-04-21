@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         password.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 final int Right=2;
