@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         toRegisterTv = findViewById(R.id.toRegisterTv);
-        registerBtn = findViewById(R.id.btnLogin);
+        loginBtn = findViewById(R.id.btnLogin);
         password = findViewById(R.id.edtPassword);
         loginGGBtn = findViewById(R.id.btnLoginGG);
         toRegisterTv.setOnClickListener(new View.OnClickListener() {
@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
             }
         });
-        registerBtn.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Splash1Activity.class));
