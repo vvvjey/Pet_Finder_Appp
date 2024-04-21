@@ -10,41 +10,61 @@
 
     >
 
-
-<!--        <ImageButton-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="#00FFFFFF"-->
-<!--        android:paddingLeft="10dp"-->
-<!--        android:src="@drawable/arrow_back_ios_24" />-->
-
-<!--    <ImageView-->
-<!--        android:id="@+id/pet_view"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:adjustViewBounds="true"-->
-<!--        android:maxHeight="250dp"-->
-<!--        android:scaleType="centerCrop"-->
-<!--        android:src="@drawable/xample"-->
-<!--        tools:layout_editor_absoluteX="0dp"-->
-<!--        tools:layout_editor_absoluteY="0dp" />-->
-
-    <ImageView
-        android:id="@+id/pet_view"
+    <ScrollView
+        android:id="@+id/scrollViewPetDetail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:maxHeight="250dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/xample"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:elevation="20dp"
+                android:foregroundGravity="center_vertical"
 
-        />
+                app:layout_constraintStart_toStartOf="parent">
 
-    <ImageButton
-        android:id="@+id/back_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/back" />
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbarArrowBack"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="0"
+                    android:minHeight="?attr/actionBarSize"
+                    android:theme="?attr/actionBarTheme"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:elevation="6dp"
+                    app:navigationIcon="@drawable/arrow_back_ios_24"
+
+                    />
+
+                <ImageView
+                    android:id="@+id/pet_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="250dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/xample"
+
+                    />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -495,7 +515,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="9"
                 android:src="@drawable/icon_next"
-
+                android:background="none"
                 />
         </LinearLayout>
 <!--                    <GridView-->
@@ -503,4 +523,6 @@
 <!--                        android:layout_height="wrap_content"-->
 <!--                        android:numColumns="4" />-->
     </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
