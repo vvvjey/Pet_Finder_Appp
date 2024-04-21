@@ -3,6 +3,7 @@ package com.example.pet_finder_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,8 @@ import java.util.List;
 
 public class MyPetActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
+
+    Button addNewPet;
     Toolbar arrowBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,16 @@ public class MyPetActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        addNewPet = findViewById(R.id.btn_add_pet);
+        arrowBack = findViewById(R.id.toolbarArrowBack);
+
+        addNewPet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MyPetActivity.this, AddingPetActivity.class));
+            }
         });
 
         arrowBack.setOnClickListener(new View.OnClickListener() {

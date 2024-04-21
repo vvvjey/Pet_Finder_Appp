@@ -91,6 +91,10 @@
             android:parentActivityName=".MyShopActivity"
             >
         </activity>
+        <activity android:name=".AddingPetActivity"
+            android:parentActivityName=".MyPetActivity"
+            >
+        </activity>
 
         <activity
             android:name=".LoginActivity"
