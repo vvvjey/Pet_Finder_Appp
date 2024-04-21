@@ -82,6 +82,8 @@ public class SearchingLostPetActivity extends AppCompatActivity {
         arrayList = new ArrayList<String>();
         arrayList.add("ABC");
         arrayList.add("ABC");
+        arrayList.add("ABC");
+
         lv = findViewById(R.id.lv);
         adapter = new SearchingLostPetAdapter(this,R.layout.searching_lost_pet_item,arrayList);
         lv.setAdapter(adapter);

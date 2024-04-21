@@ -88,7 +88,7 @@
         android:drawablePadding="8dp"
         android:layout_marginTop="20dp"
         android:drawableStart="@drawable/icons8_password"
-        android:drawableEnd="@drawable/ic_eye"
+        android:drawableEnd="@drawable/eye_off"
         android:background="@drawable/edittext_rounded"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +99,7 @@
     />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -120,7 +120,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
         />
 
     <Button
@@ -137,16 +137,16 @@
         app:layout_constraintTop_toBottomOf="@+id/tvOther"
         tools:layout_editor_absoluteX="20dp" />
 
-    <TextView
-        android:id="@+id/toLoginTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="160dp"
-        android:layout_marginTop="24dp"
-        android:text="Return to login"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLoginGG" />
+<!--    <TextView-->
+<!--        android:id="@+id/toLoginTv"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="160dp"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:text="Return to login"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btnLoginGG" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

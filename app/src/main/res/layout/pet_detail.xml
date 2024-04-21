@@ -517,6 +517,7 @@
                 android:src="@drawable/icon_next"
 
                 />
+
         </LinearLayout>
 <!--                    <GridView-->
 <!--                        android:layout_width="match_parent"-->

@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class LoginActivity extends AppCompatActivity {
     TextView toRegisterTv;
     EditText password;
+
     boolean isPasswordVisible = false;
     Button loginBtn,loginGGBtn;
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +38,8 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-        loginGGBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AdoptStatusActivity.class));
 
-            }
-        });
+
         password.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 final int Right=2;
@@ -51,11 +47,11 @@ public class LoginActivity extends AppCompatActivity {
                     if (event.getRawX() >= (password.getRight()-password.getCompoundDrawables()[Right].getBounds().width())) {
                         int selection = password.getSelectionEnd();
                         if (isPasswordVisible) {
-                            password.setCompoundDrawablesRelativeWithIntrinsicBounds( 0, 0, R.drawable.eye_off,  0);
+                            password.setCompoundDrawablesRelativeWithIntrinsicBounds( 0, 0, R.drawable.ic_eye,  0);
                             password.setTransformationMethod(PasswordTransformationMethod.getInstance());
                             isPasswordVisible = false;
                         } else {
-                            password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.ic_eye, 0);
+                            password.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.eye_off, 0);
                             password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                             isPasswordVisible = true;
                         }

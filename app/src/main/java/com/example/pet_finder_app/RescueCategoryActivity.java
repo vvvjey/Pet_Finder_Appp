@@ -49,7 +49,7 @@ public class RescueCategoryActivity extends AppCompatActivity {
 
 
         recyclerView = findViewById(R.id.rescue_view);
-        RescueCategoryAdapter rescueAdapter = new RescueCategoryAdapter(RescueList);
+        RescueCategoryAdapter rescueAdapter = new RescueCategoryAdapter(RescueList,this);
         recyclerView.setAdapter(rescueAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
 
