@@ -40,7 +40,22 @@
         </activity>
 
         <activity android:name=".RescueCategoryActivity"
-            android:parentActivityName=".HomepageActivity"
+            android:parentActivityName=".MainActivity"
+            >
+        </activity>
+
+        <activity android:name=".FilterMissingPet"
+            android:parentActivityName=".MainActivity"
+            >
+        </activity>
+
+        <activity android:name=".FilterAdopt"
+            android:parentActivityName=".MainActivity"
+            >
+        </activity>
+
+        <activity android:name=".LoginActivity"
+            android:parentActivityName=".MainActivity"
             >
         </activity>
         <activity android:name=".RegisterActivity"
@@ -73,7 +88,7 @@
         </activity>
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

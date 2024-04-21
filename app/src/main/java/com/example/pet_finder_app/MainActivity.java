@@ -23,10 +23,11 @@ public class MainActivity extends AppCompatActivity {
     Button btn;
     Button btnAdoptForm;
     Button btnLostPetForm;
-    Button btnLogin , btn_login;
+    Button btn_login;
 
     Button btnFavorite;
     Button btn_adopt, btn_homepage, btn_rescue;
+    Button btn_filter_missing_pet, btn_filter_adopt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,20 +87,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        btnLogin = findViewById(R.id.buttonLogin);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-
-            }
-        });
 
         btn_login = findViewById(R.id.login);
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), ShowPassword.class));
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });
         btnFavorite = findViewById(R.id.buttonFavorite);
@@ -107,6 +100,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), FavoritePetActivity.class));
+
+            }
+        });
+
+        btn_filter_missing_pet = findViewById(R.id.buttonFilterMissingPet);
+        btn_filter_missing_pet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FilterMissingPet.class));
+
+            }
+        });
+
+        btn_filter_adopt = findViewById(R.id.buttonFilterAdopt);
+        btn_filter_adopt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FilterAdopt.class));
 
             }
         });
