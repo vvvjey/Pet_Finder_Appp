@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import java.util.List;
 
 public class HomepageActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
+    TextView seeAllAdopt,seeAllMissing;
     Toolbar arrowBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +35,26 @@ public class HomepageActivity extends AppCompatActivity {
             return insets;
         });
 //        NAVIGATION
+        seeAllAdopt = findViewById(R.id.seeAllAdopt);
+        seeAllMissing = findViewById(R.id.seeAllMissing);
         LinearLayout homeSection = findViewById(R.id.home_sec);
         LinearLayout missingSection = findViewById(R.id.missing_sec);
         LinearLayout adoptSection = findViewById(R.id.adopt_sec);
         LinearLayout rescueSection = findViewById(R.id.rescue_sec);
         LinearLayout profileSection = findViewById(R.id.profile_sec);
         ImageView notifiImg = findViewById(R.id.notification_homepage);
+        seeAllAdopt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AdoptingPetActivity.class));
+            }
+        });
+        seeAllMissing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SearchingLostPetActivity.class));
+            }
+        });
         missingSection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
