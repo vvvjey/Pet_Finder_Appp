@@ -107,6 +107,10 @@
             android:parentActivityName=".AddingPetActivity"
             >
         </activity>
+        <activity android:name=".HistoryAdoptActivity"
+            android:parentActivityName=".MyShopActivity"
+            >
+        </activity>
 
         <activity
             android:name=".LoginActivity"

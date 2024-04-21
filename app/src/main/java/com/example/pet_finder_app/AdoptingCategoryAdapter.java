@@ -64,12 +64,21 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
         if (holder.age != null) {
             holder.age.setText(String.valueOf(pet.getAge()));
         }
+        if (holder.date_adopt != null) {
+            holder.date_adopt.setText(pet.getDate_adopt());
+        }
+        if (holder.ranking != null) {
+            holder.ranking.setText(pet.getRanking());
+        }
+        if (holder.condition != null) {
+            holder.condition.setText(pet.getCondition());
+        }
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
         private CardView cardView;
         private ImageView image_id,gender, favorite, status;
-        private TextView name, location, breed, price, age;
+        private TextView name, location, breed, price,age, date_adopt, ranking, condition;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +92,9 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
             breed = itemView.findViewById(R.id.breed_value);
             price = itemView.findViewById(R.id.price_value);
             age = itemView.findViewById(R.id.age_value);
+            date_adopt = itemView.findViewById(R.id.date_adopt);
+            ranking = itemView.findViewById(R.id.ranking);
+            condition = itemView.findViewById(R.id.status_value);
         }
     }
 }
