@@ -38,6 +38,13 @@ public class MyShopActivity extends AppCompatActivity {
                 startActivity(new Intent(MyShopActivity.this, MyPetActivity.class));
             }
         });
+        arrowBack = findViewById(R.id.toolbarArrowBack);
+        arrowBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AddingPetActivity.class));
+            }
+        });
 
         List<AdoptingCategoryDomain> ShopList = new ArrayList<AdoptingCategoryDomain>();
         ShopList.add(new AdoptingCategoryDomain(R.drawable.dog_shop, "Gary", R.drawable.favorate, 95, R.drawable.male, "Dog", 4));

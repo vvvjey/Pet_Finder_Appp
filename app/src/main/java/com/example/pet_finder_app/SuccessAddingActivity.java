@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddingPetActivity extends AppCompatActivity {
+public class SuccessAddingActivity extends AppCompatActivity {
 
     Toolbar arrowBack;
     Button backPet;
@@ -29,25 +29,25 @@ public class AddingPetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.adding_new_pet);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.addpet), (v, insets) -> {
+        setContentView(R.layout.add_pet_successfully);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.add_successfully), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
         arrowBack = findViewById(R.id.toolbarArrowBack);
-        backPet = findViewById(R.id.btn_add);
+        backPet = findViewById(R.id.btn_back_pet);
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), MyPetActivity.class));
+                startActivity(new Intent(getApplicationContext(), AddingPetActivity.class));
             }
         });
         backPet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SuccessAddingActivity.class));
+                startActivity(new Intent(getApplicationContext(), MyPetActivity.class));
             }
         });
     }
