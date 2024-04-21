@@ -112,6 +112,42 @@
             >
         </activity>
 
+        <activity android:name=".MissingAnimalsPostActivity"
+            android:parentActivityName=".ProfileActivity"
+            >
+        </activity>
+        <activity android:name=".AccountSettingActivity"
+            android:parentActivityName=".ProfileActivity"
+            >
+        </activity>
+        <activity android:name=".UserAccountActivity"
+            android:parentActivityName=".AccountSettingActivity"
+            >
+        </activity>
+        <activity android:name=".UserNotificationActivity"
+            android:parentActivityName=".AccountSettingActivity"
+            >
+        </activity>
+        <activity android:name=".UserPrivacyActivity"
+            android:parentActivityName=".AccountSettingActivity"
+            >
+        </activity>
+        <activity android:name=".UserSecurityActivity"
+            android:parentActivityName=".AccountSettingActivity"
+            >
+        </activity>
+        <activity android:name=".UserChangePasswordActivity"
+            android:parentActivityName=".UserSecurityActivity"
+            >
+        </activity>
+        <activity android:name=".UserChangeEmailActivity"
+            android:parentActivityName=".UserSecurityActivity"
+            >
+        </activity>
+        <activity android:name=".RescueDetailActivity"
+            android:parentActivityName=".RescueCategoryActivity"
+            >
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">

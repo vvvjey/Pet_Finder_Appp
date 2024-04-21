@@ -44,7 +44,7 @@ public class MyShopActivity extends AppCompatActivity {
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AddingPetActivity.class));
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
             }
         });
 
