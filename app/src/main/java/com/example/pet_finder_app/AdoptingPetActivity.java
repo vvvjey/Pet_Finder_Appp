@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -26,6 +27,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
     private FloatingActionButton addBtn, edit_btn, favorite_btn;
     private Toolbar arrowBack;
     private boolean clicked;
+    private ImageView filterAdopt;
 
     private Animation getFromBottom() {
         return AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim);
@@ -80,7 +82,14 @@ public class AdoptingPetActivity extends AppCompatActivity {
         addBtn = findViewById(R.id.add_btn);
         edit_btn = findViewById(R.id.edit_btn);
         favorite_btn = findViewById(R.id.favorite_btn);
-
+        filterAdopt = findViewById(R.id.filterAdopt);
+        ImageView notifiImg = findViewById(R.id.notification_homepage);
+        notifiImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+            }
+        });
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,6 +109,12 @@ public class AdoptingPetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), FillInforToAdoptActivity.class));
+            }
+        });
+        filterAdopt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FilterAdopt.class));
             }
         });
     }

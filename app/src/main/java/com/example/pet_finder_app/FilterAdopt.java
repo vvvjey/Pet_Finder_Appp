@@ -1,6 +1,7 @@
 package com.example.pet_finder_app;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -12,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
+import androidx.appcompat.widget.Toolbar;
+
 import java.util.List;
 import java.lang.Integer;
 
@@ -25,7 +28,7 @@ public class FilterAdopt extends AppCompatActivity implements AdapterView.OnItem
     RangeSlider priceBar;
     TextView distance;
     Slider seekbar;
-
+    Toolbar arrowBack;
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 
     }
@@ -70,13 +73,19 @@ public class FilterAdopt extends AppCompatActivity implements AdapterView.OnItem
 
         TextView femaleCheck = findViewById(R.id.femaleCheck);
         TextView maleCheck = findViewById(R.id.maleCheck);
+        arrowBack = findViewById(R.id.toolbarArrowBack);
         maleCheck.setSelected(true);
         maleCheck.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 v.setSelected(!v.isSelected());
             }
         });
-
+        arrowBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AdoptingPetActivity.class));
+            }
+        });
         femaleCheck.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 v.setSelected(!v.isSelected());

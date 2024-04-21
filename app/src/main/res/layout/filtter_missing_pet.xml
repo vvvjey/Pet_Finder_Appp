@@ -8,30 +8,31 @@
     tools:context=".FilterMissingPet">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarArrowBack"
+        android:id="@+id/toolbarArrowBackFilterMissing"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_weight="0"
-        android:layout_marginTop="17dp"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="17dp"
+        android:layout_weight="0"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/arrow_back_ios_24" />
+
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
         android:text="Filter"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintStart_toStartOf="@+id/toolbarArrowBack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintStart_toEndOf="@+id/toolbarArrowBackFilterMissing"
+        app:layout_constraintStart_toStartOf="@+id/toolbarArrowBackFilterMissing"
+        app:layout_constraintTop_toTopOf="parent" />
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

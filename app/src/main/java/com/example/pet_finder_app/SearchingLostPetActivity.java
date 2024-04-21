@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -26,6 +28,7 @@ public class SearchingLostPetActivity extends AppCompatActivity {
     ListView lv;
     SearchingLostPetAdapter adapter;
     ArrayList<String> arrayList;
+    ImageView filterMissing;
     private boolean clicked;
 
     private Animation getFromBottom() {
@@ -50,6 +53,14 @@ public class SearchingLostPetActivity extends AppCompatActivity {
         addBtn = findViewById(R.id.add_btn);
         add_missing_btn = findViewById(R.id.add_missing_btn);
         favorite_btn = findViewById(R.id.favorite_btn);
+        filterMissing = findViewById(R.id.filterMissing);
+        ImageView notifiImg = findViewById(R.id.notification_homepage);
+        notifiImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+            }
+        });
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,13 +85,24 @@ public class SearchingLostPetActivity extends AppCompatActivity {
         lv = findViewById(R.id.lv);
         adapter = new SearchingLostPetAdapter(this,R.layout.searching_lost_pet_item,arrayList);
         lv.setAdapter(adapter);
-
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getApplicationContext(), PetDetailActivity.class));
+            }
+        });
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setVisibility(clicked);
                 setAnimation(clicked);
                 clicked = !clicked;
+            }
+        });
+        filterMissing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FilterMissingPet.class));
             }
         });
 
