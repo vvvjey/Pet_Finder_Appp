@@ -1,6 +1,7 @@
 package com.example.pet_finder_app;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.SeekBar;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.slider.Slider;
 
@@ -20,7 +22,7 @@ public class FilterMissingPet extends AppCompatActivity implements AdapterView.O
     String[] color = { "Red", "Green", "Blue", "Pink", "Other"};
     Slider seekbar;
     TextView distance;
-
+    Toolbar arrowBackFilter;
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 
     }
@@ -49,12 +51,18 @@ public class FilterMissingPet extends AppCompatActivity implements AdapterView.O
         });
 
         TextView turtleCheck = findViewById(R.id.turtleCheck);
+        arrowBackFilter = findViewById(R.id.toolbarArrowBackFilterMissing);
         turtleCheck.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 v.setSelected(!v.isSelected());
             }
         });
-
+        arrowBackFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SearchingLostPetActivity.class));
+            }
+        });
         TextView hamsCheck = findViewById(R.id.hamsCheck);
         hamsCheck.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

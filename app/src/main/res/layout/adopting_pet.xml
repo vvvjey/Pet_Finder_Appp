@@ -35,7 +35,7 @@
             app:navigationIcon="@drawable/arrow_back_ios_24" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/notification_homepage"
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginStart="10dp"
@@ -204,7 +204,7 @@
                     android:text="@string/searches" />
 
                 <ImageView
-                    android:id="@+id/imageView4"
+                    android:id="@+id/filterAdopt"
                     android:layout_width="20dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="15dp"
@@ -217,7 +217,68 @@
                 android:layout_height="0dp"
                 android:layout_weight="1" />
 
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
         </LinearLayout>
     </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="42dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/blue"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/add"
+            app:tint="@color/white"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circular"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/edit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/dark_yellow"
+            android:clickable="true"
+            android:visibility="invisible"
+            android:focusable="true"
+            app:tint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/add_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/edit"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circular"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/favorite_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:backgroundTint="@color/dark_yellow"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="invisible"
+            app:tint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/edit_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/favorate"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circular"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

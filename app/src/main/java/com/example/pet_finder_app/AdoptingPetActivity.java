@@ -1,11 +1,14 @@
 package com.example.pet_finder_app;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Animatable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
@@ -14,16 +17,37 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdoptingPetActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    Toolbar arrowBack;
+    private FloatingActionButton addBtn, edit_btn, favorite_btn;
+    private Toolbar arrowBack;
+    private boolean clicked;
+    private ImageView filterAdopt;
+
+    private Animation getFromBottom() {
+        return AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim);
+    }
+
+    private Animation getToBottom() {
+        return AnimationUtils.loadAnimation(this, R.anim.to_bottom_anim);
+    }
+
+    private Animation getRotateClose() {
+        return AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim);
+    }
+
+    private Animation getRotateOpen() {
+        return AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.adopting_pet);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.pet), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -46,7 +70,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),HomepageActivity.class));
+                startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
             }
         });
 
@@ -54,5 +78,66 @@ public class AdoptingPetActivity extends AppCompatActivity {
         AdoptingPetAdapter petAdapter = new AdoptingPetAdapter(petList);
         recyclerView.setAdapter(petAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+
+        addBtn = findViewById(R.id.add_btn);
+        edit_btn = findViewById(R.id.edit_btn);
+        favorite_btn = findViewById(R.id.favorite_btn);
+        filterAdopt = findViewById(R.id.filterAdopt);
+        ImageView notifiImg = findViewById(R.id.notification_homepage);
+        notifiImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+            }
+        });
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setVisibility(clicked);
+                setAnimation(clicked);
+                clicked = !clicked;
+            }
+        });
+
+        favorite_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FavoritePetActivity.class));
+            }
+        });
+        edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FillInforToAdoptActivity.class));
+            }
+        });
+        filterAdopt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FilterAdopt.class));
+            }
+        });
+    }
+
+    private void setVisibility(boolean clicked) {
+        if (!clicked) {
+            edit_btn.setVisibility(View.VISIBLE);
+            favorite_btn.setVisibility(View.VISIBLE);
+        } else {
+            edit_btn.setVisibility(View.INVISIBLE);
+            favorite_btn.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void setAnimation(boolean clicked) {
+        if (!clicked) {
+            edit_btn.startAnimation(getFromBottom());
+            favorite_btn.startAnimation(getFromBottom());
+            addBtn.startAnimation(getRotateOpen());
+        } else {
+            edit_btn.startAnimation(getToBottom());
+            favorite_btn.startAnimation(getToBottom());
+            addBtn.startAnimation(getRotateClose());
+        }
     }
 }

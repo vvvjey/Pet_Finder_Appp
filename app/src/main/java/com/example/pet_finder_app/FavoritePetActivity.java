@@ -30,6 +30,7 @@ public class FavoritePetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.favorite);
+        arrowBack = findViewById(R.id.toolbarArrowBack);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.favorite), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -56,14 +57,24 @@ public class FavoritePetActivity extends AppCompatActivity {
                     recyclerView.setLayoutManager(new GridLayoutManager(FavoritePetActivity.this,1, RecyclerView.VERTICAL, false));
                     AdoptingCategoryAdapter horizontalAdapter = new AdoptingCategoryAdapter(FavoriteList, R.layout.favorite_item_horz);
                     recyclerView.setAdapter(horizontalAdapter);
+                    imageView.setImageResource(R.drawable.list_view);
                     isGrid = false;
                 }else{
                     recyclerView.setLayoutManager(new GridLayoutManager(FavoritePetActivity.this,2, RecyclerView.VERTICAL, false));
                     AdoptingCategoryAdapter horizontalAdapter = new AdoptingCategoryAdapter(FavoriteList, R.layout.favorite_item);
                     recyclerView.setAdapter(horizontalAdapter);
+                    imageView.setImageResource(R.drawable.grid_black);
                     isGrid = true;
                 }
 
+            }
+        });
+
+        arrowBack = findViewById(R.id.toolbarArrowBack);
+        arrowBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AdoptingPetActivity.class));
             }
         });
     }

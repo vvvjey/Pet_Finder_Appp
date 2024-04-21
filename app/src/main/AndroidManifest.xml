@@ -30,7 +30,7 @@
             >
         </activity>
         <activity android:name=".FillInforToAdoptActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".AdoptingPetActivity"
             >
 
         </activity>
@@ -40,24 +40,20 @@
         </activity>
 
         <activity android:name=".RescueCategoryActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".HomepageActivity"
             >
         </activity>
 
         <activity android:name=".FilterMissingPet"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".SearchingLostPetActivity"
             >
         </activity>
 
         <activity android:name=".FilterAdopt"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".AdoptingPetActivity"
             >
         </activity>
 
-        <activity android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity"
-            >
-        </activity>
         <activity android:name=".RegisterActivity"
             android:parentActivityName=".LoginActivity"
             >
@@ -86,9 +82,34 @@
             android:parentActivityName=".HomepageActivity"
             >
         </activity>
+        <activity android:name=".PetDetailActivity"
+            android:parentActivityName=".SearchingLostPetActivity"
+            >
+        </activity>
+        <activity android:name=".DetailRequetAdoptActivity"
+            android:parentActivityName=".LoginActivity"
+            >
+        </activity>
+
+        <activity android:name=".MyShopActivity"
+            android:parentActivityName=".ProfileActivity"
+            >
+        </activity>
+        <activity android:name=".MyPetActivity"
+            android:parentActivityName=".MyShopActivity"
+            >
+        </activity>
+        <activity android:name=".AddingPetActivity"
+            android:parentActivityName=".MyPetActivity"
+            >
+        </activity>
+        <activity android:name=".SuccessAddingActivity"
+            android:parentActivityName=".AddingPetActivity"
+            >
+        </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
