@@ -25,11 +25,11 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this, HomepageActivity.class));
             }
         });
-        myShop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ProfileActivity.this, MyShopActivity.class));
-            }
-        });
+//        myShop.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(ProfileActivity.this, MyShopActivity.class));
+//            }
+//        });
     }
 }

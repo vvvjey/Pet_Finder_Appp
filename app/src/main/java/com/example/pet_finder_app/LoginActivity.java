@@ -16,14 +16,14 @@ public class LoginActivity extends AppCompatActivity {
     TextView toRegisterTv;
     EditText password;
     boolean isPasswordVisible = false;
-    Button loginBtn;
+    Button loginBtn,loginGGBtn;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         toRegisterTv = findViewById(R.id.toRegisterTv);
         loginBtn = findViewById(R.id.btnLogin);
         password = findViewById(R.id.edtPassword);
-
+        loginGGBtn = findViewById(R.id.btnLoginGG);
         toRegisterTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,6 +34,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Splash1Activity.class));
+
+            }
+        });
+        loginGGBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), DetailRequetAdoptActivity.class));
 
             }
         });
