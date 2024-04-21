@@ -514,7 +514,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="9"
-                android:src="@drawable/icon_next" />
+                android:src="@drawable/icon_next"
+
+                />
+
         </LinearLayout>
 <!--                    <GridView-->
 <!--                        android:layout_width="match_parent"-->
