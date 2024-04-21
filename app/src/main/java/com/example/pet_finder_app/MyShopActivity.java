@@ -19,6 +19,7 @@ import java.util.List;
 
 public class MyShopActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
+    ConstraintLayout historyView,adoptStatus;
     Toolbar arrowBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +40,25 @@ public class MyShopActivity extends AppCompatActivity {
             }
         });
         arrowBack = findViewById(R.id.toolbarArrowBack);
+        historyView = findViewById(R.id.history_view);
+        adoptStatus = findViewById(R.id.request);
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AddingPetActivity.class));
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            }
+        });
+        adoptStatus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AdoptStatusActivity.class));
+            }
+        });
+
+        historyView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), HistoryAdoptActivity.class));
             }
         });
 
