@@ -16,11 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCategoryAdapter.MyViewHolder>{
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder>{
     private List<AdoptingCategoryDomain> listPet;
     private int layoutResourceId;
-//    private OnDetailButtonClickListener listener;
-
+    private Context mContext;
     public interface OnDetailButtonClickListener {
         void onDetailButtonClick(int position);
     }
@@ -30,11 +29,10 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
     }
     private OnDetailPetClickListener onDetailPetClickListener;
 
-    //    public AdoptingCategoryAdapter(List<AdoptingCategoryDomain> listPet, int layoutResourceId, OnDetailButtonClickListener listener){
-        public AdoptingCategoryAdapter(List<AdoptingCategoryDomain> listPet, int layoutResourceId){
+    public HistoryAdapter(Context context, List<AdoptingCategoryDomain> listPet, int layoutResourceId){
+        mContext = context;
         this.listPet = listPet;
         this.layoutResourceId = layoutResourceId;
-//        this.listener = listener;
     }
 
     @NonNull
@@ -88,6 +86,15 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
         if (holder.condition != null) {
             holder.condition.setText(pet.getCondition());
         }
+        if (holder.detail_pet != null){
+            holder.detail_pet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, HistoryAdoptDetailActivity.class);
+                    mContext.startActivity(intent);
+                }
+            });
+        }
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
@@ -111,6 +118,7 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
             date_adopt = itemView.findViewById(R.id.date_adopt);
             ranking = itemView.findViewById(R.id.ranking);
             condition = itemView.findViewById(R.id.status_value);
+            detail_pet = itemView.findViewById(R.id.btn_detail_pet);
         }
     }
 }
