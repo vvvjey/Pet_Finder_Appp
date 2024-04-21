@@ -10,7 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class ProfileActivity extends AppCompatActivity {
     Toolbar arrowBack;
-
+    ConstraintLayout profileMyShop,profileMissingAnimalsPost;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,11 +18,19 @@ public class ProfileActivity extends AppCompatActivity {
 
         ConstraintLayout myShop = findViewById(R.id.item_account);
         arrowBack = findViewById(R.id.toolbarArrowBack);
+        profileMyShop = findViewById(R.id.profileMyShop);
+        profileMissingAnimalsPost = findViewById(R.id.profileMissingAnimalsPost);
 
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(ProfileActivity.this, HomepageActivity.class));
+            }
+        });
+        profileMyShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this, MyShopActivity.class));
             }
         });
 //        myShop.setOnClickListener(new View.OnClickListener() {
