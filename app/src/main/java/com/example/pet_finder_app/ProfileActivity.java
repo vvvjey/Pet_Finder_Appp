@@ -39,6 +39,12 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(new Intent(ProfileActivity.this, MissingAnimalsPostActivity.class));
             }
         });
+        profileAdoptHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileActivity.this, HistoryAdoptActivity.class));
+            }
+        });
         profileAccountSetting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

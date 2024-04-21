@@ -111,6 +111,10 @@
             android:parentActivityName=".MyShopActivity"
             >
         </activity>
+        <activity android:name=".HistoryAdoptDetailActivity"
+            android:parentActivityName=".MyShopActivity"
+            >
+        </activity>
 
         <activity android:name=".MissingAnimalsPostActivity"
             android:parentActivityName=".ProfileActivity"
@@ -148,6 +152,7 @@
             android:parentActivityName=".RescueCategoryActivity"
             >
         </activity>
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">

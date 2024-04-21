@@ -60,7 +60,7 @@ public class MyPetActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.mypet_view);
         recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 40,40));
-        AdoptingCategoryAdapter shopAdapter = new AdoptingCategoryAdapter(PetList, R.layout.my_pet_item);
+        AdoptingCategoryAdapter shopAdapter = new AdoptingCategoryAdapter(PetList, R.layout.my_pet_item,this);
         recyclerView.setAdapter(shopAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
     }
