@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         loginGGBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), DetailRequetAdoptActivity.class));
+                startActivity(new Intent(getApplicationContext(), AdoptStatusActivity.class));
 
             }
         });

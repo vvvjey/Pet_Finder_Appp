@@ -142,7 +142,7 @@
             android:id="@+id/icon_myshop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/icon_profile"
+            android:src="@drawable/icon_shop"
             android:minWidth="35dp"
             android:minHeight="35dp"
             app:layout_constraintTop_toTopOf="parent"
