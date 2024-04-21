@@ -59,15 +59,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
         if (holder.name != null) {
             holder.name.setText(pet.getName());
         }
-        if (holder.location != null) {
-            holder.location.setText(pet.getLocation());
-        }
-        if (holder.favorite != null) {
-            holder.favorite.setImageResource(pet.getFavorite());
-        }
-        if (holder.status != null) {
-            holder.status.setImageResource(pet.getStatus());
-        }
         if (holder.breed != null) {
             holder.breed.setText(pet.getBreed());
         }
@@ -99,8 +90,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
 
     class MyViewHolder extends RecyclerView.ViewHolder{
         private CardView cardView;
-        private ImageView image_id,gender, favorite, status;
-        private TextView name, location, breed, price,age, date_adopt, ranking, condition;
+        private ImageView image_id,gender;
+        private TextView name, breed, price,age, date_adopt, ranking, condition;
         private Button detail_pet;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -109,9 +100,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
             image_id = itemView.findViewById(R.id.catImg);
             gender = itemView.findViewById(R.id.genderImg);
             name = itemView.findViewById(R.id.nameCat);
-            favorite = itemView.findViewById(R.id.favorateImg);
-            location = itemView.findViewById(R.id.location_text);
-            status = itemView.findViewById(R.id.status);
             breed = itemView.findViewById(R.id.breed_value);
             price = itemView.findViewById(R.id.price_value);
             age = itemView.findViewById(R.id.age_value);
