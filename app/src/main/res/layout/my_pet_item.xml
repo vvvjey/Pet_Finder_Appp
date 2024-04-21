@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:outlineAmbientShadowColor="@color/shadow"
+    android:outlineSpotShadowColor="@color/shadow"
+    app:cardElevation="20dp"
+    app:strokeColor="@null">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/catImg"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cat_category1"
+            tools:ignore="ContentDescription" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="310dp"
+            android:layout_height="120dp"
+            android:background="@color/white"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/catImg"
+            app:layout_constraintTop_toTopOf="@+id/catImg"
+            app:layout_constraintVertical_bias="1.0">
+
+            <TextView
+                android:id="@+id/nameCat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="0dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Samantha"
+                android:textSize="21dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/circle_gender"
+                app:layout_constraintBottom_toBottomOf="@+id/nameCat"
+                app:layout_constraintStart_toEndOf="@+id/nameCat"
+                app:layout_constraintTop_toTopOf="@+id/nameCat">
+
+                <ImageView
+                    android:id="@+id/genderImg"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/male" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/age_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins"
+                android:text="Age:"
+                android:textColor="@color/gray"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/nameCat"
+                app:layout_constraintTop_toBottomOf="@+id/nameCat" />
+
+            <TextView
+                android:id="@+id/age_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/poppins"
+                android:text="6"
+                android:textColor="@color/gray"
+                app:layout_constraintBottom_toBottomOf="@+id/age_text"
+                app:layout_constraintStart_toEndOf="@+id/age_text"
+                app:layout_constraintTop_toTopOf="@+id/age_text"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/status_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:fontFamily="@font/poppins"
+                android:text="Status:"
+                android:textColor="@color/gray"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/age_text"
+                app:layout_constraintStart_toEndOf="@+id/age_value"
+                app:layout_constraintTop_toTopOf="@+id/age_text" />
+
+            <TextView
+                android:id="@+id/status_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/poppins"
+                android:text="Castracted"
+                android:textColor="@color/gray"
+                app:layout_constraintBottom_toBottomOf="@+id/status_text"
+                app:layout_constraintStart_toEndOf="@+id/status_text"
+                app:layout_constraintTop_toTopOf="@+id/status_text" />
+
+            <TextView
+                android:id="@+id/breed_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins"
+                android:text="Breed:"
+                android:textColor="@color/gray"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/age_text"
+                app:layout_constraintTop_toBottomOf="@+id/age_text" />
+
+            <TextView
+                android:id="@+id/breed_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/poppins"
+                android:text="Cat"
+                android:textColor="@color/gray"
+                app:layout_constraintBottom_toBottomOf="@+id/breed_text"
+                app:layout_constraintStart_toEndOf="@+id/breed_text"
+                app:layout_constraintTop_toTopOf="@+id/breed_text" />
+
+            <TextView
+                android:id="@+id/value_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="$"
+                android:textColor="@color/gray"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/price_value"
+                app:layout_constraintEnd_toEndOf="@+id/status_value"
+                app:layout_constraintTop_toTopOf="@+id/price_value" />
+
+            <TextView
+                android:id="@+id/price_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/poppins"
+                android:text="95"
+                android:textColor="@color/gray"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/nameCat"
+                app:layout_constraintEnd_toStartOf="@+id/value_text"
+                app:layout_constraintTop_toTopOf="@+id/nameCat" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
