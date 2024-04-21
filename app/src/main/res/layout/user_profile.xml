@@ -116,6 +116,8 @@
         android:layout_height="wrap_content"
         android:elevation="20dp"
         android:background="@android:color/transparent"
+        android:focusable="true"
+        android:clickable="true"
         android:paddingRight="20dp"
         android:paddingBottom="10dp"
         android:paddingTop="20dp"
@@ -141,8 +143,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="My Shop"
             app:layout_constraintStart_toEndOf="@id/icon_myshop"
+
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/poppins"
             android:textSize="14dp"

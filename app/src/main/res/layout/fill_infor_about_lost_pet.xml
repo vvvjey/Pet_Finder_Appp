@@ -239,7 +239,7 @@
                     android:id="@+id/purposeSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown" />
+                    android:spinnerMode="dropdown"/>
 
             </LinearLayout>
 

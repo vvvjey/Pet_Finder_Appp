@@ -30,7 +30,7 @@
             >
         </activity>
         <activity android:name=".FillInforToAdoptActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".AdoptingPetActivity"
             >
 
         </activity>
@@ -43,6 +43,17 @@
             android:parentActivityName=".HomepageActivity"
             >
         </activity>
+
+        <activity android:name=".FilterMissingPet"
+            android:parentActivityName=".SearchingLostPetActivity"
+            >
+        </activity>
+
+        <activity android:name=".FilterAdopt"
+            android:parentActivityName=".AdoptingPetActivity"
+            >
+        </activity>
+
         <activity android:name=".RegisterActivity"
             android:parentActivityName=".LoginActivity"
             >
@@ -69,6 +80,27 @@
         </activity>
         <activity android:name=".NotificationActivity"
             android:parentActivityName=".HomepageActivity"
+            >
+        </activity>
+        <activity android:name=".PetDetailActivity"
+            android:parentActivityName=".SearchingLostPetActivity"
+            >
+        </activity>
+        <activity android:name=".DetailRequetAdoptActivity"
+            android:parentActivityName=".LoginActivity"
+            >
+        </activity>
+
+        <activity android:name=".MyShopActivity"
+            android:parentActivityName=".ProfileActivity"
+            >
+        </activity>
+        <activity android:name=".MyPetActivity"
+            android:parentActivityName=".MyShopActivity"
+            >
+        </activity>
+        <activity android:name=".AddingPetActivity"
+            android:parentActivityName=".MyPetActivity"
             >
         </activity>
 

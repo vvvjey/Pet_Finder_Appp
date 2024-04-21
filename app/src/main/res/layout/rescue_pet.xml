@@ -58,15 +58,15 @@
             android:textSize="18dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+
+        <EditText
+            android:id="@+id/editTextText2"
             android:layout_width="match_parent"
-            android:layout_height="80dp">
-
-
-            <EditText
-                android:id="@+id/editTextText2"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="20dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/rectangle_shape"
                 android:drawableStart="@drawable/custom_search"

@@ -37,28 +37,39 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         AdoptingCategoryDomain pet = listPet.get(position);
-        holder.image_id.setImageResource(pet.getImage_id());
-        holder.gender.setImageResource(pet.getGender());
-        holder.name.setText(pet.getName());
-        holder.location.setText(pet.getLocation());
-        holder.favorite.setImageResource(pet.getFavorite());
-        holder.status.setImageResource(pet.getStatus());
-    }
-
-    public void changeSizeHolder(@NonNull MyViewHolder holder, int position) {
-        AdoptingCategoryDomain pet = listPet.get(position);
-        holder.image_id.setImageResource(pet.getImage_id());
-        holder.gender.setImageResource(pet.getGender());
-        holder.name.setText(pet.getName());
-        holder.location.setText(pet.getLocation());
-        holder.favorite.setImageResource(pet.getFavorite());
-        holder.status.setImageResource(pet.getStatus());
+        if (holder.image_id != null) {
+            holder.image_id.setImageResource(pet.getImage_id());
+        }
+        if (holder.gender != null) {
+            holder.gender.setImageResource(pet.getGender());
+        }
+        if (holder.name != null) {
+            holder.name.setText(pet.getName());
+        }
+        if (holder.location != null) {
+            holder.location.setText(pet.getLocation());
+        }
+        if (holder.favorite != null) {
+            holder.favorite.setImageResource(pet.getFavorite());
+        }
+        if (holder.status != null) {
+            holder.status.setImageResource(pet.getStatus());
+        }
+        if (holder.breed != null) {
+            holder.breed.setText(pet.getBreed());
+        }
+        if (holder.price != null) {
+            holder.price.setText(String.valueOf(pet.getPrice()));
+        }
+        if (holder.age != null) {
+            holder.age.setText(String.valueOf(pet.getAge()));
+        }
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
         private CardView cardView;
         private ImageView image_id,gender, favorite, status;
-        private TextView name, location;
+        private TextView name, location, breed, price, age;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -69,8 +80,9 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
             favorite = itemView.findViewById(R.id.favorateImg);
             location = itemView.findViewById(R.id.location_text);
             status = itemView.findViewById(R.id.status);
+            breed = itemView.findViewById(R.id.breed_value);
+            price = itemView.findViewById(R.id.price_value);
+            age = itemView.findViewById(R.id.age_value);
         }
-
-
     }
 }

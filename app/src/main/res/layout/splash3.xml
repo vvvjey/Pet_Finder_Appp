@@ -74,9 +74,10 @@
         android:layout_marginStart="106dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="47dp"
-        android:background="@drawable/border_radius_splash_skip"
-        android:backgroundTint="#59A9F2"
+        android:background="@drawable/button_rounded"
+        app:backgroundTint="@null"
         android:text="Get Started"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView10" />
