@@ -63,12 +63,12 @@ public class MyShopActivity extends AppCompatActivity {
         });
 
         List<AdoptingCategoryDomain> ShopList = new ArrayList<AdoptingCategoryDomain>();
-        ShopList.add(new AdoptingCategoryDomain(R.drawable.dog_shop, "Gary", R.drawable.favorate, 95, R.drawable.male, "Dog", 4));
-        ShopList.add(new AdoptingCategoryDomain(R.drawable.cat_shop, "Whitney", R.drawable.non_favorate, 20, R.drawable.female, "Cat", 4));
-        ShopList.add(new AdoptingCategoryDomain(R.drawable.dog_shop2, "Willie", R.drawable.favorate, 120, R.drawable.male, "Dog", 4));
-        ShopList.add(new AdoptingCategoryDomain(R.drawable.dog_shop, "Gary", R.drawable.favorate, 95, R.drawable.male, "Dog", 4));
-        ShopList.add(new AdoptingCategoryDomain(R.drawable.cat_shop, "Whitney", R.drawable.non_favorate, 20, R.drawable.female, "Cat", 4));
-        ShopList.add(new AdoptingCategoryDomain(R.drawable.dog_shop2, "Willie", R.drawable.favorate, 120, R.drawable.male, "Dog", 4));
+        ShopList.add(new AdoptingCategoryDomain(R.drawable.dog_shop, "Gary", R.drawable.favorate, 95, R.drawable.male, "Dog", 4, "Castrated"));
+        ShopList.add(new AdoptingCategoryDomain(R.drawable.cat_shop, "Whitney", R.drawable.non_favorate, 20, R.drawable.female, "Cat", 4, "Castrated"));
+        ShopList.add(new AdoptingCategoryDomain(R.drawable.dog_shop2, "Willie", R.drawable.favorate, 120, R.drawable.male, "Dog", 4, "Castrated"));
+        ShopList.add(new AdoptingCategoryDomain(R.drawable.dog_shop, "Gary", R.drawable.favorate, 95, R.drawable.male, "Dog", 4, "Castrated"));
+        ShopList.add(new AdoptingCategoryDomain(R.drawable.cat_shop, "Whitney", R.drawable.non_favorate, 20, R.drawable.female, "Cat", 4, "Castrated"));
+        ShopList.add(new AdoptingCategoryDomain(R.drawable.dog_shop2, "Willie", R.drawable.favorate, 120, R.drawable.male, "Dog", 4, "Castrated"));
 
         recyclerView = findViewById(R.id.myShopView);
         recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 40,40));

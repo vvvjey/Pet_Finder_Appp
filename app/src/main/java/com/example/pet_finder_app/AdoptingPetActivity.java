@@ -28,6 +28,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
     private Toolbar arrowBack;
     private boolean clicked;
     private ImageView filterAdopt;
+    private static final int REQUEST_NOTIFICATION = 2;
 
     private Animation getFromBottom() {
         return AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim);
@@ -70,7 +71,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
+                startActivity(new Intent(AdoptingPetActivity.this, HomepageActivity.class));
             }
         });
 
@@ -117,6 +118,14 @@ public class AdoptingPetActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), FilterAdopt.class));
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_NOTIFICATION && resultCode == RESULT_OK) {
+            onBackPressed();
+        }
     }
 
     private void setVisibility(boolean clicked) {

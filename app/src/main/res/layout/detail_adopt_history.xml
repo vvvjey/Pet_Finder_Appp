@@ -114,7 +114,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout3"
-                    android:layout_width="300dp"
+                    android:layout_width="270dp"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="10dp"
                     app:layout_constraintStart_toEndOf="@+id/image_pet"
@@ -426,7 +426,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
-                            android:layout_marginTop="32dp"
+                            android:layout_marginTop="3dp"
                             android:text="Date of birth"
                             android:textSize="12dp"
                             app:layout_constraintStart_toStartOf="parent"
@@ -662,6 +662,17 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <TextView
+                        android:id="@+id/textView44"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="40dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/time_book_value"
+                        app:layout_constraintEnd_toStartOf="@+id/time_book_value2"
+                        app:layout_constraintStart_toEndOf="@+id/time_book_value"
+                        app:layout_constraintTop_toTopOf="@+id/time_book_value" />
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/time_book_value"
                         android:layout_marginTop="10dp"
@@ -683,13 +694,14 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/time_book_value2"
                         android:layout_width="150dp"
                         android:layout_height="50dp"
-                        android:layout_marginLeft="100dp"
+                        android:layout_marginLeft="60dp"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/rectangle_shape"
                         android:elevation="10dp"
