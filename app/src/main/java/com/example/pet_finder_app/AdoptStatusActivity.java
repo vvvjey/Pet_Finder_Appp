@@ -71,7 +71,7 @@ public class AdoptStatusActivity extends AppCompatActivity {
             }
         });
         recyclerView = findViewById(R.id.recycle_adopt_view);
-        AdoptStatusAdapter statusAdapter = new AdoptStatusAdapter(list);
+        AdoptStatusAdapter statusAdapter = new AdoptStatusAdapter(list,this);
         recyclerView.setAdapter(statusAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
 

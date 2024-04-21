@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,21 +21,24 @@ import android.os.Bundle;
 public class AdoptStatusAdapter extends RecyclerView.Adapter<AdoptStatusAdapter.MyViewHolder> {
 
     private List<AdoptStatusItem> ListAdoptStatus;
-    public AdoptStatusAdapter(List<AdoptStatusItem> ListAdoptStatus){
+    private Context context;
+
+    public AdoptStatusAdapter(List<AdoptStatusItem> ListAdoptStatus, Context context){
         this.ListAdoptStatus = ListAdoptStatus;
+        this.context = context;
     }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adopt_status_item, parent, false);
         return new MyViewHolder(view);
     }
+
     @Override
     public int getItemCount() {
         return ListAdoptStatus.size();
     }
-
-
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
@@ -45,8 +49,16 @@ public class AdoptStatusAdapter extends RecyclerView.Adapter<AdoptStatusAdapter.
         holder.breed.setText(pet.getBreed());
         holder.date.setText(pet.getDate());
         holder.color.setText(pet.getColor());
-    }
 
+        // Set click listener for the item
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailRequetAdoptActivity.class);
+                context.startActivity(intent);
+            }
+        });
+    }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
         private CardView cardView;
@@ -62,8 +74,6 @@ public class AdoptStatusAdapter extends RecyclerView.Adapter<AdoptStatusAdapter.
             breed = itemView.findViewById(R.id.breed_text);
             color = itemView.findViewById(R.id.color_text);
             date = itemView.findViewById(R.id.date);
-
         }
     }
 }
-
