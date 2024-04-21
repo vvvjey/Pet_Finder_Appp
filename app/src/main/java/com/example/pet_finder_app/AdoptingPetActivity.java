@@ -96,6 +96,12 @@ public class AdoptingPetActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), FavoritePetActivity.class));
             }
         });
+        edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), FillInforToAdoptActivity.class));
+            }
+        });
     }
 
     private void setVisibility(boolean clicked) {
