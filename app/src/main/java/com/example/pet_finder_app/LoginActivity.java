@@ -17,7 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText password;
 
     boolean isPasswordVisible = false;
-    Button registerBtn,loginGGBtn;
+    Button loginBtn,loginGGBtn;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);

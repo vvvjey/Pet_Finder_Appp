@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Splash1Activity.class));
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
 
             }
         });
