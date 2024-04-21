@@ -39,13 +39,12 @@
         android:src="@drawable/xample"
 
         />
+
     <ImageButton
         android:id="@+id/back_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/back"
-        android:background="none"
-        />
+        app:srcCompat="@drawable/back" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -495,7 +494,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="9"
-                android:background="none"
                 android:src="@drawable/icon_next"
 
                 />
