@@ -83,6 +83,11 @@
             >
         </activity>
 
+        <activity android:name=".MyShopActivity"
+            android:parentActivityName=".ProfileActivity"
+            >
+        </activity>
+
         <activity
             android:name=".LoginActivity"
             android:exported="true">

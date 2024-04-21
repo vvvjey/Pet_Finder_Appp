@@ -1,8 +1,10 @@
 package com.example.pet_finder_app;
 
 public class AdoptingCategoryDomain {
-    private int image_id, gender, favorite, status, width, height;
-    private String name, location;
+    private int image_id, gender, favorite, status;
+    private String name, location, breed;
+    private int age;
+    private float price;
 
     public AdoptingCategoryDomain() {
     }
@@ -14,6 +16,16 @@ public class AdoptingCategoryDomain {
         this.location = location;
         this.gender = gender;
         this.status = status;
+    }
+
+    public AdoptingCategoryDomain(int image_id, String name, int favorite, float price, int gender, String breed, int age) {
+        this.image_id = image_id;
+        this.name = name;
+        this.favorite = favorite;
+        this.price = price;
+        this.gender = gender;
+        this.breed = breed;
+        this.age = age;
     }
 
     public int getImage_id() {
@@ -28,24 +40,32 @@ public class AdoptingCategoryDomain {
         return gender;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
+    }
+
     public void setGender(int gender) {
         this.gender = gender;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
     }
 
     public int getStatus() {
