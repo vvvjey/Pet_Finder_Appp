@@ -3,6 +3,7 @@ package com.example.pet_finder_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import java.util.List;
 public class HistoryAdoptActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     Toolbar arrowBack;
+    Button detailPet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,7 @@ public class HistoryAdoptActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.history_adopt_view);
         recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 40,40));
         AdoptingCategoryAdapter shopAdapter = new AdoptingCategoryAdapter(HistoryAdopt, R.layout.history_adopt_item);
+        // call detailButton here
         recyclerView.setAdapter(shopAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
     }

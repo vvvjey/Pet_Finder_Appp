@@ -1,9 +1,12 @@
 package com.example.pet_finder_app;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,10 +19,17 @@ import java.util.List;
 public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCategoryAdapter.MyViewHolder>{
     private List<AdoptingCategoryDomain> listPet;
     private int layoutResourceId;
+//    private OnDetailButtonClickListener listener;
 
-    public AdoptingCategoryAdapter(List<AdoptingCategoryDomain> listPet, int layoutResourceId){
+    public interface OnDetailButtonClickListener {
+        void onDetailButtonClick(int position);
+    }
+
+//    public AdoptingCategoryAdapter(List<AdoptingCategoryDomain> listPet, int layoutResourceId, OnDetailButtonClickListener listener){
+        public AdoptingCategoryAdapter(List<AdoptingCategoryDomain> listPet, int layoutResourceId){
         this.listPet = listPet;
         this.layoutResourceId = layoutResourceId;
+//        this.listener = listener;
     }
 
     @NonNull
@@ -79,6 +89,7 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
         private CardView cardView;
         private ImageView image_id,gender, favorite, status;
         private TextView name, location, breed, price,age, date_adopt, ranking, condition;
+        private Button detail_pet;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -95,6 +106,15 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
             date_adopt = itemView.findViewById(R.id.date_adopt);
             ranking = itemView.findViewById(R.id.ranking);
             condition = itemView.findViewById(R.id.status_value);
+            detail_pet = itemView.findViewById(R.id.btn_detail_pet);
+//            detail_pet.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent intent = new Intent(context, HistoryAdoptDetailActivity.class);
+//                    context.startActivity(intent);
+//                }
+//            });
+
         }
     }
 }
