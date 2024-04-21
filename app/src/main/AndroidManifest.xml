@@ -148,6 +148,10 @@
             android:parentActivityName=".RescueCategoryActivity"
             >
         </activity>
+        <activity android:name=".HistoryAdoptDetailActivity"
+            android:parentActivityName=".HistoryAdoptActivity"
+            >
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
