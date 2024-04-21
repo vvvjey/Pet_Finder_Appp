@@ -179,7 +179,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/item_history"
+        android:id="@+id/profileAdoptHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -281,7 +281,7 @@
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/item_setting"
+        android:id="@+id/profileSetting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="20dp"
