@@ -18,7 +18,7 @@ public class AdoptingCategoryDomain {
         this.status = status;
     }
 
-    public AdoptingCategoryDomain(int image_id, String name, int favorite, float price, int gender, String breed, int age) {
+    public AdoptingCategoryDomain(int image_id, String name, int favorite, float price, int gender, String breed, int age, String condition) {
         this.image_id = image_id;
         this.name = name;
         this.favorite = favorite;
@@ -26,6 +26,7 @@ public class AdoptingCategoryDomain {
         this.gender = gender;
         this.breed = breed;
         this.age = age;
+        this.condition = condition;
     }
 
     public AdoptingCategoryDomain(int image_id, String name, float price, int gender, String breed, int age) {
@@ -36,7 +37,15 @@ public class AdoptingCategoryDomain {
         this.breed = breed;
         this.age = age;
     }
-
+    public AdoptingCategoryDomain(int image_id, String name, float price, int gender, String breed, int age, String condition) {
+        this.image_id = image_id;
+        this.name = name;
+        this.price = price;
+        this.gender = gender;
+        this.breed = breed;
+        this.age = age;
+        this.condition = condition;
+    }
     public AdoptingCategoryDomain(int image_id, String name, float price, int gender, String breed, int age, String date_adopt, String ranking, String condition) {
         this.image_id = image_id;
         this.name = name;

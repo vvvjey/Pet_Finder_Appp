@@ -74,7 +74,7 @@ public class FavoritePetActivity extends AppCompatActivity {
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AdoptingPetActivity.class));
+                onBackPressed();
             }
         });
     }

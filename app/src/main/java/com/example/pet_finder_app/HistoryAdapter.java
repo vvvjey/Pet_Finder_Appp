@@ -16,11 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCategoryAdapter.MyViewHolder>{
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder>{
     private List<AdoptingCategoryDomain> listPet;
     private int layoutResourceId;
-//    private OnDetailButtonClickListener listener;
-
+    private Context mContext;
     public interface OnDetailButtonClickListener {
         void onDetailButtonClick(int position);
     }
@@ -30,11 +29,10 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
     }
     private OnDetailPetClickListener onDetailPetClickListener;
 
-    //    public AdoptingCategoryAdapter(List<AdoptingCategoryDomain> listPet, int layoutResourceId, OnDetailButtonClickListener listener){
-        public AdoptingCategoryAdapter(List<AdoptingCategoryDomain> listPet, int layoutResourceId){
+    public HistoryAdapter(Context context, List<AdoptingCategoryDomain> listPet, int layoutResourceId){
+        mContext = context;
         this.listPet = listPet;
         this.layoutResourceId = layoutResourceId;
-//        this.listener = listener;
     }
 
     @NonNull
@@ -61,15 +59,6 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
         if (holder.name != null) {
             holder.name.setText(pet.getName());
         }
-        if (holder.location != null) {
-            holder.location.setText(pet.getLocation());
-        }
-        if (holder.favorite != null) {
-            holder.favorite.setImageResource(pet.getFavorite());
-        }
-        if (holder.status != null) {
-            holder.status.setImageResource(pet.getStatus());
-        }
         if (holder.breed != null) {
             holder.breed.setText(pet.getBreed());
         }
@@ -88,12 +77,21 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
         if (holder.condition != null) {
             holder.condition.setText(pet.getCondition());
         }
+        if (holder.detail_pet != null){
+            holder.detail_pet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, HistoryAdoptDetailActivity.class);
+                    mContext.startActivity(intent);
+                }
+            });
+        }
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
         private CardView cardView;
-        private ImageView image_id,gender, favorite, status;
-        private TextView name, location, breed, price,age, date_adopt, ranking, condition;
+        private ImageView image_id,gender;
+        private TextView name, breed, price,age, date_adopt, ranking, condition;
         private Button detail_pet;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -102,15 +100,13 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
             image_id = itemView.findViewById(R.id.catImg);
             gender = itemView.findViewById(R.id.genderImg);
             name = itemView.findViewById(R.id.nameCat);
-            favorite = itemView.findViewById(R.id.favorateImg);
-            location = itemView.findViewById(R.id.location_text);
-            status = itemView.findViewById(R.id.status);
             breed = itemView.findViewById(R.id.breed_value);
             price = itemView.findViewById(R.id.price_value);
             age = itemView.findViewById(R.id.age_value);
             date_adopt = itemView.findViewById(R.id.date_adopt);
             ranking = itemView.findViewById(R.id.ranking);
             condition = itemView.findViewById(R.id.status_value);
+            detail_pet = itemView.findViewById(R.id.btn_detail_pet);
         }
     }
 }

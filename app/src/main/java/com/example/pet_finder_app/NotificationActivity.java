@@ -3,6 +3,7 @@ package com.example.pet_finder_app;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
@@ -35,9 +36,10 @@ public class NotificationActivity extends AppCompatActivity {
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),HomepageActivity.class));
+                onBackPressed();
             }
         });
+
 
         List<NotificationDomain> NotifiList = new ArrayList<NotificationDomain>();
         NotifiList.add(new NotificationDomain(R.drawable.avatar, "Pickle","Xin chào! Có điều gì tôi có thể giúp bạn hôm nay không?", "Now"));

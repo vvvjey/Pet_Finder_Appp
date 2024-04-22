@@ -23,6 +23,7 @@ import java.util.List;
 public class HomepageActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     TextView seeAllAdopt,seeAllMissing;
+    private static final int REQUEST_NOTIFICATION = 1;
     Toolbar arrowBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public class HomepageActivity extends AppCompatActivity {
         notifiImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
+                startActivity(new Intent(HomepageActivity.this, NotificationActivity.class));
             }
         });
 

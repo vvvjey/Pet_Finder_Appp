@@ -392,6 +392,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="100dp"
                 android:background="#59A9F2"
+                app:backgroundTint="@null"
                 android:text="Apply"
                 android:textColorLink="#59A9F2" />
 

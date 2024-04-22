@@ -79,7 +79,6 @@
             >
         </activity>
         <activity android:name=".NotificationActivity"
-            android:parentActivityName=".HomepageActivity"
             >
         </activity>
         <activity android:name=".PetDetailActivity"
@@ -111,10 +110,6 @@
                   </activity>
 
         <activity android:name=".HistoryAdoptActivity"
-            android:parentActivityName=".MyShopActivity"
-            >
-        </activity>
-        <activity android:name=".HistoryAdoptDetailActivity"
             android:parentActivityName=".MyShopActivity"
             >
         </activity>
@@ -155,8 +150,10 @@
             android:parentActivityName=".RescueCategoryActivity"
             >
         </activity>
-
-
+        <activity android:name=".HistoryAdoptDetailActivity"
+            android:parentActivityName=".HistoryAdoptActivity"
+            >
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
