@@ -44,7 +44,8 @@ public class HistoryAdoptActivity extends AppCompatActivity {
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+
             }
         });
 
