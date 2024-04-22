@@ -67,7 +67,7 @@ public class AdoptStatusActivity extends AppCompatActivity {
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
+                startActivity(new Intent(getApplicationContext(), MyShopActivity.class));
             }
         });
         recyclerView = findViewById(R.id.recycle_adopt_view);
