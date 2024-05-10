@@ -1,24 +1,37 @@
 package com.example.pet_finder_app;
 
-public class AdoptingPetItem {
+import java.io.Serializable;
+
+public class AdoptingPetItem implements Serializable {
     private String age;
     private String categoryId;
     private String color;
     private String gender;
+    private String idPet;
     private String imgUrl;
     private String name;
     private String registerDate;
     private String status;
 
-    public AdoptingPetItem(String age, String categoryId, String color, String gender, String imgUrl, String name, String registerDate, String status) {
+    public AdoptingPetItem(String age, String categoryId, String color, String gender, String idPet,String imgUrl, String name, String registerDate, String status) {
         this.age = age;
         this.categoryId = categoryId;
         this.color = color;
         this.gender = gender;
+        this.idPet = idPet;
         this.imgUrl = imgUrl;
         this.name = name;
         this.registerDate = registerDate;
-        this.status = this.status;
+        this.status = status;
+    }
+
+
+    public String getIdPet() {
+        return idPet;
+    }
+
+    public void setIdPet(String idPet) {
+        this.idPet = idPet;
     }
 
     public AdoptingPetItem(){}

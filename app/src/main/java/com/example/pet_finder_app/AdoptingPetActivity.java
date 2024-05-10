@@ -76,7 +76,6 @@ public class AdoptingPetActivity extends AppCompatActivity {
 
 
         recyclerView = findViewById(R.id.recycleView);
-//        AdoptingPetAdapter petAdapter = new AdoptingPetAdapter(petList ,this);
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
@@ -168,6 +167,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
                         pet.getCategoryId(),
                         pet.getColor(),
                         pet.getGender(),
+                        pet.getIdPet(),
                         pet.getImgUrl(),
                         pet.getName(),
                         pet.getRegisterDate(),
@@ -177,7 +177,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
         }
         AdoptingPetAdapter petAdapter = new AdoptingPetAdapter(petItems, this);
         recyclerView.setAdapter(petAdapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
     }
 
 

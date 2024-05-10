@@ -14,7 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-
+import java.io.Serializable;
 import java.util.List;
 
 public class AdoptingPetAdapter extends RecyclerView.Adapter<AdoptingPetAdapter.MyViewHolder>{
@@ -44,8 +44,11 @@ public class AdoptingPetAdapter extends RecyclerView.Adapter<AdoptingPetAdapter.
         holder.age.setText(pet.getAge());
         holder.category.setText(pet.getCategoryId());
         holder.color.setText(pet.getColor());
-        Log.d("getImgUrl", pet.getImgUrl());
-        Picasso.get().load(pet.getGender()).into(holder.gender);
+        if(pet.getGender() == "male"){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/male.png?alt=media&token=9326764f-5c4d-49ee-9b54-9cd6a6c5f418").into(holder.gender);
+        }else{
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/female.png?alt=media&token=6be18497-fa44-4fc3-8b68-7ba80b622e75").into(holder.gender);
+        }
         Picasso.get().load(pet.getImgUrl()).into(holder.image_id);
         holder.name.setText(pet.getName());
         holder.date.setText(pet.getRegisterDate());
@@ -55,6 +58,7 @@ public class AdoptingPetAdapter extends RecyclerView.Adapter<AdoptingPetAdapter.
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, AdoptingPetDetailActivity.class);
+                intent.putExtra("idPet", pet.getIdPet());
                 context.startActivity(intent);
             }
         });
@@ -70,7 +74,7 @@ public class AdoptingPetAdapter extends RecyclerView.Adapter<AdoptingPetAdapter.
             cardView = itemView.findViewById(R.id.cardView);
             age = itemView.findViewById(R.id.age_value);
             category = itemView.findViewById(R.id.category);
-            color = itemView.findViewById(R.id.color);
+            color = itemView.findViewById(R.id.color_value);
             gender = itemView.findViewById(R.id.gender);
             image_id = itemView.findViewById(R.id.catImg);
             name = itemView.findViewById(R.id.nameCat);
