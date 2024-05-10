@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "237004107904",
+    "firebase_url": "https://petfinderserverside-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "petfinderserverside",
     "storage_bucket": "petfinderserverside.appspot.com"
   },

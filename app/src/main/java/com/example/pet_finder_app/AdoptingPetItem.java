@@ -1,29 +1,65 @@
 package com.example.pet_finder_app;
 
 public class AdoptingPetItem {
-    private int image_id, gender;
-    private String name, status, appearance, date;
-    private int age;
+    private String age;
+    private String categoryId;
+    private String color;
+    private String gender;
+    private String imgUrl;
+    private String name;
+    private String registerDate;
+    private String status;
 
-    public AdoptingPetItem() {
+    public AdoptingPetItem(String age, String categoryId, String color, String gender, String imgUrl, String name, String registerDate, String status) {
+        this.age = age;
+        this.categoryId = categoryId;
+        this.color = color;
+        this.gender = gender;
+        this.imgUrl = imgUrl;
+        this.name = name;
+        this.registerDate = registerDate;
+        this.status = this.status;
     }
 
-    public AdoptingPetItem(int image_id, String name, String status, String appearance, String date, int gender, int age) {
-        this.image_id = image_id;
-        this.name = name;
-        this.status = status;
-        this.appearance = appearance;
-        this.date = date;
-        this.gender = gender;
+    public AdoptingPetItem(){}
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public int getImage_id() {
-        return image_id;
+    public String getCategoryId() {
+        return categoryId;
     }
 
-    public void setImage_id(int image_id) {
-        this.image_id = image_id;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public String getName() {
@@ -34,43 +70,19 @@ public class AdoptingPetItem {
         this.name = name;
     }
 
+    public String getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(String registerDate) {
+        this.registerDate = registerDate;
+    }
+
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getAppearance() {
-        return appearance;
-    }
-
-    public void setAppearance(String appearance) {
-        this.appearance = appearance;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public int getGender() {
-        return gender;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 }

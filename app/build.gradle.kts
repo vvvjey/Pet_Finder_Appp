@@ -38,13 +38,18 @@ dependencies {
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.firebase.storage)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
     implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-database")
     implementation("com.google.android.material:material:1.11.0")
-
+    implementation("com.firebaseui:firebase-ui-database:8.0.2")
+    implementation("com.firebaseui:firebase-ui-auth:8.0.2")
+    implementation("com.firebaseui:firebase-ui-storage:8.0.2")
+    implementation("com.google.firebase:firebase-database")
+    implementation ("com.squareup.picasso:picasso:2.8")
 }

@@ -6,8 +6,8 @@
     <string name="apply_before_for_a_gram_before_adoption">Apply for a gram before adoption</string>
     <string name="date_demo">08-09-2023</string>
     <string name="registration_date">Registration Date</string>
-    <string name="appearance">Yellow, White, Black</string>
-    <string name="apperance_text">Apperance</string>
+    <string name="color">Yellow, White, Black</string>
+    <string name="color_text">Color</string>
     <string name="was_castracted">Was Castracted</string>
     <string name="status">Status</string>
     <string name="age">6</string>
