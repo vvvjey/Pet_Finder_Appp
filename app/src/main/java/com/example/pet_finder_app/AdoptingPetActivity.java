@@ -76,7 +76,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
         });
 
         recyclerView = findViewById(R.id.recycleView);
-        AdoptingPetAdapter petAdapter = new AdoptingPetAdapter(petList);
+        AdoptingPetAdapter petAdapter = new AdoptingPetAdapter(petList ,this);
         recyclerView.setAdapter(petAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
 

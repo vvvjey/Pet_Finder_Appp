@@ -1,5 +1,7 @@
 package com.example.pet_finder_app;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +16,11 @@ import java.util.List;
 
 public class AdoptingPetAdapter extends RecyclerView.Adapter<AdoptingPetAdapter.MyViewHolder>{
     private List<AdoptingPetItem> listPet;
+    private Context context;
 
-    public AdoptingPetAdapter(List<AdoptingPetItem> listPet){
+    public AdoptingPetAdapter(List<AdoptingPetItem> listPet, Context context){
         this.listPet = listPet;
+        this.context = context;
     }
 
     @NonNull
@@ -41,6 +45,13 @@ public class AdoptingPetAdapter extends RecyclerView.Adapter<AdoptingPetAdapter.
         holder.appearance.setText(pet.getAppearance());
         holder.date.setText(pet.getDate());
         holder.age.setText(pet.getDate());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, AdoptingPetDetailActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{

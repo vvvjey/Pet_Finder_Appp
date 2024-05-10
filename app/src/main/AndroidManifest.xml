@@ -102,6 +102,10 @@
             android:parentActivityName=".MyPetActivity"
             >
         </activity>
+        <activity android:name=".AdoptingPetDetailActivity"
+            android:parentActivityName=".AddingPetActivity"
+            >
+        </activity>
         <activity android:name=".SuccessAddingActivity"
             android:parentActivityName=".AddingPetActivity"
             >

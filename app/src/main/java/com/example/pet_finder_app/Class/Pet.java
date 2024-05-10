@@ -1,6 +1,6 @@
 package com.example.pet_finder_app.Class;
 
-public class Pet {
+public class    Pet {
     private String idPet, name, description, gender, color, size,typeId, categoryId;
     private int age ;
     private float  weight;
