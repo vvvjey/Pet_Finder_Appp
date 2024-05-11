@@ -97,6 +97,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/border_radius_form_6dp"
                 android:orientation="vertical"
                 android:paddingLeft="12dp"
@@ -113,82 +114,15 @@
                     android:textColor="#B3B3B3" />
 
                 <EditText
-                    android:id="@+id/editTextText"
+                    android:id="@+id/fullNameInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
                     android:background="#00FFFFFF"
                     android:ems="10"
                     android:hint="Ex : Jey Hoang"
                     android:inputType="text"
                     android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="#00FFFFFF"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="6dp"
-                    android:paddingRight="12dp"
-                    android:paddingBottom="6dp">
-
-                    <TextView
-                        android:id="@+id/textView29"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:text="Date of birth" />
-
-                    <EditText
-                        android:id="@+id/editTextText22"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:ems="10"
-                        android:hint="12 - 05 - 2003"
-                        android:inputType="datetime|date" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentEnd="false"
-                    android:layout_weight="1"
-
-                    android:orientation="vertical"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="6dp"
-                    android:paddingRight="12dp"
-                    android:paddingBottom="6dp">
-
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Gender" />
-
-                    <Spinner
-                        android:id="@+id/genderSpinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:spinnerMode="dropdown" />
-
-                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -209,9 +143,10 @@
                     android:text="Address" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/addressInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
                     android:background="#00FFFFFF"
                     android:ems="10"
                     android:hint="Ex : 65 Thu Duc"
@@ -240,7 +175,8 @@
                     android:id="@+id/countrySpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown"/>
+                    android:layout_marginBottom="6dp"
+                    android:spinnerMode="dropdown" />
 
             </LinearLayout>
 
@@ -340,9 +276,10 @@
                     android:text="Phone" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/phoneNumberInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
                     android:background="#00FFFFFF"
                     android:ems="10"
                     android:hint="Ex : 0123456789"
@@ -367,11 +304,12 @@
                     android:text="The request" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/requestInput"
                     android:layout_width="match_parent"
                     android:layout_height="117dp"
                     android:background="#00FFFFFF"
                     android:ems="10"
+                    android:gravity="top"
                     android:hint="Ex : I want to"
                     android:inputType="text" />
             </LinearLayout>
@@ -403,7 +341,7 @@
                     android:text="Name" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/animalNameInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
@@ -437,7 +375,7 @@
                         android:text="Size" />
 
                     <Spinner
-                        android:id="@+id/spinnerSize"
+                        android:id="@+id/sizeSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -503,7 +441,7 @@
                         android:text="Color" />
 
                     <Spinner
-                        android:id="@+id/spinnerSize"
+                        android:id="@+id/colorSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -535,12 +473,51 @@
                         android:text="Breed" />
 
                     <Spinner
-                        android:id="@+id/genderSpinner"
+                        android:id="@+id/breedSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:spinnerMode="dropdown" />
 
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_radius_form_6dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="6dp">
+
+                    <TextView
+                        android:id="@+id/textView29"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="Age" />
+
+                    <Spinner
+                        android:id="@+id/ageSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
@@ -559,14 +536,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="The request" />
+                    android:text="Description" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/descriptionPetInput"
                     android:layout_width="match_parent"
                     android:layout_height="117dp"
                     android:background="#00FFFFFF"
                     android:ems="10"
+                    android:gravity="top"
                     android:hint="Ex : I want to"
                     android:inputType="text" />
             </LinearLayout>
@@ -579,6 +557,32 @@
                 android:text="Area Missing | Seen | Protected"
                 android:textColor="#5F5B5B"
                 android:textSize="20sp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="12dp">
+
+
+                <EditText
+                    android:id="@+id/editTextText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/rectangle_shape"
+                    android:drawableStart="@drawable/custom_search"
+                    android:drawableEnd="@drawable/custom_location"
+                    android:elevation="8dp"
+                    android:ems="10"
+                    android:fontFamily=""
+                    android:hint="Choose your location"
+                    android:inputType="text"
+                    android:outlineSpotShadowColor="@color/shadow"
+                    android:padding="8dp"
+                    android:textSize="17dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/textView28"
@@ -603,17 +607,23 @@
                     android:id="@+id/textView27"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginBottom="2dp"
                     android:text="Date" />
 
-                <EditText
-                    android:id="@+id/editTextText22"
+                <Button
+                    android:id="@+id/datePickerButton"
+                    style="?android:spinnerStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#00FFFFFF"
-                    android:ems="10"
-                    android:hint="12 - 05 - 2003"
-                    android:inputType="datetime|date" />
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:onClick="openDatePicker"
+                    android:text="JAN 01 2020"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             </LinearLayout>
 
