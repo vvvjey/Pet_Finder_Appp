@@ -113,7 +113,7 @@
                         android:text="Date of birth" />
 
                     <EditText
-                        android:id="@+id/editTextText22"
+                        android:id="@+id/birth_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#00FFFFFF"
@@ -167,14 +167,14 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/address_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="Address" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/adress_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
@@ -194,7 +194,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/country_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -220,7 +220,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/city_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -246,7 +246,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/district_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -272,7 +272,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/ward_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -298,14 +298,14 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/phone_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="Phone" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/phone_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
@@ -313,11 +313,6 @@
                     android:hint="Ex : 0123456789"
                     android:inputType="text" />
 
-                <Spinner
-                    android:id="@+id/districtSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown" />
             </LinearLayout>
 
             <LinearLayout
@@ -331,7 +326,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/request_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -348,7 +343,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/book_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Your home space"

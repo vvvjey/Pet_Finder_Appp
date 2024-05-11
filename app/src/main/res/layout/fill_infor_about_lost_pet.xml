@@ -6,14 +6,14 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/missingTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="-87dp"
         tools:layout_editor_absoluteY="-7dp">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarArrowBack3"
+            android:id="@+id/backtool"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -28,7 +28,7 @@
             android:text="Missing | Seen | Protected"
             android:textSize="28sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/toolbarArrowBack3"
+            app:layout_constraintStart_toEndOf="@+id/backtool"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -40,7 +40,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/missingTitle">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/purpost_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -68,7 +68,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/purpose_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -85,7 +85,7 @@
                     android:spinnerMode="dropdown" />
             </LinearLayout>
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/gaurdian_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -136,7 +136,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/address_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -164,7 +164,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/country_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -191,7 +191,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/city_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -217,7 +217,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/district_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -269,7 +269,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/phone_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -297,7 +297,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/request_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -315,7 +315,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView28"
+                android:id="@+id/info_animals"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -334,7 +334,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/name_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -368,7 +368,7 @@
                     android:paddingBottom="6dp">
 
                     <TextView
-                        android:id="@+id/textView29"
+                        android:id="@+id/size_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
@@ -382,7 +382,7 @@
                 </LinearLayout>
 
                 <View
-                    android:id="@+id/view"
+                    android:id="@+id/spacer"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -401,7 +401,7 @@
                     android:paddingBottom="6dp">
 
                     <TextView
-                        android:id="@+id/textView10"
+                        android:id="@+id/gender_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Gender" />
@@ -434,7 +434,7 @@
                     android:paddingBottom="6dp">
 
                     <TextView
-                        android:id="@+id/textView29"
+                        android:id="@+id/color_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
@@ -448,7 +448,7 @@
                 </LinearLayout>
 
                 <View
-                    android:id="@+id/view"
+                    android:id="@+id/spacer2"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -532,7 +532,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/des_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -550,7 +550,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView28"
+                android:id="@+id/area_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -585,7 +585,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/textView28"
+                android:id="@+id/date_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
