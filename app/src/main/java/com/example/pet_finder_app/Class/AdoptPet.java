@@ -1,41 +1,60 @@
 package com.example.pet_finder_app.Class;
 
 public class AdoptPet {
-    private String id, idPet;
-    private float price;
-
+    private String addressAdopting;
+    private String id;
+    private String idPet;
+    private String price;
+    private String status;
 
     public AdoptPet() {
     }
 
-    public AdoptPet(String id, String  idPet, float price) {
-        this.id=id;
-        this.idPet =idPet;
-        this.price= price ;
-
+    public AdoptPet(String addressAdopting, String id, String idPet, String price, String status) {
+        this.addressAdopting = addressAdopting;
+        this.id = id;
+        this.idPet = idPet;
+        this.price = price;
+        this.status = status;
     }
 
-    public String getIdPet() {
-        return idPet;
+    public String getAddressAdopting() {
+        return addressAdopting;
     }
 
-    public float getPrice() {
-        return price;
+    public void setAddressAdopting(String addressAdopting) {
+        this.addressAdopting = addressAdopting;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setIdPet(String idPet) {
-        this.idPet = idPet;
-    }
-
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setPrice(float price) {
+    public String getIdPet() {
+        return idPet;
+    }
+
+    public void setIdPet(String idPet) {
+        this.idPet = idPet;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

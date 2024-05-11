@@ -59,26 +59,26 @@
                 android:textStyle="bold"
                 android:text="@string/registration_date"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/apperance"
-                app:layout_constraintTop_toBottomOf="@+id/apperance" />
+                app:layout_constraintStart_toStartOf="@+id/color"
+                app:layout_constraintTop_toBottomOf="@+id/color" />
 
             <TextView
-                android:id="@+id/apperance_value"
+                android:id="@+id/color_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="@string/appearance"
-                app:layout_constraintBottom_toBottomOf="@+id/apperance"
-                app:layout_constraintStart_toEndOf="@+id/apperance"
-                app:layout_constraintTop_toTopOf="@+id/apperance" />
+                android:text="@string/color"
+                app:layout_constraintBottom_toBottomOf="@+id/color"
+                app:layout_constraintStart_toEndOf="@+id/color"
+                app:layout_constraintTop_toTopOf="@+id/color" />
 
             <TextView
-                android:id="@+id/apperance"
+                android:id="@+id/color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:text="@string/color_text"
                 android:textStyle="bold"
-                android:text="@string/apperance_text"
                 app:layout_constraintStart_toStartOf="@+id/age"
                 app:layout_constraintTop_toBottomOf="@+id/age" />
 
@@ -178,6 +178,15 @@
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="Cat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/date" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

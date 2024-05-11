@@ -1,0 +1,107 @@
+{
+  "AdoptPet": {
+    "adoptPet1": {
+      "addressAdopting": "Vung Tau",
+      "id": "1",
+      "idPet": "1",
+      "price": "20000",
+      "status": "Castracted"
+    },
+    "adoptPet2": {
+      "addressAdopting": "Ho Chi Minh",
+      "id": "2",
+      "idPet": "2",
+      "price": "20000",
+      "status": "Castracted"
+    }
+  },
+  "Breed": {
+    "breed1": "Alaska",
+    "breed2": "French"
+  },
+  "Category": {
+    "cat1": "cat",
+    "cat2": "dog",
+    "cat3": "duck",
+    "cat4": "others"
+  },
+  "Color": {
+    "color1": "black",
+    "color2": "white",
+    "color3": "red",
+    "color4": "rainbow"
+  },
+  "Gender": {
+    "gender1": "male",
+    "gender2": "female"
+  },
+  "Pet": {
+    "pet1": {
+      "age": "21",
+      "categoryId": "2",
+      "color": "red",
+      "description": "cute",
+      "gender": "female",
+      "idPet": "1",
+      "imgUrl": "https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/cat1.jpeg?alt=media&token=5d306560-766e-41bf-915e-c0033a727e34",
+      "name": "Dog",
+      "registerDate": "08/09/2023",
+      "size": "20",
+      "typeId": "2",
+      "weight": "20"
+    },
+    "pet2": {
+      "age": "21",
+      "categoryId": "1",
+      "color": "red",
+      "description": "cute",
+      "gender": "male",
+      "idPet": "2",
+      "imgUrl": "https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/cat2.jpg?alt=media&token=b750415a-a42f-4d1c-bd6b-a82596177915",
+      "name": "Dog",
+      "registerDate": "08/09/2023",
+      "size": "20",
+      "typeId": "2",
+      "weight": "20"
+    },
+    "pet3": {
+      "age": "21",
+      "categoryId": "1",
+      "color": "red",
+      "description": "cute",
+      "gender": "male",
+      "idPet": "2",
+      "imgUrl": "https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/cat2.jpg?alt=media&token=b750415a-a42f-4d1c-bd6b-a82596177915",
+      "name": "Dog",
+      "registerDate": "08/09/2023",
+      "size": "20",
+      "typeId": "2",
+      "weight": "20"
+    }
+  },
+  "Size": {
+    "size1": "small",
+    "size2": "medium",
+    "size3": "big",
+    "size4": "huge"
+  },
+  "Type": {
+    "type1": {
+      "id": "1",
+      "name": "Dog"
+    },
+    "type2": {
+      "id": "2",
+      "name": "Cat"
+    },
+    "type3": {
+      "id": "3",
+      "name": "Duck"
+    },
+    "type4": {
+      "id": "4",
+      "name": "Others"
+    }
+  },
+  "message": "Hello, World!"
+}
