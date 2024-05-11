@@ -1,11 +1,10 @@
 package com.example.pet_finder_app.API;
 
-import java.util.List;
-
-public class VietnamPlaces {
+public class ProvincePlaces {
     private String province_id;
     private String province_name;
     private String province_type;
+
 
     public String getProvinceId() {
         return province_id;
