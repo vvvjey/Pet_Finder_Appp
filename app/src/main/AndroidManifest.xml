@@ -42,7 +42,7 @@
             >
         </activity>
         <activity android:name=".FillInforToAdoptActivity"
-            android:parentActivityName=".AdoptingPetActivity"
+            android:parentActivityName=".AdoptingPetDetailActivity"
             >
 
         </activity>

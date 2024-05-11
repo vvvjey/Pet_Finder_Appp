@@ -49,5 +49,11 @@
         <item android:label="breed1">Alaska</item>
         <item android:label="breed2">French</item>
     </string-array>
+    <string-array name="time">
+        <item>1:00 -> 2:00</item>
+        <item>2:00 -> 3:00</item>
+        <item>3:00 -> 4:00</item>
+        <item>5:00 -> 6:00</item>
+    </string-array>
 
 </resources>

@@ -76,7 +76,7 @@
                     android:textColor="#B3B3B3" />
 
                 <EditText
-                    android:id="@+id/editTextText"
+                    android:id="@+id/nameEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
@@ -155,7 +155,34 @@
 
                 </LinearLayout>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:background="#E6E5E5"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingTop="6dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="6dp">
 
+                <TextView
+                    android:id="@+id/Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Email"
+                    android:textColor="#B3B3B3" />
+
+                <EditText
+                    android:id="@+id/emailEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00FFFFFF"
+                    android:ems="10"
+                    android:hint="Ex : jey@gmail,com"
+                    android:inputType="text"
+                    android:textSize="20sp" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="66dp"
@@ -163,6 +190,7 @@
                 android:background="@drawable/border_radius_form_6dp"
                 android:orientation="vertical"
                 android:paddingLeft="12dp"
+                android:layout_marginTop="20dp"
                 android:paddingTop="6dp"
                 android:paddingRight="12dp">
 
@@ -333,7 +361,7 @@
                     android:text="The request" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/requestEdit"
                     android:layout_width="match_parent"
                     android:layout_height="117dp"
                     android:background="#00FFFFFF"
@@ -377,7 +405,7 @@
                     android:text="Date" />
 
                 <EditText
-                    android:id="@+id/editTextText22"
+                    android:id="@+id/datemeetEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
@@ -414,7 +442,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/fillBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="100dp"

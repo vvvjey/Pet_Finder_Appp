@@ -1,8 +1,9 @@
 package com.example.pet_finder_app;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,16 +24,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.io.Console;
-import java.util.ArrayList;
-import java.util.List;
-
 public class AdoptingPetDetailActivity extends AppCompatActivity {
     Toolbar arrowBack;
     ImageView back_btn;
     String idPet;
     Pet pet;
     AdoptPet adopt;
+    Button adoptBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +98,17 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+
+        adoptBtn = findViewById(R.id.adopt_btn);
+        adoptBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FillInforToAdoptActivity.class);
+                intent.putExtra("idPet", pet.getIdPet());
+                intent.putExtra("namePet", pet.getName());
+                startActivity(intent);
             }
         });
     }
