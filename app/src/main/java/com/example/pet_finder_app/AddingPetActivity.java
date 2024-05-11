@@ -61,11 +61,13 @@ public class AddingPetActivity extends AppCompatActivity {
     FloatingActionButton addImg;
     ImageView uploadImg;
     Uri image;
+    Pet pet;
+    AdoptPet adopt;
     String categoryItem, sizeItem, genderItem, colorItem, breedItem;
     Spinner category, size, gender, color, breed;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    String typeId, name, description, price, age, weight;
+    String typeId, name, description, price, age, weight, imageUrl, idPetKey, idAdoptKey, calendarText;
     StorageReference storageReference;
     private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
@@ -114,7 +116,7 @@ public class AddingPetActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
+                intent.setType("*/*");
                 activityResultLauncher.launch(intent);
             }
         });
@@ -125,7 +127,7 @@ public class AddingPetActivity extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addDatatoFirebase();
+                uploadImage(image);
             }
         });
 
@@ -178,11 +180,24 @@ public class AddingPetActivity extends AppCompatActivity {
     private void uploadImage(Uri file) {
         FirebaseApp.initializeApp(this);
         storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference ref = storageReference.child("images/" + UUID.randomUUID().toString());
+        StorageReference ref = storageReference.child(UUID.randomUUID().toString());
         ref.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        imageUrl = uri.toString();
+                        uploadDataFirebase();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(AddingPetActivity.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
+                    }
+                });
                 Toast.makeText(AddingPetActivity.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -191,7 +206,24 @@ public class AddingPetActivity extends AppCompatActivity {
             }
         });
     }
-    private void addDatatoFirebase() {
+
+    private void uploadDataFirebase(){
+        DatabaseReference petRef = databaseReference.child("Pet").push();
+        DatabaseReference adoptRef = databaseReference.child("AdoptPet").push();
+        addDatatoFirebase(petRef, adoptRef);
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(description) || TextUtils.isEmpty(price) ||
+                TextUtils.isEmpty(age) || TextUtils.isEmpty(weight))  {
+            Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        pet = new Pet(age, "2", colorItem, description, genderItem, idPetKey, imageUrl, name, calendarText, sizeItem, typeId, weight) ;
+        adopt = new AdoptPet(null, idAdoptKey, idPetKey, price, "Castrated");
+        petRef.setValue(pet);
+        adoptRef.setValue(adopt);
+        Toast.makeText(AddingPetActivity.this, "Adopt Pet added successfully", Toast.LENGTH_SHORT).show();
+    }
+
+    private void addDatatoFirebase(DatabaseReference petRef, DatabaseReference adoptRef) {
         category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -252,30 +284,11 @@ public class AddingPetActivity extends AppCompatActivity {
         age = petAge.getText().toString();
         EditText petWeight = findViewById(R.id.weight_edit);
         weight = petWeight.getText().toString();
+        idPetKey = petRef.getKey();
+        idAdoptKey = adoptRef.getKey();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         Calendar calendar = Calendar.getInstance();
-        String calendarText = simpleDateFormat.format(calendar.getTime());
+        calendarText = simpleDateFormat.format(calendar.getTime());
 
-        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(description) || TextUtils.isEmpty(price) ||
-                TextUtils.isEmpty(age) || TextUtils.isEmpty(weight))  {
-            Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        DatabaseReference petRef = databaseReference.child("Pet").push();
-        DatabaseReference adoptRef = databaseReference.child("AdoptPet").push();
-
-        String idPetKey = petRef.getKey();
-        String idAdoptKey = adoptRef.getKey();
-
-        uploadImage(image);
-
-        Pet pet = new Pet(age, "2", colorItem, description, genderItem, idPetKey, image.toString(), name, calendarText, sizeItem, typeId, weight) ;
-        AdoptPet adopt = new AdoptPet(null, idAdoptKey, idPetKey, price, "Castrated");
-        petRef.setValue(pet);
-        adoptRef.setValue(adopt);
-
-        Toast.makeText(AddingPetActivity.this, "Adopt Pet added successfully", Toast.LENGTH_SHORT).show();
     }
-
 }
