@@ -7,6 +7,7 @@ import retrofit2.http.Path;
 
 public interface ApiService {
 
+//    GET INFOR VIETNAM PLACES
     @GET("/api/province")
     Call<ProvincePlacesResponse> getListProvinces();
     @GET("/api/province/district/{id}")

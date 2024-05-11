@@ -1,11 +1,16 @@
 package com.example.pet_finder_app;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +27,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -35,31 +41,71 @@ public class FillInforAboutLostPet extends AppCompatActivity {
     List<ProvincePlaces> provinceList;
     List<DistrictPlaces> districtList;
     List<WardPlaces> wardList;
+    private DatePickerDialog datePickerDialog;
+    private Button dateButton;
+    private EditText fullname,address,phoneNumber,request,animalName,descriptionPet;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fill_infor_about_lost_pet);
         arrowBack = findViewById(R.id.toolbarArrowBack3);
+        fullname = findViewById(R.id.fullNameInput);
+        address = findViewById(R.id.addressInput);
+        phoneNumber = findViewById(R.id.phoneNumberInput);
+        request = findViewById(R.id.requestInput);
+        animalName = findViewById(R.id.animalNameInput);
+        descriptionPet = findViewById(R.id.descriptionPetInput);
+
         Spinner dropdownPurpose = findViewById(R.id.purposeSpinner);
         Spinner dropdownCountry = findViewById(R.id.countrySpinner);
         Spinner dropdownCity = findViewById(R.id.citySpinner);
         Spinner dropdownDistrict = findViewById(R.id.districtSpinner);
         Spinner dropdownWard = findViewById(R.id.wardSpinner);
+        Spinner dropdownSize = findViewById(R.id.sizeSpinner);
+        Spinner dropdownGender = (Spinner)findViewById(R.id.genderSpinner);
+        Spinner dropdownColor = findViewById(R.id.colorSpinner);
+        Spinner dropdownBreed = findViewById(R.id.breedSpinner);
+        Spinner dropdownAge = findViewById(R.id.ageSpinner);
 
         String[] dropdownPurposeItems = new String[]{"Missing", "Seen", "Protected"};
         String[] dropdownCountryItems = new String[]{"Vietnam"};
+        String[] dropdownSizeItems = new String[]{"Small","Medium","Large"};
+        String[] dropdownGenderItems = new String[]{"Male","Female"};
+        String[] dropdownColorItems = new String[]{"Red","Yellow","Brown","Black","White","Other"};
+        String[] dropdownBreedItems = new String[]{"India","USA","China","Japan","Other"};
+        String[] dropdownAgeItems = new String[]{"Baby","Young","Adult","Senior"};
+
+
         List<String> provinceNames = new ArrayList<>();
         List<String> districtName = new ArrayList<>();
         List<String> wardName = new ArrayList<>();
         ArrayAdapter<String> dropdownPurposeAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,dropdownPurposeItems);
         ArrayAdapter<String> dropdownCountryAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,dropdownCountryItems);
+        ArrayAdapter<String> dropdownSizeAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,dropdownSizeItems);
+        ArrayAdapter<String> dropdownGenderAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, dropdownGenderItems);
+        ArrayAdapter<String> dropdownColorAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, dropdownColorItems);
+        ArrayAdapter<String> dropdownBreedAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, dropdownBreedItems);
+        ArrayAdapter<String> dropdownAgeAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, dropdownAgeItems);
 
 
         dropdownPurpose.setAdapter(dropdownPurposeAdapter);
         dropdownCountry.setAdapter(dropdownCountryAdapter);
+        dropdownSize.setAdapter(dropdownSizeAdapter);
+        dropdownGender.setAdapter(dropdownGenderAdapter);
+        dropdownColor.setAdapter(dropdownColorAdapter);
+        dropdownBreed.setAdapter(dropdownBreedAdapter);
+        dropdownAge.setAdapter(dropdownAgeAdapter);
         int screenWidth = getResources().getDisplayMetrics().widthPixels;
         int dropdownWidth = screenWidth - (int) (50 * getResources().getDisplayMetrics().density);
         dropdownPurpose.setDropDownWidth(dropdownWidth);
+
+//        DATE PICKER
+        dateButton = findViewById(R.id.datePickerButton);
+        dateButton.setText(getTodaysDate());
+        initDatePicker();
+
+
+//
 
 
         Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyy").create();
@@ -94,6 +140,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
                 Log.e("API Error", "Failed to fetch provinces: " + t.getMessage());
             }
         });
+///////////////////
         //CALL GET DISTRICT BASED ON PROVINCE
 
         dropdownCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -140,7 +187,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
 
             }
         });
-
+// CALL GET WARD BASED ON DISTRICT
         dropdownDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -189,6 +236,84 @@ public class FillInforAboutLostPet extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),SearchingLostPetActivity.class));
             }
         });
+
+
+
+
+    }
+    private void createMissingPost(){
+
+    }
+    private String getTodaysDate()
+    {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        month = month + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+        return makeDateString(day, month, year);
+    }
+    private String makeDateString(int day, int month, int year)
+    {
+        return getMonthFormat(month) + " " + day + " " + year;
+    }
+    private String getMonthFormat(int month)
+    {
+        if(month == 1)
+            return "JAN";
+        if(month == 2)
+            return "FEB";
+        if(month == 3)
+            return "MAR";
+        if(month == 4)
+            return "APR";
+        if(month == 5)
+            return "MAY";
+        if(month == 6)
+            return "JUN";
+        if(month == 7)
+            return "JUL";
+        if(month == 8)
+            return "AUG";
+        if(month == 9)
+            return "SEP";
+        if(month == 10)
+            return "OCT";
+        if(month == 11)
+            return "NOV";
+        if(month == 12)
+            return "DEC";
+
+        //default should never happen
+        return "JAN";
+    }
+    public void openDatePicker(View view)
+    {
+        datePickerDialog.show();
+    }
+    private void initDatePicker()
+    {
+        DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day)
+            {
+                month = month + 1;
+                String date = makeDateString(day, month, year);
+                dateButton.setText(date);
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int style = AlertDialog.THEME_HOLO_LIGHT;
+
+        datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
+        //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
     }
 
 }
