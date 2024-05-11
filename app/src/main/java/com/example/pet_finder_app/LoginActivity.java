@@ -4,13 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
     TextView toRegisterTv;
@@ -25,6 +32,22 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.btnLogin);
         password = findViewById(R.id.edtPassword);
         loginGGBtn = findViewById(R.id.btnLoginGG);
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://petfinderserverside-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        DatabaseReference myRef = database.getReference("message");
+
+        myRef.setValue("Hello, World!")
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("MyTag", "Data has been written successfully");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e( "Error writing data", String.valueOf(e));
+                    }
+                });
         toRegisterTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

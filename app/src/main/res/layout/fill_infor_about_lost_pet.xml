@@ -79,10 +79,11 @@
                     android:id="@+id/purposeSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:dropDownWidth="1000dp"
+                    android:dropDownVerticalOffset="60dp"
+                    android:popupBackground="@drawable/spinner_popup_background"
                     android:spinnerMode="dropdown" />
-
             </LinearLayout>
-
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
@@ -96,7 +97,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#E6E5E5"
+                android:background="@drawable/border_radius_form_6dp"
                 android:orientation="vertical"
                 android:paddingLeft="12dp"
                 android:paddingTop="6dp"
@@ -236,7 +237,7 @@
                     android:textColor="#B3B3B3" />
 
                 <Spinner
-                    android:id="@+id/purposeSpinner"
+                    android:id="@+id/countrySpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:spinnerMode="dropdown"/>
@@ -262,7 +263,7 @@
                     android:textColor="#B3B3B3" />
 
                 <Spinner
-                    android:id="@+id/purposeSpinner"
+                    android:id="@+id/citySpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:spinnerMode="dropdown" />
@@ -395,7 +396,7 @@
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#EDECEC"
+                    android:background="@drawable/border_radius_form_6dp"
                     android:orientation="vertical"
                     android:paddingLeft="12dp"
                     android:paddingTop="6dp"
@@ -428,7 +429,7 @@
                     android:layout_alignParentEnd="false"
                     android:layout_weight="1"
 
-                    android:background="#EDECEC"
+                    android:background="@drawable/border_radius_form_6dp"
                     android:orientation="vertical"
                     android:paddingLeft="12dp"
                     android:paddingTop="6dp"
@@ -461,7 +462,7 @@
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#EDECEC"
+                    android:background="@drawable/border_radius_form_6dp"
                     android:orientation="vertical"
                     android:paddingLeft="12dp"
                     android:paddingTop="6dp"
@@ -494,7 +495,7 @@
                     android:layout_alignParentEnd="false"
                     android:layout_weight="1"
 
-                    android:background="#EDECEC"
+                    android:background="@drawable/border_radius_form_6dp"
                     android:orientation="vertical"
                     android:paddingLeft="12dp"
                     android:paddingTop="6dp"
