@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <string name="app_name">Pet_Finder_App</string>
 
     <string name="default_location">123 Pham Van Dong</string>
@@ -22,5 +22,31 @@
     <string name="adopt_a_animal">ADOPT A ANIMAL</string>
     <string name="searches">360 Searches</string>
 
+    <string-array name="category">
+        <item android:label="cat1">cat</item>
+        <item android:label="cat2">dog</item>
+        <item android:label="cat3">duck</item>
+        <item android:label="cat4">others</item>
+    </string-array>
+    <string-array name="color">
+        <item android:label="color1">black</item>
+        <item android:label="color2">white</item>
+        <item android:label="color3">red</item>
+        <item android:label="color4">rainbow</item>
+    </string-array>
+    <string-array name="gender">
+        <item android:label="gender1">male</item>
+        <item android:label="gender2">female</item>
+    </string-array>
+    <string-array name="size">
+        <item android:label="size1">small</item>
+        <item android:label="size2">medium</item>
+        <item android:label="size3">big</item>
+        <item android:label="size4">huge</item>
+    </string-array>
+    <string-array name="breed">
+        <item android:label="breed1">Alaska</item>
+        <item android:label="breed2">French</item>
+    </string-array>
 
 </resources>
