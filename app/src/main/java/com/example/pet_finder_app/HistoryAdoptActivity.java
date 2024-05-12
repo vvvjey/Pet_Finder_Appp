@@ -11,15 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.pet_finder_app.AdoptingCategoryDomain;
-import com.example.pet_finder_app.HistoryAdapter;
-import com.example.pet_finder_app.MyShopActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HistoryAdoptActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -49,17 +41,17 @@ public class HistoryAdoptActivity extends AppCompatActivity {
             }
         });
 
-        List<AdoptingCategoryDomain> historyAdopt = new ArrayList<>();
-        historyAdopt.add(new AdoptingCategoryDomain(R.drawable.dog_shop, "Gary", 95, R.drawable.male, "Dog", 4, "20/03/2024", "#3", "Was Castrated"));
-        historyAdopt.add(new AdoptingCategoryDomain(R.drawable.cat_shop, "Gary", 95, R.drawable.male, "Dog", 4, "20/03/2024", "#2", "Was Castrated"));
-        historyAdopt.add(new AdoptingCategoryDomain(R.drawable.dog_shop2, "Gary", 95, R.drawable.male, "Dog", 4, "20/03/2024", "#1", "Was Castrated"));
-        historyAdopt.add(new AdoptingCategoryDomain(R.drawable.dog_shop, "Gary", 95, R.drawable.male, "Dog", 4, "20/03/2024", "#0", "Was Castrated"));
-        historyAdopt.add(new AdoptingCategoryDomain(R.drawable.cat_shop, "Gary", 95, R.drawable.male, "Dog", 4, "20/03/2024", "#0", "Was Castrated"));
-
-        recyclerView = findViewById(R.id.history_adopt_view);
-        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 40, 40));
-        HistoryAdapter historyAdapter = new HistoryAdapter(this,historyAdopt, R.layout.history_adopt_item);
-        recyclerView.setAdapter(historyAdapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
+//        List<AdoptingCategoryDomain> historyAdopt = new ArrayList<>();
+//        historyAdopt.add(new AdoptingCategoryDomain(R.drawable.dog_shop, "Gary", 95, R.drawable.male, "Dog", 4, "20/03/2024", "#3", "Was Castrated"));
+//        historyAdopt.add(new AdoptingCategoryDomain(R.drawable.cat_shop, "Gary", 95, R.drawable.male, "Dog", 4, "20/03/2024", "#2", "Was Castrated"));
+//        historyAdopt.add(new AdoptingCategoryDomain(R.drawable.dog_shop2, "Gary", 95, R.drawable.male, "Dog", 4, "20/03/2024", "#1", "Was Castrated"));
+//        historyAdopt.add(new AdoptingCategoryDomain(R.drawable.dog_shop, "Gary", 95, R.drawable.male, "Dog", 4, "20/03/2024", "#0", "Was Castrated"));
+//        historyAdopt.add(new AdoptingCategoryDomain(R.drawable.cat_shop, "Gary", 95, R.drawable.male, "Dog", 4, "20/03/2024", "#0", "Was Castrated"));
+//
+//        recyclerView = findViewById(R.id.history_adopt_view);
+//        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 40, 40));
+//        HistoryAdapter historyAdapter = new HistoryAdapter(this,historyAdopt, R.layout.history_adopt_item);
+//        recyclerView.setAdapter(historyAdapter);
+//        recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
     }
 }

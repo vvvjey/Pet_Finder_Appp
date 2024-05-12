@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
+
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +36,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import javax.annotation.Nullable;
 
+
 public class LoginActivity extends AppCompatActivity {
     TextView toRegisterTv, forgetPassword;
     EditText email, password;
@@ -54,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         loginGGBtn = findViewById(R.id.btnLoginGG);
         forgetPassword = findViewById(R.id.tvForgotPassword);
         // register
+
         toRegisterTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
