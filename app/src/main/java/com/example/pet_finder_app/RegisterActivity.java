@@ -9,16 +9,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google. firebase.auth. FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
+
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import javax.annotation.Nullable;
 
 public class RegisterActivity extends AppCompatActivity {
     TextView toLoginTv;
@@ -27,7 +39,8 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth auth;
 
     boolean isPasswordVisible = true;
-    Button registerBtn;
+    Button registerBtn, RegisterGGBtn;
+    private GoogleSignInClient client ;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
@@ -66,6 +79,9 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
         password.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View v, MotionEvent event) {
                 final int Right=2;
@@ -103,4 +119,6 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
 }
