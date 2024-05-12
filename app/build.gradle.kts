@@ -49,6 +49,7 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+
 //    GSON JSON HANDLE API
     implementation ("com.google.code.gson:gson:2.10.1")
     implementation ("com.squareup.retrofit2:retrofit:2.11.0")
@@ -58,11 +59,18 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.2.0")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.android.material:material:1.11.0")
+
+    implementation("com.google.firebase:firebase-auth:23.0.0")
+    implementation("com.google.android.gms:play-services-auth:21.1.1")
+    implementation("com.google.android.gms:play-services-tasks:18.1.0")
+
     implementation("com.firebaseui:firebase-ui-database:8.0.2")
     implementation("com.firebaseui:firebase-ui-auth:8.0.2")
     implementation("com.firebaseui:firebase-ui-storage:8.0.2")
     implementation("com.google.firebase:firebase-database")
     implementation ("com.squareup.picasso:picasso:2.8")
+
 }
