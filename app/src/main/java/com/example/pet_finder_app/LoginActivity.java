@@ -9,12 +9,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
 public class LoginActivity extends AppCompatActivity {
     TextView toRegisterTv;
-    EditText password;
+    EditText email, password;
+    private FirebaseAuth auth;
 
     boolean isPasswordVisible = false;
     Button loginBtn,loginGGBtn;
@@ -24,17 +30,23 @@ public class LoginActivity extends AppCompatActivity {
         toRegisterTv = findViewById(R.id.toRegisterTv);
         loginBtn = findViewById(R.id.btnLogin);
         password = findViewById(R.id.edtPassword);
+        email = findViewById(R.id.edtEmail);
+        auth = FirebaseAuth.getInstance();
         loginGGBtn = findViewById(R.id.btnLoginGG);
+        // register
         toRegisterTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
             }
         });
+        // login
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Splash1Activity.class));
+                String txt_email = email.getText().toString();
+                String txt_password = password.getText().toString();
+                loginUser(txt_email, txt_password);
 
             }
         });
@@ -62,5 +74,16 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void loginUser(String email, String password) {
+        auth.signInWithEmailAndPassword(email, password)
+                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                    @Override
+                    public void onSuccess(AuthResult authResult) {
+                        Toast.makeText(LoginActivity.this, "Login Successful!!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), Splash1Activity.class));
+                    }
+                });
     }
 }
