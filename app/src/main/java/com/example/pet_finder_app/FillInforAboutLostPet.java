@@ -23,12 +23,17 @@ import com.example.pet_finder_app.API.ProvincePlaces;
 import com.example.pet_finder_app.API.ProvincePlacesResponse;
 import com.example.pet_finder_app.API.WardPlaces;
 import com.example.pet_finder_app.API.WardPlacesReponse;
+import com.example.pet_finder_app.Class.MissingPet;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,7 +47,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
     List<DistrictPlaces> districtList;
     List<WardPlaces> wardList;
     private DatePickerDialog datePickerDialog;
-    private Button dateButton;
+    private Button dateButton,createMissingPostBtn;
     private EditText fullname,address,phoneNumber,request,animalName,descriptionPet;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,8 @@ public class FillInforAboutLostPet extends AppCompatActivity {
         request = findViewById(R.id.requestInput);
         animalName = findViewById(R.id.animalNameInput);
         descriptionPet = findViewById(R.id.descriptionPetInput);
+        createMissingPostBtn = findViewById(R.id.createMissingPostBtn);
+
 
         Spinner dropdownPurpose = findViewById(R.id.purposeSpinner);
         Spinner dropdownCountry = findViewById(R.id.countrySpinner);
@@ -115,6 +122,8 @@ public class FillInforAboutLostPet extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
         ApiService api = retrofit.create(ApiService.class);
+
+//////////////////////////////////////////////////////
 //        CALL GET ALL PROVINCE
         Call<ProvincePlacesResponse> provinceCall = api.getListProvinces();
         provinceCall.enqueue(new Callback<ProvincePlacesResponse>() {
@@ -140,7 +149,6 @@ public class FillInforAboutLostPet extends AppCompatActivity {
                 Log.e("API Error", "Failed to fetch provinces: " + t.getMessage());
             }
         });
-///////////////////
         //CALL GET DISTRICT BASED ON PROVINCE
 
         dropdownCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -236,13 +244,109 @@ public class FillInforAboutLostPet extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),SearchingLostPetActivity.class));
             }
         });
+////////////////////////////////////////////////////////////////////////
+
+//        Handle create new missing pet post
+        createMissingPostBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String age = dropdownAge.getSelectedItem().toString();
+                String categoryId = "2";
+                String color = dropdownColor.getSelectedItem().toString();
+                String description = "no";
+                String gender = dropdownGender.getSelectedItem().toString();
+                String idPet = "1";
+                String imgUrl = "img";
+                String petName = animalName.getText().toString();
+                Calendar cal = Calendar.getInstance();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                String registerDate = dateFormat.format(cal.getTime());
+                String size = dropdownSize.getSelectedItem().toString();
+                String typeId = "Cat";
+                String weight = "no";
+                String id = "1";
+                String typeMissing = dropdownPurpose.getSelectedItem().toString();
+                String addressMissing = "address";
+                String dateMissing = dateButton.getText().toString();
+                String detailDescription = descriptionPet.getText().toString();
 
 
-
+                MissingPet missingPet = new MissingPet(age, categoryId, color, description, gender, idPet, imgUrl, petName, registerDate, size, typeId, weight, id, typeMissing,addressMissing, dateMissing, detailDescription);
+//                boolean validate_input = validateInputs();
+//                if(validate_input){
+//
+//                }
+                createMissingPost(missingPet);
+            }
+        });
 
     }
-    private void createMissingPost(){
+    private void createMissingPost(MissingPet pet){
+        try{
+            DatabaseReference missingPetRef = FirebaseDatabase.getInstance().getReference().child("Missing pet");
 
+            String missingPetKey = missingPetRef.push().getKey();
+
+            // Set the values of the missing pet attributes under the generated key
+            missingPetRef.child(missingPetKey).child("age").setValue(pet.getAge());
+            missingPetRef.child(missingPetKey).child("categoryId").setValue(pet.getCategoryId());
+            missingPetRef.child(missingPetKey).child("color").setValue(pet.getColor());
+            missingPetRef.child(missingPetKey).child("description").setValue(pet.getDescription());
+            missingPetRef.child(missingPetKey).child("gender").setValue(pet.getGender());
+            missingPetRef.child(missingPetKey).child("idPet").setValue(pet.getIdPet());
+            missingPetRef.child(missingPetKey).child("imgUrl").setValue(pet.getImgUrl());
+            missingPetRef.child(missingPetKey).child("name").setValue(pet.getName());
+            missingPetRef.child(missingPetKey).child("registerDate").setValue(pet.getRegisterDate());
+            missingPetRef.child(missingPetKey).child("size").setValue(pet.getSize());
+            missingPetRef.child(missingPetKey).child("typeId").setValue(pet.getTypeId());
+            missingPetRef.child(missingPetKey).child("weight").setValue(pet.getWeight());
+            missingPetRef.child(missingPetKey).child("id").setValue(pet.getId());
+            missingPetRef.child(missingPetKey).child("typeMissing").setValue(pet.getTypeMissing());
+            missingPetRef.child(missingPetKey).child("addressMissing").setValue(pet.getAddressMissing());
+            missingPetRef.child(missingPetKey).child("dateMissing").setValue(pet.getDateMissing());
+            missingPetRef.child(missingPetKey).child("detailDescription").setValue(pet.getDetailDescription());
+
+            // Log a message to indicate that the missing pet data has been saved
+            Log.d("Data missing pet", "Missing pet data saved ");
+        } catch (Exception e) {
+            Log.e("Error","Error:",e);
+        }
+
+    }
+    private boolean validateInputs() {
+        String fullName = fullname.getText().toString().trim();
+        String addressText = address.getText().toString().trim();
+        String phoneNumberText = phoneNumber.getText().toString().trim();
+        String animalNameText = animalName.getText().toString().trim();
+        String descriptionPetText = descriptionPet.getText().toString().trim();
+
+        if (fullName.isEmpty()) {
+            fullname.setError("Full name is required");
+            return false;
+        }
+
+        if (addressText.isEmpty()) {
+            address.setError("Address is required");
+            return false;
+        }
+
+        if (phoneNumberText.isEmpty()) {
+            phoneNumber.setError("Phone number is required");
+            return false;
+        }
+
+        if (animalNameText.isEmpty()) {
+            animalName.setError("Animal name is required");
+            return false;
+        }
+
+        if (descriptionPetText.isEmpty()) {
+            descriptionPet.setError("Description is required");
+            return false;
+        }
+
+
+        return true;
     }
     private String getTodaysDate()
     {

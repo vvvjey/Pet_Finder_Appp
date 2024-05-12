@@ -1,23 +1,19 @@
 package com.example.pet_finder_app.Class;
 
-public class MissingPet {
+public class MissingPet extends Pet{
     private String id, idPet,typeMissing, addressMissing, dateMissing,detailDescription;
     public MissingPet(){
 
     }
-    public MissingPet(String id, String idPet,String typeMissing, String addressMissing, String dateMissing,String detailDescription){
+    public MissingPet(String age, String categoryId, String color, String description, String gender, String idPet, String imgUrl, String name, String registerDate, String size, String typeId, String weight, String id, String typeMissing, String addressMissing, String dateMissing, String detailDescription) {
+        super(age, categoryId, color, description, gender, idPet, imgUrl, name, registerDate, size, typeId, weight);
         this.id = id;
-        this.idPet = idPet;
-        this.typeMissing= typeMissing;
-        this.addressMissing= addressMissing;
-        this.dateMissing= dateMissing;
-        this.detailDescription=detailDescription;
-
+        this.typeMissing = typeMissing;
+        this.addressMissing = addressMissing;
+        this.dateMissing = dateMissing;
+        this.detailDescription = detailDescription;
     }
 
-    public String getIdPet() {
-        return idPet;
-    }
 
     public String getId() {
         return id;
@@ -43,9 +39,6 @@ public class MissingPet {
         this.id = id;
     }
 
-    public void setIdPet(String idPet) {
-        this.idPet = idPet;
-    }
 
     public void setAddressMissing(String addressMissing) {
         this.addressMissing = addressMissing;
