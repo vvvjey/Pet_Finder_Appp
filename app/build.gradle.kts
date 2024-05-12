@@ -47,6 +47,8 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
 
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
-    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-auth:23.0.0")
+    implementation("com.google.android.gms:play-services-auth:21.1.1")
+    implementation("com.google.android.gms:play-services-tasks:18.1.0")
 
 }

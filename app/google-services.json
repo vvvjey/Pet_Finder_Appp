@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "237004107904",
+    "firebase_url": "https://petfinderserverside-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "petfinderserverside",
     "storage_bucket": "petfinderserverside.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.pet_finder_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "237004107904-metdmlndpd78294dvi3keq9sku49rokr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pet_finder_app",
+            "certificate_hash": "056dd6a455ddd635bd0a1b6bc1df0e5150c5e264"
+          }
+        },
+        {
+          "client_id": "237004107904-6jvdqbis3csb7uct150gfca9af95maq2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyA8jGhTL49zm8GzxG2u_04fqfRxXl_jy9M"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "237004107904-6jvdqbis3csb7uct150gfca9af95maq2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
