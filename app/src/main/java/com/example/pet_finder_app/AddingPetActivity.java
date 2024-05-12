@@ -1,14 +1,10 @@
 package com.example.pet_finder_app;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import com.google.firebase.FirebaseApp;
-import android.view.View;
 import android.text.TextUtils;
-import android.view.ViewGroup;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,42 +13,34 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.pet_finder_app.Class.AdoptOrder;
 import com.example.pet_finder_app.Class.AdoptPet;
 import com.example.pet_finder_app.Class.Pet;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.UUID;
 
 public class AddingPetActivity extends AppCompatActivity {
@@ -63,6 +51,7 @@ public class AddingPetActivity extends AppCompatActivity {
     Uri image;
     Pet pet;
     AdoptPet adopt;
+    AdoptOrder order;
     String categoryItem, sizeItem, genderItem, colorItem, breedItem;
     Spinner category, size, gender, color, breed;
     FirebaseDatabase firebaseDatabase;
@@ -210,6 +199,7 @@ public class AddingPetActivity extends AppCompatActivity {
     private void uploadDataFirebase(){
         DatabaseReference petRef = databaseReference.child("Pet").push();
         DatabaseReference adoptRef = databaseReference.child("AdoptPet").push();
+        DatabaseReference orderRef = databaseReference.child("AdoptOrder").push();
         addDatatoFirebase(petRef, adoptRef);
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(description) || TextUtils.isEmpty(price) ||
                 TextUtils.isEmpty(age) || TextUtils.isEmpty(weight))  {
@@ -218,8 +208,10 @@ public class AddingPetActivity extends AppCompatActivity {
         }
         pet = new Pet(age, "2", colorItem, description, genderItem, idPetKey, imageUrl, name, calendarText, sizeItem, typeId, weight) ;
         adopt = new AdoptPet(null, idAdoptKey, idPetKey, price, "Castrated");
+        order = new AdoptOrder(idAdoptKey, idPetKey, "1");
         petRef.setValue(pet);
         adoptRef.setValue(adopt);
+        orderRef.setValue(order);
         Toast.makeText(AddingPetActivity.this, "Adopt Pet added successfully", Toast.LENGTH_SHORT).show();
     }
 

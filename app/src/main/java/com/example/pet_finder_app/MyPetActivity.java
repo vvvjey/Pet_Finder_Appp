@@ -11,11 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MyPetActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -50,18 +46,18 @@ public class MyPetActivity extends AppCompatActivity {
             }
         });
 
-        List<AdoptingCategoryDomain> PetList = new ArrayList<AdoptingCategoryDomain>();
-        PetList.add(new AdoptingCategoryDomain(R.drawable.dog_shop, "Gary", 95, R.drawable.male, "Dog", 4,"Castrated"));
-        PetList.add(new AdoptingCategoryDomain(R.drawable.cat_shop, "Whitney", 20, R.drawable.female, "Cat", 4,"Castrated"));
-        PetList.add(new AdoptingCategoryDomain(R.drawable.dog_shop2, "Willie", 120, R.drawable.male, "Dog", 4,"Castrated"));
-        PetList.add(new AdoptingCategoryDomain(R.drawable.dog_shop, "Gary", 95, R.drawable.male, "Dog", 4,"Castrated"));
-        PetList.add(new AdoptingCategoryDomain(R.drawable.cat_shop, "Whitney", 20, R.drawable.female, "Cat", 4,"Castrated"));
-        PetList.add(new AdoptingCategoryDomain(R.drawable.dog_shop2, "Willie", 120, R.drawable.male, "Dog", 4,"Castrated"));
-
-        recyclerView = findViewById(R.id.mypet_view);
-        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 40,40));
-        AdoptingCategoryAdapter shopAdapter = new AdoptingCategoryAdapter(PetList, R.layout.my_pet_item);
-        recyclerView.setAdapter(shopAdapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
+//        List<AdoptingCategoryDomain> PetList = new ArrayList<AdoptingCategoryDomain>();
+//        PetList.add(new AdoptingCategoryDomain(R.drawable.dog_shop, "Gary", 95, R.drawable.male, "Dog", 4,"Castrated"));
+//        PetList.add(new AdoptingCategoryDomain(R.drawable.cat_shop, "Whitney", 20, R.drawable.female, "Cat", 4,"Castrated"));
+//        PetList.add(new AdoptingCategoryDomain(R.drawable.dog_shop2, "Willie", 120, R.drawable.male, "Dog", 4,"Castrated"));
+//        PetList.add(new AdoptingCategoryDomain(R.drawable.dog_shop, "Gary", 95, R.drawable.male, "Dog", 4,"Castrated"));
+//        PetList.add(new AdoptingCategoryDomain(R.drawable.cat_shop, "Whitney", 20, R.drawable.female, "Cat", 4,"Castrated"));
+//        PetList.add(new AdoptingCategoryDomain(R.drawable.dog_shop2, "Willie", 120, R.drawable.male, "Dog", 4,"Castrated"));
+//
+//        recyclerView = findViewById(R.id.mypet_view);
+//        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 40,40));
+//        AdoptingCategoryAdapter shopAdapter = new AdoptingCategoryAdapter(PetList, R.layout.my_pet_item);
+//        recyclerView.setAdapter(shopAdapter);
+//        recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
     }
 }
