@@ -24,6 +24,7 @@ import com.example.pet_finder_app.API.WardPlaces;
 import com.example.pet_finder_app.API.WardPlacesReponse;
 import com.example.pet_finder_app.Class.AdoptOrder;
 import com.example.pet_finder_app.Class.Appoitment;
+import com.example.pet_finder_app.Class.Pet;
 import com.example.pet_finder_app.Class.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -46,6 +47,8 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
     List<ProvincePlaces> provinceList;
     List<DistrictPlaces> districtList;
     List<WardPlaces> wardList;
+    List<Pet> petList = new ArrayList<>();
+    Pet pet;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     TextView titleName;
@@ -55,6 +58,8 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
     User user;
     AdoptOrder adoptOrder;
     Appoitment appoitment;
+
+
 
     EditText addressEdt, nameEdt, dateBirthEdt, requestEdt, dateMeetEdt, phoneEdt, emailEdt;
     String fullName, dateBirth, gender, email, address, country, city,district, ward, phone, requestMsg, dateMeet, timeMeet, fullAddress;
@@ -73,7 +78,6 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
         dropdownWard = findViewById(R.id.wardSpinner);
 
 
-        idPet = getIntent().getStringExtra("idPet");
         namePet = getIntent().getStringExtra("namePet");
         String[] dropdownCountryItems = new String[]{"Vietnam"};
         List<String> provinceNames = new ArrayList<>();
@@ -94,7 +98,6 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
         );
         timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         timeSpinner.setAdapter(timeAdapter);
-
 
         Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyy").create();
 //        Initial retrofit
@@ -220,7 +223,7 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AdoptingPetActivity.class));
+                startActivity(new Intent(getApplicationContext(), MyPetActivity.class));
             }
         });
 
@@ -230,6 +233,8 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
                 addDataFireBase();
             }
         });
+
+
 
     }
 

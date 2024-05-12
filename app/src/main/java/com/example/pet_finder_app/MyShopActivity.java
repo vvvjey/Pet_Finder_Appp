@@ -175,6 +175,7 @@ public class MyShopActivity extends AppCompatActivity {
                     if(user != null){
                         Log.d("check", "user");
                         ShopList.add(new AdoptingCategoryDomain(
+                                pet.getIdPet(),
                                 pet.getImgUrl(),
                                 pet.getName(),
                                 "favorite",

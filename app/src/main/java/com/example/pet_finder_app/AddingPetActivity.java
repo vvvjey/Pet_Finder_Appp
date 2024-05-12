@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,11 +33,15 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -52,26 +56,21 @@ public class AddingPetActivity extends AppCompatActivity {
     Pet pet;
     AdoptPet adopt;
     AdoptOrder order;
+    String activity, idPet;
     String categoryItem, sizeItem, genderItem, colorItem, breedItem;
     Spinner category, size, gender, color, breed;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     String typeId, name, description, price, age, weight, imageUrl, idPetKey, idAdoptKey, calendarText;
     StorageReference storageReference;
-    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-        @Override
-        public void onActivityResult(ActivityResult result) {
-            if (result.getResultCode() == RESULT_OK) {
-                if (result.getData() != null) {
-                    image = result.getData().getData();
-                    uploadImg = findViewById(R.id.uploadImg);
-                    Glide.with(getApplicationContext()).load(image).into(uploadImg);
-                }
-            } else {
-                Toast.makeText(AddingPetActivity.this, "Please select an image", Toast.LENGTH_SHORT).show();
-            }
-        }
-    });
+    EditText petName;
+    EditText petDes;
+    EditText petPrice;
+    EditText petAge;
+    EditText petWeight;
+    SimpleDateFormat simpleDateFormat;
+    Calendar calendar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +84,12 @@ public class AddingPetActivity extends AppCompatActivity {
         addImg = findViewById(R.id.add_img);
         arrowBack = findViewById(R.id.toolbarArrowBack);
         backPet = findViewById(R.id.btn_add);
+        uploadImg = findViewById(R.id.uploadImg);
+        activity = getIntent().getStringExtra("activity");
+
+        Log.d("ShowIntent", activity);
+        idPet = getIntent().getStringExtra("idPet");
+
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,8 +114,6 @@ public class AddingPetActivity extends AppCompatActivity {
                 activityResultLauncher.launch(intent);
             }
         });
-
-
 
         Button btnAdd = findViewById(R.id.btn_add);
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +167,88 @@ public class AddingPetActivity extends AppCompatActivity {
         gender.setAdapter(genderAdapter);
         color.setAdapter(colorAdapter);
         breed.setAdapter(breedAdapter);
+
+        petName = findViewById(R.id.editName);
+        petDes = findViewById(R.id.description_edit);
+        petPrice = findViewById(R.id.price_edit);
+        petAge = findViewById(R.id.age_edit);
+        petWeight = findViewById(R.id.weight_edit);
+        simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+        calendar = Calendar.getInstance();
+
+        if (activity.equals("edit")){
+            Log.d("ShowIntent", "GetTheRightThing");
+            idPet = getIntent().getStringExtra("idPet");
+            name = petName.getText().toString();
+            description = petDes.getText().toString();
+            price = petPrice.getText().toString();
+            age = petAge.getText().toString();
+            weight = petWeight.getText().toString();
+            calendarText = simpleDateFormat.format(calendar.getTime());
+            databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot snap: snapshot.getChildren()){
+                        Log.d("ShowIntent", idPet);
+                        Log.d("ShowIntent", snap.getValue(Pet.class).getIdPet());
+                        if(idPet.equals(snap.getValue(Pet.class).getIdPet())){
+                            Log.d("ShowIntent", "GetTheRightThing");
+                            pet = snap.getValue(Pet.class);
+                            petName.setText(pet.getName());
+                            category.setSelection(categoryAdapter.getPosition(pet.getTypeId()));
+                            petAge.setText(pet.getAge());
+                            size.setSelection(sizeAdapter.getPosition(pet.getSize()));
+                            gender.setSelection(genderAdapter.getPosition(pet.getGender()));
+                            color.setSelection(colorAdapter.getPosition(pet.getColor()));
+                            petWeight.setText(pet.getWeight());
+                            petDes.setText(pet.getDescription());
+                            Picasso.get().load(pet.getImgUrl()).into(uploadImg);
+                            break;
+                        }
+                    }
+//                    populateRecyclerView();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            databaseReference.child("AdoptPet").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot snap: snapshot.getChildren()){
+                        if(idPet.equals(snap.getValue(AdoptPet.class).getIdPet())){
+                            adopt = snap.getValue(AdoptPet.class);
+                            petPrice.setText(adopt.getPrice());
+                            break;
+                        }
+                    }
+//                    populateRecyclerView();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
     }
+
+    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            if (result.getResultCode() == RESULT_OK) {
+                if (result.getData() != null) {
+                    image = result.getData().getData();
+                    Glide.with(getApplicationContext()).load(image).into(uploadImg);
+                }
+            } else {
+                Toast.makeText(AddingPetActivity.this, "Please select an image", Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
 
     private void uploadImage(Uri file) {
         FirebaseApp.initializeApp(this);
@@ -206,7 +290,7 @@ public class AddingPetActivity extends AppCompatActivity {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;
         }
-        pet = new Pet(age, "2", colorItem, description, genderItem, idPetKey, imageUrl, name, calendarText, sizeItem, typeId, weight) ;
+        pet = new Pet(age, "2", colorItem, description, genderItem, idPetKey, imageUrl, name, calendarText, sizeItem, categoryItem, weight) ;
         adopt = new AdoptPet(null, idAdoptKey, idPetKey, price, "Castrated");
         order = new AdoptOrder(idAdoptKey, idPetKey, "1");
         petRef.setValue(pet);
@@ -216,70 +300,24 @@ public class AddingPetActivity extends AppCompatActivity {
     }
 
     private void addDatatoFirebase(DatabaseReference petRef, DatabaseReference adoptRef) {
-        category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                categoryItem = category.getItemAtPosition(position).toString();
-                typeId = getResources().getStringArray(R.array.category)[position];
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
-        size.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                sizeItem = size.getItemAtPosition(position).toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+        categoryItem = category.getSelectedItem().toString();
 
-            }
-        });
-        gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                genderItem = gender.getItemAtPosition(position).toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+        sizeItem = size.getSelectedItem().toString();
 
-            }
-        });
-        color.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                colorItem = color.getItemAtPosition(position).toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        breed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                breedItem = breed.getItemAtPosition(position).toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+        genderItem = gender.getSelectedItem().toString();
 
-            }
-        });
-        EditText petName = findViewById(R.id.editName);
+        colorItem = color.getSelectedItem().toString();
+
+        breedItem = breed.getSelectedItem().toString();
+
         name = petName.getText().toString();
-        EditText petDes = findViewById(R.id.description_edit);
         description = petDes.getText().toString();
-        EditText petPrice = findViewById(R.id.price_edit);
         price = petPrice.getText().toString();
-        EditText petAge = findViewById(R.id.age_edit);
         age = petAge.getText().toString();
-        EditText petWeight = findViewById(R.id.weight_edit);
         weight = petWeight.getText().toString();
         idPetKey = petRef.getKey();
         idAdoptKey = adoptRef.getKey();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
-        Calendar calendar = Calendar.getInstance();
         calendarText = simpleDateFormat.format(calendar.getTime());
 
     }

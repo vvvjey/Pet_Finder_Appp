@@ -1,7 +1,7 @@
 package com.example.pet_finder_app;
 
 public class AdoptingCategoryDomain {
-    private String image_id, gender, favorite, status;
+    private String image_id, gender, favorite, status, idPet;
     private String name, location, breed, date_adopt, ranking, condition;
     private String age;
     private String price;
@@ -18,7 +18,8 @@ public class AdoptingCategoryDomain {
 //        this.status = status;
 //    }
 
-    public AdoptingCategoryDomain(String image_id, String name, String favorite, String price, String gender, String breed, String age, String condition) {
+    public AdoptingCategoryDomain(String idPet, String image_id, String name, String favorite, String price, String gender, String breed, String age, String condition) {
+        this.idPet = idPet;
         this.image_id = image_id;
         this.name = name;
         this.favorite = favorite;
@@ -37,7 +38,8 @@ public class AdoptingCategoryDomain {
         this.breed = breed;
         this.age = age;
     }
-    public AdoptingCategoryDomain(String image_id, String name, String price, String gender, String breed, String age, String condition) {
+    public AdoptingCategoryDomain(String idPet, String image_id, String name, String price, String gender, String breed, String age, String condition) {
+        this.idPet = idPet;
         this.image_id = image_id;
         this.name = name;
         this.price = price;
@@ -46,7 +48,8 @@ public class AdoptingCategoryDomain {
         this.age = age;
         this.condition = condition;
     }
-    public AdoptingCategoryDomain(String image_id, String name, String price, String gender, String breed, String age, String date_adopt, String ranking, String condition) {
+    public AdoptingCategoryDomain(String idPet, String image_id, String name, String price, String gender, String breed, String age, String date_adopt, String ranking, String condition) {
+        this.idPet = idPet;
         this.image_id = image_id;
         this.name = name;
         this.price = price;
@@ -56,6 +59,14 @@ public class AdoptingCategoryDomain {
         this.date_adopt = date_adopt;
         this.ranking = ranking;
         this.condition = condition;
+    }
+
+    public String getIdPet() {
+        return idPet;
+    }
+
+    public void setIdPet(String idPet) {
+        this.idPet = idPet;
     }
 
     public String getCondition() {
