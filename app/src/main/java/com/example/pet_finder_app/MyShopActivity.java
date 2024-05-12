@@ -192,7 +192,7 @@ public class MyShopActivity extends AppCompatActivity {
         }
         recyclerView = findViewById(R.id.myShopView);
         AdoptingCategoryAdapter shopAdapter = new AdoptingCategoryAdapter(ShopList, R.layout.my_shop_item);
-        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 40,40));
+        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 5,5));
         recyclerView.setAdapter(shopAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.HORIZONTAL, false));
     }

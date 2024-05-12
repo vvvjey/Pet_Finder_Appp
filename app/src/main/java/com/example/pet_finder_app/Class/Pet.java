@@ -1,5 +1,4 @@
 package com.example.pet_finder_app.Class;
-import android.net.Uri;
 
 public class Pet {
     private String age;
@@ -14,7 +13,6 @@ public class Pet {
     private String size;
     private String typeId;
     private String weight;
-
     public Pet(String age, String categoryId, String color, String description, String gender, String idPet, String imgUrl, String name, String registerDate, String size, String typeId, String weight) {
         this.age = age;
         this.categoryId = categoryId;
