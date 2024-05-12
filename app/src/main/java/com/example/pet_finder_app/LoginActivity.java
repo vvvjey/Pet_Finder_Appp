@@ -45,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
     boolean isPasswordVisible = false;
     Button loginBtn,loginGGBtn;
     private GoogleSignInClient client ;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
@@ -159,6 +160,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    //--------Sign in with Email/Password---------
     private void loginUser(String email, String password) {
         auth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -169,6 +171,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    //--------Sign in with Google---------
     @Override
     protected void onActivityResult (int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -200,9 +204,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart(){
         super.onStart();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user !=null)
+        if(user != null)
         {
             startActivity(new Intent(getApplicationContext(), Splash1Activity.class));
+            finish();
         }
 
     }
