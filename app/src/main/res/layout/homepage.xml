@@ -461,8 +461,8 @@
 
                     <TextView
                         android:id="@+id/missingInfo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="268dp"
+                        android:layout_height="17dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/poppins"
                         android:text="Help your family find missing animals"
