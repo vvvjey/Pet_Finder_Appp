@@ -153,7 +153,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
 //        });
     }
 
-    private void populateRecyclerView() {
+        private void populateRecyclerView() {
         List<AdoptingPetItem> petItems = new ArrayList<>();
         HashMap<String, AdoptPet> hashMap = new HashMap<>();
         for(AdoptPet adoptPet : adoptPets){

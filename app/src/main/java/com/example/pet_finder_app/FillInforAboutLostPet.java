@@ -3,6 +3,7 @@ package com.example.pet_finder_app;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,11 +12,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 import com.example.pet_finder_app.API.ApiService;
 import com.example.pet_finder_app.API.DistrictPlaces;
 import com.example.pet_finder_app.API.DistrictPlacesResponse;
@@ -24,8 +33,15 @@ import com.example.pet_finder_app.API.ProvincePlacesResponse;
 import com.example.pet_finder_app.API.WardPlaces;
 import com.example.pet_finder_app.API.WardPlacesReponse;
 import com.example.pet_finder_app.Class.MissingPet;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -34,6 +50,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,13 +64,29 @@ public class FillInforAboutLostPet extends AppCompatActivity {
     List<DistrictPlaces> districtList;
     List<WardPlaces> wardList;
     private DatePickerDialog datePickerDialog;
-    private Button dateButton,createMissingPostBtn;
+    private Button dateButton,createMissingPostBtn,addImgBtn;
     private EditText fullname,address,phoneNumber,request,animalName,descriptionPet;
+    StorageReference storageReference;
+    FloatingActionButton addImg;
+    Uri image;
+    ImageView uploadImg;
+
+    String imageUrl;
+    Spinner dropdownPurpose ;
+    Spinner dropdownCountry ;
+    Spinner dropdownCity ;
+    Spinner dropdownDistrict ;
+    Spinner dropdownWard ;
+    Spinner dropdownGender ;
+    Spinner dropdownColor ;
+    Spinner dropdownBreed;
+    Spinner dropdownAge ;
+    Spinner dropdownSize ;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fill_infor_about_lost_pet);
-        arrowBack = findViewById(R.id.toolbarArrowBack3);
+        arrowBack = (Toolbar) findViewById(R.id.toolbarArrowBack6);
         fullname = findViewById(R.id.fullNameInput);
         address = findViewById(R.id.addressInput);
         phoneNumber = findViewById(R.id.phoneNumberInput);
@@ -61,18 +94,20 @@ public class FillInforAboutLostPet extends AppCompatActivity {
         animalName = findViewById(R.id.animalNameInput);
         descriptionPet = findViewById(R.id.descriptionPetInput);
         createMissingPostBtn = findViewById(R.id.createMissingPostBtn);
+        addImg = findViewById(R.id.add_img);
 
+         dropdownPurpose = findViewById(R.id.purposeSpinner);
+         dropdownCountry = findViewById(R.id.countrySpinner);
+         dropdownCity = findViewById(R.id.citySpinner);
+         dropdownDistrict = findViewById(R.id.districtSpinner);
+         dropdownWard = findViewById(R.id.wardSpinner);
+         dropdownSize = findViewById(R.id.sizeSpinner);
+         dropdownGender = (Spinner)findViewById(R.id.genderSpinner);
+         dropdownColor = findViewById(R.id.colorSpinner);
+         dropdownBreed = findViewById(R.id.breedSpinner);
+         dropdownAge = findViewById(R.id.ageSpinner);
+        uploadImg = findViewById(R.id.uploadImg);
 
-        Spinner dropdownPurpose = findViewById(R.id.purposeSpinner);
-        Spinner dropdownCountry = findViewById(R.id.countrySpinner);
-        Spinner dropdownCity = findViewById(R.id.citySpinner);
-        Spinner dropdownDistrict = findViewById(R.id.districtSpinner);
-        Spinner dropdownWard = findViewById(R.id.wardSpinner);
-        Spinner dropdownSize = findViewById(R.id.sizeSpinner);
-        Spinner dropdownGender = (Spinner)findViewById(R.id.genderSpinner);
-        Spinner dropdownColor = findViewById(R.id.colorSpinner);
-        Spinner dropdownBreed = findViewById(R.id.breedSpinner);
-        Spinner dropdownAge = findViewById(R.id.ageSpinner);
 
         String[] dropdownPurposeItems = new String[]{"Missing", "Seen", "Protected"};
         String[] dropdownCountryItems = new String[]{"Vietnam"};
@@ -246,48 +281,48 @@ public class FillInforAboutLostPet extends AppCompatActivity {
         });
 ////////////////////////////////////////////////////////////////////////
 
+        addImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("*/*");
+                activityResultLauncher.launch(intent);
+            }
+        });
 //        Handle create new missing pet post
         createMissingPostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String age = dropdownAge.getSelectedItem().toString();
-                String categoryId = "2";
-                String color = dropdownColor.getSelectedItem().toString();
-                String description = "no";
-                String gender = dropdownGender.getSelectedItem().toString();
-                String idPet = "1";
-                String imgUrl = "img";
-                String petName = animalName.getText().toString();
-                Calendar cal = Calendar.getInstance();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                String registerDate = dateFormat.format(cal.getTime());
-                String size = dropdownSize.getSelectedItem().toString();
-                String typeId = "Cat";
-                String weight = "no";
-                String id = "1";
-                String typeMissing = dropdownPurpose.getSelectedItem().toString();
-                String addressMissing = "address";
-                String dateMissing = dateButton.getText().toString();
-                String detailDescription = descriptionPet.getText().toString();
-
-
-                MissingPet missingPet = new MissingPet(age, categoryId, color, description, gender, idPet, imgUrl, petName, registerDate, size, typeId, weight, id, typeMissing,addressMissing, dateMissing, detailDescription);
-//                boolean validate_input = validateInputs();
-//                if(validate_input){
-//
-//                }
-                createMissingPost(missingPet);
+              uploadImage(image);
             }
         });
 
     }
-    private void createMissingPost(MissingPet pet){
+    private void createMissingPost(){
         try{
             DatabaseReference missingPetRef = FirebaseDatabase.getInstance().getReference().child("Missing pet");
 
             String missingPetKey = missingPetRef.push().getKey();
+            String age = dropdownAge.getSelectedItem().toString();
+            String categoryId = "2";
+            String color = dropdownColor.getSelectedItem().toString();
+            String description = "no";
+            String gender = dropdownGender.getSelectedItem().toString();
+            String idPet = "1";
+            String petName = animalName.getText().toString();
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+            String registerDate = dateFormat.format(cal.getTime());
+            String size = dropdownSize.getSelectedItem().toString();
+            String typeId = "Cat";
+            String weight = "no";
+            String id = "1";
+            String typeMissing = dropdownPurpose.getSelectedItem().toString();
+            String addressMissing = "address";
+            String dateMissing = dateButton.getText().toString();
+            String detailDescription = descriptionPet.getText().toString();
 
-            // Set the values of the missing pet attributes under the generated key
+            MissingPet pet = new MissingPet(age, categoryId, color, description, gender, idPet, imageUrl, petName, registerDate, size, typeId, weight, id, typeMissing,addressMissing, dateMissing, detailDescription);
             missingPetRef.child(missingPetKey).child("age").setValue(pet.getAge());
             missingPetRef.child(missingPetKey).child("categoryId").setValue(pet.getCategoryId());
             missingPetRef.child(missingPetKey).child("color").setValue(pet.getColor());
@@ -306,12 +341,48 @@ public class FillInforAboutLostPet extends AppCompatActivity {
             missingPetRef.child(missingPetKey).child("dateMissing").setValue(pet.getDateMissing());
             missingPetRef.child(missingPetKey).child("detailDescription").setValue(pet.getDetailDescription());
 
-            // Log a message to indicate that the missing pet data has been saved
-            Log.d("Data missing pet", "Missing pet data saved ");
-        } catch (Exception e) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Success");
+            builder.setMessage("Missing pet post created successfully!");
+            builder.setPositiveButton("OK", (dialog, which) -> {
+                // Start SearchingLostPetActivity
+                startActivity(new Intent(getApplicationContext(), SearchingLostPetActivity.class));
+                finish(); // Finish the current activity to prevent going back to it with back button
+            });
+            builder.setCancelable(false); // Prevent dismissing dialog by clicking outside
+            builder.show();        } catch (Exception e) {
             Log.e("Error","Error:",e);
         }
 
+    }
+    private void uploadImage(Uri file) {
+        FirebaseApp.initializeApp(this);
+        storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference ref = storageReference.child(UUID.randomUUID().toString());
+        ref.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        imageUrl = uri.toString();
+                        createMissingPost();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(FillInforAboutLostPet.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                Toast.makeText(FillInforAboutLostPet.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(FillInforAboutLostPet.this, "Failed!" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     private boolean validateInputs() {
         String fullName = fullname.getText().toString().trim();
@@ -419,5 +490,17 @@ public class FillInforAboutLostPet extends AppCompatActivity {
         //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
 
     }
-
+    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            if (result.getResultCode() == RESULT_OK) {
+                if (result.getData() != null) {
+                    image = result.getData().getData();
+                    Glide.with(getApplicationContext()).load(image).into(uploadImg);
+                }
+            } else {
+                Toast.makeText(FillInforAboutLostPet.this, "Please select an image", Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
 }

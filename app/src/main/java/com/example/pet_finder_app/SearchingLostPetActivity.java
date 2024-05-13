@@ -20,6 +20,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.pet_finder_app.Class.MissingPet;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +36,7 @@ public class SearchingLostPetActivity extends AppCompatActivity {
     FloatingActionButton addBtn, add_missing_btn, favorite_btn;
     ListView lv;
     SearchingLostPetAdapter adapter;
-    ArrayList<String> arrayList;
+    ArrayList<MissingPet> arrayList;
     ImageView filterMissing;
     private boolean clicked;
 
@@ -87,10 +88,7 @@ public class SearchingLostPetActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), FavoritePetActivity.class));
             }
         });
-        arrayList = new ArrayList<String>();
-        arrayList.add("ABC");
-        arrayList.add("ABC");
-        arrayList.add("ABC");
+        arrayList = new ArrayList<MissingPet>();
 
         lv = findViewById(R.id.lv);
         adapter = new SearchingLostPetAdapter(this,R.layout.searching_lost_pet_item,arrayList);
@@ -156,7 +154,20 @@ public class SearchingLostPetActivity extends AppCompatActivity {
                     } else {
                         Log.d("MissingPetData", "Snapshot does not contain any data");
                     }
+                    String gender = snapshot.child("gender").getValue(String.class);
+                    String name = snapshot.child("name").getValue(String.class);
+                    String color = snapshot.child("color").getValue(String.class);
+                    String registerDate = snapshot.child("registerDate").getValue(String.class);
+                    String imageUrl = snapshot.child("imgUrl").getValue(String.class);
+                    String typeMissing = snapshot.child("typeMissing").getValue(String.class);
+                    String age = snapshot.child("age").getValue(String.class);
+                    String size = snapshot.child("size").getValue(String.class);
+
+                    // Create a MissingPet object and add it to the list
+                    MissingPet pet = new MissingPet(age, "categoryId", color, "description", gender, "idPet", imageUrl, name, registerDate, size, "typeId", "weight", "id", typeMissing,"addressMissing", "dateMissing", "detailDescription");
+                    arrayList.add(pet);
                 }
+                adapter.notifyDataSetChanged();
 
             }
 
