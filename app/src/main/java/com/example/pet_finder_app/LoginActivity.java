@@ -71,7 +71,14 @@ public class LoginActivity extends AppCompatActivity {
                 String txt_email = email.getText().toString();
                 String txt_password = password.getText().toString();
                 loginUser(txt_email, txt_password);
-
+                if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)) {
+                    Toast.makeText(LoginActivity.this, "Empty credentials!", Toast.LENGTH_SHORT).show();
+                }
+                else if (txt_password.length() < 6) {
+                    Toast.makeText(LoginActivity.this, "Password too short!", Toast.LENGTH_SHORT).show();
+                } else {
+                    loginUser(txt_email, txt_password);
+                }
             }
         });
         //----------Login with Google----------
@@ -168,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onSuccess(AuthResult authResult) {
                         // If login successful
                         Toast.makeText(LoginActivity.this, "Login Successful!!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), Splash1Activity.class));
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         finish();
                     }
                 })
@@ -196,7 +203,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete (@NonNull Task<AuthResult> task){
                         if (task.isSuccessful()){
-                            startActivity(new Intent(LoginActivity.this, Splash1Activity.class));
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         }
                         else{
                             Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -215,7 +222,7 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user != null)
         {
-            startActivity(new Intent(getApplicationContext(), Splash1Activity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
 

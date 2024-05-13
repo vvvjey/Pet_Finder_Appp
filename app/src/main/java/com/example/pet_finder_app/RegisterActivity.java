@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         // register button
         registerBtn = findViewById(R.id.btnRegister);
-
+        RegisterGGBtn = findViewById(R.id.btnLoginGG);
         fullName = findViewById(R.id.edtFullName);
         email = findViewById(R.id.edtEmail);
         password = findViewById(R.id.edtPassword);
@@ -112,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(RegisterActivity.this, "Registering user successful!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                            startActivity(new Intent(RegisterActivity.this, Splash1Activity.class));
                         } else {
                             Toast.makeText(RegisterActivity.this, "Registration failed!", Toast.LENGTH_SHORT).show();
                         }
