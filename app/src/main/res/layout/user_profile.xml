@@ -158,7 +158,7 @@
 
             android:text="My Shop"
             app:layout_constraintStart_toEndOf="@id/icon_myshop"
-
+            android:textStyle="bold"
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/poppins"
             android:textSize="14dp"
@@ -190,7 +190,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileMyShop"
         >
-
         <ImageView
             android:id="@+id/icon_history"
             android:layout_width="wrap_content"
@@ -214,6 +213,7 @@
             android:gravity="center"
             android:text="Adopt History"
             android:textSize="14dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/icon_history"
             app:layout_constraintTop_toTopOf="parent" />
@@ -265,6 +265,7 @@
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/poppins"
             android:textSize="14dp"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />
@@ -315,6 +316,7 @@
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/poppins"
             android:textSize="14dp"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />
@@ -330,8 +332,6 @@
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
     <TextView
         android:id="@+id/help"
         android:layout_width="wrap_content"
@@ -343,11 +343,11 @@
         android:paddingBottom="10dp"
         android:paddingTop="20dp"
         android:paddingLeft="20dp"
-        android:textStyle="bold"
         android:textSize="16dp"
         android:fontFamily="@font/poppins"
         android:textFontWeight="700"
         android:textColor="#000"
+        android:textStyle="bold"
         />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/item_contact"
@@ -385,6 +385,7 @@
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/poppins"
             android:textSize="14dp"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />
@@ -436,6 +437,7 @@
             android:layout_marginLeft="20dp"
             android:fontFamily="@font/poppins"
             android:textSize="14dp"
+            android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             />
@@ -451,7 +453,50 @@
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_logOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="20dp"
+        android:background="@android:color/transparent"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="20dp"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_faq"
+        >
+        <ImageView
+            android:id="@+id/icon_logOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icons_logout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/circle_gray"
+            android:paddingRight="10dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:minWidth="35dp"
+            android:minHeight="35dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Log out"
+            app:layout_constraintStart_toEndOf="@id/icon_logOut"
+            android:layout_marginLeft="55dp"
+            android:fontFamily="@font/poppins"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
