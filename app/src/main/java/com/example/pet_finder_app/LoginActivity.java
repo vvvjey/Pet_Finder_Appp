@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
         });
         //----------Login with Google----------
         GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("AIzaSyA8jGhTL49zm8GzxG2u_04fqfRxXl_jy9M")
+                .requestIdToken("237004107904-6jvdqbis3csb7uct150gfca9af95maq2.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
         client = GoogleSignIn.getClient(this, options);
@@ -175,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onSuccess(AuthResult authResult) {
                         // If login successful
                         Toast.makeText(LoginActivity.this, "Login Successful!!", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
                         finish();
                     }
                 })
@@ -203,7 +203,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete (@NonNull Task<AuthResult> task){
                         if (task.isSuccessful()){
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            startActivity(new Intent(LoginActivity.this, HomepageActivity.class));
                         }
                         else{
                             Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -222,7 +222,7 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user != null)
         {
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
             finish();
         }
 
