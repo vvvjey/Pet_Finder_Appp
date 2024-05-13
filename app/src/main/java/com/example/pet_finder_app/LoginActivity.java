@@ -25,6 +25,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
@@ -41,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
     TextView toRegisterTv, forgetPassword;
     EditText email, password;
     private FirebaseAuth auth;
-
     boolean isPasswordVisible = false;
     Button loginBtn,loginGGBtn;
     private GoogleSignInClient client ;
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
             }
         });
-        // login
+        // login with Email/Password
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         });
         //----------Login with Google----------
         GoogleSignInOptions options = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("1:237004107904:android:e6bd3849ee129775027665")
+                .requestIdToken("AIzaSyA8jGhTL49zm8GzxG2u_04fqfRxXl_jy9M")
                 .requestEmail()
                 .build();
         client = GoogleSignIn.getClient(this, options);
@@ -166,11 +166,20 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
+                        // If login successful
                         Toast.makeText(LoginActivity.this, "Login Successful!!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), Splash1Activity.class));
+                        finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(LoginActivity.this, "Email or Password is incorrect!", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
+
 
     //--------Sign in with Google---------
     @Override
