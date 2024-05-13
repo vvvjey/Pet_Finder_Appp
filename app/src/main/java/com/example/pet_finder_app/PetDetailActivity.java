@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PetDetailActivity extends AppCompatActivity {
+public class    PetDetailActivity extends AppCompatActivity {
 
     Toolbar arrowBack;
     @Override

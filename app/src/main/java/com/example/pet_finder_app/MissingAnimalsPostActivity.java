@@ -29,16 +29,16 @@ public class MissingAnimalsPostActivity extends AppCompatActivity {
         setContentView(R.layout.missing_animal_post);
 
         arrowBack = findViewById(R.id.toolbarArrowBack);
-        arrayList = new ArrayList<String>();
-        arrayList.add("ABC");
-        arrayList.add("ABC");
-        arrayList.add("ABC");
-
-        arrayList.add("ABC");
-
-        lv = findViewById(R.id.lvMissingPost);
-        adapter = new SearchingLostPetAdapter(this,R.layout.searching_lost_pet_item,arrayList);
-        lv.setAdapter(adapter);
+//        arrayList = new ArrayList<String>();
+//        arrayList.add("ABC");
+//        arrayList.add("ABC");
+//        arrayList.add("ABC");
+//
+//        arrayList.add("ABC");
+//
+//        lv = findViewById(R.id.lvMissingPost);
+//        adapter = new SearchingLostPetAdapter(this,R.layout.searching_lost_pet_item,arrayList);
+//        lv.setAdapter(adapter);
 
 
 
