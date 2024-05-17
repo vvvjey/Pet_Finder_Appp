@@ -139,8 +139,8 @@ public class RegisterActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = auth.getCurrentUser();
                             // Enter user data into the Firebase Realtime Database
-                            ReadwriteUserDetails writeUserDetails = new ReadwriteUserDetails(textFullName);
-                            // Extracting user reference from DB for "User"
+                            ReadwriteUserDetails writeUserDetails = new ReadwriteUserDetails(textFullName, textEmail, textPassword);
+                            // Extracting user reference from DB for table "User"
                             DatabaseReference referenceProfile = FirebaseDatabase.getInstance().getReference("User");
                             referenceProfile.child(user.getUid()).setValue(writeUserDetails)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
