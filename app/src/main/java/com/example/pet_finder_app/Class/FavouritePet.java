@@ -4,7 +4,15 @@ import java.lang.reflect.Array;
 
 public class FavouritePet {
     private String userId ;
-    private Array petIdList[];
+    private String[] petIdList;
+
+    public FavouritePet(String uid, String[] petid){
+        this.userId = uid;
+        this.petIdList = petid;
+    }
+    public FavouritePet(){
+
+    }
     public void setUserId(String userId) {
         this.userId = userId;
     }
@@ -13,11 +21,11 @@ public class FavouritePet {
         return userId;
     }
 
-    public void setPetIdList(Array[] petIdList) {
+    public void setPetIdList(String[] petIdList) {
         this.petIdList = petIdList;
     }
 
-    public Array[] getPetIdList() {
+    public String[] getPetIdList() {
         return petIdList;
     }
 }
