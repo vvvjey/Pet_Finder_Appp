@@ -1,20 +1,17 @@
 package com.example.pet_finder_app.API;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
+import retrofit2.http.Path;
 
 
 public interface ApiService {
 
+//    GET INFOR VIETNAM PLACES
     @GET("/api/province")
-    Call<VietnamPlacesResponse> getListProvinces();
+    Call<ProvincePlacesResponse> getListProvinces();
+    @GET("/api/province/district/{id}")
+    Call<DistrictPlacesResponse> getDistrictById(@Path("id") String id);
+    @GET("/api/province/ward/{id}")
+    Call<WardPlacesReponse> getWardById(@Path("id") String id);
 }

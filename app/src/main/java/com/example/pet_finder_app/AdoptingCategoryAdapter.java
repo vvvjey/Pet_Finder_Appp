@@ -1,8 +1,5 @@
 package com.example.pet_finder_app;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -53,10 +52,14 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         AdoptingCategoryDomain pet = listPet.get(position);
         if (holder.image_id != null) {
-            holder.image_id.setImageResource(pet.getImage_id());
+            Picasso.get().load(pet.getImage_id()).into(holder.image_id);
         }
         if (holder.gender != null) {
-            holder.gender.setImageResource(pet.getGender());
+            if(pet.getGender() == "male"){
+                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/male.png?alt=media&token=9326764f-5c4d-49ee-9b54-9cd6a6c5f418").into(holder.gender);
+            }else{
+                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/female.png?alt=media&token=6be18497-fa44-4fc3-8b68-7ba80b622e75").into(holder.gender);
+            }
         }
         if (holder.name != null) {
             holder.name.setText(pet.getName());
@@ -65,10 +68,14 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
             holder.location.setText(pet.getLocation());
         }
         if (holder.favorite != null) {
-            holder.favorite.setImageResource(pet.getFavorite());
+            if(pet.getFavorite() == "favorite"){
+                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/favorate.png?alt=media&token=d6fe3d4a-6035-4641-9ed4-a4fb54117d33").into(holder.favorite);
+            }else{
+                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/non_favorate.png?alt=media&token=dc32f3e7-f8e1-496f-855d-2b1ee5898d64").into(holder.favorite);
+            }
         }
         if (holder.status != null) {
-            holder.status.setImageResource(pet.getStatus());
+            holder.condition.setText(pet.getStatus());
         }
         if (holder.breed != null) {
             holder.breed.setText(pet.getBreed());

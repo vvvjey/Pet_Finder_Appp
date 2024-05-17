@@ -1,24 +1,25 @@
 package com.example.pet_finder_app;
 
 public class AdoptingCategoryDomain {
-    private int image_id, gender, favorite, status;
+    private String image_id, gender, favorite, status, idPet;
     private String name, location, breed, date_adopt, ranking, condition;
-    private int age;
-    private float price;
+    private String age;
+    private String price;
 
-    public AdoptingCategoryDomain() {
+    public AdoptingCategoryDomain(String imgUrl, String name, Object o, String price, String genderUrl, String categoryId, String age, String id, String status) {
     }
 
-    public AdoptingCategoryDomain(int image_id, String name, int favorite, String location, int gender, int status) {
-        this.image_id = image_id;
-        this.name = name;
-        this.favorite = favorite;
-        this.location = location;
-        this.gender = gender;
-        this.status = status;
-    }
+//    public AdoptingCategoryDomain(String image_id, String name, String favorite, String location, String gender, String status) {
+//        this.image_id = image_id;
+//        this.name = name;
+//        this.favorite = favorite;
+//        this.location = location;
+//        this.gender = gender;
+//        this.status = status;
+//    }
 
-    public AdoptingCategoryDomain(int image_id, String name, int favorite, float price, int gender, String breed, int age, String condition) {
+    public AdoptingCategoryDomain(String idPet, String image_id, String name, String favorite, String price, String gender, String breed, String age, String condition) {
+        this.idPet = idPet;
         this.image_id = image_id;
         this.name = name;
         this.favorite = favorite;
@@ -29,7 +30,7 @@ public class AdoptingCategoryDomain {
         this.condition = condition;
     }
 
-    public AdoptingCategoryDomain(int image_id, String name, float price, int gender, String breed, int age) {
+    public AdoptingCategoryDomain(String image_id, String name, String price, String gender, String breed, String age) {
         this.image_id = image_id;
         this.name = name;
         this.price = price;
@@ -37,7 +38,8 @@ public class AdoptingCategoryDomain {
         this.breed = breed;
         this.age = age;
     }
-    public AdoptingCategoryDomain(int image_id, String name, float price, int gender, String breed, int age, String condition) {
+    public AdoptingCategoryDomain(String idPet, String image_id, String name, String price, String gender, String breed, String age, String condition) {
+        this.idPet = idPet;
         this.image_id = image_id;
         this.name = name;
         this.price = price;
@@ -46,7 +48,8 @@ public class AdoptingCategoryDomain {
         this.age = age;
         this.condition = condition;
     }
-    public AdoptingCategoryDomain(int image_id, String name, float price, int gender, String breed, int age, String date_adopt, String ranking, String condition) {
+    public AdoptingCategoryDomain(String idPet, String image_id, String name, String price, String gender, String breed, String age, String date_adopt, String ranking, String condition) {
+        this.idPet = idPet;
         this.image_id = image_id;
         this.name = name;
         this.price = price;
@@ -56,6 +59,14 @@ public class AdoptingCategoryDomain {
         this.date_adopt = date_adopt;
         this.ranking = ranking;
         this.condition = condition;
+    }
+
+    public String getIdPet() {
+        return idPet;
+    }
+
+    public void setIdPet(String idPet) {
+        this.idPet = idPet;
     }
 
     public String getCondition() {
@@ -82,31 +93,31 @@ public class AdoptingCategoryDomain {
         this.ranking = ranking;
     }
 
-    public int getImage_id() {
+    public String getImage_id() {
         return image_id;
     }
 
-    public void setImage_id(int image_id) {
+    public void setImage_id(String image_id) {
         this.image_id = image_id;
     }
 
-    public int getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public float getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -118,23 +129,23 @@ public class AdoptingCategoryDomain {
         this.breed = breed;
     }
 
-    public void setGender(int gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public int getFavorite() {
+    public String getFavorite() {
         return favorite;
     }
 
-    public void setFavorite(int favorite) {
+    public void setFavorite(String favorite) {
         this.favorite = favorite;
     }
 

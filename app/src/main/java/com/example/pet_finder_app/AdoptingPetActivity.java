@@ -1,14 +1,14 @@
 package com.example.pet_finder_app;
 
 import android.content.Intent;
-import android.graphics.drawable.Animatable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
@@ -17,9 +17,17 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pet_finder_app.Class.AdoptPet;
+import com.example.pet_finder_app.Class.Pet;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AdoptingPetActivity extends AppCompatActivity {
@@ -29,6 +37,8 @@ public class AdoptingPetActivity extends AppCompatActivity {
     private boolean clicked;
     private ImageView filterAdopt;
     private static final int REQUEST_NOTIFICATION = 2;
+    List<Pet> petList = new ArrayList<>();
+    List<AdoptPet> adoptPets = new ArrayList<>();
 
     private Animation getFromBottom() {
         return AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim);
@@ -56,17 +66,6 @@ public class AdoptingPetActivity extends AppCompatActivity {
             return insets;
         });
 
-        List<AdoptingPetItem> petList = new ArrayList<AdoptingPetItem>();
-        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.female, 6));
-        petList.add(new AdoptingPetItem(R.drawable.cat2, "White cat", "Was Castrated", "White, Blue eyes", "08-09-2023", R.drawable.male, 6));
-        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.female, 6));
-        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.male, 6));
-        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.female, 6));
-        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.male, 6));
-        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.female, 6));
-        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.male, 6));
-        petList.add(new AdoptingPetItem(R.drawable.cat1, "Yellow cat", "Was Castrated", "Yellow, White, Black", "08-09-2023", R.drawable.female, 6));
-
         arrowBack = findViewById(R.id.toolbarArrowBack);
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,10 +74,44 @@ public class AdoptingPetActivity extends AppCompatActivity {
             }
         });
 
+
         recyclerView = findViewById(R.id.recycleView);
-        AdoptingPetAdapter petAdapter = new AdoptingPetAdapter(petList ,this);
-        recyclerView.setAdapter(petAdapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = firebaseDatabase.getReference();
+        databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap: snapshot.getChildren()){
+                    Pet pet = snap.getValue(Pet.class);
+                    petList.add(pet);
+                }
+                Log.d("PET_LIST", "Pet List: " + petList);
+                populateRecyclerView();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        databaseReference.child("AdoptPet").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap: snapshot.getChildren()){
+                    AdoptPet adoptPet = snap.getValue(AdoptPet.class);
+                    adoptPets.add(adoptPet);
+                }
+                Log.d("ADOPT_PETS_LIST", "Adopt Pets List: " + adoptPets);
+                populateRecyclerView();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
         addBtn = findViewById(R.id.add_btn);
         edit_btn = findViewById(R.id.edit_btn);
@@ -112,13 +145,41 @@ public class AdoptingPetActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), FillInforToAdoptActivity.class));
             }
         });
-        filterAdopt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), FilterAdopt.class));
-            }
-        });
+//        filterAdopt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), FilterAdopt.class));
+//            }
+//        });
     }
+
+        private void populateRecyclerView() {
+        List<AdoptingPetItem> petItems = new ArrayList<>();
+        HashMap<String, AdoptPet> hashMap = new HashMap<>();
+        for(AdoptPet adoptPet : adoptPets){
+            hashMap.put(adoptPet.getIdPet(), adoptPet);
+        }
+        for(Pet pet : petList){
+            AdoptPet adoptPet = hashMap.get(pet.getIdPet());
+            if(adoptPet != null){
+                petItems.add(new AdoptingPetItem(
+                        pet.getAge(),
+                        pet.getCategoryId(),
+                        pet.getColor(),
+                        pet.getGender(),
+                        pet.getIdPet(),
+                        pet.getImgUrl(),
+                        pet.getName(),
+                        pet.getRegisterDate(),
+                        adoptPet.getStatus()
+                ));
+            }
+        }
+        AdoptingPetAdapter petAdapter = new AdoptingPetAdapter(petItems, this);
+        recyclerView.setAdapter(petAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

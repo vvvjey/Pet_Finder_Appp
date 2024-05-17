@@ -5,6 +5,7 @@
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp"
     android:outlineAmbientShadowColor="@color/shadow"
     android:outlineSpotShadowColor="@color/shadow"
     app:cardElevation="20dp"
@@ -30,7 +31,7 @@
             android:layout_width="310dp"
             android:layout_height="120dp"
             android:background="@color/white"
-            android:padding="10dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -38,12 +39,36 @@
             app:layout_constraintTop_toTopOf="@+id/catImg"
             app:layout_constraintVertical_bias="1.0">
 
+            <ImageView
+                android:id="@+id/editBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="50dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/breed_value"
+                app:layout_constraintStart_toEndOf="@+id/breed_value"
+                app:layout_constraintTop_toTopOf="@+id/breed_value"
+                app:srcCompat="@drawable/editbtn" />
+
+            <ImageView
+                android:id="@+id/deleteBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="25dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/editBtn"
+                app:layout_constraintStart_toEndOf="@+id/editBtn"
+                app:layout_constraintTop_toTopOf="@+id/editBtn"
+                app:srcCompat="@drawable/deletebtn" />
+
             <TextView
                 android:id="@+id/nameCat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Samantha"
                 android:textSize="21dp"

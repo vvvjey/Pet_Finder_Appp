@@ -28,6 +28,8 @@ public class UserAccountActivity extends AppCompatActivity {
 
 
     TextView editName ;
+    TextView editUsername;
+    TextView editEmail;
     String testName = "user1";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,59 +37,46 @@ public class UserAccountActivity extends AppCompatActivity {
 
         arrowBack = findViewById(R.id.toolbarArrowBack);
         editName = findViewById(R.id.editName);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-        myRef.setValue("LMFAO");
+        editUsername = findViewById(R.id.editUserName);
+        editEmail = findViewById(R.id.editEmail);
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), AccountSettingActivity.class));
             }
         });
-
+        readData();
     }
     public   void readData(){
-       // final FirebaseDatabase database = FirebaseDatabase.getInstance();
-      //  DatabaseReference dtbRef = database.getReference("User").child("user1");
-        Log.d("yes sir","Yep");
-//        dtbRef.addValueEventListener(new ValueEventListener() {
-//
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if (snapshot.exists()) { // Check if data exists
-//                    for (DataSnapshot ds : snapshot.getChildren()) {
-//                        String name = ds.child("name").getValue(String.class);
-//                        Log.d("OK", "Retrieved name: " + name);
-//                        // Process the retrieved name here (e.g., update UI)
-//                    }
-//                } else {
-//                    Log.d("OK", "No data found at this location");
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                System.out.println("The read failed: " + error.getCode());
-//                Log.d("OK", "Error reading data: " + error.getMessage());
-//            }
-//        });
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        DatabaseReference dtbRef = database.getReference("User");
 
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
+        dtbRef.addValueEventListener(new ValueEventListener() {
+
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("OK", "Value is: " + value);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) { // Check if data exists
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        String name = ds.child("name").getValue(String.class);
+                        String email = ds.child("email").getValue(String.class);
+                        String phone =  ds.child("phoneNumber").getValue(String.class);
+                        Log.d("OK", "Retrieved name: " + name);
+                        // Process the retrieved name here (e.g., update UI)
+
+                        editName.setText(name);
+                        editUsername.setText(phone);
+                        editEmail.setText(email);
+
+                    }
+                } else {
+                    Log.d("OK", "No data found at this location");
+                }
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("Ok22", "Failed to read value.", error.toException());
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("The read failed: " + error.getCode());
+                Log.d("OK", "Error reading data: " + error.getMessage());
             }
         });
 

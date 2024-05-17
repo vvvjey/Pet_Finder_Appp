@@ -1,6 +1,5 @@
 package com.example.pet_finder_app;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -51,10 +52,14 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         AdoptingCategoryDomain pet = listPet.get(position);
         if (holder.image_id != null) {
-            holder.image_id.setImageResource(pet.getImage_id());
+            Picasso.get().load(pet.getImage_id()).into(holder.image_id);
         }
         if (holder.gender != null) {
-            holder.gender.setImageResource(pet.getGender());
+            if(pet.getGender() == "male"){
+                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/male.png?alt=media&token=9326764f-5c4d-49ee-9b54-9cd6a6c5f418").into(holder.gender);
+            }else{
+                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/female.png?alt=media&token=6be18497-fa44-4fc3-8b68-7ba80b622e75").into(holder.gender);
+            }
         }
         if (holder.name != null) {
             holder.name.setText(pet.getName());

@@ -76,7 +76,7 @@
                     android:textColor="#B3B3B3" />
 
                 <EditText
-                    android:id="@+id/editTextText"
+                    android:id="@+id/nameEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
@@ -113,7 +113,7 @@
                         android:text="Date of birth" />
 
                     <EditText
-                        android:id="@+id/editTextText22"
+                        android:id="@+id/birth_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#00FFFFFF"
@@ -155,7 +155,34 @@
 
                 </LinearLayout>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:background="#E6E5E5"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingTop="6dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="6dp">
 
+                <TextView
+                    android:id="@+id/Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Email"
+                    android:textColor="#B3B3B3" />
+
+                <EditText
+                    android:id="@+id/emailEdt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00FFFFFF"
+                    android:ems="10"
+                    android:hint="Ex : jey@gmail,com"
+                    android:inputType="text"
+                    android:textSize="20sp" />
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="66dp"
@@ -163,18 +190,19 @@
                 android:background="@drawable/border_radius_form_6dp"
                 android:orientation="vertical"
                 android:paddingLeft="12dp"
+                android:layout_marginTop="20dp"
                 android:paddingTop="6dp"
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/address_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="Address" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/adress_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
@@ -194,7 +222,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/country_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -202,7 +230,7 @@
                     android:textColor="#B3B3B3" />
 
                 <Spinner
-                    android:id="@+id/purposeSpinner"
+                    android:id="@+id/countrySpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:spinnerMode="dropdown" />
@@ -220,7 +248,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/city_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -228,7 +256,7 @@
                     android:textColor="#B3B3B3" />
 
                 <Spinner
-                    android:id="@+id/purposeSpinner"
+                    android:id="@+id/citySpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:spinnerMode="dropdown" />
@@ -246,7 +274,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/district_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -254,7 +282,33 @@
                     android:textColor="#B3B3B3" />
 
                 <Spinner
-                    android:id="@+id/purposeSpinner"
+                    android:id="@+id/districtSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/border_radius_form_6dp"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingTop="6dp"
+                android:paddingRight="12dp">
+
+                <TextView
+                    android:id="@+id/ward_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Ward"
+                    android:textColor="#B3B3B3" />
+
+                <Spinner
+                    android:id="@+id/wardSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:spinnerMode="dropdown" />
@@ -272,20 +326,21 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/phone_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="Phone" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/phone_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
                     android:ems="10"
                     android:hint="Ex : 0123456789"
                     android:inputType="text" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -299,14 +354,14 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/request_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="The request" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/requestEdit"
                     android:layout_width="match_parent"
                     android:layout_height="117dp"
                     android:background="#00FFFFFF"
@@ -316,7 +371,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/book_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Your home space"
@@ -350,7 +405,7 @@
                     android:text="Date" />
 
                 <EditText
-                    android:id="@+id/editTextText22"
+                    android:id="@+id/datemeetEdit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
@@ -387,7 +442,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/fillBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="100dp"

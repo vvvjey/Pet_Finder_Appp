@@ -6,14 +6,14 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout2"
+        android:id="@+id/missingTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="-87dp"
         tools:layout_editor_absoluteY="-7dp">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbarArrowBack3"
+            android:id="@+id/toolbarArrowBack6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -28,7 +28,7 @@
             android:text="Missing | Seen | Protected"
             android:textSize="28sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/toolbarArrowBack3"
+            app:layout_constraintStart_toEndOf="@+id/toolbarArrowBack6"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -40,7 +40,7 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/missingTitle">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/purpost_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -68,7 +68,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/purpose_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -85,7 +85,7 @@
                     android:spinnerMode="dropdown" />
             </LinearLayout>
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/gaurdian_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -97,6 +97,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/border_radius_form_6dp"
                 android:orientation="vertical"
                 android:paddingLeft="12dp"
@@ -113,82 +114,15 @@
                     android:textColor="#B3B3B3" />
 
                 <EditText
-                    android:id="@+id/editTextText"
+                    android:id="@+id/fullNameInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
                     android:background="#00FFFFFF"
                     android:ems="10"
                     android:hint="Ex : Jey Hoang"
                     android:inputType="text"
                     android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="#00FFFFFF"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="6dp"
-                    android:paddingRight="12dp"
-                    android:paddingBottom="6dp">
-
-                    <TextView
-                        android:id="@+id/textView29"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:text="Date of birth" />
-
-                    <EditText
-                        android:id="@+id/editTextText22"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        android:ems="10"
-                        android:hint="12 - 05 - 2003"
-                        android:inputType="datetime|date" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentEnd="false"
-                    android:layout_weight="1"
-
-                    android:orientation="vertical"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="6dp"
-                    android:paddingRight="12dp"
-                    android:paddingBottom="6dp">
-
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Gender" />
-
-                    <Spinner
-                        android:id="@+id/genderSpinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:spinnerMode="dropdown" />
-
-                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -202,16 +136,17 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/address_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="Address" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/addressInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
                     android:background="#00FFFFFF"
                     android:ems="10"
                     android:hint="Ex : 65 Thu Duc"
@@ -229,7 +164,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/country_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -240,7 +175,8 @@
                     android:id="@+id/countrySpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown"/>
+                    android:layout_marginBottom="6dp"
+                    android:spinnerMode="dropdown" />
 
             </LinearLayout>
 
@@ -255,7 +191,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/city_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -281,7 +217,7 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/district_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -289,7 +225,7 @@
                     android:textColor="#B3B3B3" />
 
                 <Spinner
-                    android:id="@+id/purposeSpinner"
+                    android:id="@+id/districtSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:spinnerMode="dropdown" />
@@ -307,16 +243,43 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/textView22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="Ward"
+                    android:textColor="#B3B3B3" />
+
+                <Spinner
+                    android:id="@+id/wardSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/border_radius_form_6dp"
+                android:orientation="vertical"
+                android:paddingLeft="12dp"
+                android:paddingTop="6dp"
+                android:paddingRight="12dp">
+
+                <TextView
+                    android:id="@+id/phone_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="Phone" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/phoneNumberInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
                     android:background="#00FFFFFF"
                     android:ems="10"
                     android:hint="Ex : 0123456789"
@@ -334,24 +297,25 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/request_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="The request" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/requestInput"
                     android:layout_width="match_parent"
                     android:layout_height="117dp"
                     android:background="#00FFFFFF"
                     android:ems="10"
+                    android:gravity="top"
                     android:hint="Ex : I want to"
                     android:inputType="text" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView28"
+                android:id="@+id/info_animals"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -370,14 +334,14 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/name_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
                     android:text="Name" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/animalNameInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
@@ -404,21 +368,21 @@
                     android:paddingBottom="6dp">
 
                     <TextView
-                        android:id="@+id/textView29"
+                        android:id="@+id/size_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
                         android:text="Size" />
 
                     <Spinner
-                        android:id="@+id/spinnerSize"
+                        android:id="@+id/sizeSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
                 <View
-                    android:id="@+id/view"
+                    android:id="@+id/spacer"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -437,7 +401,7 @@
                     android:paddingBottom="6dp">
 
                     <TextView
-                        android:id="@+id/textView10"
+                        android:id="@+id/gender_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Gender" />
@@ -470,21 +434,21 @@
                     android:paddingBottom="6dp">
 
                     <TextView
-                        android:id="@+id/textView29"
+                        android:id="@+id/color_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
                         android:text="Color" />
 
                     <Spinner
-                        android:id="@+id/spinnerSize"
+                        android:id="@+id/colorSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
                 <View
-                    android:id="@+id/view"
+                    android:id="@+id/spacer2"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
@@ -509,12 +473,51 @@
                         android:text="Breed" />
 
                     <Spinner
-                        android:id="@+id/genderSpinner"
+                        android:id="@+id/breedSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:spinnerMode="dropdown" />
 
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="66dp"
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_radius_form_6dp"
+                    android:orientation="vertical"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="6dp">
+
+                    <TextView
+                        android:id="@+id/textView29"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="Age" />
+
+                    <Spinner
+                        android:id="@+id/ageSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
@@ -529,24 +532,25 @@
                 android:paddingRight="12dp">
 
                 <TextView
-                    android:id="@+id/textView27"
+                    android:id="@+id/des_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="The request" />
+                    android:text="Description" />
 
                 <EditText
-                    android:id="@+id/editTextText4"
+                    android:id="@+id/descriptionPetInput"
                     android:layout_width="match_parent"
                     android:layout_height="117dp"
                     android:background="#00FFFFFF"
                     android:ems="10"
+                    android:gravity="top"
                     android:hint="Ex : I want to"
                     android:inputType="text" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView28"
+                android:id="@+id/area_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -554,8 +558,34 @@
                 android:textColor="#5F5B5B"
                 android:textSize="20sp" />
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="12dp">
+
+
+                <EditText
+                    android:id="@+id/editTextText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@drawable/rectangle_shape"
+                    android:drawableStart="@drawable/custom_search"
+                    android:drawableEnd="@drawable/custom_location"
+                    android:elevation="8dp"
+                    android:ems="10"
+                    android:fontFamily=""
+                    android:hint="Choose your location"
+                    android:inputType="text"
+                    android:outlineSpotShadowColor="@color/shadow"
+                    android:padding="8dp"
+                    android:textSize="17dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <TextView
-                android:id="@+id/textView28"
+                android:id="@+id/date_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -577,17 +607,23 @@
                     android:id="@+id/textView27"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginBottom="2dp"
                     android:text="Date" />
 
-                <EditText
-                    android:id="@+id/editTextText22"
+                <Button
+                    android:id="@+id/datePickerButton"
+                    style="?android:spinnerStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#00FFFFFF"
-                    android:ems="10"
-                    android:hint="12 - 05 - 2003"
-                    android:inputType="datetime|date" />
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:onClick="openDatePicker"
+                    android:text="JAN 01 2020"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             </LinearLayout>
 
@@ -600,8 +636,52 @@
                 android:textColor="#5F5B5B"
                 android:textSize="20sp" />
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fill_img_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fill_price">
+
+                <ImageView
+                    android:id="@+id/uploadImg"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/fill_img"
+                    app:layout_constraintTop_toTopOf="@+id/fill_img" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fill_img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/rectangle_light_gray"
+                    android:padding="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/add_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:backgroundTint="@color/blue"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circular"
+                        app:srcCompat="@drawable/add"
+                        app:tint="@color/white" />
+                    />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/createMissingPostBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="100dp"

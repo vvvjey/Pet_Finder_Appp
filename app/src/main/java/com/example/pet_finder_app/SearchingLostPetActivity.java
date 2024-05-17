@@ -2,6 +2,7 @@ package com.example.pet_finder_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.activity.EdgeToEdge;
@@ -18,7 +20,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.pet_finder_app.Class.MissingPet;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -27,7 +36,7 @@ public class SearchingLostPetActivity extends AppCompatActivity {
     FloatingActionButton addBtn, add_missing_btn, favorite_btn;
     ListView lv;
     SearchingLostPetAdapter adapter;
-    ArrayList<String> arrayList;
+    ArrayList<MissingPet> arrayList;
     ImageView filterMissing;
     private boolean clicked;
 
@@ -79,10 +88,7 @@ public class SearchingLostPetActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), FavoritePetActivity.class));
             }
         });
-        arrayList = new ArrayList<String>();
-        arrayList.add("ABC");
-        arrayList.add("ABC");
-        arrayList.add("ABC");
+        arrayList = new ArrayList<MissingPet>();
 
         lv = findViewById(R.id.lv);
         adapter = new SearchingLostPetAdapter(this,R.layout.searching_lost_pet_item,arrayList);
@@ -107,7 +113,70 @@ public class SearchingLostPetActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), FilterMissingPet.class));
             }
         });
+        renderAllMissingPost();
 
+    }
+    private void renderAllMissingPost(){
+        Log.d("MissingPetData", "2");
+
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference missingPetRef = firebaseDatabase.getReference().child("Missing pet");
+        missingPetRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("MissingPetData", "3");
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Log.d("MissingPetData", "4");
+
+                    if (snapshot.exists()) { // Check if the snapshot has any children
+                        String gender = snapshot.child("gender").getValue(String.class);
+                        String id = snapshot.child("id").getValue(String.class);
+                        String idPet = snapshot.child("idPet").getValue(String.class);
+                        String imgUrl = snapshot.child("imgUrl").getValue(String.class);
+                        String name = snapshot.child("name").getValue(String.class);
+                        String registerDate = snapshot.child("registerDate").getValue(String.class);
+                        String size = snapshot.child("size").getValue(String.class);
+                        String typeId = snapshot.child("typeId").getValue(String.class);
+                        String typeMissing = snapshot.child("typeMissing").getValue(String.class);
+                        String weight = snapshot.child("weight").getValue(String.class);
+
+                        Log.d("MissingPetData", "Gender: " + gender);
+                        Log.d("MissingPetData", "ID: " + id);
+                        Log.d("MissingPetData", "Pet ID: " + idPet);
+                        Log.d("MissingPetData", "Image URL: " + imgUrl);
+                        Log.d("MissingPetData", "Name: " + name);
+                        Log.d("MissingPetData", "Registration Date: " + registerDate);
+                        Log.d("MissingPetData", "Size: " + size);
+                        Log.d("MissingPetData", "Type ID: " + typeId);
+                        Log.d("MissingPetData", "Missing Type: " + typeMissing);
+                        Log.d("MissingPetData", "Weight: " + weight);
+                    } else {
+                        Log.d("MissingPetData", "Snapshot does not contain any data");
+                    }
+                    String gender = snapshot.child("gender").getValue(String.class);
+                    String name = snapshot.child("name").getValue(String.class);
+                    String color = snapshot.child("color").getValue(String.class);
+                    String registerDate = snapshot.child("registerDate").getValue(String.class);
+                    String imageUrl = snapshot.child("imgUrl").getValue(String.class);
+                    String typeMissing = snapshot.child("typeMissing").getValue(String.class);
+                    String age = snapshot.child("age").getValue(String.class);
+                    String size = snapshot.child("size").getValue(String.class);
+
+                    // Create a MissingPet object and add it to the list
+                    MissingPet pet = new MissingPet(age, "categoryId", color, "description", gender, "idPet", imageUrl, name, registerDate, size, "typeId", "weight", "id", typeMissing,"addressMissing", "dateMissing", "detailDescription");
+                    arrayList.add(pet);
+                }
+                adapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w("MissingPetData", "Failed to read value.", error.toException());
+
+            }
+        });
     }
 
     private void setVisibility(boolean clicked) {
