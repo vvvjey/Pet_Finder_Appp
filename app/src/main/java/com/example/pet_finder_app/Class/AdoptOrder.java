@@ -2,18 +2,36 @@ package com.example.pet_finder_app.Class;
 
 public class AdoptOrder {
 
-        private String idAdopt, idPet, userId;
+        private String idOrder, idPet, userId, requestMsg, status;
         public AdoptOrder() {
         }
 
-        public AdoptOrder(String idAdopt, String idPet, String userId) {
-            this.idAdopt = idAdopt;
+        public AdoptOrder(String idAdopt, String idPet, String userId, String requestMsg, String status) {
+            this.idOrder = idAdopt;
             this.idPet = idPet;
             this.userId = userId;
+            this.requestMsg = requestMsg;
+            this.status = status;
         }
 
-    public void setIdAdopt(String idAdopt) {
-        this.idAdopt = idAdopt;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getRequestMsg() {
+        return requestMsg;
+    }
+
+    public void setRequestMsg(String requestMsg) {
+        this.requestMsg = requestMsg;
+    }
+
+    public void setIdOrder(String idAdopt) {
+        this.idOrder = idAdopt;
     }
 
     public void setIdPet(String idPet) {
@@ -24,8 +42,8 @@ public class AdoptOrder {
         this.userId = userId;
     }
 
-    public String getIdAdopt() {
-        return idAdopt;
+    public String getIdOrder() {
+        return idOrder;
     }
 
     public String getIdPet() {

@@ -322,7 +322,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
             String dateMissing = dateButton.getText().toString();
             String detailDescription = descriptionPet.getText().toString();
 
-            MissingPet pet = new MissingPet(age, categoryId, color, description, gender, idPet, imageUrl, petName, registerDate, size, typeId, weight, id, typeMissing,addressMissing, dateMissing, detailDescription);
+            MissingPet pet = new MissingPet(age, categoryId, color, description, gender, idPet, imageUrl, petName, registerDate, size, typeId, weight, "1" , id, typeMissing,addressMissing, dateMissing, detailDescription);
             missingPetRef.child(missingPetKey).child("age").setValue(pet.getAge());
             missingPetRef.child(missingPetKey).child("categoryId").setValue(pet.getCategoryId());
             missingPetRef.child(missingPetKey).child("color").setValue(pet.getColor());

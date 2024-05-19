@@ -1,7 +1,7 @@
 package com.example.pet_finder_app;
 
 public class AdoptingCategoryDomain {
-    private String image_id, gender, favorite, status, idPet;
+    private String image_id, gender, favorite, status, idPet, statusOrder;
     private String name, location, breed, date_adopt, ranking, condition;
     private String age;
     private String price;
@@ -48,7 +48,7 @@ public class AdoptingCategoryDomain {
         this.age = age;
         this.condition = condition;
     }
-    public AdoptingCategoryDomain(String idPet, String image_id, String name, String price, String gender, String breed, String age, String date_adopt, String ranking, String condition) {
+    public AdoptingCategoryDomain(String idPet, String image_id, String name, String price, String gender, String breed, String age, String date_adopt, String ranking, String condition, String statusOrder) {
         this.idPet = idPet;
         this.image_id = image_id;
         this.name = name;
@@ -59,7 +59,9 @@ public class AdoptingCategoryDomain {
         this.date_adopt = date_adopt;
         this.ranking = ranking;
         this.condition = condition;
+        this.statusOrder = statusOrder;
     }
+
 
     public String getIdPet() {
         return idPet;

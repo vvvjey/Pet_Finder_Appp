@@ -55,5 +55,7 @@
         <item>3:00 -> 4:00</item>
         <item>5:00 -> 6:00</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

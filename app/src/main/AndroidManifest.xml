@@ -26,10 +26,10 @@
             android:parentActivityName=".MainActivity"
             >
         </activity>
-        <activity android:name=".MapActivity"
-            android:parentActivityName=".RescueCategoryActivity"
-            >
-        </activity>
+<!--        <activity android:name=".MapActivity"-->
+<!--            android:parentActivityName=".RescueCategoryActivity"-->
+<!--            >-->
+<!--        </activity>-->
         <activity android:name=".SearchingLostPetActivity"
             android:parentActivityName=".HomepageActivity"
             >
@@ -185,5 +185,7 @@
             android:resource="@array/preloaded_fonts" />
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

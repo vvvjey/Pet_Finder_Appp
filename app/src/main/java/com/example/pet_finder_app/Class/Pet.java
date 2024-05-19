@@ -13,7 +13,10 @@ public class Pet {
     private String size;
     private String typeId;
     private String weight;
-    public Pet(String age, String categoryId, String color, String description, String gender, String idPet, String imgUrl, String name, String registerDate, String size, String typeId, String weight) {
+
+    private String userPostId;
+
+    public Pet(String age, String categoryId, String color, String description, String gender, String idPet, String imgUrl, String name, String registerDate, String size, String typeId, String weight, String userPostId) {
         this.age = age;
         this.categoryId = categoryId;
         this.color = color;
@@ -26,6 +29,15 @@ public class Pet {
         this.size = size;
         this.typeId = typeId;
         this.weight = weight;
+        this.userPostId = userPostId;
+    }
+
+    public String getUserPostId() {
+        return userPostId;
+    }
+
+    public void setUserPostId(String userPostId) {
+        this.userPostId = userPostId;
     }
 
     public Pet(){}

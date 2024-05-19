@@ -7,11 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -19,6 +24,7 @@ import java.util.List;
 public class MyPetAdapter extends RecyclerView.Adapter<MyPetAdapter.MyViewHolder>{
     private List<AdoptingCategoryDomain> listPet;
     private Context mContext;
+    DatabaseReference reference;
 
     public MyPetAdapter(Context context, List<AdoptingCategoryDomain> listPet){
         mContext = context;
@@ -37,6 +43,7 @@ public class MyPetAdapter extends RecyclerView.Adapter<MyPetAdapter.MyViewHolder
         return listPet.size();
     }
 
+    @Override
     public void onBindViewHolder(@NonNull MyPetAdapter.MyViewHolder holder, int position) {
         AdoptingCategoryDomain pet = listPet.get(position);
         if (holder.image_id != null) {
@@ -76,10 +83,31 @@ public class MyPetAdapter extends RecyclerView.Adapter<MyPetAdapter.MyViewHolder
         holder.deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                int position = holder.getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION && position < listPet.size()) {
+                    AdoptingCategoryDomain removedPet = listPet.get(position);
+                    reference = FirebaseDatabase.getInstance().getReference("Pet");
+                    reference.child(removedPet.getIdPet()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                listPet.remove(removedPet);
+                                notifyItemRemoved(position);
+                                Toast.makeText(mContext, "Successfully Deleted", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(mContext, "Failed to Delete", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(mContext, "Invalid position", Toast.LENGTH_SHORT).show();
+                }
             }
+
+
         });
     }
+
 
     class MyViewHolder extends RecyclerView.ViewHolder{
         private CardView cardView;

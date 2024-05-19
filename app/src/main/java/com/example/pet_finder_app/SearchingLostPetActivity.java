@@ -7,22 +7,15 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.pet_finder_app.Class.MissingPet;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -164,7 +157,7 @@ public class SearchingLostPetActivity extends AppCompatActivity {
                     String size = snapshot.child("size").getValue(String.class);
 
                     // Create a MissingPet object and add it to the list
-                    MissingPet pet = new MissingPet(age, "categoryId", color, "description", gender, "idPet", imageUrl, name, registerDate, size, "typeId", "weight", "id", typeMissing,"addressMissing", "dateMissing", "detailDescription");
+                    MissingPet pet = new MissingPet(age, "categoryId", color, "description", gender, "idPet", imageUrl, name, registerDate, size, "typeId", "weight", "1" , "id", typeMissing,"addressMissing", "dateMissing", "detailDescription");
                     arrayList.add(pet);
                 }
                 adapter.notifyDataSetChanged();

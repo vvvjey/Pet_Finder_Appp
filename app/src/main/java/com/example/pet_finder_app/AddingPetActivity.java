@@ -51,7 +51,7 @@ public class AddingPetActivity extends AppCompatActivity {
     Toolbar arrowBack;
     Button backPet;
     FloatingActionButton addImg;
-    ImageView uploadImg;
+    ImageView uploadImg, deleteImg;
     Uri image;
     Pet pet;
     AdoptPet adopt;
@@ -178,6 +178,7 @@ public class AddingPetActivity extends AppCompatActivity {
 
         if(activity.equals("edit")){
             showData();
+            btnAdd.setText("Edit");
             btnAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -198,6 +199,16 @@ public class AddingPetActivity extends AppCompatActivity {
                 }
             });
         }
+
+        deleteImg = findViewById(R.id.deleteImg);
+        deleteImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadImg.setImageDrawable(null);
+                deleteImg.setImageDrawable(null);
+                Toast.makeText(AddingPetActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void showData(){
@@ -229,6 +240,7 @@ public class AddingPetActivity extends AppCompatActivity {
 //                        Log.d("age","age: " + age);
                         weight = pet.getWeight();
 //                        Log.d("weight","weight: " + weight);
+                        deleteImg.setImageResource(R.drawable.deletebtn);
                         break;
                     }
                 }
@@ -530,6 +542,7 @@ public class AddingPetActivity extends AppCompatActivity {
                 if (result.getData() != null) {
                     image = result.getData().getData();
                     Glide.with(getApplicationContext()).load(image).into(uploadImg);
+                    deleteImg.setImageResource(R.drawable.deletebtn);
                 }
             } else {
                 Toast.makeText(AddingPetActivity.this, "Please select an image", Toast.LENGTH_SHORT).show();
@@ -577,13 +590,12 @@ public class AddingPetActivity extends AppCompatActivity {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;
         }
-        pet = new Pet(age, "2", colorItem, description, genderItem, idPetKey, imageUrl, name, calendarText, sizeItem, categoryItem, weight) ;
+        pet = new Pet(age, "2", colorItem, description, genderItem, idPetKey, imageUrl, name, calendarText, sizeItem, categoryItem, weight, "1") ;
         adopt = new AdoptPet(null, idAdoptKey, idPetKey, price, "Castrated");
-        order = new AdoptOrder(idAdoptKey, idPetKey, "1");
         petRef.setValue(pet);
         adoptRef.setValue(adopt);
-        orderRef.setValue(order);
         Toast.makeText(AddingPetActivity.this, "Adopt Pet added successfully", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(getApplicationContext(), MyPetActivity.class));
     }
 
     private void addDatatoFirebase(DatabaseReference petRef, DatabaseReference adoptRef) {
