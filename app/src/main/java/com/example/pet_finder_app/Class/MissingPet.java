@@ -1,17 +1,18 @@
 package com.example.pet_finder_app.Class;
 
 public class MissingPet extends Pet{
-    private String id, idPet,typeMissing, addressMissing, dateMissing,detailDescription;
+    private String id, idPet,typeMissing, addressMissing, dateMissing,requestPosterMissing,statusMissing;
     public MissingPet(){
 
     }
-    public MissingPet(String age, String categoryId, String color, String description, String gender, String idPet, String imgUrl, String name, String registerDate, String size, String typeId, String weight, String id, String typeMissing, String addressMissing, String dateMissing, String detailDescription) {
-        super(age, categoryId, color, description, gender, idPet, imgUrl, name, registerDate, size, typeId, weight);
+    public MissingPet(String age,String breed, String categoryId, String color, String description, String gender, String idPet, String imgUrl, String name, String registerDate, String size, String typeId, String weight, String id, String typeMissing, String addressMissing, String dateMissing, String requestPosterMissing,String postUserId,String statusMissing) {
+        super(age,breed, categoryId, color, description, gender, idPet, imgUrl, name, registerDate, size, typeId, weight,postUserId);
         this.id = id;
         this.typeMissing = typeMissing;
         this.addressMissing = addressMissing;
         this.dateMissing = dateMissing;
-        this.detailDescription = detailDescription;
+        this.requestPosterMissing = requestPosterMissing;
+        this.statusMissing = statusMissing;
     }
 
 
@@ -27,8 +28,8 @@ public class MissingPet extends Pet{
         return dateMissing;
     }
 
-    public String getDetailDescription() {
-        return detailDescription;
+    public String getRequestPosterMissing() {
+        return requestPosterMissing;
     }
 
     public String getTypeMissing() {
@@ -37,6 +38,13 @@ public class MissingPet extends Pet{
 
     public void setId(String id) {
         this.id = id;
+    }
+    public String getStatusMissing() {
+        return statusMissing;
+    }
+
+    public void setStatusMissing(String statusMissing) {
+        this.statusMissing = statusMissing;
     }
 
 
@@ -48,8 +56,8 @@ public class MissingPet extends Pet{
         this.dateMissing = dateMissing;
     }
 
-    public void setDetailDescription(String detailDescription) {
-        this.detailDescription = detailDescription;
+    public void setRequestPosterMissing(String requestPosterMissing) {
+        this.requestPosterMissing = requestPosterMissing;
     }
 
     public void setTypeMissing(String typeMissing) {

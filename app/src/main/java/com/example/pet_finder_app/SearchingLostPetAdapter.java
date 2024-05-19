@@ -1,6 +1,8 @@
 package com.example.pet_finder_app;
 
+
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import com.example.pet_finder_app.SearchingLostPetActivity;
 
 import com.example.pet_finder_app.Class.MissingPet;
 import com.squareup.picasso.Picasso;
@@ -45,7 +48,6 @@ public class SearchingLostPetAdapter extends ArrayAdapter<MissingPet> {
             viewHolder.missingPetAge = convertView.findViewById(R.id.missingPetAge);
             viewHolder.missingPetSize = convertView.findViewById(R.id.missingPetSize);
             viewHolder.cardView = convertView.findViewById(R.id.cardView);
-
             viewHolder.missingPetRegisterDate = convertView.findViewById(R.id.missingPetRegisterDate);
             convertView.setTag(viewHolder);
         } else {
@@ -74,10 +76,30 @@ public class SearchingLostPetAdapter extends ArrayAdapter<MissingPet> {
         viewHolder.missingPetRegisterDate.setText(missingPet.getRegisterDate());
         viewHolder.missingPetAge.setText(missingPet.getAge());
         viewHolder.missingPetSize.setText(missingPet.getSize());
+        viewHolder.missingPetStatus.setText(missingPet.getStatusMissing());
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Handle pet detail page
+
+                Intent intent = new Intent(context, PetDetailActivity.class);
+                intent.putExtra("idPet", missingPet.getIdPet());
+                intent.putExtra("petName", missingPet.getName());
+                intent.putExtra("petAge", missingPet.getAge());
+                intent.putExtra("petSize", missingPet.getSize());
+                intent.putExtra("petBreed", missingPet.getBreed());
+                intent.putExtra("addressMissing", missingPet.getAddressMissing());
+                intent.putExtra("petGender", missingPet.getGender());
+                intent.putExtra("petColor", missingPet.getColor());
+                intent.putExtra("petRegisterDate", missingPet.getRegisterDate());
+                intent.putExtra("petMissingDate", missingPet.getDateMissing());
+                intent.putExtra("petTypeMissing", missingPet.getTypeMissing());
+                intent.putExtra("petImageUrl", missingPet.getImgUrl());
+                intent.putExtra("postUserId",missingPet.getPostUserId());
+                intent.putExtra("requestPoster",missingPet.getRequestPosterMissing());
+                intent.putExtra("desciptionPet",missingPet.getDescription());
+                intent.putExtra("statusMissing",missingPet.getStatusMissing());
+
+                context.startActivity(intent);
             }
         });
         return convertView;
@@ -93,5 +115,12 @@ public class SearchingLostPetAdapter extends ArrayAdapter<MissingPet> {
         TextView typeMissing;
         TextView missingPetAge;
         TextView missingPetSize;
+        TextView namePoster;
+        TextView addressPoster;
+        TextView missingPetDescription;
+        TextView requestPoster;
+        TextView phonePoster;
+        TextView gmailPoster;
+        TextView locationMissingPet;
     }
 }

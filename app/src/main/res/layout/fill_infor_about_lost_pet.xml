@@ -84,13 +84,14 @@
                     android:popupBackground="@drawable/spinner_popup_background"
                     android:spinnerMode="dropdown" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/gaurdian_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="30dp"
-                android:text="Gaurdian Information"
+                android:text="User Information"
                 android:textColor="#5F5B5B"
                 android:textSize="24sp" />
 

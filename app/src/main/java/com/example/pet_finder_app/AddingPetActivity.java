@@ -577,7 +577,7 @@ public class AddingPetActivity extends AppCompatActivity {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;
         }
-        pet = new Pet(age, "2", colorItem, description, genderItem, idPetKey, imageUrl, name, calendarText, sizeItem, categoryItem, weight) ;
+        pet = new Pet(age,"breed", "2", colorItem, description, genderItem, idPetKey, imageUrl, name, calendarText, sizeItem, categoryItem, weight,"1") ;
         adopt = new AdoptPet(null, idAdoptKey, idPetKey, price, "Castrated");
         order = new AdoptOrder(idAdoptKey, idPetKey, "1");
         petRef.setValue(pet);

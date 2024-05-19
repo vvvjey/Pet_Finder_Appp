@@ -132,6 +132,8 @@ public class SearchingLostPetActivity extends AppCompatActivity {
                     if (snapshot.exists()) { // Check if the snapshot has any children
                         String gender = snapshot.child("gender").getValue(String.class);
                         String id = snapshot.child("id").getValue(String.class);
+                        String breed = snapshot.child("breed").getValue(String.class);
+
                         String idPet = snapshot.child("idPet").getValue(String.class);
                         String imgUrl = snapshot.child("imgUrl").getValue(String.class);
                         String name = snapshot.child("name").getValue(String.class);
@@ -161,10 +163,19 @@ public class SearchingLostPetActivity extends AppCompatActivity {
                     String imageUrl = snapshot.child("imgUrl").getValue(String.class);
                     String typeMissing = snapshot.child("typeMissing").getValue(String.class);
                     String age = snapshot.child("age").getValue(String.class);
+                    String breed = snapshot.child("breed").getValue(String.class);
+                    String description = snapshot.child("description").getValue(String.class);
+                    String addressMissing = snapshot.child("addressMissing").getValue(String.class);
+                    String statusMissing = snapshot.child("status").getValue(String.class);
+
+                    String dateMissing = snapshot.child("dateMissing").getValue(String.class);
+                    String requestPoster = snapshot.child("requestPoster").getValue(String.class);
+
                     String size = snapshot.child("size").getValue(String.class);
+                    String postUserId = snapshot.child("postUserId").getValue(String.class);
 
                     // Create a MissingPet object and add it to the list
-                    MissingPet pet = new MissingPet(age, "categoryId", color, "description", gender, "idPet", imageUrl, name, registerDate, size, "typeId", "weight", "id", typeMissing,"addressMissing", "dateMissing", "detailDescription");
+                    MissingPet pet = new MissingPet(age,breed, "categoryId", color, description, gender, "idPet", imageUrl, name, registerDate, size, "typeId", "weight", "id", typeMissing,addressMissing, dateMissing, requestPoster,postUserId,statusMissing);
                     arrayList.add(pet);
                 }
                 adapter.notifyDataSetChanged();
