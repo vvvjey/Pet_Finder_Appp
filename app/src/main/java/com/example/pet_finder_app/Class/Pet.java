@@ -2,6 +2,7 @@ package com.example.pet_finder_app.Class;
 
 public class Pet {
     private String age;
+    private String breed;
     private String categoryId;
     private String color;
     private String description;
@@ -13,11 +14,10 @@ public class Pet {
     private String size;
     private String typeId;
     private String weight;
-
-    private String userPostId;
-
-    public Pet(String age, String categoryId, String color, String description, String gender, String idPet, String imgUrl, String name, String registerDate, String size, String typeId, String weight, String userPostId) {
+    private String postUserId;
+    public Pet(String age,String breed, String categoryId, String color, String description, String gender, String idPet, String imgUrl, String name, String registerDate, String size, String typeId, String weight,String postUserId) {
         this.age = age;
+        this.breed = breed;
         this.categoryId = categoryId;
         this.color = color;
         this.description = description;
@@ -29,18 +29,19 @@ public class Pet {
         this.size = size;
         this.typeId = typeId;
         this.weight = weight;
-        this.userPostId = userPostId;
-    }
-
-    public String getUserPostId() {
-        return userPostId;
-    }
-
-    public void setUserPostId(String userPostId) {
-        this.userPostId = userPostId;
+        this.postUserId = postUserId;
     }
 
     public Pet(){}
+    public String getPostUserId() {
+        return postUserId;
+    }
+
+    public void setPostUserId(String postUserId) {
+
+        this.postUserId = postUserId;
+    }
+
 
     public String getAge() {
         return age;
@@ -48,6 +49,13 @@ public class Pet {
 
     public void setAge(String age) {
         this.age = age;
+    }
+    public String getBreed() {
+        return breed;
+    }
+
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 
     public String getCategoryId() {

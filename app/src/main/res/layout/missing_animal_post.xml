@@ -62,36 +62,27 @@
         app:layout_constraintTop_toBottomOf="@+id/title">
 
         <TextView
-            android:id="@+id/textView40"
+            android:id="@+id/missingPostSection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Missing"
-            android:textSize="20sp"
+            android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
-            android:id="@+id/view3"
-            android:layout_width="50dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="3dp"
-            android:background="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView40" />
-
         <TextView
-            android:id="@+id/textView45"
+            android:id="@+id/seenPostSection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="89dp"
+            android:layout_marginStart="74dp"
             android:text="Seen"
             android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/textView40"
+            app:layout_constraintStart_toEndOf="@+id/missingPostSection"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView46"
+            android:id="@+id/protectedPostSection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Protected"

@@ -126,7 +126,7 @@ public class RequestAdopt extends Fragment {
 
         for (Pet pet : petList) {
             AdoptPet adoptPet = adoptHash.get(pet.getIdPet());
-            if (adoptPet != null && pet.getUserPostId().equals(idUser) ) {
+            if (adoptPet != null && pet.getPostUserId().equals(idUser) ) {
 
                 List<AdoptOrder> ordersForPet = orderHash.get(adoptPet.getIdPet());
 

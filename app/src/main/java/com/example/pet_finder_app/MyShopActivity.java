@@ -153,7 +153,7 @@ public class MyShopActivity extends AppCompatActivity {
 
         for(Pet pet : petList){
             AdoptPet adoptPet = adoptHash.get(pet.getIdPet());
-            if(adoptPet != null && pet.getUserPostId().equals(idUser)){
+            if(adoptPet != null && pet.getPostUserId().equals(idUser)){
                 ShopList.add(new AdoptingCategoryDomain(
                         pet.getIdPet(),
                         pet.getImgUrl(),

@@ -130,7 +130,7 @@ public class MyPetActivity extends AppCompatActivity {
 
         for(Pet pet : petList){
             AdoptPet adoptPet = adoptHash.get(pet.getIdPet());
-            if(adoptPet != null && pet.getUserPostId().equals(idUser)){
+            if(adoptPet != null && pet.getPostUserId().equals(idUser)){
                 PetList.add(new AdoptingCategoryDomain(
                         pet.getIdPet(),
                         pet.getImgUrl(),
