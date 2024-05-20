@@ -289,11 +289,15 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
         dateMeet = dateMeetEdt.getText().toString();
         gender = genderSpinner.getSelectedItem().toString();
         country = dropdownCountry.getSelectedItem().toString();
-        city = dropdownCity.getSelectedItem().toString();
-        district = dropdownDistrict.getSelectedItem().toString();
-        ward = dropdownWard.getSelectedItem().toString();
+        city ="";
+        district ="";
+        ward = "";
+//        if(dropdownCity != null && dropdownWard != null && dropdownDistrict != null){
+//            city = dropdownCity.getSelectedItem().toString();
+//            district = dropdownDistrict.getSelectedItem().toString();
+//            ward = dropdownWard.getSelectedItem().toString();
+//        }
         timeMeet = timeSpinner.getSelectedItem().toString();
-
         fullAddress = address + ", " + country + ", " + city + ", " + district + ", " + ward;
 
         DatabaseReference adoptRef = databaseReference.child("AdoptOrder").push();
