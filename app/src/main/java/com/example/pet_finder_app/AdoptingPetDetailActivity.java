@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.pet_finder_app.Class.AdoptPet;
 import com.example.pet_finder_app.Class.Pet;
+import com.example.pet_finder_app.Class.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,62 +27,49 @@ import com.squareup.picasso.Picasso;
 
 public class AdoptingPetDetailActivity extends AppCompatActivity {
     Toolbar arrowBack;
-    ImageView back_btn;
     String idPet;
     Pet pet;
     AdoptPet adopt;
+    User user;
     Button adoptBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.adopt_pet_detail);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.adoptDetail), (v, insets) -> {
+        setContentView(R.layout.pet_adopt_detail);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.adopt_detail), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        back_btn = findViewById(R.id.back_btn);
-        back_btn.setOnClickListener(new View.OnClickListener() {
+        arrowBack = findViewById(R.id.toolbarArrowBack);
+        arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), AdoptingPetActivity.class));
             }
         });
-        ImageView imageView = findViewById(R.id.image_view);
-        TextView petName = findViewById(R.id.pet_name);
-        TextView petLocation = findViewById(R.id.location);
-        TextView petPrice = findViewById(R.id.price);
-        TextView petGender = findViewById(R.id.pet_sex);
-        TextView petColor = findViewById(R.id.pet_color);
-        TextView petCategory = findViewById(R.id.pet_breed);
-        TextView petWeight = findViewById(R.id.pet_weight);
+        TextView petAge = findViewById(R.id.agePetDetailAdopt);
+        TextView petBreed = findViewById(R.id.breedPetDetailAdopt);
+        TextView registerDay = findViewById(R.id.postTimeDetailAdopt);
+        TextView petSize = findViewById(R.id.sizePetDetailAdopt);
+        ImageView imageView = findViewById(R.id.imagePetDetailAdopt);
+        TextView petName = findViewById(R.id.namePetDetailAdopt);
+        TextView petPrice = findViewById(R.id.petPrice);
+        ImageView petGender = findViewById(R.id.genderPetDetailAdopt);
+        TextView petColor = findViewById(R.id.colorPetDetailAdopt);
+        TextView petWeight = findViewById(R.id.weightPetDetailAdopt);
+
+        TextView nameUser = findViewById(R.id.namePosterPetDetailAdopt);
+        TextView phoneNumber = findViewById(R.id.phonePosterPetDetailAdopt);
+        TextView emailAddress = findViewById(R.id.emailPosterPetDetailAdopt);
+
 
         idPet = getIntent().getStringExtra("idPet");
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
-        databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap: snapshot.getChildren()){
-                    if(idPet.equals(snap.getValue(Pet.class).getIdPet())) {
-                        pet = snap.getValue(Pet.class);
-                        Picasso.get().load(pet.getImgUrl()).into(imageView);
-                        petName.setText(pet.getName());
-                        petGender.setText(pet.getGender());
-                        petColor.setText(pet.getColor());
-                        petCategory.setText(pet.getCategoryId());
-                        petWeight.setText(pet.getWeight());
-                        break;
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
 
         databaseReference.child("AdoptPet").addValueEventListener(new ValueEventListener() {
             @Override
@@ -89,7 +77,6 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
                 for (DataSnapshot snap: snapshot.getChildren()){
                     if(idPet.equals(snap.getValue(AdoptPet.class).getIdPet())) {
                         adopt = snap.getValue(AdoptPet.class);
-                        petLocation.setText(adopt.getAddressAdopting());
                         petPrice.setText(adopt.getPrice());
                         break;
                     }
@@ -101,7 +88,53 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
             }
         });
 
-        adoptBtn = findViewById(R.id.adopt_btn);
+        databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap: snapshot.getChildren()){
+                    if(idPet.equals(snap.getValue(Pet.class).getIdPet())) {
+                        pet = snap.getValue(Pet.class);
+                        Picasso.get().load(pet.getImgUrl()).into(imageView);
+                        petAge.setText(pet.getAge());
+                        petBreed.setText(pet.getBreed());
+                        registerDay.setText(pet.getRegisterDate());
+                        petSize.setText(pet.getSize());
+                        petName.setText(pet.getName());
+                        Picasso.get().load(pet.getGender()).into(petGender);
+                        petColor.setText(pet.getColor());
+                        petWeight.setText(pet.getWeight());
+                        break;
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        databaseReference.child("User").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap: snapshot.getChildren()){
+                    if(pet.getPostUserId().equals(snap.getValue(User.class).getUserId())) {
+                        user = snap.getValue(User.class);
+                        nameUser.setText(user.getName());
+                        phoneNumber.setText(user.getPhoneNumber());
+                        emailAddress.setText(user.getEmail());
+                        break;
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+
+        adoptBtn = findViewById(R.id.fillInAdopt);
         adoptBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
