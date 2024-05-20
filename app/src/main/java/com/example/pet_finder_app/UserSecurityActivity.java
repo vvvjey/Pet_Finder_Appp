@@ -17,7 +17,6 @@ public class UserSecurityActivity extends AppCompatActivity {
         setContentView(R.layout.user_security);
         arrowBack = findViewById(R.id.toolbarArrowBack);
         itemChangePassword = findViewById(R.id.item_changePassword);
-        itemChangeEmail = findViewById(R.id.item_changeEmail);
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,11 +29,6 @@ public class UserSecurityActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), UserChangePasswordActivity.class));
             }
         });
-        itemChangeEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), UserChangeEmailActivity.class));
-            }
-        });
+
     }
 }
