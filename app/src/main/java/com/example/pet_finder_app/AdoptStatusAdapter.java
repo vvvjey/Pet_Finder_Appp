@@ -1,23 +1,21 @@
 package com.example.pet_finder_app;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.LinearLayout;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
-import android.os.Bundle;
 
 public class AdoptStatusAdapter extends RecyclerView.Adapter<AdoptStatusAdapter.MyViewHolder> {
 
@@ -44,18 +42,24 @@ public class AdoptStatusAdapter extends RecyclerView.Adapter<AdoptStatusAdapter.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         AdoptStatusItem pet = ListAdoptStatus.get(position);
-        holder.image_id.setImageResource(pet.getImage_id());
+        if (holder.image_id != null) {
+            Picasso.get().load(pet.getImage_id()).into(holder.image_id);
+        }
         holder.name.setText(pet.getName());
         holder.size.setText(pet.getSize());
         holder.breed.setText(pet.getBreed());
         holder.date.setText(pet.getDate());
         holder.color.setText(pet.getColor());
+        if (holder.statusOrder != null) {
+            holder.statusOrder.setText(pet.getStatusOrder());
+        }
 
         // Set click listener for the item
         holder.detailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, DetailRequetAdoptActivity.class);
+                intent.putExtra("idOrder" ,pet.getIdOrder());
                 mContext.startActivity(intent);
             }
         });
@@ -66,6 +70,7 @@ public class AdoptStatusAdapter extends RecyclerView.Adapter<AdoptStatusAdapter.
         private ImageView image_id;
         private TextView name, size, breed, date, color;
         private Button detailBtn;
+        private TextView statusOrder;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,6 +82,7 @@ public class AdoptStatusAdapter extends RecyclerView.Adapter<AdoptStatusAdapter.
             color = itemView.findViewById(R.id.color_text);
             date = itemView.findViewById(R.id.date);
             detailBtn = itemView.findViewById(R.id.detailButton);
+            statusOrder = itemView.findViewById(R.id.statusOrder);
         }
     }
 }

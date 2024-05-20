@@ -21,6 +21,7 @@
     <string name="tempory_care">Tempory care</string>
     <string name="adopt_a_animal">ADOPT A ANIMAL</string>
     <string name="searches">360 Searches</string>
+
     <string name="google_map_key">AIzaSyAEzDdHbGPBI_hDEE-dIvFuGh0NoPKR4JM</string>
 
     <string-array name="category">
@@ -55,5 +56,7 @@
         <item>3:00 -> 4:00</item>
         <item>5:00 -> 6:00</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

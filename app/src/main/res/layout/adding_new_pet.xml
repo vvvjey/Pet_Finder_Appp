@@ -89,7 +89,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
-                        android:id="@+id/editName"
+                        android:id="@+id/editNamePet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -449,6 +449,19 @@
                     android:layout_marginTop="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fill_price">
+
+
+                    <ImageView
+                        android:id="@+id/deleteImg"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintBottom_toTopOf="@+id/uploadImg"
+                        app:layout_constraintEnd_toEndOf="@+id/uploadImg"
+                        app:layout_constraintStart_toEndOf="@+id/uploadImg"
+                        app:layout_constraintTop_toTopOf="@+id/uploadImg"
+                        />
 
                     <ImageView
                         android:id="@+id/uploadImg"

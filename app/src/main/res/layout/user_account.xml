@@ -125,7 +125,7 @@
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:text="User Name"
             android:fontFamily="@font/poppins"
             android:textSize="14dp"
             android:textStyle="bold"

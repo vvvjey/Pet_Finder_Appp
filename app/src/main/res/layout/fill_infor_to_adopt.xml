@@ -434,7 +434,7 @@
                     android:textColor="#B3B3B3" />
 
                 <Spinner
-                    android:id="@+id/purposeSpinner"
+                    android:id="@+id/timeSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:spinnerMode="dropdown" />

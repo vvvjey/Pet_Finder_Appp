@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins"
-                android:text="Age:"
+                android:text="Date: "
                 android:textColor="@color/gray"
                 android:textSize="12dp"
                 android:textStyle="bold"
@@ -126,7 +126,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/nameCat" />
 
             <TextView
-                android:id="@+id/age_value"
+                android:id="@+id/date_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -140,39 +140,12 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/status_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="60dp"
-                android:fontFamily="@font/poppins"
-                android:text="Status:"
-                android:textColor="@color/gray"
-                android:textSize="12dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/age_text"
-                app:layout_constraintStart_toEndOf="@+id/age_value"
-                app:layout_constraintTop_toTopOf="@+id/age_text" />
-
-            <TextView
-                android:id="@+id/status_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:fontFamily="@font/poppins"
-                android:text="Castracted"
-                android:textColor="@color/gray"
-                android:textSize="12dp"
-                app:layout_constraintBottom_toBottomOf="@+id/status_text"
-                app:layout_constraintStart_toEndOf="@+id/status_text"
-                app:layout_constraintTop_toTopOf="@+id/status_text" />
-
-            <TextView
                 android:id="@+id/breed_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins"
-                android:text="Breed:"
+                android:text="Time:"
                 android:textColor="@color/gray"
                 android:textSize="12dp"
                 android:textStyle="bold"
@@ -180,7 +153,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/age_text" />
 
             <TextView
-                android:id="@+id/breed_value"
+                android:id="@+id/time_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -191,35 +164,6 @@
                 app:layout_constraintBottom_toBottomOf="@+id/breed_text"
                 app:layout_constraintStart_toEndOf="@+id/breed_text"
                 app:layout_constraintTop_toTopOf="@+id/breed_text" />
-
-            <TextView
-                android:id="@+id/value_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="$"
-                android:layout_marginRight="30dp"
-                android:textColor="@color/gray"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/price_value"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/price_value" />
-
-            <TextView
-                android:id="@+id/price_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:fontFamily="@font/poppins"
-                android:text="95"
-                android:textColor="@color/gray"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/nameCat"
-                app:layout_constraintEnd_toStartOf="@+id/value_text"
-                app:layout_constraintTop_toTopOf="@+id/nameCat"
-                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -238,15 +182,27 @@
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
         <TextView
-            android:id="@+id/statusOrder"
+            android:id="@+id/sender_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:text="Sender: "
+            android:textColor="#48971E"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/image_pet" />
+
+        <TextView
+            android:id="@+id/sender_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:layout_marginBottom="30dp"
             android:text="TextView"
             android:textColor="#48971E"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/image_pet" />
+            app:layout_constraintStart_toEndOf="@+id/sender_text" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

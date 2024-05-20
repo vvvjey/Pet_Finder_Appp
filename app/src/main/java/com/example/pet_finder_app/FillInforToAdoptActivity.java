@@ -1,6 +1,5 @@
 package com.example.pet_finder_app;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -24,9 +24,13 @@ import com.example.pet_finder_app.API.WardPlaces;
 import com.example.pet_finder_app.API.WardPlacesReponse;
 import com.example.pet_finder_app.Class.AdoptOrder;
 import com.example.pet_finder_app.Class.Appoitment;
+import com.example.pet_finder_app.Class.Pet;
 import com.example.pet_finder_app.Class.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -41,38 +45,56 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FillInforToAdoptActivity extends AppCompatActivity {
     private Toolbar arrowBack;
-    private Spinner genderSpinner, timeSpinner;
+    private Spinner genderSpinner;
     private String[] genderDropdownValue = {"Male","Female"};
     List<ProvincePlaces> provinceList;
     List<DistrictPlaces> districtList;
     List<WardPlaces> wardList;
+    List<Pet> petList = new ArrayList<>();
+    Pet pet;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     TextView titleName;
     Button fillBtn;
-    Spinner dropdownCountry, dropdownCity, dropdownDistrict, dropdownWard;
+    Spinner dropdownCountry, dropdownCity, dropdownDistrict, dropdownWard, timeSpinner;
+
 
     User user;
     AdoptOrder adoptOrder;
     Appoitment appoitment;
 
+    ArrayAdapter<String> genderAdapter;
+    ArrayAdapter<String> dropdownCountryAdapter;
+    ArrayAdapter<CharSequence> timeAdapter;
+
     EditText addressEdt, nameEdt, dateBirthEdt, requestEdt, dateMeetEdt, phoneEdt, emailEdt;
-    String fullName, dateBirth, gender, email, address, country, city,district, ward, phone, requestMsg, dateMeet, timeMeet, fullAddress;
+    String fullName, dateBirth, gender, email, address, country, city,district, ward, phone, requestMsg, dateMeet, timeMeet, dayMeet, fullAddress;
     String idOrder, idUser, idMeet, idPet, namePet;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fill_infor_to_adopt);
+
+
         arrowBack = findViewById(R.id.toolbarArrowBack3);
         genderSpinner = (Spinner)findViewById(R.id.genderSpinner);
-        ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,genderDropdownValue);
+        genderAdapter = new ArrayAdapter<String>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,genderDropdownValue);
         genderAdapter.setDropDownViewResource(com.google.android.material.R.layout.support_simple_spinner_dropdown_item);
         genderSpinner.setAdapter(genderAdapter);
+        timeSpinner = findViewById(R.id.timeSpinner);
+        timeAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.time,
+                android.R.layout.simple_spinner_item
+        );
+        timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        timeSpinner.setAdapter(timeAdapter);
+
         dropdownCountry = findViewById(R.id.countrySpinner);
         dropdownCity = findViewById(R.id.citySpinner);
         dropdownDistrict = findViewById(R.id.districtSpinner);
         dropdownWard = findViewById(R.id.wardSpinner);
 
-
+        idUser = "2";
         idPet = getIntent().getStringExtra("idPet");
         namePet = getIntent().getStringExtra("namePet");
         String[] dropdownCountryItems = new String[]{"Vietnam"};
@@ -86,15 +108,13 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
         fillBtn = findViewById(R.id.fillBtn);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
-        timeSpinner = (Spinner) findViewById(R.id.purposeSpinner);
-        ArrayAdapter<CharSequence> timeAdapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.time,
-                android.R.layout.simple_spinner_item
-        );
-        timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        timeSpinner.setAdapter(timeAdapter);
-
+        nameEdt = findViewById(R.id.nameEdit);
+        dateBirthEdt = findViewById(R.id.birth_text);
+        phoneEdt = findViewById(R.id.phone_value);
+        requestEdt = findViewById(R.id.requestEdit);
+        dateMeetEdt = findViewById(R.id.datemeetEdit);
+        emailEdt = findViewById(R.id.emailEdt);
+        addressEdt = findViewById(R.id.adress_value);
 
         Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyy").create();
 //        Initial retrofit
@@ -220,7 +240,7 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AdoptingPetActivity.class));
+                onBackPressed();
             }
         });
 
@@ -231,18 +251,35 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
             }
         });
 
+        showData();
+    }
+
+    public void showData(){
+        databaseReference.child("User").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap: snapshot.getChildren()){
+                    if(idUser.equals(snap.getValue(User.class).getUserId())){
+//                        Log.d("ShowIntent", "GetTheRightThing");
+                        user = snap.getValue(User.class);
+                        nameEdt.setText(user.getName());
+                        genderSpinner.setSelection(genderAdapter.getPosition(user.getGender()));
+                        dateBirthEdt.setText(user.getDateBirth());
+                        phoneEdt.setText(user.getPhoneNumber());
+                        emailEdt.setText(user.getEmail());
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void addDataFireBase(){
-        nameEdt = findViewById(R.id.nameEdit);
-        dateBirthEdt = findViewById(R.id.birth_text);
-        phoneEdt = findViewById(R.id.phone_value);
-        requestEdt = findViewById(R.id.requestEdit);
-        dateMeetEdt = findViewById(R.id.datemeetEdit);
-        emailEdt = findViewById(R.id.emailEdt);
-        addressEdt = findViewById(R.id.adress_value);
-
-
         fullName = nameEdt.getText().toString();
         dateBirth = dateBirthEdt.getText().toString();
         email = emailEdt.getText().toString();
@@ -250,82 +287,31 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
         phone = phoneEdt.getText().toString();
         requestMsg = requestEdt.getText().toString();
         dateMeet = dateMeetEdt.getText().toString();
-
-
-        dropdownCountry = findViewById(R.id.countrySpinner);
-        dropdownCity = findViewById(R.id.citySpinner);
-        dropdownDistrict = findViewById(R.id.districtSpinner);
-        dropdownWard = findViewById(R.id.wardSpinner);
-        dropdownCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                country = dropdownCountry.getItemAtPosition(position).toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        dropdownCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                city = dropdownCity.getItemAtPosition(position).toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        dropdownDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                district = dropdownDistrict.getItemAtPosition(position).toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        dropdownWard.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ward = dropdownWard.getItemAtPosition(position).toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                gender = genderSpinner.getItemAtPosition(position).toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-        fullAddress = address + dropdownCountry + dropdownCity + dropdownDistrict + dropdownWard;
+        gender = genderSpinner.getSelectedItem().toString();
+        country = dropdownCountry.getSelectedItem().toString();
+        city ="";
+        district ="";
+        ward = "";
+//        if(dropdownCity != null && dropdownWard != null && dropdownDistrict != null){
+//            city = dropdownCity.getSelectedItem().toString();
+//            district = dropdownDistrict.getSelectedItem().toString();
+//            ward = dropdownWard.getSelectedItem().toString();
+//        }
+        timeMeet = timeSpinner.getSelectedItem().toString();
+        fullAddress = address + ", " + country + ", " + city + ", " + district + ", " + ward;
 
         DatabaseReference adoptRef = databaseReference.child("AdoptOrder").push();
-        DatabaseReference userRef = databaseReference.child("User").push();
         DatabaseReference meetRef = databaseReference.child("Appointment").push();
 
         idOrder = adoptRef.getKey();
-        idUser = userRef.getKey();
         idMeet = meetRef.getKey();
 
-        user = new User(fullAddress, dateBirth, email, gender, fullName, phone, "1", idUser);
-        adoptOrder = new AdoptOrder(idOrder, idPet, idUser);
-        appoitment = new Appoitment(dateMeet, idMeet, idPet, idUser, "idSender", timeMeet);
-
+        adoptOrder = new AdoptOrder(idOrder, idPet, "2", requestMsg, "Pretending");
+        appoitment = new Appoitment(idOrder,dateMeet, idMeet, "1", "2", timeMeet);
         adoptRef.setValue(adoptOrder);
-        userRef.setValue(user);
         meetRef.setValue(appoitment);
         Toast.makeText(FillInforToAdoptActivity.this, "Request adopt added successfully", Toast.LENGTH_SHORT).show();
+        onBackPressed();
     }
-
 
 }

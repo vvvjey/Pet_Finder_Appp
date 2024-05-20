@@ -2,7 +2,6 @@ package com.example.pet_finder_app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
@@ -38,6 +37,7 @@ public class MyShopActivity extends AppCompatActivity {
     List<AdoptPet> adoptPets = new ArrayList<>();
     List<AdoptOrder> adoptOrders = new ArrayList<>();
     List<User> users = new ArrayList<>();
+    String idUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,21 +130,7 @@ public class MyShopActivity extends AppCompatActivity {
             }
         });
 
-        databaseReference.child("User").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap: snapshot.getChildren()){
-                    User user = snap.getValue(User.class);
-                    users.add(user);
-                }
-                populateRecyclerView();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        idUser = "1";
 
 
     }
@@ -167,31 +153,23 @@ public class MyShopActivity extends AppCompatActivity {
 
         for(Pet pet : petList){
             AdoptPet adoptPet = adoptHash.get(pet.getIdPet());
-            if(adoptPet != null){
-                AdoptOrder orderPet = orderHash.get(adoptPet.getIdPet());
-                if(orderPet != null){
-                    Log.d("check", "orderPet");
-                    User user = userHash.get(orderPet.getUserId());
-                    if(user != null){
-                        Log.d("check", "user");
-                        ShopList.add(new AdoptingCategoryDomain(
-                                pet.getImgUrl(),
-                                pet.getName(),
-                                "favorite",
-                                adoptPet.getPrice(),
-                                pet.getGender(),
-                                pet.getCategoryId(),
-                                pet.getAge(),
-                                adoptPet.getStatus()
-                        ));
-                    }
+            if(adoptPet != null && pet.getPostUserId().equals(idUser)){
+                ShopList.add(new AdoptingCategoryDomain(
+                        pet.getIdPet(),
+                        pet.getImgUrl(),
+                        pet.getName(),
+                        "favorite",
+                        adoptPet.getPrice(),
+                        pet.getGender(),
+                        pet.getCategoryId(),
+                        pet.getAge(),
+                        adoptPet.getStatus()
+                ));
                 }
-            }
-
         }
         recyclerView = findViewById(R.id.myShopView);
         AdoptingCategoryAdapter shopAdapter = new AdoptingCategoryAdapter(ShopList, R.layout.my_shop_item);
-        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 40,40));
+        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 5,5));
         recyclerView.setAdapter(shopAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.HORIZONTAL, false));
     }

@@ -1,19 +1,27 @@
 package com.example.pet_finder_app.Class;
 
 public class Appoitment {
-    private String date, idAppointment, petId ,receiverId, senderId, timeType;
+    private String idOrder, date, idAppointment ,receiverId, senderId, timeType;
 
     public Appoitment(){
 
     }
 
-    public Appoitment(String date, String idAppointment, String petId, String receiverId, String senderId, String timeType) {
+    public Appoitment(String idOrder, String date, String idAppointment, String receiverId, String senderId, String timeType) {
+        this.idOrder = idOrder;
         this.date = date;
         this.idAppointment = idAppointment;
-        this.petId = petId;
         this.receiverId = receiverId;
         this.senderId = senderId;
         this.timeType = timeType;
+    }
+
+    public String getIdOrder() {
+        return idOrder;
+    }
+
+    public void setIdOrder(String idOrder) {
+        this.idOrder = idOrder;
     }
 
     public String getDate() {
@@ -30,14 +38,6 @@ public class Appoitment {
 
     public void setIdAppointment(String idAppointment) {
         this.idAppointment = idAppointment;
-    }
-
-    public String getPetId() {
-        return petId;
-    }
-
-    public void setPetId(String petId) {
-        this.petId = petId;
     }
 
     public String getReceiverId() {

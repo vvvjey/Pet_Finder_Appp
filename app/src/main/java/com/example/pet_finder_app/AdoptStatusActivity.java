@@ -13,13 +13,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.pet_finder_app.Class.AdoptOrder;
 import com.example.pet_finder_app.Class.AdoptPet;
 import com.example.pet_finder_app.Class.Pet;
 import com.example.pet_finder_app.Class.User;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +40,9 @@ public class AdoptStatusActivity extends AppCompatActivity {
     List<AdoptPet> adoptPets = new ArrayList<>();
     List<AdoptOrder> adoptOrders = new ArrayList<>();
     List<User> users = new ArrayList<>();
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+    TabAdoptAdapter tabAdoptAdapter;
 
     private Animation getFromBottom() {
         return AnimationUtils.loadAnimation(this, R.anim.from_bottom_anim);
@@ -65,6 +69,9 @@ public class AdoptStatusActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        tabLayout = findViewById(R.id.tabLayout);
+        viewPager2 = findViewById(R.id.view_pager);
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -141,6 +148,35 @@ public class AdoptStatusActivity extends AppCompatActivity {
             }
         });
 
+        tabAdoptAdapter = new TabAdoptAdapter(this);
+        viewPager2.setAdapter(tabAdoptAdapter);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabLayout.getTabAt(position).select();
+            }
+        });
+
+
     }
 
     private void populateRecyclerView() {
@@ -182,9 +218,5 @@ public class AdoptStatusActivity extends AppCompatActivity {
             }
 
         }
-        recyclerView = findViewById(R.id.recycle_adopt_view);
-        AdoptingPetAdapter petAdapter = new AdoptingPetAdapter(petItems, this);
-        recyclerView.setAdapter(petAdapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
     }
 }

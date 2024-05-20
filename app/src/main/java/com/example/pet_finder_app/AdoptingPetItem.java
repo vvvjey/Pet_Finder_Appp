@@ -11,7 +11,20 @@ public class AdoptingPetItem implements Serializable {
     private String imgUrl;
     private String name;
     private String registerDate;
-    private String status;
+    private String status, statusOrder;
+
+    public AdoptingPetItem(String age, String categoryId, String color, String gender, String idPet,String imgUrl, String name, String registerDate, String status, String statusOrder) {
+        this.age = age;
+        this.categoryId = categoryId;
+        this.color = color;
+        this.gender = gender;
+        this.idPet = idPet;
+        this.imgUrl = imgUrl;
+        this.name = name;
+        this.registerDate = registerDate;
+        this.status = status;
+        this.statusOrder = statusOrder;
+    }
 
     public AdoptingPetItem(String age, String categoryId, String color, String gender, String idPet,String imgUrl, String name, String registerDate, String status) {
         this.age = age;
@@ -32,6 +45,14 @@ public class AdoptingPetItem implements Serializable {
 
     public void setIdPet(String idPet) {
         this.idPet = idPet;
+    }
+
+    public String getStatusOrder() {
+        return statusOrder;
+    }
+
+    public void setStatusOrder(String statusOrder) {
+        this.statusOrder = statusOrder;
     }
 
     public AdoptingPetItem(){}
