@@ -103,6 +103,25 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
                         Picasso.get().load(pet.getGender()).into(petGender);
                         petColor.setText(pet.getColor());
                         petWeight.setText(pet.getWeight());
+
+                        databaseReference.child("User").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot snap: snapshot.getChildren()){
+                                    if(pet.getPostUserId().equals(snap.getValue(User.class).getUserId())) {
+                                        user = snap.getValue(User.class);
+                                        nameUser.setText(user.getName());
+                                        phoneNumber.setText(user.getPhoneNumber());
+                                        emailAddress.setText(user.getEmail());
+                                        break;
+                                    }
+                                }
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
                         break;
                     }
                 }
@@ -113,24 +132,6 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
             }
         });
 
-        databaseReference.child("User").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap: snapshot.getChildren()){
-                    if(pet.getPostUserId().equals(snap.getValue(User.class).getUserId())) {
-                        user = snap.getValue(User.class);
-                        nameUser.setText(user.getName());
-                        phoneNumber.setText(user.getPhoneNumber());
-                        emailAddress.setText(user.getEmail());
-                        break;
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
 
 
