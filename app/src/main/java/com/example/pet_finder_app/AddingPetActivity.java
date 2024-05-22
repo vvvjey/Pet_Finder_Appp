@@ -76,6 +76,8 @@ public class AddingPetActivity extends AppCompatActivity {
     ArrayAdapter<CharSequence> colorAdapter;
     ArrayAdapter<CharSequence> breedAdapter;
 
+    boolean isImage = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,8 +94,7 @@ public class AddingPetActivity extends AppCompatActivity {
         uploadImg = findViewById(R.id.uploadImg);
         activity = getIntent().getStringExtra("activity");
 
-        Log.d("ShowIntent", activity);
-        idPet = getIntent().getStringExtra("idPet");
+
 
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +115,9 @@ public class AddingPetActivity extends AppCompatActivity {
         addImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(activity.equals("edit")){
+                    isImage = true;
+                }
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("*/*");
                 activityResultLauncher.launch(intent);
@@ -175,16 +179,22 @@ public class AddingPetActivity extends AppCompatActivity {
         petWeight = findViewById(R.id.weight_edit);
         simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         calendar = Calendar.getInstance();
-
+        idPet = getIntent().getStringExtra("idPet");
         if(activity.equals("edit")){
             showData();
+            Log.d("ShowIntent", activity);
+            Log.d("Show id Pet", idPet);
             btnAdd.setText("Edit");
             btnAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(isName() || isAge() || isBreed() || isCategory() ||
-                            isColor() || isDes() || isGender() || isPrice() || isWeight() || isSize()){
+                            isColor() || isDes() || isGender() || isPrice() || isWeight() || isSize() || isImage){
+                        if(isImage){
+                            uploadImage(image);
+                        }
                         Toast.makeText(AddingPetActivity.this, "Saved data", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), MyPetActivity.class));
                     }
                     else{
                         Toast.makeText(AddingPetActivity.this, "No Changes Found", Toast.LENGTH_SHORT).show();
@@ -209,7 +219,10 @@ public class AddingPetActivity extends AppCompatActivity {
                 Toast.makeText(AddingPetActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
+
+
 
     public void showData(){
         databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
@@ -222,6 +235,7 @@ public class AddingPetActivity extends AppCompatActivity {
                         Log.d("ShowIntent", "GetTheRightThing");
                         pet = snap.getValue(Pet.class);
                         petName.setText(pet.getName());
+                        breed.setSelection(breedAdapter.getPosition(pet.getBreed()));
                         category.setSelection(categoryAdapter.getPosition(pet.getTypeId()));
                         petAge.setText(pet.getAge());
                         size.setSelection(sizeAdapter.getPosition(pet.getSize()));
@@ -338,8 +352,8 @@ public class AddingPetActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        if (idPet.equals(snapshot.getValue(Pet.class).getIdPet())) {
-                            databaseReference.child("AdoptPet").child(idPet).child("price").setValue(petPrice.getText().toString());
+                        if (idPet.equals(snapshot.getValue(AdoptPet.class).getIdPet())) {
+                            databaseReference.child("AdoptPet").child(snapshot.getValue(AdoptPet.class).getId()).child("price").setValue(petPrice.getText().toString());
                             price = petPrice.getText().toString();
                         } else {
                             Log.d("ConstraintViolation", "idPet does not match the desired value.");
@@ -407,6 +421,9 @@ public class AddingPetActivity extends AppCompatActivity {
     }
 
     public boolean isCategory(){
+        if (categoryItem == null || category.getSelectedItem() == null) {
+            return false;
+        }
         if(!categoryItem.equals(category.getSelectedItem().toString()))
         {
             databaseReference.child("Pet").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -433,6 +450,9 @@ public class AddingPetActivity extends AppCompatActivity {
     }
 
     public boolean isColor (){
+        if (colorItem == null || color.getSelectedItem() == null) {
+            return false;
+        }
         if(!colorItem.equals(color.getSelectedItem().toString()))
         {
             databaseReference.child("Pet").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -459,6 +479,9 @@ public class AddingPetActivity extends AppCompatActivity {
     }
 
     public boolean isGender (){
+        if (genderItem == null || gender.getSelectedItem() == null) {
+            return false;
+        }
         if(!genderItem.equals(gender.getSelectedItem().toString()))
         {
             databaseReference.child("Pet").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -485,12 +508,14 @@ public class AddingPetActivity extends AppCompatActivity {
     }
 
     public boolean isBreed(){
-        if(!breedItem.equals(breed.getSelectedItem().toString()))
-        {
+        if (breedItem == null || breed.getSelectedItem() == null) {
+            return false;
+        }
+
+        if(!breedItem.equals(breed.getSelectedItem().toString())) {
             databaseReference.child("Pet").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         if (idPet.equals(snapshot.getValue(Pet.class).getIdPet())) {
                             databaseReference.child("Pet").child(idPet).child("breed").setValue(breed.getSelectedItem().toString());
@@ -498,18 +523,24 @@ public class AddingPetActivity extends AppCompatActivity {
                         } else {
                             Log.d("ConstraintViolation", "idPet does not match the desired value.");
                         }
-                    }}
+                    }
+                }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                     Log.d("FirebaseError", databaseError.getMessage());
                 }
             });
             return true;
-        }else{
+        } else {
             return false;
         }
     }
+
     public boolean isSize(){
+        if (sizeItem == null || size.getSelectedItem() == null) {
+            return false;
+        }
         if(!sizeItem.equals(size.getSelectedItem().toString()))
         {
             databaseReference.child("Pet").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -543,6 +574,7 @@ public class AddingPetActivity extends AppCompatActivity {
                     image = result.getData().getData();
                     Glide.with(getApplicationContext()).load(image).into(uploadImg);
                     deleteImg.setImageResource(R.drawable.deletebtn);
+
                 }
             } else {
                 Toast.makeText(AddingPetActivity.this, "Please select an image", Toast.LENGTH_SHORT).show();
@@ -561,7 +593,11 @@ public class AddingPetActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         imageUrl = uri.toString();
-                        uploadDataFirebase();
+                        if(isImage){
+                            updateImage();
+                        }else{
+                            uploadDataFirebase();
+                        }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -580,6 +616,24 @@ public class AddingPetActivity extends AppCompatActivity {
         });
     }
 
+    private void updateImage(){
+        databaseReference.child("Pet").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    if (idPet.equals(snapshot.getValue(Pet.class).getIdPet())) {
+                        Log.d("IsImageChecked", idPet + ", " + imageUrl );
+                        databaseReference.child("Pet").child(idPet).child("imgUrl").setValue(imageUrl);
+                    } else {
+                        Log.d("ConstraintViolation", "idPet does not match the desired value.");
+                    }
+                }}
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d("FirebaseError", databaseError.getMessage());
+            }
+        });
+    }
     private void uploadDataFirebase(){
         DatabaseReference petRef = databaseReference.child("Pet").push();
         DatabaseReference adoptRef = databaseReference.child("AdoptPet").push();
