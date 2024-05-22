@@ -62,6 +62,22 @@ dependencies {
 
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.android.material:material:1.11.0")
+    implementation("com.google.gms:google-services:4.4.1");
+    // LUNHY GGMAP API ???
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.4.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.3.0")
+    implementation("com.squareup.retrofit2:adapter-rxjava2:2.4.0")
+    implementation ("com.squareup.okhttp3:okhttp:3.6.0")
+    //Rx
+    implementation("io.reactivex.rxjava2:rxjava:2.2.2")
+    implementation("com.jakewharton.rxrelay2:rxrelay:2.0.0")
+    implementation("io.reactivex.rxjava2:rxandroid:2.0.2")
+
+
+
+
+
 
     implementation("com.google.firebase:firebase-auth:23.0.0")
     // Also add the dependency for the Google Play services library and specify its version
