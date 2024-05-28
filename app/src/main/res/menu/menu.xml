@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".ChatBot" android:layout_height="match_parent" android:layout_width="match_parent">
+
+    <item
+        android:id="@+id/refresh"
+        android:icon="@mipmap/icons_refresh"
+        android:title="Refresh"
+        app:showAsAction="always" />
+</menu>

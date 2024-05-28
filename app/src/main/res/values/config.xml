@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="assistant_id">adbffda4-650c-401b-b807-813e3f3172bb</string>
+    <string name="assistant_apikey">bl_kDV6bSN3hqUfGG-D0uDXLSHtjPse10TDK1SUAoKGd</string>
+    <string name="assistant_url">https://api.au-syd.assistant.watson.cloud.ibm.com/instances/612bd32b-fa2c-4e2c-a791-bac86fef7a7a</string>
+<!--     Speak to text-->
+    <string name="STT_apikey">bl_kDV6bSN3hqUfGG-D0uDXLSHtjPse10TDK1SUAoKGd</string>
+    <string name="STT_url">https://api.au-syd.speech-to-text.watson.cloud.ibm.com/instances/bb2b83fd-3934-44a1-8141-9c07a2bd0946</string>
+<!--    Text to speak-->
+    <string name="TTS_apikey">bl_kDV6bSN3hqUfGG-D0uDXLSHtjPse10TDK1SUAoKGd</string>
+    <string name="TTS_url">https://api.au-syd.text-to-speech.watson.cloud.ibm.com/instances/b72c716d-07db-4ef6-bcc8-32526cb91a95</string>
+</resources>
