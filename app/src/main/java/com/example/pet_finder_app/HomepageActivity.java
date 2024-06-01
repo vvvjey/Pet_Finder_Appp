@@ -41,6 +41,7 @@ public class HomepageActivity extends AppCompatActivity {
         LinearLayout rescueSection = findViewById(R.id.rescue_sec);
         LinearLayout profileSection = findViewById(R.id.profile_sec);
         ImageView notifiImg = findViewById(R.id.notification_homepage);
+        ImageView chatBot = findViewById(R.id.faq);
         seeAllAdopt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +89,15 @@ public class HomepageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomepageActivity.this, ProfileActivity.class));
+            }
+        });
+        //CHATBOT
+        chatBot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Launch the chat bot activity or show a chat bot dialog
+                Intent intent = new Intent(HomepageActivity.this, ChatBotActivity.class);
+                startActivity(intent);
             }
         });
 

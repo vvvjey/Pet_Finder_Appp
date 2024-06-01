@@ -3,6 +3,7 @@ plugins {
     id("com.google.gms.google-services")
 }
 
+
 android {
     namespace = "com.example.pet_finder_app"
     compileSdk = 34
@@ -34,6 +35,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
@@ -74,7 +76,9 @@ dependencies {
     implementation("com.jakewharton.rxrelay2:rxrelay:2.0.0")
     implementation("io.reactivex.rxjava2:rxandroid:2.0.2")
 
-
+    implementation ("androidx.recyclerview:recyclerview:1.1.0")
+    // chatbot
+    implementation ("com.android.volley:volley:1.1.1")
 
 
 
