@@ -1,5 +1,6 @@
     package com.example.pet_finder_app;
 
+    import android.net.Uri;
     import android.os.Bundle;
     import android.view.View;
     import android.widget.EditText;
@@ -98,11 +99,17 @@
             // array list which is entered by the user.
             messageModalArrayList.add(new MessageModal(userMsg, USER_KEY));
             messageRVAdapter.notifyDataSetChanged();
+            chatsRV.scrollToPosition(messageModalArrayList.size() - 1);
 
-            // url for our brain
-            // make sure to add mshape for uid.
-            // make sure to add your url.
-            String url = "http://api.brainshop.ai/get?bid=182276&key=QsKB0mtZcDWflt2C&uid=[uid]&msg=[msg]\n" + userMsg;
+            // Base URL for the API
+            String baseUrl = "http://api.brainshop.ai/get";
+            String bid = "182276";
+            String key = "QsKB0mtZcDWflt2C";
+            String uid = "1"; // hoặc sử dụng một giá trị mặc định
+            String msg = Uri.encode(userMsg);
+
+            // Xây dựng lại URL
+            String url = baseUrl + "?bid=" + bid + "&key=" + key + "&uid=" + uid + "&msg=" + msg;
 
             // creating a variable for our request queue.
             RequestQueue queue = Volley.newRequestQueue(ChatBotActivity.this);
@@ -114,21 +121,23 @@
                     try {
                         String botResponse = response.getString("cnt");
                         messageModalArrayList.add(new MessageModal(botResponse, BOT_KEY));
-
                         messageRVAdapter.notifyDataSetChanged();
+                        chatsRV.scrollToPosition(messageModalArrayList.size() - 1);
                     } catch (JSONException e) {
                         e.printStackTrace();
-
                         // handling error response from bot.
                         messageModalArrayList.add(new MessageModal("No response", BOT_KEY));
                         messageRVAdapter.notifyDataSetChanged();
+                        chatsRV.scrollToPosition(messageModalArrayList.size() - 1);
                     }
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    // error handling.
+                    // Error handling
                     messageModalArrayList.add(new MessageModal("Sorry no response found", BOT_KEY));
+                    messageRVAdapter.notifyDataSetChanged();
+                    chatsRV.scrollToPosition(messageModalArrayList.size() - 1);
                     Toast.makeText(ChatBotActivity.this, "No response from the bot..", Toast.LENGTH_SHORT).show();
                 }
             });
