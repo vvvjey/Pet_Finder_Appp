@@ -17,101 +17,73 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder>{
-    private List<AdoptingCategoryDomain> listPet;
-    private int layoutResourceId;
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder> {
+
+    private List<AdoptStatusItem> ListAdoptHistory;
     private Context mContext;
-    public interface OnDetailButtonClickListener {
-        void onDetailButtonClick(int position);
-    }
 
-    public interface OnDetailPetClickListener {
-        void onDetailPetClick(int position);
-    }
-    private OnDetailPetClickListener onDetailPetClickListener;
-
-    public HistoryAdapter(Context context, List<AdoptingCategoryDomain> listPet, int layoutResourceId){
-        mContext = context;
-        this.listPet = listPet;
-        this.layoutResourceId = layoutResourceId;
+    public HistoryAdapter(List<AdoptStatusItem> ListAdoptHistory, Context context){
+        this.ListAdoptHistory = ListAdoptHistory;
+        this.mContext = context;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(layoutResourceId, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adopt_status_item, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public int getItemCount() {
-        return listPet.size();
+        return ListAdoptHistory.size();
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        AdoptingCategoryDomain pet = listPet.get(position);
+        AdoptStatusItem pet = ListAdoptHistory.get(position);
         if (holder.image_id != null) {
             Picasso.get().load(pet.getImage_id()).into(holder.image_id);
         }
-        if (holder.gender != null) {
-            if(pet.getGender() == "male"){
-                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/male.png?alt=media&token=9326764f-5c4d-49ee-9b54-9cd6a6c5f418").into(holder.gender);
-            }else{
-                Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/female.png?alt=media&token=6be18497-fa44-4fc3-8b68-7ba80b622e75").into(holder.gender);
+        holder.name.setText(pet.getName());
+        holder.size.setText(pet.getSize());
+        holder.breed.setText(pet.getBreed());
+        holder.date.setText(pet.getDate());
+        holder.color.setText(pet.getColor());
+        if (holder.statusOrder != null) {
+            holder.statusOrder.setText(pet.getStatusOrder());
+        }
+
+        // Set click listener for the item
+        holder.detailBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, HistoryAdoptDetailActivity.class);
+                intent.putExtra("idOrder" ,pet.getIdOrder());
+                intent.putExtra("idPet" ,pet.getIdPet());
+                mContext.startActivity(intent);
             }
-        }
-        if (holder.name != null) {
-            holder.name.setText(pet.getName());
-        }
-        if (holder.breed != null) {
-            holder.breed.setText(pet.getBreed());
-        }
-        if (holder.price != null) {
-            holder.price.setText(String.valueOf(pet.getPrice()));
-        }
-        if (holder.age != null) {
-            holder.age.setText(String.valueOf(pet.getAge()));
-        }
-        if (holder.date_adopt != null) {
-            holder.date_adopt.setText(pet.getDate_adopt());
-        }
-        if (holder.ranking != null) {
-            holder.ranking.setText(pet.getRanking());
-        }
-        if (holder.condition != null) {
-            holder.condition.setText(pet.getCondition());
-        }
-        if (holder.detail_pet != null){
-            holder.detail_pet.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(mContext, HistoryAdoptDetailActivity.class);
-                    mContext.startActivity(intent);
-                }
-            });
-        }
+        });
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
         private CardView cardView;
-        private ImageView image_id,gender;
-        private TextView name, breed, price,age, date_adopt, ranking, condition;
-        private Button detail_pet;
+        private ImageView image_id;
+        private TextView name, size, breed, date, color;
+        private Button detailBtn;
+        private TextView statusOrder;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.cardView);
-            image_id = itemView.findViewById(R.id.catImg);
-            gender = itemView.findViewById(R.id.genderImg);
-            name = itemView.findViewById(R.id.nameCat);
-            breed = itemView.findViewById(R.id.breed_value);
-            price = itemView.findViewById(R.id.price_value);
-            age = itemView.findViewById(R.id.age_value);
-            date_adopt = itemView.findViewById(R.id.date_adopt);
-            ranking = itemView.findViewById(R.id.ranking);
-            condition = itemView.findViewById(R.id.status_value);
-            detail_pet = itemView.findViewById(R.id.btn_detail_pet);
+            image_id = itemView.findViewById(R.id.cat_img);
+            size = itemView.findViewById(R.id.size_text);
+            name = itemView.findViewById(R.id.cat_name);
+            breed = itemView.findViewById(R.id.breed_text);
+            color = itemView.findViewById(R.id.color_text);
+            date = itemView.findViewById(R.id.date);
+            detailBtn = itemView.findViewById(R.id.detailButton);
+            statusOrder = itemView.findViewById(R.id.statusOrder);
         }
     }
 }

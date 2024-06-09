@@ -271,29 +271,22 @@
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="30dp">
 
-                <ImageView
-                    android:id="@+id/imageView21"
-                    android:layout_width="60dp"
-                    android:layout_height="200dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/sidebar_success" />
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/request_sec"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    app:layout_constraintStart_toEndOf="@+id/imageView21"
-                    app:layout_constraintTop_toTopOf="parent">
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="60dp">
 
                     <TextView
                         android:id="@+id/request_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Request to adopt" />
+                        android:text=""
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/request_time"
@@ -303,8 +296,8 @@
                         android:fontFamily="@font/poppins_medium"
                         android:text="18/03/2024 - 06:00"
                         android:textColor="@color/shadow"
-                        app:layout_constraintTop_toBottomOf="@+id/request_text"
-                        tools:layout_editor_absoluteX="107dp" />
+                        app:layout_constraintStart_toStartOf="@+id/request_text"
+                        app:layout_constraintTop_toBottomOf="@+id/request_text" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -312,15 +305,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="35dp"
-                    app:layout_constraintStart_toEndOf="@+id/imageView21"
-                    app:layout_constraintTop_toBottomOf="@+id/request_sec">
+                    app:layout_constraintTop_toBottomOf="@+id/request_sec"
+                    tools:layout_editor_absoluteX="60dp">
 
                     <TextView
                         android:id="@+id/booked_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Successfully booked appointment " />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/booked_time"
@@ -328,7 +321,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="18/03/2024 - 11:00"
+                        android:text=""
                         android:textColor="@color/shadow"
                         app:layout_constraintTop_toBottomOf="@+id/booked_text" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -338,15 +331,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="35dp"
-                    app:layout_constraintStart_toEndOf="@+id/imageView21"
-                    app:layout_constraintTop_toBottomOf="@+id/booked_sec">
+                    app:layout_constraintTop_toBottomOf="@+id/booked_sec"
+                    tools:layout_editor_absoluteX="60dp">
 
                     <TextView
                         android:id="@+id/adoption_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Successful adoption" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/adoption_time"
@@ -354,7 +347,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="20/03/2024 - 11:39"
+                        android:text=""
                         android:textColor="@color/shadow"
                         app:layout_constraintTop_toBottomOf="@+id/adoption_text" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -662,63 +655,28 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/textView44"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="-"
-                        android:textSize="40dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/time_book_value"
-                        app:layout_constraintEnd_toStartOf="@+id/time_book_value2"
-                        app:layout_constraintStart_toEndOf="@+id/time_book_value"
-                        app:layout_constraintTop_toTopOf="@+id/time_book_value" />
-
                     <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/time_book_value"
+                        android:id="@+id/time_book_box"
+                        android:layout_width="300dp"
+                        android:layout_height="50dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="20dp"
-                        android:layout_width="150dp"
                         android:background="@drawable/rectangle_shape"
                         android:elevation="10dp"
                         android:outlineAmbientShadowColor="@color/black"
-                        android:layout_height="50dp"
                         app:layout_constraintStart_toStartOf="@+id/time_book_text"
                         app:layout_constraintTop_toBottomOf="@+id/time_book_text">
 
                         <TextView
+                            android:id="@+id/time_book_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="8:00"
                             android:layout_marginLeft="10dp"
+                            android:text="8:00"
                             android:textSize="16dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/time_book_value2"
-                        android:layout_width="150dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="60dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/rectangle_shape"
-                        android:elevation="10dp"
-                        android:outlineAmbientShadowColor="@color/black"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/time_book_value"
-                        app:layout_constraintTop_toBottomOf="@+id/time_book_text">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="9:00"
-                            android:textSize="16dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

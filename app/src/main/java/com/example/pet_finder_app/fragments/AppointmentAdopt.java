@@ -159,7 +159,7 @@ public class AppointmentAdopt extends Fragment {
                 if (ordersForPet != null && !ordersForPet.isEmpty()) {
                     for (AdoptOrder orderPet : ordersForPet) {
                         Appoitment appoitment = appoitmentHash.get(orderPet.getIdOrder());
-                        if(appoitment != null){
+                        if(appoitment != null && orderPet.getStatus().equals("Accept")){
                             appointmentItems.add(new AppointmentItem(
                                     appoitment.getIdAppointment(),
                                     pet.getImgUrl(),
