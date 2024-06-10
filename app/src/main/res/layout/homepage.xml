@@ -6,82 +6,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomepageActivity">
+    <LinearLayout
+        android:id="@+id/navigate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/menu_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp">
 
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/avatar" />
+
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/barchart" />
+            <ImageView
+                android:id="@+id/faq"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/icon_bot" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/notification_homepage"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/chat_vector" />
+
+            <ImageView
+                android:id="@+id/notification_homepage"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bell" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-20dp"
+        app:layout_constraintTop_toBottomOf="@+id/navigate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/menu_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp">
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
-
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/avatar" />
-
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/barchart" />
-                <ImageView
-                    android:id="@+id/faq"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginEnd="25dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView3"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/faq" />
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginEnd="25dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/notification_homepage"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/chat_vector" />
-
-                <ImageView
-                    android:id="@+id/notification_homepage"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:layout_marginEnd="25dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView5"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/bell" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -470,14 +470,13 @@
 
                     <TextView
                         android:id="@+id/missingInfo"
-                        android:layout_width="268dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="17dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/poppins"
                         android:text="Help your family find missing animals"
                         app:layout_constraintStart_toStartOf="@+id/missingAnimal"
                         app:layout_constraintTop_toBottomOf="@+id/missingAnimal" />
-
                     <TextView
                         android:id="@+id/missingAnimal"
                         android:layout_width="wrap_content"
@@ -499,13 +498,13 @@
                     android:layout_height="match_parent"
                     android:layout_marginBottom="80dp"
                     app:layout_constraintTop_toBottomOf="@+id/missingPetLayout" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
     </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/menu"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@drawable/rectangle_shape"

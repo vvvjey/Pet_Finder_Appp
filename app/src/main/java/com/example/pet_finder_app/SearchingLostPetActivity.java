@@ -8,6 +8,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -57,6 +58,11 @@ public class SearchingLostPetActivity extends AppCompatActivity {
         favorite_btn = findViewById(R.id.favorite_btn);
         filterMissing = findViewById(R.id.filterMissing);
         ImageView notifiImg = findViewById(R.id.notification_homepage);
+        LinearLayout homeSection = findViewById(R.id.home_sec);
+        LinearLayout missingSection = findViewById(R.id.missing_sec);
+        LinearLayout adoptSection = findViewById(R.id.adopt_sec);
+        LinearLayout rescueSection = findViewById(R.id.rescue_sec);
+        LinearLayout profileSection = findViewById(R.id.profile_sec);
         notifiImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +110,36 @@ public class SearchingLostPetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), FilterMissingPet.class));
+            }
+        });
+        homeSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
+            }
+        });
+        missingSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SearchingLostPetActivity.class));
+            }
+        });
+        adoptSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AdoptingPetActivity.class));
+            }
+        });
+        rescueSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RescueCategoryActivity.class));
+            }
+        });
+        profileSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
             }
         });
         renderAllMissingPost();

@@ -54,6 +54,12 @@ public class HomepageActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SearchingLostPetActivity.class));
             }
         });
+        homeSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
+            }
+        });
         missingSection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
