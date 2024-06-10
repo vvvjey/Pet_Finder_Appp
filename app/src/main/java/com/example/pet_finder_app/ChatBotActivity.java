@@ -1,5 +1,6 @@
     package com.example.pet_finder_app;
 
+    import android.content.Intent;
     import android.net.Uri;
     import android.os.Bundle;
     import android.view.View;
@@ -28,7 +29,7 @@
         // creating variables for our
         // widgets in xml file.
         private RecyclerView chatsRV;
-        private ImageView sendMsgIB;
+        private ImageView sendMsgIB, back;
         private EditText userMsgEdt;
         private final String USER_KEY = "user";
         private final String BOT_KEY = "bot";
@@ -50,6 +51,16 @@
             chatsRV = findViewById(R.id.idRVChats);
             sendMsgIB = findViewById(R.id.idIBSend);
             userMsgEdt = findViewById(R.id.idEdtMessage);
+            back = findViewById(R.id.imgBack);
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), HomepageActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+
 
             // below line is to initialize our request queue.
             mRequestQueue = Volley.newRequestQueue(ChatBotActivity.this);
