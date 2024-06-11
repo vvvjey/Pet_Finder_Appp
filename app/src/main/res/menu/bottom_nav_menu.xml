@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/ic_home"
+        android:title="Home"
+        android:icon="@drawable/home_black"/>
+    <item
+        android:id="@+id/ic_missing"
+        android:title="Missing"
+        android:icon="@drawable/footprint_black"/>
+    <item
+        android:id="@+id/ic_adopt"
+        android:title="Adopt"
+        android:icon="@drawable/adopt_black"/>
+    <item
+        android:id="@+id/ic_rescue"
+        android:title="Rescue"
+        android:icon="@drawable/rescue_black"/>
+    <item
+        android:id="@+id/ic_profile"
+        android:title="Profile"
+        android:icon="@drawable/profile_black"/>
+</menu>

@@ -63,6 +63,7 @@ public class SearchingLostPetActivity extends AppCompatActivity {
         LinearLayout adoptSection = findViewById(R.id.adopt_sec);
         LinearLayout rescueSection = findViewById(R.id.rescue_sec);
         LinearLayout profileSection = findViewById(R.id.profile_sec);
+
         notifiImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

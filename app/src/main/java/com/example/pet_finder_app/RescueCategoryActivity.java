@@ -3,6 +3,7 @@ package com.example.pet_finder_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +32,41 @@ public class RescueCategoryActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        LinearLayout homeSection = findViewById(R.id.home_sec);
+        LinearLayout missingSection = findViewById(R.id.missing_sec);
+        LinearLayout adoptSection = findViewById(R.id.adopt_sec);
+        LinearLayout rescueSection = findViewById(R.id.rescue_sec);
+        LinearLayout profileSection = findViewById(R.id.profile_sec);
+        homeSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
+            }
+        });
+        missingSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SearchingLostPetActivity.class));
+            }
+        });
+        adoptSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AdoptingPetActivity.class));
+            }
+        });
+        rescueSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RescueCategoryActivity.class));
+            }
+        });
+        profileSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            }
+        });
         arrowBack = findViewById(R.id.toolbarArrowBack);
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override

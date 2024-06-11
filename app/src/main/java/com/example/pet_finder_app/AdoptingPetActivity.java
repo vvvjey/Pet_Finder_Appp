@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -65,6 +66,11 @@ public class AdoptingPetActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        LinearLayout homeSection = findViewById(R.id.home_sec);
+        LinearLayout missingSection = findViewById(R.id.missing_sec);
+        LinearLayout adoptSection = findViewById(R.id.adopt_sec);
+        LinearLayout rescueSection = findViewById(R.id.rescue_sec);
+        LinearLayout profileSection = findViewById(R.id.profile_sec);
 
         arrowBack = findViewById(R.id.toolbarArrowBack);
         arrowBack.setOnClickListener(new View.OnClickListener() {
@@ -118,6 +124,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
         favorite_btn = findViewById(R.id.favorite_btn);
         filterAdopt = findViewById(R.id.filterAdopt);
         ImageView notifiImg = findViewById(R.id.notification_homepage);
+
         notifiImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,6 +150,36 @@ public class AdoptingPetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), FillInforToAdoptActivity.class));
+            }
+        });
+        homeSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
+            }
+        });
+        missingSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SearchingLostPetActivity.class));
+            }
+        });
+        adoptSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AdoptingPetActivity.class));
+            }
+        });
+        rescueSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RescueCategoryActivity.class));
+            }
+        });
+        profileSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
             }
         });
 //        filterAdopt.setOnClickListener(new View.OnClickListener() {

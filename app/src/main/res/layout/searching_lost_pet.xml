@@ -95,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="60dp"
                 android:dividerHeight="0dp"
                 android:visibility="visible"
                 app:layout_constraintTop_toTopOf="parent"></ListView>
@@ -110,7 +111,7 @@
                     android:id="@+id/add_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginBottom="60dp"
                     android:backgroundTint="@color/blue"
                     android:clickable="true"
                     android:focusable="true"

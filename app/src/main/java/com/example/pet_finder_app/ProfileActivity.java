@@ -3,6 +3,7 @@ package com.example.pet_finder_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -28,6 +29,11 @@ public class ProfileActivity extends AppCompatActivity {
         profileAdoptHistory = findViewById(R.id.profileAdoptHistory);
         profileAccountSetting = findViewById(R.id.profileSetting);
         item_logout = findViewById(R.id.item_logOut);
+        LinearLayout homeSection = findViewById(R.id.home_sec);
+        LinearLayout missingSection = findViewById(R.id.missing_sec);
+        LinearLayout adoptSection = findViewById(R.id.adopt_sec);
+        LinearLayout rescueSection = findViewById(R.id.rescue_sec);
+        LinearLayout profileSection = findViewById(R.id.profile_sec);
 
 
         arrowBack.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +73,36 @@ public class ProfileActivity extends AppCompatActivity {
                 auth.signOut();
                 startActivity(new Intent(ProfileActivity.this, LoginActivity.class));
                 finish();
+            }
+        });
+        homeSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), HomepageActivity.class));
+            }
+        });
+        missingSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SearchingLostPetActivity.class));
+            }
+        });
+        adoptSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AdoptingPetActivity.class));
+            }
+        });
+        rescueSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RescueCategoryActivity.class));
+            }
+        });
+        profileSection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
             }
         });
 
