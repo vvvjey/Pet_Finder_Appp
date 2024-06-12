@@ -14,11 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.pet_finder_app.AdoptStatusAdapter;
 import com.example.pet_finder_app.AdoptStatusItem;
 import com.example.pet_finder_app.Class.AdoptOrder;
 import com.example.pet_finder_app.Class.AdoptPet;
 import com.example.pet_finder_app.Class.Pet;
+import com.example.pet_finder_app.HistoryAdapter;
 import com.example.pet_finder_app.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -132,14 +132,14 @@ public class RejectRequest extends Fragment {
 
                 if (ordersForPet != null && !ordersForPet.isEmpty()) {
                     for (AdoptOrder orderPet : ordersForPet) {
-                        if(orderPet.getStatus().equals("Reject")){
+                        if(orderPet.getStatus().equals("Reject") || orderPet.getStatus().equals("Rejected")){
                             petItems.add(new AdoptStatusItem(
-                                    pet.getImgUrl(),
+                                    pet.getImgUrl().get(0),
                                     pet.getName(),
                                     "Medium",
                                     "Alaska",
                                     pet.getColor(),
-                                    "Reject",
+                                    "Rejected",
                                     pet.getIdPet(),
                                     orderPet.getIdOrder(),
                                     adoptPet.getId()
@@ -153,7 +153,7 @@ public class RejectRequest extends Fragment {
         }
 
 
-        AdoptStatusAdapter petAdapter = new AdoptStatusAdapter(petItems, getContext());
+        HistoryAdapter petAdapter = new HistoryAdapter(petItems, getContext());
         recyclerView.setAdapter(petAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
     }

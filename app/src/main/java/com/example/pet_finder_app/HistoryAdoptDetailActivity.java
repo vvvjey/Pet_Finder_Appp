@@ -2,6 +2,7 @@ package com.example.pet_finder_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -74,15 +75,18 @@ public class HistoryAdoptDetailActivity extends AppCompatActivity {
 
         TextView requestText = findViewById(R.id.request_text);
         TextView statusText = findViewById(R.id.booked_text);
+        TextView adoptionText = findViewById(R.id.adoption_text);
 
         TextView requestTime = findViewById(R.id.request_time);
         TextView bookTime = findViewById(R.id.booked_time);
+        TextView adoptionTime = findViewById(R.id.adoption_time);
 
         TextView dateBook = findViewById(R.id.date_book_value);
         TextView timeBook = findViewById(R.id.time_book_value);
 
         idPet = getIntent().getStringExtra("idPet");
         idOrder = getIntent().getStringExtra("idOrder");
+        Log.d("Show id order", idOrder);
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
 
@@ -124,29 +128,39 @@ public class HistoryAdoptDetailActivity extends AppCompatActivity {
         databaseReference.child("AdoptOrder").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap: snapshot.getChildren()){
-                    if(idOrder.equals(snap.getValue(AdoptOrder.class).getIdOrder())) {
-                        order = snap.getValue(AdoptOrder.class);
-                        if(order.getStatus().equals("Pretending")){
-                            requestText.setText("Request to Adopt");
-                        } else if (order.getStatus().equals("Accept")) {
-                            requestText.setText("Request to Adopt");
+                for (DataSnapshot snap: snapshot.getChildren()) {
+                    AdoptOrder adoptOrder = snap.getValue(AdoptOrder.class);
+                    if (adoptOrder != null && idOrder.equals(adoptOrder.getIdOrder())) {
+                        order = adoptOrder;
+                        requestText.setText("Request to Adopt");
+                        requestTime.setText(order.getStatusTime().get(0));
+                        if ("Accept".equals(order.getStatus())) {
                             statusText.setText("Successfully booked appointment");
-                            bookTime.setText("18/03/2024 - 11:00");
-                        } else if (order.getStatus().equals("Cancelled")){
-                            requestText.setText("Request to Adopt");
+                            bookTime.setText(order.getStatusTime().get(1));
+                        } else if ("Reject".equals(order.getStatus())) {
                             statusText.setText("The appointment has been cancelled");
-                            bookTime.setText("18/03/2024 - 11:00");
-                        }else{break;}
+                            bookTime.setText(order.getStatusTime().get(1));
+                        } else if ("Completed".equals(order.getStatus())) {
+                            statusText.setText("Successfully booked appointment");
+                            bookTime.setText(order.getStatusTime().get(1));
+                            adoptionText.setText("The adoption has been completed");
+                            adoptionTime.setText(order.getStatusTime().get(2));
+                        } else if ("Rejected".equals(order.getStatus())) {
+                            statusText.setText("Successfully booked appointment");
+                            bookTime.setText(order.getStatusTime().get(1));
+                            adoptionText.setText("The adoption has been rejected");
+                            adoptionTime.setText(order.getStatusTime().get(2));
+                        }
                         idUser = order.getUserId();
                         requestMsg.setText(order.getRequestMsg());
                         break;
                     }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.e("HistoryAdoptDetail", "Failed to read AdoptOrder value.", error.toException());
             }
         });
 
@@ -156,7 +170,7 @@ public class HistoryAdoptDetailActivity extends AppCompatActivity {
                 for (DataSnapshot snap: snapshot.getChildren()){
                     if(idPet.equals(snap.getValue(Pet.class).getIdPet())) {
                         pet = snap.getValue(Pet.class);
-                        Picasso.get().load(pet.getImgUrl()).into(imageView);
+                        Picasso.get().load(pet.getImgUrl().get(0)).into(imageView);
                         petAge.setText(pet.getAge());
                         petBreed.setText(pet.getBreed());
                         registerDay.setText(pet.getRegisterDate());
@@ -167,6 +181,7 @@ public class HistoryAdoptDetailActivity extends AppCompatActivity {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 for (DataSnapshot snap: snapshot.getChildren()){
+                                    Log.d("Show id user", idUser);
                                     if(idUser.equals(snap.getValue(User.class).getUserId())) {
                                         user = snap.getValue(User.class);
                                         nameUser.setText(user.getName());

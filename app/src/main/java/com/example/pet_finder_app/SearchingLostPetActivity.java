@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchingLostPetActivity extends AppCompatActivity {
     Toolbar arrowBack;
@@ -30,6 +31,7 @@ public class SearchingLostPetActivity extends AppCompatActivity {
     ListView lv;
     SearchingLostPetAdapter adapter;
     ArrayList<MissingPet> arrayList;
+    List<String> imageUrls = new ArrayList<>();
     ImageView filterMissing;
     private boolean clicked;
 
@@ -166,9 +168,9 @@ public class SearchingLostPetActivity extends AppCompatActivity {
 
                     String size = snapshot.child("size").getValue(String.class);
                     String postUserId = snapshot.child("postUserId").getValue(String.class);
-
+                    imageUrls.add(imageUrl);
                     // Create a MissingPet object and add it to the list
-                    MissingPet pet = new MissingPet(age,breed, "categoryId", color, description, gender, "idPet", imageUrl, name, registerDate, size, "typeId", "weight", "id", typeMissing,addressMissing, dateMissing, requestPoster,postUserId,statusMissing);
+                    MissingPet pet = new MissingPet(age,breed, "categoryId", color, description, gender, "idPet", imageUrls, name, registerDate, size, "typeId", "weight", "id", typeMissing,addressMissing, dateMissing, requestPoster,postUserId,statusMissing);
                     arrayList.add(pet);
                 }
                 adapter.notifyDataSetChanged();

@@ -1,11 +1,12 @@
 package com.example.pet_finder_app;
 
 public class AppointmentItem {
-    private String appointmentId,imageId, idPet, name, gender, date, time, sender;
+    private String appointmentId,idOrder, imageId, idPet, name, gender, date, time, sender;
 
-    public AppointmentItem(String appointmentId, String imageId, String idPet, String name, String gender, String date, String time, String sender) {
+    public AppointmentItem(String appointmentId, String idOrder, String imageId, String idPet, String name, String gender, String date, String time, String sender) {
         this.appointmentId = appointmentId;
         this.imageId = imageId;
+        this.idOrder = idOrder;
         this.idPet = idPet;
         this.name = name;
         this.gender = gender;
@@ -15,6 +16,14 @@ public class AppointmentItem {
     }
 
     public AppointmentItem(){}
+
+    public String getIdOrder() {
+        return idOrder;
+    }
+
+    public void setIdOrder(String idOrder) {
+        this.idOrder = idOrder;
+    }
 
     public String getImageId() {
         return imageId;

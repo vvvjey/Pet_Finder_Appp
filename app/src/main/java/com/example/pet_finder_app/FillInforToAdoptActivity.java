@@ -34,7 +34,10 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -51,6 +54,7 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
     List<DistrictPlaces> districtList;
     List<WardPlaces> wardList;
     List<Pet> petList = new ArrayList<>();
+    List<String> statusTime = new ArrayList<>();
     Pet pet;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -306,7 +310,13 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
         idOrder = adoptRef.getKey();
         idMeet = meetRef.getKey();
 
-        adoptOrder = new AdoptOrder(idOrder, idPet, "2", requestMsg, "Pretending");
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+        String formattedDate = dateFormat.format(currentTime);
+
+        statusTime.add(formattedDate);
+
+        adoptOrder = new AdoptOrder(idOrder, idPet, "2", requestMsg, "Pretending",statusTime);
         appoitment = new Appoitment(idOrder,dateMeet, idMeet, "1", "2", timeMeet);
         adoptRef.setValue(adoptOrder);
         meetRef.setValue(appoitment);

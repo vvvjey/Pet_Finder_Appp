@@ -156,7 +156,7 @@ public class MyShopActivity extends AppCompatActivity {
             if(adoptPet != null && pet.getPostUserId().equals(idUser)){
                 ShopList.add(new AdoptingCategoryDomain(
                         pet.getIdPet(),
-                        pet.getImgUrl(),
+                        pet.getImgUrl().get(0),
                         pet.getName(),
                         "favorite",
                         adoptPet.getPrice(),

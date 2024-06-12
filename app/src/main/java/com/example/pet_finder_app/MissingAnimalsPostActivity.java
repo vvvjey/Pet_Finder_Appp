@@ -5,11 +5,9 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -22,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MissingAnimalsPostActivity extends AppCompatActivity {
     Toolbar arrowBack;
@@ -125,7 +124,7 @@ public class MissingAnimalsPostActivity extends AppCompatActivity {
                         String name = snapshot.child("name").getValue(String.class);
                         String color = snapshot.child("color").getValue(String.class);
                         String registerDate = snapshot.child("registerDate").getValue(String.class);
-                        String imageUrl = snapshot.child("imgUrl").getValue(String.class);
+                        List<String> imageUrl = snapshot.child("imgUrl").getValue(List.class);
                         String typeMissing = snapshot.child("typeMissing").getValue(String.class);
                         String age = snapshot.child("age").getValue(String.class);
                         String breed = snapshot.child("breed").getValue(String.class);

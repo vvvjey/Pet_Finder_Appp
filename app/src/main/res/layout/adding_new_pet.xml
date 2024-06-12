@@ -450,27 +450,122 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fill_price">
 
+                    <ImageView
+                        android:id="@+id/uploadImg1"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="20dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintStart_toEndOf="@+id/fill_img"
+                        app:layout_constraintTop_toTopOf="@+id/fill_img" />
 
                     <ImageView
-                        android:id="@+id/deleteImg"
+                        android:id="@+id/deleteImg1"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:clickable="true"
                         android:focusable="true"
-                        app:layout_constraintBottom_toTopOf="@+id/uploadImg"
-                        app:layout_constraintEnd_toEndOf="@+id/uploadImg"
-                        app:layout_constraintStart_toEndOf="@+id/uploadImg"
-                        app:layout_constraintTop_toTopOf="@+id/uploadImg"
+                        app:layout_constraintBottom_toTopOf="@+id/uploadImg1"
+                        app:layout_constraintEnd_toEndOf="@+id/uploadImg1"
+                        app:layout_constraintStart_toEndOf="@+id/uploadImg1"
+                        app:layout_constraintTop_toTopOf="@+id/uploadImg1" />
+
+                    <ImageView
+                        android:id="@+id/uploadImg2"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:layout_marginStart="20dp"
+                        app:layout_constraintStart_toEndOf="@+id/uploadImg1"
+                        app:layout_constraintTop_toTopOf="@+id/uploadImg1"
                         />
 
                     <ImageView
-                        android:id="@+id/uploadImg"
+                        android:id="@+id/deleteImg2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintBottom_toTopOf="@+id/uploadImg2"
+                        app:layout_constraintEnd_toEndOf="@+id/uploadImg2"
+                        app:layout_constraintStart_toEndOf="@+id/uploadImg2"
+                        app:layout_constraintTop_toTopOf="@+id/uploadImg2"
+                        />
+
+                    <ImageView
+                        android:id="@+id/uploadImg3"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:layout_marginStart="20dp"
-                        app:layout_constraintStart_toEndOf="@+id/fill_img"
-                        app:layout_constraintTop_toTopOf="@+id/fill_img"
+                        android:layout_centerInParent="true"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:layout_marginTop="20dp"
+                        app:layout_constraintStart_toStartOf="@+id/fill_img"
+                        app:layout_constraintTop_toBottomOf="@+id/fill_img" />
+
+                    <ImageView
+                        android:id="@+id/deleteImg3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintBottom_toTopOf="@+id/uploadImg3"
+                        app:layout_constraintEnd_toEndOf="@+id/uploadImg3"
+                        app:layout_constraintStart_toEndOf="@+id/uploadImg3"
+                        app:layout_constraintTop_toTopOf="@+id/uploadImg3"
                         />
+
+                    <ImageView
+                        android:id="@+id/uploadImg4"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:layout_marginStart="20dp"
+                        app:layout_constraintStart_toEndOf="@+id/uploadImg3"
+                        app:layout_constraintTop_toTopOf="@+id/uploadImg3" />
+
+                    <ImageView
+                        android:id="@+id/deleteImg4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintBottom_toTopOf="@+id/uploadImg4"
+                        app:layout_constraintEnd_toEndOf="@+id/uploadImg4"
+                        app:layout_constraintStart_toEndOf="@+id/uploadImg4"
+                        app:layout_constraintTop_toTopOf="@+id/uploadImg4"
+                        />
+
+                    <ImageView
+                        android:id="@+id/uploadImg5"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_centerInParent="true"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:layout_marginStart="20dp"
+                        app:layout_constraintStart_toEndOf="@+id/uploadImg4"
+                        app:layout_constraintTop_toTopOf="@+id/uploadImg4" />
+
+                    <ImageView
+                        android:id="@+id/deleteImg5"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintBottom_toTopOf="@+id/uploadImg5"
+                        app:layout_constraintEnd_toEndOf="@+id/uploadImg5"
+                        app:layout_constraintStart_toEndOf="@+id/uploadImg5"
+                        app:layout_constraintTop_toTopOf="@+id/uploadImg5"
+                        />
+
+
 
                     <TextView
                         android:id="@+id/pic_title"

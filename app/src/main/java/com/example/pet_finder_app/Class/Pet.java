@@ -1,5 +1,7 @@
 package com.example.pet_finder_app.Class;
 
+import java.util.List;
+
 public class Pet {
     private String age;
     private String breed;
@@ -8,14 +10,14 @@ public class Pet {
     private String description;
     private String gender;
     private String idPet;
-    private String imgUrl;
+    private List<String> imgUrl;
     private String name;
     private String registerDate;
     private String size;
     private String typeId;
     private String weight;
     private String postUserId;
-    public Pet(String age,String breed, String categoryId, String color, String description, String gender, String idPet, String imgUrl, String name, String registerDate, String size, String typeId, String weight,String postUserId) {
+    public Pet(String age,String breed, String categoryId, String color, String description, String gender, String idPet, List<String> imgUrl, String name, String registerDate, String size, String typeId, String weight,String postUserId) {
         this.age = age;
         this.breed = breed;
         this.categoryId = categoryId;
@@ -98,11 +100,11 @@ public class Pet {
         this.idPet = idPet;
     }
 
-    public String getImgUrl() {
+    public List<String> getImgUrl() {
         return imgUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
+    public void setImgUrl(List<String> imgUrl) {
         this.imgUrl = imgUrl;
     }
 

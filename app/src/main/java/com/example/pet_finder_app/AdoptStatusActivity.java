@@ -208,7 +208,7 @@ public class AdoptStatusActivity extends AppCompatActivity {
                                 pet.getColor(),
                                 pet.getGender(),
                                 pet.getIdPet(),
-                                pet.getImgUrl(),
+                                pet.getImgUrl().get(0),
                                 pet.getName(),
                                 pet.getRegisterDate(),
                                 adoptPet.getStatus()

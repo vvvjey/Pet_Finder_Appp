@@ -162,7 +162,8 @@ public class AppointmentAdopt extends Fragment {
                         if(appoitment != null && orderPet.getStatus().equals("Accept")){
                             appointmentItems.add(new AppointmentItem(
                                     appoitment.getIdAppointment(),
-                                    pet.getImgUrl(),
+                                    orderPet.getIdOrder(),
+                                    pet.getImgUrl().get(0),
                                     pet.getIdPet(),
                                     pet.getName(),
                                     pet.getGender(),

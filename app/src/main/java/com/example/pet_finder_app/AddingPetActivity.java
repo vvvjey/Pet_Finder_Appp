@@ -29,8 +29,6 @@ import com.bumptech.glide.Glide;
 import com.example.pet_finder_app.Class.AdoptOrder;
 import com.example.pet_finder_app.Class.AdoptPet;
 import com.example.pet_finder_app.Class.Pet;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -40,19 +38,26 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class AddingPetActivity extends AppCompatActivity {
     Toolbar arrowBack;
     Button backPet;
     FloatingActionButton addImg;
-    ImageView uploadImg, deleteImg;
-    Uri image;
+    List<Uri> image = new ArrayList<>();
+
+    List<ImageView> uploadImg = new ArrayList<>(5);
+    List<ImageView> deleteImg = new ArrayList<>(5);
     Pet pet;
     AdoptPet adopt;
     AdoptOrder order;
@@ -61,7 +66,9 @@ public class AddingPetActivity extends AppCompatActivity {
     Spinner category, size, gender, color, breed;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    String typeId, name, description, price, age, weight, imageUrl, idPetKey, idAdoptKey, calendarText;
+    String typeId, name, description, price, age, weight, idPetKey, idAdoptKey, calendarText;
+    List<String> imageUrl = new ArrayList<>(Collections.nCopies(5, ""));
+    List<String> imageUrlCheck = new ArrayList<>(Collections.nCopies(5, ""));
     StorageReference storageReference;
     EditText petName;
     EditText petDes;
@@ -78,6 +85,8 @@ public class AddingPetActivity extends AppCompatActivity {
 
     boolean isImage = false;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,12 +97,18 @@ public class AddingPetActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        imageUrlCheck = new ArrayList<>(Arrays.asList("no", "no", "no", "no", "no"));
         addImg = findViewById(R.id.add_img);
         arrowBack = findViewById(R.id.toolbarArrowBack);
         backPet = findViewById(R.id.btn_add);
-        uploadImg = findViewById(R.id.uploadImg);
-        activity = getIntent().getStringExtra("activity");
+        uploadImg.add(findViewById(R.id.uploadImg1));
+        uploadImg.add(findViewById(R.id.uploadImg2));
+        uploadImg.add(findViewById(R.id.uploadImg3));
+        uploadImg.add(findViewById(R.id.uploadImg4));
+        uploadImg.add(findViewById(R.id.uploadImg5));
 
+
+        activity = getIntent().getStringExtra("activity");
 
 
         arrowBack.setOnClickListener(new View.OnClickListener() {
@@ -209,16 +224,58 @@ public class AddingPetActivity extends AppCompatActivity {
                 }
             });
         }
+        deleteImg.add(findViewById(R.id.deleteImg1));
+        deleteImg.add(findViewById(R.id.deleteImg2));
+        deleteImg.add(findViewById(R.id.deleteImg3));
+        deleteImg.add(findViewById(R.id.deleteImg4));
+        deleteImg.add(findViewById(R.id.deleteImg5));
 
-        deleteImg = findViewById(R.id.deleteImg);
-        deleteImg.setOnClickListener(new View.OnClickListener() {
+        deleteImg.get(0).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadImg.setImageDrawable(null);
-                deleteImg.setImageDrawable(null);
+                uploadImg.get(0).setImageDrawable(null);
+                imageUrlCheck.set(0, "no");
+                deleteImg.get(0).setImageDrawable(null);
                 Toast.makeText(AddingPetActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
             }
         });
+        deleteImg.get(1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadImg.get(1).setImageDrawable(null);
+                imageUrlCheck.set(1, "no");
+                deleteImg.get(1).setImageDrawable(null);
+                Toast.makeText(AddingPetActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
+        deleteImg.get(2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadImg.get(2).setImageDrawable(null);
+                imageUrlCheck.set(2, "no");
+                deleteImg.get(2).setImageDrawable(null);
+                Toast.makeText(AddingPetActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
+        deleteImg.get(3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadImg.get(3).setImageDrawable(null);
+                imageUrlCheck.set(3, "no");
+                deleteImg.get(3).setImageDrawable(null);
+                Toast.makeText(AddingPetActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
+        deleteImg.get(4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadImg.get(4).setImageDrawable(null);
+                imageUrlCheck.set(4, "no");
+                deleteImg.get(4).setImageDrawable(null);
+                Toast.makeText(AddingPetActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
 
@@ -243,7 +300,12 @@ public class AddingPetActivity extends AppCompatActivity {
                         color.setSelection(colorAdapter.getPosition(pet.getColor()));
                         petWeight.setText(pet.getWeight());
                         petDes.setText(pet.getDescription());
-                        Picasso.get().load(pet.getImgUrl()).into(uploadImg);
+                        for (int i = 0; i < 5; i++){
+                            if(!Objects.equals(pet.getImgUrl().get(i), "")){
+                                imageUrl.set(i, pet.getImgUrl().get(i));
+                                Picasso.get().load(pet.getImgUrl().get(i)).into(uploadImg.get(i));
+                            }
+                        }
 //                        Log.d("ShowIntent", "GetTheRightThing");
                         idPet = getIntent().getStringExtra("idPet");
                         name = pet.getName();
@@ -254,7 +316,12 @@ public class AddingPetActivity extends AppCompatActivity {
 //                        Log.d("age","age: " + age);
                         weight = pet.getWeight();
 //                        Log.d("weight","weight: " + weight);
-                        deleteImg.setImageResource(R.drawable.deletebtn);
+                        for (int i = 0; i < deleteImg.size(); i++){
+                            if(!Objects.equals(pet.getImgUrl().get(i), "")){
+                                deleteImg.get(i).setImageResource(R.drawable.deletebtn);
+                            }
+                        }
+
                         break;
                     }
                 }
@@ -566,55 +633,82 @@ public class AddingPetActivity extends AppCompatActivity {
         }
     }
 
-    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-        @Override
-        public void onActivityResult(ActivityResult result) {
-            if (result.getResultCode() == RESULT_OK) {
-                if (result.getData() != null) {
-                    image = result.getData().getData();
-                    Glide.with(getApplicationContext()).load(image).into(uploadImg);
-                    deleteImg.setImageResource(R.drawable.deletebtn);
+    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK) {
+                        if (result.getData() != null) {
+                            Uri selectedImageUri = result.getData().getData();
+                            if (selectedImageUri != null) {
+                                image.add(selectedImageUri);
+                                boolean imageSet = false;
 
+                                for (int i = 0; i < imageUrlCheck.size(); i++) {
+                                    if (imageUrlCheck.get(i).equals("no")) {
+                                        deleteImg.get(i).setImageResource(R.drawable.deletebtn);
+                                        Glide.with(getApplicationContext()).load(selectedImageUri).into(uploadImg.get(i));
+                                        imageUrlCheck.set(i, "yes");
+                                        imageSet = true;
+                                        break;
+                                    }
+                                }
+
+                                if (!imageSet) {
+                                    Toast.makeText(AddingPetActivity.this, "No empty slot to set the image", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(AddingPetActivity.this, "Failed to get image URI", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(AddingPetActivity.this, "Failed to get image data", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(AddingPetActivity.this, "Please select an image", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            } else {
-                Toast.makeText(AddingPetActivity.this, "Please select an image", Toast.LENGTH_SHORT).show();
             }
-        }
-    });
+    );
 
-    private void uploadImage(Uri file) {
+
+
+
+    private void uploadImage(List<Uri> files) {
         FirebaseApp.initializeApp(this);
         storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference ref = storageReference.child(UUID.randomUUID().toString());
-        ref.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        imageUrl = uri.toString();
-                        if(isImage){
+
+        AtomicInteger uploadedCount = new AtomicInteger(0); // Counter for successful uploads
+
+        for (Uri file : files) {
+            StorageReference ref = storageReference.child(UUID.randomUUID().toString());
+            ref.putFile(file).addOnSuccessListener(taskSnapshot -> {
+                ref.getDownloadUrl().addOnSuccessListener(uri -> {
+                    for (int i = 0; i < imageUrl.size(); i++) {
+                        if (imageUrl.get(i).equals("") || imageUrl.get(i).isEmpty()) {
+                            imageUrl.set(i, uri.toString());
+                            break;
+                        }
+                    }
+                    uploadedCount.incrementAndGet(); //
+
+                    if (uploadedCount.get() == files.size()) { // Check if all uploads are done
+                        if (isImage) {
                             updateImage();
-                        }else{
+                        } else {
                             uploadDataFirebase();
                         }
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(AddingPetActivity.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
-                    }
+                }).addOnFailureListener(e -> {
+                    Toast.makeText(AddingPetActivity.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
                 });
                 Toast.makeText(AddingPetActivity.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
-
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
+            }).addOnFailureListener(e -> {
                 Toast.makeText(AddingPetActivity.this, "Failed!" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+            });
+        }
     }
+
 
     private void updateImage(){
         databaseReference.child("Pet").addListenerForSingleValueEvent(new ValueEventListener() {
