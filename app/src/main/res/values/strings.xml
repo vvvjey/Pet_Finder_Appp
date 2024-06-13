@@ -27,14 +27,19 @@
     <string-array name="category">
         <item android:label="cat1">cat</item>
         <item android:label="cat2">dog</item>
+        <item android:label="cat2">turtle</item>
+        <item android:label="cat2">hamster</item>
+        <item android:label="cat2">rabbit</item>
         <item android:label="cat3">duck</item>
         <item android:label="cat4">others</item>
     </string-array>
     <string-array name="color">
+        <item android:label="color0">Choose color</item>
         <item android:label="color1">black</item>
         <item android:label="color2">white</item>
-        <item android:label="color3">red</item>
-        <item android:label="color4">rainbow</item>
+        <item android:label="color3">yellow</item>
+        <item android:label="color3">brown</item>
+        <item android:label="color4">others</item>
     </string-array>
     <string-array name="gender">
         <item android:label="gender1">male</item>
@@ -43,10 +48,16 @@
     <string-array name="size">
         <item android:label="size1">small</item>
         <item android:label="size2">medium</item>
-        <item android:label="size3">big</item>
-        <item android:label="size4">huge</item>
+        <item android:label="size3">large</item>
+    </string-array>
+    <string-array name="age">
+        <item android:label="age1">baby</item>
+        <item android:label="age2">young</item>
+        <item android:label="age3">adult</item>
+        <item android:label="age4">senior</item>
     </string-array>
     <string-array name="breed">
+        <item android:label="breed0">Choose breed</item>
         <item android:label="breed1">Alaska</item>
         <item android:label="breed2">French</item>
     </string-array>

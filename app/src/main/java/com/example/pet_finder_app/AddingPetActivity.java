@@ -1,5 +1,6 @@
 package com.example.pet_finder_app;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -62,11 +63,11 @@ public class AddingPetActivity extends AppCompatActivity {
     AdoptPet adopt;
     AdoptOrder order;
     String activity, idPet;
-    String categoryItem, sizeItem, genderItem, colorItem, breedItem;
-    Spinner category, size, gender, color, breed;
+    String ageItem, categoryItem, sizeItem, genderItem, colorItem, breedItem;
+    Spinner age,category, size, gender, color, breed;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
-    String typeId, name, description, price, age, weight, idPetKey, idAdoptKey, calendarText;
+    String typeId, name, description, price, weight, idPetKey, idAdoptKey, calendarText;
     List<String> imageUrl = new ArrayList<>(Collections.nCopies(5, ""));
     List<String> imageUrlCheck = new ArrayList<>(Collections.nCopies(5, ""));
     StorageReference storageReference;
@@ -77,6 +78,7 @@ public class AddingPetActivity extends AppCompatActivity {
     EditText petWeight;
     SimpleDateFormat simpleDateFormat;
     Calendar calendar;
+    ArrayAdapter<CharSequence> ageAdapter;
     ArrayAdapter<CharSequence> categoryAdapter;
     ArrayAdapter<CharSequence> sizeAdapter;
     ArrayAdapter<CharSequence>  genderAdapter;
@@ -87,6 +89,7 @@ public class AddingPetActivity extends AppCompatActivity {
 
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,14 +144,18 @@ public class AddingPetActivity extends AppCompatActivity {
         Button btnAdd = findViewById(R.id.btn_add);
 
 
-
+        age = (Spinner) findViewById(R.id.age_spinner);
         category = (Spinner) findViewById(R.id.category_spinner);
         size = (Spinner) findViewById(R.id.size_spinner);
         gender = (Spinner) findViewById(R.id.gender_spinner);
         color = (Spinner) findViewById(R.id.color_spinner);
         breed = (Spinner) findViewById(R.id.breed_spinner);
 
-
+        ageAdapter = ArrayAdapter.createFromResource(
+                this,
+                R.array.age,
+                android.R.layout.simple_spinner_item
+        );
         categoryAdapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.category,
@@ -174,13 +181,14 @@ public class AddingPetActivity extends AppCompatActivity {
                 R.array.breed,
                 android.R.layout.simple_spinner_item
         );
-
+        ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categoryAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         colorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         breedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        age.setAdapter(ageAdapter);
         category.setAdapter(categoryAdapter);
         size.setAdapter(sizeAdapter);
         gender.setAdapter(genderAdapter);
@@ -190,7 +198,6 @@ public class AddingPetActivity extends AppCompatActivity {
         petName = findViewById(R.id.editNamePet);
         petDes = findViewById(R.id.description_edit);
         petPrice = findViewById(R.id.price_edit);
-        petAge = findViewById(R.id.age_edit);
         petWeight = findViewById(R.id.weight_edit);
         simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         calendar = Calendar.getInstance();
@@ -312,7 +319,7 @@ public class AddingPetActivity extends AppCompatActivity {
 //                        Log.d("checkTest","Name2: " + name);
                         description = pet.getDescription();
 //                        Log.d("checkTest","description: " + description);
-                        age = pet.getAge();
+                        age.setSelection(ageAdapter.getPosition(pet.getAge()));
 //                        Log.d("age","age: " + age);
                         weight = pet.getWeight();
 //                        Log.d("weight","weight: " + weight);
@@ -446,7 +453,7 @@ public class AddingPetActivity extends AppCompatActivity {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         if (idPet.equals(snapshot.getValue(Pet.class).getIdPet())) {
                             databaseReference.child("Pet").child(idPet).child("age").setValue(petAge.getText().toString());
-                            age = petAge.getText().toString();
+                            ageItem = age.getSelectedItem().toString();
                         } else {
                             Log.d("ConstraintViolation", "idPet does not match the desired value.");
                         }
@@ -733,12 +740,12 @@ public class AddingPetActivity extends AppCompatActivity {
         DatabaseReference adoptRef = databaseReference.child("AdoptPet").push();
         DatabaseReference orderRef = databaseReference.child("AdoptOrder").push();
         addDatatoFirebase(petRef, adoptRef);
-        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(description) || TextUtils.isEmpty(price) ||
-                TextUtils.isEmpty(age) || TextUtils.isEmpty(weight))  {
+        if (TextUtils.isEmpty(name) || TextUtils.isEmpty(description) || TextUtils.isEmpty(price)
+                || TextUtils.isEmpty(weight))  {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;
         }
-        pet = new Pet(age,breedItem, "2", colorItem, description, genderItem, idPetKey, imageUrl, name, calendarText, sizeItem, categoryItem, weight,"1") ;
+        pet = new Pet(ageItem,breedItem, "2", colorItem, description, genderItem, idPetKey, imageUrl, name, calendarText, sizeItem, categoryItem, weight,"1") ;
         adopt = new AdoptPet(null, idAdoptKey, idPetKey, price, "Castrated");
         petRef.setValue(pet);
         adoptRef.setValue(adopt);
@@ -761,7 +768,7 @@ public class AddingPetActivity extends AppCompatActivity {
         name = petName.getText().toString();
         description = petDes.getText().toString();
         price = petPrice.getText().toString();
-        age = petAge.getText().toString();
+        ageItem = age.getSelectedItem().toString();
         weight = petWeight.getText().toString();
         idPetKey = petRef.getKey();
         idAdoptKey = adoptRef.getKey();
