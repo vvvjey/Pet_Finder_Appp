@@ -1,5 +1,6 @@
 package com.example.pet_finder_app;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,12 +26,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class DetailRequetAdoptActivity extends AppCompatActivity {
     Button rejectBtn, acceptBtn;
@@ -40,10 +45,13 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
     User user;
     Appoitment appointment;
     List<String> timeStatus = new ArrayList<>();
+    List<String> imageUrl = new ArrayList<>(Collections.nCopies(5, ""));
+    List<ImageView> uploadImg = new ArrayList<>(5);
     String ipPet, ipAdopt, idOrder, idUser;
     EditText addressEdt, nameEdt, dateBirthEdt, requestEdt, dateMeetEdt, phoneEdt, emailEdt, timeEdt, genderEdt;
     String fullName, dateBirth, gender, email, address, country, city,district, ward, phone, requestMsg, dateMeet, timeMeet, fullAddress;
 
+    @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -53,6 +61,11 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
         arrowBack = findViewById(R.id.toolbarArrowBack);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
+        uploadImg.add(findViewById(R.id.uploadImg1));
+        uploadImg.add(findViewById(R.id.uploadImg2));
+        uploadImg.add(findViewById(R.id.uploadImg3));
+        uploadImg.add(findViewById(R.id.uploadImg4));
+        uploadImg.add(findViewById(R.id.uploadImg5));
         idOrder = getIntent().getStringExtra("idOrder");
         Log.d("Show id Order: ", idOrder);
         nameEdt = findViewById(R.id.name_value);
@@ -298,5 +311,11 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
         dateMeetEdt.setText(appointment.getDate());
         timeEdt.setText(appointment.getTimeType());
         emailEdt.setText(user.getEmail());
+        for (int i = 0; i < 5; i++){
+            if(!Objects.equals(adoptOrder.getImageUrl().get(i), "")){
+                imageUrl.set(i, adoptOrder.getImageUrl().get(i));
+                Picasso.get().load(adoptOrder.getImageUrl().get(i)).into(uploadImg.get(i));
+            }
+        }
     }
 }

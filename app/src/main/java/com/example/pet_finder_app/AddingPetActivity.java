@@ -301,7 +301,6 @@ public class AddingPetActivity extends AppCompatActivity {
                         petName.setText(pet.getName());
                         breed.setSelection(breedAdapter.getPosition(pet.getBreed()));
                         category.setSelection(categoryAdapter.getPosition(pet.getTypeId()));
-                        petAge.setText(pet.getAge());
                         size.setSelection(sizeAdapter.getPosition(pet.getSize()));
                         gender.setSelection(genderAdapter.getPosition(pet.getGender()));
                         color.setSelection(colorAdapter.getPosition(pet.getColor()));
