@@ -38,6 +38,15 @@ public class AdoptingCategoryDomain {
         this.breed = breed;
         this.age = age;
     }
+    public AdoptingCategoryDomain(String image_id, String name, String date_adopt, String gender, String breed, String age, String location) {
+        this.image_id = image_id;
+        this.name = name;
+        this.date_adopt = date_adopt;
+        this.gender = gender;
+        this.breed = breed;
+        this.age = age;
+        this.location = location;
+    }
     public AdoptingCategoryDomain(String idPet, String image_id, String name, String price, String gender, String breed, String age, String condition) {
         this.idPet = idPet;
         this.image_id = image_id;

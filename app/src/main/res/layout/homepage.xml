@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/homepage"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".HomepageActivity">
 
@@ -147,7 +148,7 @@
                         android:id="@+id/date"
                         android:layout_width="wrap_content"
                         android:layout_height="22dp"
-                        android:layout_marginEnd="23dp"
+                        android:layout_marginEnd="8dp"
                         android:fontFamily="@font/poppins"
                         android:text="14/04/2024"
                         android:textColor="@color/light_purple"
@@ -207,7 +208,7 @@
                                 android:layout_marginTop="10dp"
                                 android:layout_weight="0.25"
                                 android:fontFamily="@font/poppins"
-                                android:text="9"
+                                android:text="0"
                                 android:textColor="@color/black"
                                 android:textSize="25dp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -241,22 +242,22 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_weight="0.25"
                                 android:fontFamily="@font/poppins"
-                                android:text="Protect"
+                                android:text="Missing"
                                 android:textColor="@color/dark_yellow"
                                 android:textSize="10sp"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/protect_value" />
+                                app:layout_constraintTop_toBottomOf="@+id/missing_value" />
 
                             <TextView
-                                android:id="@+id/protect_value"
+                                android:id="@+id/missing_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="30dp"
                                 android:layout_marginTop="10dp"
                                 android:layout_weight="0.25"
                                 android:fontFamily="@font/poppins"
-                                android:text="160"
+                                android:text="0"
                                 android:textColor="@color/black"
                                 android:textSize="25dp"
                                 app:layout_constraintEnd_toEndOf="parent"
@@ -284,22 +285,22 @@
                             android:layout_height="match_parent">
 
                             <TextView
-                                android:id="@+id/die_text"
+                                android:id="@+id/seen_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:layout_weight="0.25"
                                 android:fontFamily="@font/poppins"
-                                android:text="Die"
+                                android:text="Seen"
                                 android:textColor="@color/dark_yellow"
                                 android:textSize="10sp"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/die_value" />
+                                app:layout_constraintTop_toBottomOf="@+id/seen_value" />
 
                             <TextView
-                                android:id="@+id/die_value"
+                                android:id="@+id/seen_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="30dp"
                                 android:layout_marginTop="10dp"
@@ -356,7 +357,7 @@
                                 android:layout_marginTop="10dp"
                                 android:layout_weight="0"
                                 android:fontFamily="@font/poppins"
-                                android:text="206"
+                                android:text="0"
                                 android:textColor="@color/black"
                                 android:textSize="25dp"
                                 app:layout_constraintEnd_toEndOf="parent"

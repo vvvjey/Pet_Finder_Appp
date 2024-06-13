@@ -18,6 +18,7 @@ import java.util.List;
 public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCategoryAdapter.MyViewHolder>{
     private List<AdoptingCategoryDomain> listPet;
     private int layoutResourceId;
+    private String statusPet;
 //    private OnDetailButtonClickListener listener;
 
     public interface OnDetailButtonClickListener {
@@ -30,9 +31,10 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
     private OnDetailPetClickListener onDetailPetClickListener;
 
     //    public AdoptingCategoryAdapter(List<AdoptingCategoryDomain> listPet, int layoutResourceId, OnDetailButtonClickListener listener){
-        public AdoptingCategoryAdapter(List<AdoptingCategoryDomain> listPet, int layoutResourceId){
+        public AdoptingCategoryAdapter(List<AdoptingCategoryDomain> listPet, int layoutResourceId, String statusPet){
         this.listPet = listPet;
         this.layoutResourceId = layoutResourceId;
+        this.statusPet = statusPet;
 //        this.listener = listener;
     }
 
@@ -75,13 +77,17 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
             }
         }
         if (holder.status != null) {
-            holder.condition.setText(pet.getStatus());
+            if(statusPet.equals("Adopt")){
+                holder.status.setImageResource(R.drawable.adopt);
+            }else{
+                holder.status.setImageResource(R.drawable.mising);
+            }
         }
         if (holder.breed != null) {
             holder.breed.setText(pet.getBreed());
         }
         if (holder.price != null) {
-            holder.price.setText(String.valueOf(pet.getPrice()));
+            holder.price.setText(pet.getPrice());
         }
         if (holder.age != null) {
             holder.age.setText(String.valueOf(pet.getAge()));
