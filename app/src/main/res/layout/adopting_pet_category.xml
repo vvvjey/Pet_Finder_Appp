@@ -34,13 +34,15 @@
             android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/catImg">
+            app:layout_constraintTop_toBottomOf="@+id/catImg"
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
                 android:id="@+id/nameCat"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/poppins_semibold"
@@ -59,25 +61,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/nameCat">
 
                 <TextView
-                    android:id="@+id/location_text"
+                    android:id="@+id/age_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="4dp"
                     android:fontFamily="@font/poppins"
-                    android:text="Thu Duc ( 2,5km )"
+                    android:text="small"
                     android:textColor="@color/gray"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView7"
+                    app:layout_constraintStart_toEndOf="@+id/dollar"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/imageView7"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                <TextView
+                    android:id="@+id/dollar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Age: "
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/location" />
+                    app:layout_constraintTop_toTopOf="@+id/age_value" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -90,21 +92,51 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
                 app:srcCompat="@drawable/mising" />
 
+            <TextView
+                android:id="@+id/breed_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Breed: "
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout4" />
+
+            <TextView
+                android:id="@+id/breed_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Alaska"
+                app:layout_constraintStart_toEndOf="@+id/breed_text"
+                app:layout_constraintTop_toTopOf="@+id/breed_text" />
+
+            <TextView
+                android:id="@+id/price_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="TextView"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/nameCat" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="42dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/circle_gender"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
             <ImageView
                 android:id="@+id/genderImg"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

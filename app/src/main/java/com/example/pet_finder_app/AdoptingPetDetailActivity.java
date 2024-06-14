@@ -94,7 +94,7 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
                 for (DataSnapshot snap: snapshot.getChildren()){
                     if(idPet.equals(snap.getValue(Pet.class).getIdPet())) {
                         pet = snap.getValue(Pet.class);
-                        Picasso.get().load(pet.getImgUrl()).into(imageView);
+                        Picasso.get().load(pet.getImgUrl().get(0)).into(imageView);
                         petAge.setText(pet.getAge());
                         petBreed.setText(pet.getBreed());
                         registerDay.setText(pet.getRegisterDate());

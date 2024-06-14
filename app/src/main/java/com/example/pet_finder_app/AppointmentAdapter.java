@@ -1,9 +1,11 @@
 package com.example.pet_finder_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,20 +56,24 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         holder.date.setText(appointmentItem.getDate());
         holder.sender.setText(appointmentItem.getSender());
 
-//        // Set click listener for the item
-//        holder.detailBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(mContext, DetailRequetAdoptActivity.class);
-//                mContext.startActivity(intent);
-//            }
-//        });
+        // Set click listener for the item
+        holder.detailBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, AppointmentDetail.class);
+                intent.putExtra("idOrder" ,appointmentItem.getIdOrder());
+                intent.putExtra("idPet" ,appointmentItem.getIdPet());
+                intent.putExtra("idAppointment", appointmentItem.getAppointmentId());
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
         private CardView cardView;
         private ImageView image_id, gender;
         private TextView name, time, date, sender;
+        private Button detailBtn;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.cardView);
@@ -77,6 +83,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             time = itemView.findViewById(R.id.time_value);
             sender = itemView.findViewById(R.id.sender_value);
             gender = itemView.findViewById(R.id.genderImg);
+            detailBtn = itemView.findViewById(R.id.btn_detail_appointment);
         }
     }
 }

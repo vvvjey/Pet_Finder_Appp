@@ -1,5 +1,6 @@
 package com.example.pet_finder_app;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 public class DetailRequetAdoptActivity extends AppCompatActivity {
     Button rejectBtn, acceptBtn;
@@ -33,10 +44,14 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
     AdoptOrder adoptOrder;
     User user;
     Appoitment appointment;
+    List<String> timeStatus = new ArrayList<>();
+    List<String> imageUrl = new ArrayList<>(Collections.nCopies(5, ""));
+    List<ImageView> uploadImg = new ArrayList<>(5);
     String ipPet, ipAdopt, idOrder, idUser;
     EditText addressEdt, nameEdt, dateBirthEdt, requestEdt, dateMeetEdt, phoneEdt, emailEdt, timeEdt, genderEdt;
     String fullName, dateBirth, gender, email, address, country, city,district, ward, phone, requestMsg, dateMeet, timeMeet, fullAddress;
 
+    @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -46,6 +61,11 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
         arrowBack = findViewById(R.id.toolbarArrowBack);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
+        uploadImg.add(findViewById(R.id.uploadImg1));
+        uploadImg.add(findViewById(R.id.uploadImg2));
+        uploadImg.add(findViewById(R.id.uploadImg3));
+        uploadImg.add(findViewById(R.id.uploadImg4));
+        uploadImg.add(findViewById(R.id.uploadImg5));
         idOrder = getIntent().getStringExtra("idOrder");
         Log.d("Show id Order: ", idOrder);
         nameEdt = findViewById(R.id.name_value);
@@ -74,25 +94,45 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
                 builder.setView(dialogView);
 
                 AlertDialog dialog = builder.create();
+                Date currentTime = Calendar.getInstance().getTime();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+                String formattedDate = dateFormat.format(currentTime);
 
                 dialog.show();
                 Button acceptBtn = dialogView.findViewById(R.id.accept);
                 acceptBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        databaseReference.child("AdoptOrder").addListenerForSingleValueEvent(new ValueEventListener() {
+                        databaseReference.child("AdoptOrder").child(idOrder).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                    if (idOrder.equals(snapshot.getValue(AdoptOrder.class).getIdOrder())) {
-                                        databaseReference.child("AdoptOrder").child(idOrder).child("status").setValue("Accept");
-                                        Toast.makeText(DetailRequetAdoptActivity.this, "Accept order successfully", Toast.LENGTH_SHORT).show();
-                                        dialog.dismiss();
-                                        startActivity(new Intent(getApplicationContext(), AdoptStatusActivity.class));
-                                    } else {
-                                        Log.d("ConstraintViolation", "idOrder does not match the desired value.");
+                                AdoptOrder order = dataSnapshot.getValue(AdoptOrder.class);
+                                if (order != null && idOrder.equals(order.getIdOrder())) {
+                                    // Update the status
+                                    databaseReference.child("AdoptOrder").child(idOrder).child("status").setValue("Accept");
+
+                                    // Retrieve the current statusTime list
+                                    List<String> statusTimeList = new ArrayList<>();
+                                    if (dataSnapshot.child("statusTime").exists()) {
+                                        for (DataSnapshot snapshot : dataSnapshot.child("statusTime").getChildren()) {
+                                            statusTimeList.add(snapshot.getValue(String.class));
+                                        }
                                     }
-                                }}
+
+                                    // Add the new date to the list
+                                    statusTimeList.add(formattedDate);
+
+                                    // Update the statusTime list in Firebase
+                                    databaseReference.child("AdoptOrder").child(idOrder).child("statusTime").setValue(statusTimeList);
+
+                                    Toast.makeText(DetailRequetAdoptActivity.this, "Accept order successfully", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                    startActivity(new Intent(getApplicationContext(), AdoptStatusActivity.class));
+                                } else {
+                                    Log.d("ConstraintViolation", "idOrder does not match the desired value.");
+                                }
+                            }
+
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
                                 Log.d("FirebaseError", databaseError.getMessage());
@@ -111,6 +151,7 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
             }
         });
 
+
         rejectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,24 +163,44 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
 
                 dialog.show();
+                Date currentTime = Calendar.getInstance().getTime();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+                String formattedDate = dateFormat.format(currentTime);
 
                 Button rejectBtn = dialogView.findViewById(R.id.reject);
                 rejectBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        databaseReference.child("AdoptOrder").addListenerForSingleValueEvent(new ValueEventListener() {
+                        databaseReference.child("AdoptOrder").child(idOrder).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                    if (idOrder.equals(snapshot.getValue(AdoptOrder.class).getIdOrder())) {
-                                        databaseReference.child("AdoptOrder").child(idOrder).child("status").setValue("Reject");
-                                        Toast.makeText(DetailRequetAdoptActivity.this, "Reject order successfully", Toast.LENGTH_SHORT).show();
-                                        dialog.dismiss();
-                                        startActivity(new Intent(getApplicationContext(), AdoptStatusActivity.class));
-                                    } else {
-                                        Log.d("ConstraintViolation", "idOrder does not match the desired value.");
+                                AdoptOrder order = dataSnapshot.getValue(AdoptOrder.class);
+                                if (order != null && idOrder.equals(order.getIdOrder())) {
+                                    // Update the status
+                                    databaseReference.child("AdoptOrder").child(idOrder).child("status").setValue("Reject");
+
+                                    // Retrieve the current statusTime list
+                                    List<String> statusTimeList = new ArrayList<>();
+                                    if (dataSnapshot.child("statusTime").exists()) {
+                                        for (DataSnapshot snapshot : dataSnapshot.child("statusTime").getChildren()) {
+                                            statusTimeList.add(snapshot.getValue(String.class));
+                                        }
                                     }
-                                }}
+
+                                    // Add the new date to the list
+                                    statusTimeList.add(formattedDate);
+
+                                    // Update the statusTime list in Firebase
+                                    databaseReference.child("AdoptOrder").child(idOrder).child("statusTime").setValue(statusTimeList);
+
+                                    Toast.makeText(DetailRequetAdoptActivity.this, "Reject order successfully", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                    startActivity(new Intent(getApplicationContext(), AdoptStatusActivity.class));
+                                } else {
+                                    Log.d("ConstraintViolation", "idOrder does not match the desired value.");
+                                }
+                            }
+
                             @Override
                             public void onCancelled(@NonNull DatabaseError databaseError) {
                                 Log.d("FirebaseError", databaseError.getMessage());
@@ -250,5 +311,11 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
         dateMeetEdt.setText(appointment.getDate());
         timeEdt.setText(appointment.getTimeType());
         emailEdt.setText(user.getEmail());
+        for (int i = 0; i < 5; i++){
+            if(!Objects.equals(adoptOrder.getImageUrl().get(i), "")){
+                imageUrl.set(i, adoptOrder.getImageUrl().get(i));
+                Picasso.get().load(adoptOrder.getImageUrl().get(i)).into(uploadImg.get(i));
+            }
+        }
     }
 }

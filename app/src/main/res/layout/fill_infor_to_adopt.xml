@@ -441,12 +441,178 @@
 
             </LinearLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fill_img_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fill_price">
+
+                <ImageView
+                    android:id="@+id/uploadImg1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="20dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toEndOf="@+id/fill_img"
+                    app:layout_constraintTop_toTopOf="@+id/fill_img" />
+
+                <ImageView
+                    android:id="@+id/deleteImg1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toTopOf="@+id/uploadImg1"
+                    app:layout_constraintEnd_toEndOf="@+id/uploadImg1"
+                    app:layout_constraintStart_toEndOf="@+id/uploadImg1"
+                    app:layout_constraintTop_toTopOf="@+id/uploadImg1" />
+
+                <ImageView
+                    android:id="@+id/uploadImg2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/uploadImg1"
+                    app:layout_constraintTop_toTopOf="@+id/uploadImg1"
+                    />
+
+                <ImageView
+                    android:id="@+id/deleteImg2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toTopOf="@+id/uploadImg2"
+                    app:layout_constraintEnd_toEndOf="@+id/uploadImg2"
+                    app:layout_constraintStart_toEndOf="@+id/uploadImg2"
+                    app:layout_constraintTop_toTopOf="@+id/uploadImg2"
+                    />
+
+                <ImageView
+                    android:id="@+id/uploadImg3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintStart_toStartOf="@+id/fill_img"
+                    app:layout_constraintTop_toBottomOf="@+id/fill_img" />
+
+                <ImageView
+                    android:id="@+id/deleteImg3"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toTopOf="@+id/uploadImg3"
+                    app:layout_constraintEnd_toEndOf="@+id/uploadImg3"
+                    app:layout_constraintStart_toEndOf="@+id/uploadImg3"
+                    app:layout_constraintTop_toTopOf="@+id/uploadImg3"
+                    />
+
+                <ImageView
+                    android:id="@+id/uploadImg4"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/uploadImg3"
+                    app:layout_constraintTop_toTopOf="@+id/uploadImg3" />
+
+                <ImageView
+                    android:id="@+id/deleteImg4"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toTopOf="@+id/uploadImg4"
+                    app:layout_constraintEnd_toEndOf="@+id/uploadImg4"
+                    app:layout_constraintStart_toEndOf="@+id/uploadImg4"
+                    app:layout_constraintTop_toTopOf="@+id/uploadImg4"
+                    />
+
+                <ImageView
+                    android:id="@+id/uploadImg5"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/uploadImg4"
+                    app:layout_constraintTop_toTopOf="@+id/uploadImg4" />
+
+                <ImageView
+                    android:id="@+id/deleteImg5"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toTopOf="@+id/uploadImg5"
+                    app:layout_constraintEnd_toEndOf="@+id/uploadImg5"
+                    app:layout_constraintStart_toEndOf="@+id/uploadImg5"
+                    app:layout_constraintTop_toTopOf="@+id/uploadImg5"
+                    />
+
+
+
+                <TextView
+                    android:id="@+id/pic_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Post Picture"
+                    android:textSize="18dp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fill_img"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/rectangle_light_gray"
+                    android:padding="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/pic_title">
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/add_img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:backgroundTint="@color/blue"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Circular"
+                        app:srcCompat="@drawable/add"
+                        app:tint="@color/white" />
+                    />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <Button
                 android:id="@+id/fillBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="100dp"
                 android:background="#59A9F2"
+                android:layout_marginTop="10dp"
                 app:backgroundTint="@null"
                 android:text="Apply"
                 android:textColorLink="#59A9F2" />

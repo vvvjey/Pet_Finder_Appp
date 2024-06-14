@@ -143,7 +143,7 @@ public class HistoryAdoptActivity extends AppCompatActivity {
                 if (ordersForPet != null && !ordersForPet.isEmpty()) {
                     for (AdoptOrder orderPet : ordersForPet) {
                             petItems.add(new AdoptStatusItem(
-                                    pet.getImgUrl(),
+                                    pet.getImgUrl().get(0),
                                     pet.getName(),
                                     "Medium",
                                     "Alaska",

@@ -134,7 +134,7 @@ public class RequestAdopt extends Fragment {
                     for (AdoptOrder orderPet : ordersForPet) {
                         if(orderPet.getStatus().equals("Pretending")){
                             petItems.add(new AdoptStatusItem(
-                                    pet.getImgUrl(),
+                                    pet.getImgUrl().get(0),
                                     pet.getName(),
                                     "Medium",
                                     "Alaska",

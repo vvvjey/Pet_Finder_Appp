@@ -168,7 +168,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/btn_detail_pet"
+            android:id="@+id/btn_detail_appointment"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:layout_marginRight="20dp"
