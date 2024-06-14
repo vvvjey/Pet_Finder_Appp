@@ -341,7 +341,7 @@ public class AddingPetActivity extends AppCompatActivity {
                         Log.d("ShowIntent", "GetTheRightThing");
                         pet = snap.getValue(Pet.class);
                         petName.setText(pet.getName());
-                        breed.setSelection(breedAdapter.getPosition(pet.getBreed()));
+//                        breed.setSelection(breedAdapter.getPosition(pet.getBreed()));
                         category.setSelection(categoryAdapter.getPosition(pet.getTypeId()));
                         size.setSelection(sizeAdapter.getPosition(pet.getSize()));
                         gender.setSelection(genderAdapter.getPosition(pet.getGender()));
