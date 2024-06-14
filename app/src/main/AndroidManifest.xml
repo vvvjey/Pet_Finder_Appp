@@ -169,7 +169,14 @@
         <activity android:name=".ChatBotActivity"
             >
         </activity>
+        <activity android:name=".ChatPageActivity"
+            >
+        </activity>
+        <activity android:name=".ChatPageChatBoxActivity"
+            android:parentActivityName=".ChatPageActivity"
+            >
 
+        </activity>
         <activity android:name=".HistoryAdoptDetailActivity"
             android:parentActivityName=".HistoryAdoptActivity"
             >

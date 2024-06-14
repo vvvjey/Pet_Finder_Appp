@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class HomepageActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     TextView seeAllAdopt,seeAllMissing;
-    ImageView icon_user;
+    ImageView icon_user,icon_chat;
     private static final int REQUEST_NOTIFICATION = 1;
     Toolbar arrowBack;
     @Override
@@ -33,6 +33,7 @@ public class HomepageActivity extends AppCompatActivity {
         });
 //        NAVIGATION
         icon_user = findViewById(R.id.imageView5);
+        icon_chat = findViewById(R.id.imageView3);
         seeAllAdopt = findViewById(R.id.seeAllAdopt);
         seeAllMissing = findViewById(R.id.seeAllMissing);
         LinearLayout homeSection = findViewById(R.id.home_sec);
@@ -89,6 +90,12 @@ public class HomepageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomepageActivity.this, ProfileActivity.class));
+            }
+        });
+        icon_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomepageActivity.this, ChatPageActivity.class));
             }
         });
         //CHATBOT

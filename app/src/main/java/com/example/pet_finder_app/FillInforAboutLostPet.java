@@ -39,6 +39,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -322,7 +324,9 @@ public class FillInforAboutLostPet extends AppCompatActivity {
     private void createMissingPost(){
         try{
             DatabaseReference missingPetRef = FirebaseDatabase.getInstance().getReference().child("Missing pet");
+            FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
+            FirebaseUser currentUser = mAuth.getCurrentUser();
 
             String missingPetKey = missingPetRef.push().getKey();
             String age = dropdownAge.getSelectedItem().toString();
@@ -340,13 +344,14 @@ public class FillInforAboutLostPet extends AppCompatActivity {
             String typeId = "Cat";
             String weight = "no";
             String id = "1";
+            String postUserId = currentUser.getUid();
             String typeMissing = dropdownPurpose.getSelectedItem().toString();
             String addressMissing = "address";
             String dateMissing = dateButton.getText().toString();
             String requestPoster = request.getText().toString();
             String statusMissing = "Waiting";
 
-            MissingPet pet = new MissingPet(age,breed, categoryId, color, description, gender, idPet, imageUrl, petName, registerDate, size, typeId, weight, id, typeMissing,addressMissing, dateMissing, requestPoster,"1",statusMissing);
+            MissingPet pet = new MissingPet(age,breed, categoryId, color, description, gender, idPet, imageUrl, petName, registerDate, size, typeId, weight, id, typeMissing,addressMissing, dateMissing, requestPoster,postUserId,statusMissing);
             missingPetRef.child(missingPetKey).child("age").setValue(pet.getAge());
             missingPetRef.child(missingPetKey).child("breed").setValue(pet.getBreed());
             missingPetRef.child(missingPetKey).child("categoryId").setValue(pet.getCategoryId());
