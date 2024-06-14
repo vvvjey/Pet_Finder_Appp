@@ -438,7 +438,8 @@
                     android:id="@+id/adoptCategoryView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:layout_constraintTop_toBottomOf="@+id/adoptPetLayout" />
+                    app:layout_constraintTop_toBottomOf="@+id/adoptPetLayout"
+                    tools:layout_editor_absoluteX="0dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

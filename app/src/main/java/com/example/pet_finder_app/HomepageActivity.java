@@ -37,6 +37,7 @@ import java.util.List;
 
 public class HomepageActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
+
     TextView seeAllAdopt,seeAllMissing, AdoptCount, MissingCount;
     ImageView icon_user;
     List<Pet> petList = new ArrayList<>();
@@ -59,6 +60,7 @@ public class HomepageActivity extends AppCompatActivity {
         });
 //        NAVIGATION
         icon_user = findViewById(R.id.imageView5);
+        icon_chat = findViewById(R.id.imageView3);
         seeAllAdopt = findViewById(R.id.seeAllAdopt);
         seeAllMissing = findViewById(R.id.seeAllMissing);
         LinearLayout homeSection = findViewById(R.id.home_sec);
@@ -115,6 +117,12 @@ public class HomepageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(HomepageActivity.this, ProfileActivity.class));
+            }
+        });
+        icon_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomepageActivity.this, ChatPageActivity.class));
             }
         });
         //CHATBOT

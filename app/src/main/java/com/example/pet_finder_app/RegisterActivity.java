@@ -36,7 +36,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import javax.annotation.Nullable;
 
 public class RegisterActivity extends AppCompatActivity {
     TextView toLoginTv;

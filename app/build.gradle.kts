@@ -60,7 +60,10 @@ dependencies {
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.google.android.gms:play-services-location:21.2.0")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
-    implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+    implementation(platform("com.google.firebase:firebase-bom:+"))
+    implementation("com.google.firebase:firebase-firestore")
+    implementation ("com.firebaseui:firebase-ui-firestore:8.0.2")
+
 
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.android.material:material:1.11.0")

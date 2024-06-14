@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,9 +18,12 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class    PetDetailActivity extends AppCompatActivity {
@@ -39,6 +43,7 @@ public class    PetDetailActivity extends AppCompatActivity {
     private TextView descriptionTextView;
     private TextView addressMissingTextView;
     private TextView statusMissingTextView;
+    private Button chatBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +67,7 @@ public class    PetDetailActivity extends AppCompatActivity {
         descriptionTextView = findViewById(R.id.descriptionPetDetailMissing);
         addressMissingTextView = findViewById(R.id.addressPetDetailMissing);
         statusMissingTextView = findViewById(R.id.petStatusDetailMissing);
+        chatBtn = findViewById(R.id.chatBtn);
 //        Take data
         Intent intent = getIntent();
         String idPet = intent.getStringExtra("idPet");
@@ -76,11 +82,14 @@ public class    PetDetailActivity extends AppCompatActivity {
         String petMissingDate = intent.getStringExtra("petMissingDate");
         String petTypeMissing = intent.getStringExtra("petTypeMissing");
         String petImageUrl = intent.getStringExtra("petImageUrl");
-        String postUserId = intent.getStringExtra("postUserId");
         String requestPoster = intent.getStringExtra("requestPoster");
         String description = intent.getStringExtra("desciptionPet");
         String statusMissing = intent.getStringExtra("statusMissing");
 
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        String postUserId = intent.getStringExtra("postUserId");
 
 
         petNameTextView.setText(petName);
@@ -106,6 +115,16 @@ public class    PetDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+        chatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String currentUserId = currentUser.getUid();
+                List<String> userIds = Arrays.asList(currentUserId, postUserId);
+                Intent intent = new Intent(getApplicationContext(), ChatPageChatBoxActivity.class);
+                intent.putExtra("userIds", userIds.toArray(new String[0]));
+                startActivity(intent);
             }
         });
 
