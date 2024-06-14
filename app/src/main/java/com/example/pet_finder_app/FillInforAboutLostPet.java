@@ -80,7 +80,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
     Uri image;
     ImageView uploadImg;
 
-    String imageUrl;
+    List<String> imageUrl = new ArrayList<>();
     Spinner dropdownPurpose ;
     Spinner dropdownCountry ;
     Spinner dropdownCity ;
@@ -399,7 +399,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
                 ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        imageUrl = uri.toString();
+                        imageUrl.add(uri.toString());
                         createMissingPost();
                     }
                 }).addOnFailureListener(new OnFailureListener() {

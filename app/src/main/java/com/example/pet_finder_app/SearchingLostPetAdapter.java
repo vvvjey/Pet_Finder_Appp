@@ -13,8 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
-import com.example.pet_finder_app.SearchingLostPetActivity;
 
 import com.example.pet_finder_app.Class.MissingPet;
 import com.squareup.picasso.Picasso;
@@ -54,7 +52,7 @@ public class SearchingLostPetAdapter extends ArrayAdapter<MissingPet> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         MissingPet missingPet = missingPets.get(position);
-        Picasso.get().load(missingPet.getImgUrl()).into(viewHolder.missingPetImg);
+        Picasso.get().load(missingPet.getImgUrl().get(0)).into(viewHolder.missingPetImg);
 
         viewHolder.missingPetName.setText(missingPet.getName());
         if (missingPet.getGender().equals("Male")) {
@@ -93,7 +91,7 @@ public class SearchingLostPetAdapter extends ArrayAdapter<MissingPet> {
                 intent.putExtra("petRegisterDate", missingPet.getRegisterDate());
                 intent.putExtra("petMissingDate", missingPet.getDateMissing());
                 intent.putExtra("petTypeMissing", missingPet.getTypeMissing());
-                intent.putExtra("petImageUrl", missingPet.getImgUrl());
+                intent.putExtra("petImageUrl", missingPet.getImgUrl().get(0));
                 intent.putExtra("postUserId",missingPet.getPostUserId());
                 intent.putExtra("requestPoster",missingPet.getRequestPosterMissing());
                 intent.putExtra("desciptionPet",missingPet.getDescription());

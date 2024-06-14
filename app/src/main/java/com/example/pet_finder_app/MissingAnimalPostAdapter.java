@@ -62,7 +62,7 @@ public class MissingAnimalPostAdapter extends ArrayAdapter<MissingPet> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         MissingPet missingPet = missingPets.get(position);
-        Picasso.get().load(missingPet.getImgUrl()).into(viewHolder.missingPetImg);
+        Picasso.get().load(missingPet.getImgUrl().get(0)).into(viewHolder.missingPetImg);
 
         viewHolder.missingPetName.setText(missingPet.getName());
         if (missingPet.getGender().equals("Male")) {
@@ -102,7 +102,7 @@ public class MissingAnimalPostAdapter extends ArrayAdapter<MissingPet> {
                 intent.putExtra("petColor", missingPet.getColor());
                 intent.putExtra("petRegisterDate", missingPet.getRegisterDate());
                 intent.putExtra("petTypeMissing", missingPet.getTypeMissing());
-                intent.putExtra("petImageUrl", missingPet.getImgUrl());
+                intent.putExtra("petImageUrl", missingPet.getImgUrl().get(0));
                 intent.putExtra("postUserId",missingPet.getPostUserId());
                 intent.putExtra("requestPoster",missingPet.getRequestPosterMissing());
                 intent.putExtra("desciptionPet",missingPet.getDescription());
@@ -128,7 +128,7 @@ public class MissingAnimalPostAdapter extends ArrayAdapter<MissingPet> {
                 intent.putExtra("petMissingDate", missingPet.getDateMissing());
 
                 intent.putExtra("petTypeMissing", missingPet.getTypeMissing());
-                intent.putExtra("petImageUrl", missingPet.getImgUrl());
+                intent.putExtra("petImageUrl", missingPet.getImgUrl().get(0));
                 intent.putExtra("postUserId",missingPet.getPostUserId());
                 intent.putExtra("requestPoster",missingPet.getRequestPosterMissing());
                 intent.putExtra("desciptionPet",missingPet.getDescription());

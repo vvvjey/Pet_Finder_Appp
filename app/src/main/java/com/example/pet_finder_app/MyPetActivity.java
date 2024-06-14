@@ -133,7 +133,7 @@ public class MyPetActivity extends AppCompatActivity {
             if(adoptPet != null && pet.getPostUserId().equals(idUser)){
                 PetList.add(new AdoptingCategoryDomain(
                         pet.getIdPet(),
-                        pet.getImgUrl(),
+                        pet.getImgUrl().get(0),
                         pet.getName(),
                         "favorite",
                         adoptPet.getPrice(),

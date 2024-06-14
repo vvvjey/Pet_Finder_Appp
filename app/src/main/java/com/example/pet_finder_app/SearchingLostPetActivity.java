@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchingLostPetActivity extends AppCompatActivity {
     Toolbar arrowBack;
@@ -30,6 +31,7 @@ public class SearchingLostPetActivity extends AppCompatActivity {
     ListView lv;
     SearchingLostPetAdapter adapter;
     ArrayList<MissingPet> arrayList;
+    List<String> imageUrls = new ArrayList<>();
     ImageView filterMissing;
     private boolean clicked;
 
@@ -120,56 +122,58 @@ public class SearchingLostPetActivity extends AppCompatActivity {
                 Log.d("MissingPetData", "3");
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Log.d("MissingPetData", "4");
+                    MissingPet missingPet = snapshot.getValue(MissingPet.class);
+//                    Log.d("MissingPetData", "4");
+//
+//                    if (snapshot.exists()) { // Check if the snapshot has any children
+//                        String gender = snapshot.child("gender").getValue(String.class);
+//                        String id = snapshot.child("id").getValue(String.class);
+//                        String breed = snapshot.child("breed").getValue(String.class);
+//
+//                        String idPet = snapshot.child("idPet").getValue(String.class);
+//                        List<String> imgUrl = snapshot.child("imgUrl").getValue(List.class);
+//                        String name = snapshot.child("name").getValue(String.class);
+//                        String registerDate = snapshot.child("registerDate").getValue(String.class);
+//                        String size = snapshot.child("size").getValue(String.class);
+//                        String typeId = snapshot.child("typeId").getValue(String.class);
+//                        String typeMissing = snapshot.child("typeMissing").getValue(String.class);
+//                        String weight = snapshot.child("weight").getValue(String.class);
+//
+//                        Log.d("MissingPetData", "Gender: " + gender);
+//                        Log.d("MissingPetData", "ID: " + id);
+//                        Log.d("MissingPetData", "Pet ID: " + idPet);
+//                        Log.d("MissingPetData", "Image URL: " + imgUrl);
+//                        Log.d("MissingPetData", "Name: " + name);
+//                        Log.d("MissingPetData", "Registration Date: " + registerDate);
+//                        Log.d("MissingPetData", "Size: " + size);
+//                        Log.d("MissingPetData", "Type ID: " + typeId);
+//                        Log.d("MissingPetData", "Missing Type: " + typeMissing);
+//                        Log.d("MissingPetData", "Weight: " + weight);
+//                    } else {
+//                        Log.d("MissingPetData", "Snapshot does not contain any data");
+//                    }
+//                    String gender = snapshot.child("gender").getValue(String.class);
+//                    String name = snapshot.child("name").getValue(String.class);
+//                    String color = snapshot.child("color").getValue(String.class);
+//                    String registerDate = snapshot.child("registerDate").getValue(String.class);
+//                    String imageUrl = snapshot.child("imgUrl").getValue(String.class);
+//                    String typeMissing = snapshot.child("typeMissing").getValue(String.class);
+//                    String age = snapshot.child("age").getValue(String.class);
+//                    String breed = snapshot.child("breed").getValue(String.class);
+//                    String description = snapshot.child("description").getValue(String.class);
+//                    String addressMissing = snapshot.child("addressMissing").getValue(String.class);
+//                    String statusMissing = snapshot.child("status").getValue(String.class);
+//
+//                    String dateMissing = snapshot.child("dateMissing").getValue(String.class);
+//                    String requestPoster = snapshot.child("requestPoster").getValue(String.class);
+//
+//                    String size = snapshot.child("size").getValue(String.class);
+//                    String postUserId = snapshot.child("postUserId").getValue(String.class);
+//                    imageUrls.add(imageUrl);
+//                    // Create a MissingPet object and add it to the list
 
-                    if (snapshot.exists()) { // Check if the snapshot has any children
-                        String gender = snapshot.child("gender").getValue(String.class);
-                        String id = snapshot.child("id").getValue(String.class);
-                        String breed = snapshot.child("breed").getValue(String.class);
-
-                        String idPet = snapshot.child("idPet").getValue(String.class);
-                        String imgUrl = snapshot.child("imgUrl").getValue(String.class);
-                        String name = snapshot.child("name").getValue(String.class);
-                        String registerDate = snapshot.child("registerDate").getValue(String.class);
-                        String size = snapshot.child("size").getValue(String.class);
-                        String typeId = snapshot.child("typeId").getValue(String.class);
-                        String typeMissing = snapshot.child("typeMissing").getValue(String.class);
-                        String weight = snapshot.child("weight").getValue(String.class);
-
-                        Log.d("MissingPetData", "Gender: " + gender);
-                        Log.d("MissingPetData", "ID: " + id);
-                        Log.d("MissingPetData", "Pet ID: " + idPet);
-                        Log.d("MissingPetData", "Image URL: " + imgUrl);
-                        Log.d("MissingPetData", "Name: " + name);
-                        Log.d("MissingPetData", "Registration Date: " + registerDate);
-                        Log.d("MissingPetData", "Size: " + size);
-                        Log.d("MissingPetData", "Type ID: " + typeId);
-                        Log.d("MissingPetData", "Missing Type: " + typeMissing);
-                        Log.d("MissingPetData", "Weight: " + weight);
-                    } else {
-                        Log.d("MissingPetData", "Snapshot does not contain any data");
-                    }
-                    String gender = snapshot.child("gender").getValue(String.class);
-                    String name = snapshot.child("name").getValue(String.class);
-                    String color = snapshot.child("color").getValue(String.class);
-                    String registerDate = snapshot.child("registerDate").getValue(String.class);
-                    String imageUrl = snapshot.child("imgUrl").getValue(String.class);
-                    String typeMissing = snapshot.child("typeMissing").getValue(String.class);
-                    String age = snapshot.child("age").getValue(String.class);
-                    String breed = snapshot.child("breed").getValue(String.class);
-                    String description = snapshot.child("description").getValue(String.class);
-                    String addressMissing = snapshot.child("addressMissing").getValue(String.class);
-                    String statusMissing = snapshot.child("status").getValue(String.class);
-
-                    String dateMissing = snapshot.child("dateMissing").getValue(String.class);
-                    String requestPoster = snapshot.child("requestPoster").getValue(String.class);
-
-                    String size = snapshot.child("size").getValue(String.class);
-                    String postUserId = snapshot.child("postUserId").getValue(String.class);
-
-                    // Create a MissingPet object and add it to the list
-                    MissingPet pet = new MissingPet(age,breed, "categoryId", color, description, gender, "idPet", imageUrl, name, registerDate, size, "typeId", "weight", "id", typeMissing,addressMissing, dateMissing, requestPoster,postUserId,statusMissing);
-                    arrayList.add(pet);
+//                    MissingPet pet = new MissingPet(age,breed, "categoryId", color, description, gender, "idPet", imageUrls, name, registerDate, size, "typeId", "weight", "id", typeMissing,addressMissing, dateMissing, requestPoster,postUserId,statusMissing);
+                    arrayList.add(missingPet);
                 }
                 adapter.notifyDataSetChanged();
 
