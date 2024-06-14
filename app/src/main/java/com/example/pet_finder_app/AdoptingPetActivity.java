@@ -232,20 +232,18 @@ public class AdoptingPetActivity extends AppCompatActivity {
                 color = (Spinner) dialogView.findViewById(R.id.spinnerColorAdopt);
                 minPrice = dialogView.findViewById(R.id.editMin);
                 maxPrice = dialogView.findViewById(R.id.editMax);
-                breedAdapter = ArrayAdapter.createFromResource(
-                        AdoptingPetActivity.this,
-                        R.array.breed,
-                        android.R.layout.simple_spinner_item
-                );
+//                breedAdapter = ArrayAdapter.createFromResource(
+//                        AdoptingPetActivity.this,
+//                        R.array.breed,
+//                        android.R.layout.simple_spinner_item
+//                );
 
                 colorAdapter = ArrayAdapter.createFromResource(
                         AdoptingPetActivity.this,
                         R.array.color,
                         android.R.layout.simple_spinner_item
                 );
-                breedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 colorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                breed.setAdapter(breedAdapter);
                 color.setAdapter(colorAdapter);
                 isPriceMin = false;
                 isPriceMax = false;
@@ -264,6 +262,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
                         setClick(duck, unSelectedBtn, R.color.black);
                         setClick(others, unSelectedBtn, R.color.black);
                         category = "cat";
+                        updateBreedSpinner(0);
                         isCategory = true;
                     }
                 });
@@ -278,6 +277,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
                         setClick(duck, unSelectedBtn, R.color.black);
                         setClick(others, unSelectedBtn, R.color.black);
                         category = "dog";
+                        updateBreedSpinner(1);
                         isCategory = true;
                     }
                 });
@@ -292,6 +292,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
                         setClick(duck, unSelectedBtn, R.color.black);
                         setClick(others, unSelectedBtn, R.color.black);
                         category = "turtle";
+                        updateBreedSpinner(2);
                         isCategory = true;
                     }
                 });
@@ -306,6 +307,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
                         setClick(duck, unSelectedBtn, R.color.black);
                         setClick(others, unSelectedBtn, R.color.black);
                         category = "hamster";
+                        updateBreedSpinner(3);
                         isCategory = true;
                     }
                 });
@@ -320,6 +322,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
                         setClick(duck, unSelectedBtn, R.color.black);
                         setClick(others, unSelectedBtn, R.color.black);
                         category = "rabbit";
+                        updateBreedSpinner(4);
                         isCategory = true;
                     }
                 });
@@ -334,6 +337,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
                         setClick(duck, selectedBtn, R.color.white);
                         setClick(others, unSelectedBtn, R.color.black);
                         category = "duck";
+                        updateBreedSpinner(5);
                         isCategory = true;
                     }
                 });
@@ -348,6 +352,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
                         setClick(duck, unSelectedBtn, R.color.black);
                         setClick(others, selectedBtn, R.color.white);
                         category = "others";
+                        updateBreedSpinner(6);
                         isCategory = true;
                     }
                 });
@@ -447,7 +452,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
                 breed.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        if (position > 0) {
+                        if (position > 0 && isCategory) {
                             breedItem = breedAdapter.getItem(position).toString();
                             isBreed = true;
                         }
@@ -638,6 +643,43 @@ public class AdoptingPetActivity extends AppCompatActivity {
                     return null;
             }
         }
+    private void updateBreedSpinner(int categoryPosition) {
+        int breedArrayId;
+        switch (categoryPosition) {
+            case 0: // Cat
+                breedArrayId = R.array.cat_breed;
+                break;
+            case 1:
+                breedArrayId = R.array.dog_breed;
+                break;
+            case 2:
+                breedArrayId = R.array.turtle_breed;
+                break;
+            case 3:
+                breedArrayId = R.array.hamster_breed;
+                break;
+            case 4:
+                breedArrayId = R.array.rabbit_breed;
+                break;
+            case 5:
+                breedArrayId = R.array.duck_breed;
+                break;
+            case 6:
+                breedArrayId = R.array.others_breed;
+                break;
+            default:
+                breedArrayId = R.array.cat_breed; // Default case, should not happen
+                break;
+        }
+
+        breedAdapter = ArrayAdapter.createFromResource(
+                this,
+                breedArrayId,
+                android.R.layout.simple_spinner_item
+        );
+        breedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        breed.setAdapter(breedAdapter);
+    }
 
         private void populateRecyclerView() {
         List<AdoptingPetItem> petItems = new ArrayList<>();

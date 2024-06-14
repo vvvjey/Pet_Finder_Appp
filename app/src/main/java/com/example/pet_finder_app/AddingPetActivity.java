@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -145,10 +146,10 @@ public class AddingPetActivity extends AppCompatActivity {
 
 
         age = (Spinner) findViewById(R.id.age_spinner);
-        category = (Spinner) findViewById(R.id.category_spinner);
         size = (Spinner) findViewById(R.id.size_spinner);
         gender = (Spinner) findViewById(R.id.gender_spinner);
         color = (Spinner) findViewById(R.id.color_spinner);
+        category = (Spinner) findViewById(R.id.category_spinner);
         breed = (Spinner) findViewById(R.id.breed_spinner);
 
         ageAdapter = ArrayAdapter.createFromResource(
@@ -156,11 +157,7 @@ public class AddingPetActivity extends AppCompatActivity {
                 R.array.age,
                 android.R.layout.simple_spinner_item
         );
-        categoryAdapter = ArrayAdapter.createFromResource(
-                this,
-                R.array.category,
-                android.R.layout.simple_spinner_item
-        );
+
         sizeAdapter = ArrayAdapter.createFromResource(
                 this,
                 R.array.size,
@@ -176,9 +173,9 @@ public class AddingPetActivity extends AppCompatActivity {
                 R.array.color,
                 android.R.layout.simple_spinner_item
         );
-        breedAdapter = ArrayAdapter.createFromResource(
+        categoryAdapter = ArrayAdapter.createFromResource(
                 this,
-                R.array.breed,
+                R.array.category,
                 android.R.layout.simple_spinner_item
         );
         ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -186,14 +183,24 @@ public class AddingPetActivity extends AppCompatActivity {
         sizeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         colorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        breedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         age.setAdapter(ageAdapter);
         category.setAdapter(categoryAdapter);
+        category.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                updateBreedSpinner(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
         size.setAdapter(sizeAdapter);
         gender.setAdapter(genderAdapter);
         color.setAdapter(colorAdapter);
-        breed.setAdapter(breedAdapter);
+
 
         petName = findViewById(R.id.editNamePet);
         petDes = findViewById(R.id.description_edit);
@@ -285,8 +292,43 @@ public class AddingPetActivity extends AppCompatActivity {
 
 
     }
+    private void updateBreedSpinner(int categoryPosition) {
+        int breedArrayId;
+        switch (categoryPosition) {
+            case 0: // Cat
+                breedArrayId = R.array.cat_breed;
+                break;
+            case 1:
+                breedArrayId = R.array.dog_breed;
+                break;
+            case 2:
+                breedArrayId = R.array.turtle_breed;
+                break;
+            case 3:
+                breedArrayId = R.array.hamster_breed;
+                break;
+            case 4:
+                breedArrayId = R.array.rabbit_breed;
+                break;
+            case 5:
+                breedArrayId = R.array.duck_breed;
+                break;
+            case 6:
+                breedArrayId = R.array.others_breed;
+                break;
+            default:
+                breedArrayId = R.array.cat_breed; // Default case, should not happen
+                break;
+        }
 
-
+        ArrayAdapter<CharSequence> breedAdapter = ArrayAdapter.createFromResource(
+                this,
+                breedArrayId,
+                android.R.layout.simple_spinner_item
+        );
+        breedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        breed.setAdapter(breedAdapter);
+    }
 
     public void showData(){
         databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {

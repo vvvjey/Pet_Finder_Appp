@@ -25,16 +25,74 @@
     <string name="google_map_key">AIzaSyAEzDdHbGPBI_hDEE-dIvFuGh0NoPKR4JM</string>
 
     <string-array name="category">
-        <item android:label="cat1">cat</item>
-        <item android:label="cat2">dog</item>
-        <item android:label="cat2">turtle</item>
-        <item android:label="cat2">hamster</item>
-        <item android:label="cat2">rabbit</item>
-        <item android:label="cat3">duck</item>
-        <item android:label="cat4">others</item>
+        <item android:label="cat">cat</item>
+        <item android:label="dog">dog</item>
+        <item android:label="turtle">turtle</item>
+        <item android:label="hamster">hamster</item>
+        <item android:label="rabbit">rabbit</item>
+        <item android:label="duck">duck</item>
+        <item android:label="others">others</item>
+    </string-array>
+    <string-array name="cat_breed">
+        <item>Persian</item>
+        <item>Maine Coon</item>
+        <item>Exotic</item>
+        <item>Siamese</item>
+        <item>Abyssinian</item>
+        <item>Rag-doll</item>
+        <item>Birman</item>
+        <item>American Shorthaired</item>
+        <item>Oriental</item>
+        <item>Sphinx</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="dog_breed">
+        <item>Bulldog</item>
+        <item>Labrador retriever</item>
+        <item>Golden retriever</item>
+        <item>Husky</item>
+        <item>Poodle</item>
+        <item>Rottweiler</item>
+        <item>Alaska</item>
+        <item>American Shorthaired</item>
+        <item>Beagle</item>
+        <item>Dachshund</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="turtle_breed">
+        <item>Sea turtles</item>
+        <item>Tortoise</item>
+        <item>Snapping turtle</item>
+        <item>Red-eared slider</item>
+        <item>Painted turtle</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="hamster_breed">
+        <item>Roborovski</item>
+        <item>Campbell hamsters</item>
+        <item>Syrian hamster</item>
+        <item>Chinese hamster</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="rabbit_breed">
+        <item>Flemish</item>
+        <item>Netherland Dwarf</item>
+        <item>Holland Lop</item>
+        <item>Polish rabbit</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="duck_breed">
+        <item>American Pekin</item>
+        <item>Rouen duck</item>
+        <item>Crested</item>
+        <item>Khaki Campbell</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="others_breed">
+        <item>Viet Nam</item>
+        <item>Others</item>
     </string-array>
     <string-array name="color">
-        <item android:label="color0">Choose color</item>
         <item android:label="color1">black</item>
         <item android:label="color2">white</item>
         <item android:label="color3">yellow</item>
@@ -56,11 +114,7 @@
         <item android:label="age3">adult</item>
         <item android:label="age4">senior</item>
     </string-array>
-    <string-array name="breed">
-        <item android:label="breed0">Choose breed</item>
-        <item android:label="breed1">Alaska</item>
-        <item android:label="breed2">French</item>
-    </string-array>
+
     <string-array name="time">
         <item>1:00 -> 2:00</item>
         <item>2:00 -> 3:00</item>
