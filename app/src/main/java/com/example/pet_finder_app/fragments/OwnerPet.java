@@ -103,12 +103,12 @@ public class OwnerPet extends Fragment {
                         pet.getIdPet(),
                         pet.getImgUrl().get(0),
                         pet.getName(),
-                        "favorite",
                         adoptPet.getPrice(),
                         pet.getGender(),
                         pet.getCategoryId(),
                         pet.getAge(),
-                        adoptPet.getStatus()
+                        adoptPet.getStatus(),
+                        pet.getPostUserId()
                 ));
             }
         }

@@ -222,7 +222,9 @@ public class HomepageActivity extends AppCompatActivity {
                         adoptPet.getPrice(),
                         pet.getGender(),
                         pet.getBreed(),
-                        pet.getAge()
+                        pet.getAge(),
+                        pet.getPostUserId(),
+                        pet.getIdPet()
                 ));
             }
         }
@@ -230,11 +232,11 @@ public class HomepageActivity extends AppCompatActivity {
             missingItems.add(new AdoptingCategoryDomain(
                     missingPet.getImgUrl().get(0),
                     missingPet.getName(),
-                    missingPet.getDateMissing(),
                     missingPet.getGender(),
                     missingPet.getBreed(),
                     missingPet.getAge(),
-                    missingPet.getAddressMissing()
+                    missingPet.getPostUserId(),
+                    missingPet.getIdPet()
             ));
         }
         Date currentTime = Calendar.getInstance().getTime();
