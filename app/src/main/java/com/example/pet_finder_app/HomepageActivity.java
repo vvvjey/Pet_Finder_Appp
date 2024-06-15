@@ -37,7 +37,7 @@ import java.util.List;
 
 public class HomepageActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-
+    ImageView icon_chat;
     TextView seeAllAdopt,seeAllMissing, AdoptCount, MissingCount;
     ImageView icon_user;
     List<Pet> petList = new ArrayList<>();

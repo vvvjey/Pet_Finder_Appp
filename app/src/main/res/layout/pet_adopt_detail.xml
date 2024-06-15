@@ -68,6 +68,8 @@
                     android:layout_marginEnd="4dp"
                     android:background="@color/dark_yellow"
                     android:text="Adopt"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:textAlignment="center"
                     android:textColor="#FBFBFB"
                     android:textSize="20sp"

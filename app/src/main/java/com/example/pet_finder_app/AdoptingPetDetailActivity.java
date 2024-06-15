@@ -133,7 +133,14 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
         });
 
 
-
+        TextView typeAdopt = findViewById(R.id.typeAdopt);
+        typeAdopt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), OwnerpageActivity.class);
+                startActivity(intent);
+            }
+        });
 
         adoptBtn = findViewById(R.id.fillInAdopt);
         adoptBtn.setOnClickListener(new View.OnClickListener() {

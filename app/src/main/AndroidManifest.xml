@@ -46,6 +46,11 @@
             >
 
         </activity>
+        <activity android:name=".OwnerpageActivity"
+            android:parentActivityName=".AdoptingPetDetailActivity"
+            >
+
+        </activity>
         <activity android:name=".FillInforAboutLostPet"
             android:parentActivityName=".SearchingLostPetActivity"
             >
