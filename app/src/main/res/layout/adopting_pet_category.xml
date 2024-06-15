@@ -8,11 +8,13 @@
     android:outlineAmbientShadowColor="@color/shadow"
     android:outlineSpotShadowColor="@color/shadow"
     app:cardElevation="20dp"
+    android:background="@android:color/white"
     app:strokeColor="@null">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
 
         <ImageView
             android:id="@+id/catImg"

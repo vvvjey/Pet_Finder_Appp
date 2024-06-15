@@ -9,6 +9,7 @@
     app:cardCornerRadius="0dp"
     android:outlineSpotShadowColor="@color/shadow"
     app:cardElevation="20dp"
+
     app:strokeColor="@null">
 
     <androidx.constraintlayout.widget.ConstraintLayout

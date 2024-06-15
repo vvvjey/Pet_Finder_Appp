@@ -5,7 +5,8 @@
     android:id="@+id/user_profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity">
+    tools:context=".ProfileActivity"
+    android:background="@android:color/white">
 
     <ScrollView
         android:id="@+id/scrollViewProfile"
@@ -461,6 +462,7 @@
         android:background="@android:color/transparent"
         android:paddingRight="20dp"
         android:paddingBottom="10dp"
+        android:layout_marginBottom="80dp"
         android:paddingTop="20dp"
         android:paddingLeft="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -491,7 +493,7 @@
             android:textSize="14dp"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+
 
             />
     </androidx.constraintlayout.widget.ConstraintLayout>

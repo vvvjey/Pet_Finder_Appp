@@ -8,6 +8,7 @@
     android:outlineAmbientShadowColor="@color/shadow"
     android:outlineSpotShadowColor="@color/shadow"
     app:cardElevation="20dp"
+    android:background="@android:color/white"
     app:strokeColor="@null">
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -12,6 +12,7 @@
     android:layout_marginBottom="10dp"
     app:strokeColor="@color/blue"
     app:strokeWidth="3dp"
+    android:background="@android:color/white"
     app:cardCornerRadius="20dp">
 
 
