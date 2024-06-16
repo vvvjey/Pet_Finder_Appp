@@ -92,7 +92,6 @@ public class FavoritePetActivity extends AppCompatActivity {
         for(Pet pet : petList){
             Log.d("Show FavoriteidPet", "Yes you are in2" + pet.getIdPet());
             FavoriteList.add(new AdoptingCategoryDomain(
-
                     pet.getImgUrl().get(0),
                     pet.getName(),
                     pet.getGender(),

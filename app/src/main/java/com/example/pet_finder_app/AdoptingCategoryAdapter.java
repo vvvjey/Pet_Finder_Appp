@@ -233,7 +233,7 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
             gender = itemView.findViewById(R.id.genderImg);
             name = itemView.findViewById(R.id.nameCat);
             favorite = itemView.findViewById(R.id.favorateImg);
-            location = itemView.findViewById(R.id.location_text);
+//            location = itemView.findViewById(R.id.location_text);
             status = itemView.findViewById(R.id.status);
             breed = itemView.findViewById(R.id.breed_value);
             price = itemView.findViewById(R.id.price_value);
