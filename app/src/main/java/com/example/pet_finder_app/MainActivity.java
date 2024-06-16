@@ -1,22 +1,16 @@
 package com.example.pet_finder_app;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
@@ -104,23 +98,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btn_filter_missing_pet = findViewById(R.id.buttonFilterMissingPet);
-        btn_filter_missing_pet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), FilterMissingPet.class));
-
-            }
-        });
-
-        btn_filter_adopt = findViewById(R.id.buttonFilterAdopt);
-        btn_filter_adopt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), FilterAdopt.class));
-
-            }
-        });
+//        btn_filter_missing_pet = findViewById(R.id.buttonFilterMissingPet);
+//        btn_filter_missing_pet.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), FilterMissingPet.class));
+//
+//            }
+//        });
+//
+//        btn_filter_adopt = findViewById(R.id.buttonFilterAdopt);
+//        btn_filter_adopt.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), FilterAdopt.class));
+//
+//            }
+//        });
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 

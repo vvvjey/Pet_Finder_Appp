@@ -1,6 +1,7 @@
 package com.example.pet_finder_app;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -135,7 +136,9 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("*/*");
-                activityResultLauncher.launch(intent);
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                activityResultLauncher.launch(Intent.createChooser(intent, "Select Picture"));
             }
         });
 
@@ -352,43 +355,92 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
         showData();
     }
 
-    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == RESULT_OK) {
-                        if (result.getData() != null) {
-                            Uri selectedImageUri = result.getData().getData();
-                            if (selectedImageUri != null) {
-                                image.add(selectedImageUri);
-                                boolean imageSet = false;
-
-                                for (int i = 0; i < imageUrlCheck.size(); i++) {
-                                    if (imageUrlCheck.get(i).equals("no")) {
-                                        deleteImg.get(i).setImageResource(R.drawable.deletebtn);
-                                        Glide.with(getApplicationContext()).load(selectedImageUri).into(uploadImg.get(i));
-                                        imageUrlCheck.set(i, "yes");
-                                        imageSet = true;
-                                        break;
-                                    }
-                                }
-
-                                if (!imageSet) {
-                                    Toast.makeText(FillInforToAdoptActivity.this, "No empty slot to set the image", Toast.LENGTH_SHORT).show();
-                                }
-                            } else {
-                                Toast.makeText(FillInforToAdoptActivity.this, "Failed to get image URI", Toast.LENGTH_SHORT).show();
+//    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+//            new ActivityResultContracts.StartActivityForResult(),
+//            new ActivityResultCallback<ActivityResult>() {
+//                @Override
+//                public void onActivityResult(ActivityResult result) {
+//                    if (result.getResultCode() == RESULT_OK) {
+//                        if (result.getData() != null) {
+//                            Uri selectedImageUri = result.getData().getData();
+//                            if (selectedImageUri != null) {
+//                                image.add(selectedImageUri);
+//                                boolean imageSet = false;
+//
+//                                for (int i = 0; i < imageUrlCheck.size(); i++) {
+//                                    if (imageUrlCheck.get(i).equals("no")) {
+//                                        deleteImg.get(i).setImageResource(R.drawable.deletebtn);
+//                                        Glide.with(getApplicationContext()).load(selectedImageUri).into(uploadImg.get(i));
+//                                        imageUrlCheck.set(i, "yes");
+//                                        imageSet = true;
+//                                        break;
+//                                    }
+//                                }
+//
+//                                if (!imageSet) {
+//                                    Toast.makeText(FillInforToAdoptActivity.this, "No empty slot to set the image", Toast.LENGTH_SHORT).show();
+//                                }
+//                            } else {
+//                                Toast.makeText(FillInforToAdoptActivity.this, "Failed to get image URI", Toast.LENGTH_SHORT).show();
+//                            }
+//                        } else {
+//                            Toast.makeText(FillInforToAdoptActivity.this, "Failed to get image data", Toast.LENGTH_SHORT).show();
+//                        }
+//                    } else {
+//                        Toast.makeText(FillInforToAdoptActivity.this, "Please select an image", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//    );
+private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+        new ActivityResultContracts.StartActivityForResult(),
+        new ActivityResultCallback<ActivityResult>() {
+            @Override
+            public void onActivityResult(ActivityResult result) {
+                if (result.getResultCode() == RESULT_OK) {
+                    if (result.getData() != null) {
+                        ClipData clipData = result.getData().getClipData();
+                        if (clipData != null) {
+                            for (int i = 0; i < clipData.getItemCount(); i++) {
+                                Uri selectedImageUri = clipData.getItemAt(i).getUri();
+                                handleSelectedImage(selectedImageUri);
                             }
                         } else {
-                            Toast.makeText(FillInforToAdoptActivity.this, "Failed to get image data", Toast.LENGTH_SHORT).show();
+                            Uri selectedImageUri = result.getData().getData();
+                            handleSelectedImage(selectedImageUri);
                         }
                     } else {
-                        Toast.makeText(FillInforToAdoptActivity.this, "Please select an image", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FillInforToAdoptActivity.this, "Failed to get image data", Toast.LENGTH_SHORT).show();
                     }
+                } else {
+                    Toast.makeText(FillInforToAdoptActivity.this, "Please select an image", Toast.LENGTH_SHORT).show();
                 }
             }
-    );
+        }
+);
+
+    private void handleSelectedImage(Uri selectedImageUri) {
+        if (selectedImageUri != null) {
+            image.add(selectedImageUri);
+            boolean imageSet = false;
+
+            for (int i = 0; i < imageUrlCheck.size(); i++) {
+                if (imageUrlCheck.get(i).equals("no")) {
+                    deleteImg.get(i).setImageResource(R.drawable.deletebtn);
+                    Glide.with(getApplicationContext()).load(selectedImageUri).into(uploadImg.get(i));
+                    imageUrlCheck.set(i, "yes");
+                    imageSet = true;
+                    break;
+                }
+            }
+
+            if (!imageSet) {
+                Toast.makeText(FillInforToAdoptActivity.this, "No empty slot to set the image", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(FillInforToAdoptActivity.this, "Failed to get image URI", Toast.LENGTH_SHORT).show();
+        }
+    }
     public void showData(){
         databaseReference.child("User").addValueEventListener(new ValueEventListener() {
             @Override
