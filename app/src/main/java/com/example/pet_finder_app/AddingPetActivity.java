@@ -73,6 +73,7 @@ public class AddingPetActivity extends AppCompatActivity {
     String typeId, name, description, price, weight, idPetKey, idAdoptKey, calendarText;
     List<String> imageUrl = new ArrayList<>(Collections.nCopies(5, ""));
     List<String> imageUrlCheck = new ArrayList<>(Collections.nCopies(5, ""));
+    List<String> imageUrlCheckUpdate = new ArrayList<>(Collections.nCopies(5, ""));
     StorageReference storageReference;
     EditText petName;
     EditText petDes;
@@ -89,6 +90,7 @@ public class AddingPetActivity extends AppCompatActivity {
     ArrayAdapter<CharSequence> breedAdapter;
 
     boolean isImage = false;
+    boolean isImgDeleted = false;
 
 
 
@@ -213,35 +215,7 @@ public class AddingPetActivity extends AppCompatActivity {
         simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         calendar = Calendar.getInstance();
         idPet = getIntent().getStringExtra("idPet");
-        if(activity.equals("edit")){
-            showData();
-            Log.d("ShowIntent", activity);
-            Log.d("Show id Pet", idPet);
-            btnAdd.setText("Edit");
-            btnAdd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(isName() || isAge() || isBreed() || isCategory() ||
-                            isColor() || isDes() || isGender() || isPrice() || isWeight() || isSize() || isImage){
-                        if(isImage){
-                            uploadImage(image);
-                        }
-                        Toast.makeText(AddingPetActivity.this, "Saved data", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), MyPetActivity.class));
-                    }
-                    else{
-                        Toast.makeText(AddingPetActivity.this, "No Changes Found", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }else{
-            btnAdd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    uploadImage(image);
-                }
-            });
-        }
+
         deleteImg.add(findViewById(R.id.deleteImg1));
         deleteImg.add(findViewById(R.id.deleteImg2));
         deleteImg.add(findViewById(R.id.deleteImg3));
@@ -253,7 +227,13 @@ public class AddingPetActivity extends AppCompatActivity {
             public void onClick(View v) {
                 uploadImg.get(0).setImageDrawable(null);
                 imageUrlCheck.set(0, "no");
+                imageUrl.set(0, "no");
+                imageUrlCheckUpdate.set(0, "");
+                isImage = true;
+                isImgDeleted = true;
                 deleteImg.get(0).setImageDrawable(null);
+                updateImage();
+
                 Toast.makeText(AddingPetActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
             }
         });
@@ -262,7 +242,12 @@ public class AddingPetActivity extends AppCompatActivity {
             public void onClick(View v) {
                 uploadImg.get(1).setImageDrawable(null);
                 imageUrlCheck.set(1, "no");
+                imageUrlCheckUpdate.set(1, "");
+                isImage = true;
+                isImgDeleted = true;
                 deleteImg.get(1).setImageDrawable(null);
+                updateImage();
+
                 Toast.makeText(AddingPetActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
             }
         });
@@ -271,7 +256,12 @@ public class AddingPetActivity extends AppCompatActivity {
             public void onClick(View v) {
                 uploadImg.get(2).setImageDrawable(null);
                 imageUrlCheck.set(2, "no");
+                imageUrlCheckUpdate.set(2, "");
+                isImage = true;
+                isImgDeleted = true;
                 deleteImg.get(2).setImageDrawable(null);
+                updateImage();
+
                 Toast.makeText(AddingPetActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
             }
         });
@@ -279,8 +269,12 @@ public class AddingPetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 uploadImg.get(3).setImageDrawable(null);
+                imageUrlCheckUpdate.set(3, "");
                 imageUrlCheck.set(3, "no");
+                isImage = true;
+                isImgDeleted = true;
                 deleteImg.get(3).setImageDrawable(null);
+                updateImage();
                 Toast.makeText(AddingPetActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
             }
         });
@@ -288,11 +282,53 @@ public class AddingPetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 uploadImg.get(4).setImageDrawable(null);
+                imageUrlCheckUpdate.set(4, "");
                 imageUrlCheck.set(4, "no");
+                isImage = true;
+                isImgDeleted = true;
                 deleteImg.get(4).setImageDrawable(null);
+                updateImage();
+
                 Toast.makeText(AddingPetActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
             }
         });
+
+        if(activity.equals("edit")){
+            showData();
+            Log.d("ShowIntent", activity);
+            Log.d("Show id Pet", idPet);
+            btnAdd.setText("Edit");
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(isName() || isAge() || isBreed() || isCategory() ||
+                                    isColor() || isDes() || isGender() || isPrice() || isWeight() || isSize() || isImage){
+                                if(isImage){
+                                    Log.d("ShowImg1", "Yes you are in");
+                                    uploadImage(image);
+                                }
+                                Toast.makeText(AddingPetActivity.this, "Saved data", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), MyPetActivity.class));
+                            }
+                            else{
+                                Toast.makeText(AddingPetActivity.this, "No Changes Found", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }, 1000);
+
+                }
+            });
+        }else{
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    uploadImage(image);
+                }
+            });
+        }
 
 
     }
@@ -347,20 +383,24 @@ public class AddingPetActivity extends AppCompatActivity {
                         category.setSelection(categoryAdapter.getPosition(pet.getTypeId()));
                         updateBreedSpinner(category.getSelectedItemPosition());
                         int breedPos = breedAdapter.getPosition(pet.getBreed());
-
                         petName.setText(pet.getName());
                         Log.d("ShowIdCategory", String.valueOf(category.getSelectedItemPosition()));
                         Log.d("ShowIdCategory", "StartHere");
                         Log.d("ShowIdCategory", pet.getBreed());
                         Log.d("ShowIdCategory", String.valueOf(breedAdapter.getPosition(pet.getBreed())));
                         size.setSelection(sizeAdapter.getPosition(pet.getSize()));
+                        sizeItem = pet.getSize();
                         gender.setSelection(genderAdapter.getPosition(pet.getGender()));
                         color.setSelection(colorAdapter.getPosition(pet.getColor()));
+                        colorItem = pet.getColor();
                         petWeight.setText(pet.getWeight());
                         petDes.setText(pet.getDescription());
                         for (int i = 0; i < 5; i++){
                             if(!Objects.equals(pet.getImgUrl().get(i), "")){
                                 imageUrl.set(i, pet.getImgUrl().get(i));
+                                imageUrlCheckUpdate.set(i, pet.getImgUrl().get(i) );
+                                imageUrlCheck.set(i, pet.getImgUrl().get(i));
+                                Log.d("ShowImgUrl", pet.getImgUrl().get(i));
                                 Picasso.get().load(pet.getImgUrl().get(i)).into(uploadImg.get(i));
                             }
                         }
@@ -371,6 +411,7 @@ public class AddingPetActivity extends AppCompatActivity {
                         description = pet.getDescription();
 //                        Log.d("checkTest","description: " + description);
                         age.setSelection(ageAdapter.getPosition(pet.getAge()));
+                        ageItem = pet.getAge();
 //                        Log.d("age","age: " + age);
                         weight = pet.getWeight();
 //                        Log.d("weight","weight: " + weight);
@@ -383,6 +424,7 @@ public class AddingPetActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 breed.setSelection(breedAdapter.getPosition(pet.getBreed()));
+                                breedItem = pet.getBreed();
                             }
                         }, 1000);
                         break;
@@ -500,7 +542,10 @@ public class AddingPetActivity extends AppCompatActivity {
         }
     }
     public boolean isAge(){
-        if(!age.equals(petAge.getText().toString()))
+        if (ageItem == null || age.getSelectedItem() == null) {
+            return false;
+        }
+        if(!ageItem.equals(age.getSelectedItem().toString()))
         {
             databaseReference.child("Pet").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -508,7 +553,7 @@ public class AddingPetActivity extends AppCompatActivity {
 
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         if (idPet.equals(snapshot.getValue(Pet.class).getIdPet())) {
-                            databaseReference.child("Pet").child(idPet).child("age").setValue(petAge.getText().toString());
+                            databaseReference.child("Pet").child(idPet).child("age").setValue(age.getSelectedItem().toString());
                             ageItem = age.getSelectedItem().toString();
                         } else {
                             Log.d("ConstraintViolation", "idPet does not match the desired value.");
@@ -524,6 +569,31 @@ public class AddingPetActivity extends AppCompatActivity {
             return false;
         }
     }
+//    public boolean isAge(){
+//        if(!petAge.getText().toString().equals(age))
+//        {
+//            databaseReference.child("Pet").addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//
+//                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                        if (idPet.equals(snapshot.getValue(Pet.class).getIdPet())) {
+//                            databaseReference.child("Pet").child(idPet).child("age").setValue(petAge.getText().toString());
+//                            ageItem = age.getSelectedItem().toString();
+//                        } else {
+//                            Log.d("ConstraintViolation", "idPet does not match the desired value.");
+//                        }
+//                    }}
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError databaseError) {
+//                    Log.d("FirebaseError", databaseError.getMessage());
+//                }
+//            });
+//            return true;
+//        }else{
+//            return false;
+//        }
+//    }
     public boolean isWeight(){
         if(!weight.equals(petWeight.getText().toString()))
         {
@@ -638,6 +708,7 @@ public class AddingPetActivity extends AppCompatActivity {
     }
 
     public boolean isBreed(){
+
         if (breedItem == null || breed.getSelectedItem() == null) {
             return false;
         }
@@ -848,6 +919,7 @@ public class AddingPetActivity extends AppCompatActivity {
 
                     if (uploadedCount.get() == files.size()) { // Check if all uploads are done
                         if (isImage) {
+                            Log.d("ShowImg2", "Yes you are in");
                             updateImage();
                         } else {
                             uploadDataFirebase();
@@ -872,7 +944,11 @@ public class AddingPetActivity extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     if (idPet.equals(snapshot.getValue(Pet.class).getIdPet())) {
                         Log.d("IsImageChecked", idPet + ", " + imageUrl );
-                        databaseReference.child("Pet").child(idPet).child("imgUrl").setValue(imageUrl);
+                        if(isImgDeleted){
+                            databaseReference.child("Pet").child(idPet).child("imgUrl").setValue(imageUrlCheckUpdate);
+                        }else{
+                            databaseReference.child("Pet").child(idPet).child("imgUrl").setValue(imageUrl);
+                        }
                     } else {
                         Log.d("ConstraintViolation", "idPet does not match the desired value.");
                     }
