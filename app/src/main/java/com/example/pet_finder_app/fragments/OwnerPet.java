@@ -31,38 +31,56 @@ import java.util.HashMap;
 import java.util.List;
 
 public class OwnerPet extends Fragment {
-
+    private static final String ARG_USER_ID = "idUserPost";
+    private String idUserPost;
     private RecyclerView recyclerView;
 
     private Toolbar arrowBack;
     private boolean clicked;
     private ImageView filterAdopt;
     List<Pet> petList = new ArrayList<>();
+
     List<AdoptPet> adoptPets = new ArrayList<>();
     List<AdoptOrder> adoptOrders = new ArrayList<>();
     String idUser;
+
+    public static OwnerPet newInstance(String idUserPost) {
+        OwnerPet fragment = new OwnerPet();
+        Bundle args = new Bundle();
+        args.putString(ARG_USER_ID, idUserPost);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_appointment_adopt, container, false);
         recyclerView = view.findViewById(R.id.recycle_appointment_view);
+
         return view;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            idUserPost = getArguments().getString(ARG_USER_ID);
+//            Log.d("Show userPostId", idUserPost);
+        }
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
-        idUser = "1";
+//        idUser = "1";
 
         databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap: snapshot.getChildren()){
                     Pet pet = snap.getValue(Pet.class);
-                    petList.add(pet);
+                    assert pet != null;
+                    if(pet.getPostUserId().equals(idUserPost)){
+                        petList.add(pet);
+                    }
                 }
                 populateRecyclerView();
             }
@@ -98,7 +116,7 @@ public class OwnerPet extends Fragment {
         }
         for(Pet pet : petList){
             AdoptPet adoptPet = adoptHash.get(pet.getIdPet());
-            if(adoptPet != null && pet.getPostUserId().equals(idUser)){
+            if(adoptPet != null && pet.getPostUserId().equals(idUserPost)){
                 ShopList.add(new AdoptingCategoryDomain(
                         pet.getIdPet(),
                         pet.getImgUrl().get(0),

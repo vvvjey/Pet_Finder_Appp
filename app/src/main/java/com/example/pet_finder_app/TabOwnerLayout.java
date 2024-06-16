@@ -9,8 +9,10 @@ import com.example.pet_finder_app.fragments.AdoptionPolicy;
 import com.example.pet_finder_app.fragments.OwnerPet;
 
 public class TabOwnerLayout extends FragmentStateAdapter {
-    public TabOwnerLayout(@NonNull FragmentActivity fragmentActivity) {
+    private String idUserPost;
+    public TabOwnerLayout(@NonNull FragmentActivity fragmentActivity, String idUserPost) {
         super(fragmentActivity);
+        this.idUserPost = idUserPost;
     }
 
     @NonNull
@@ -18,11 +20,11 @@ public class TabOwnerLayout extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:
-                return new OwnerPet();
+                return OwnerPet.newInstance(idUserPost);
             case 1:
                 return new AdoptionPolicy();
             default:
-                return new OwnerPet();
+                return OwnerPet.newInstance(idUserPost);
         }
     }
 
