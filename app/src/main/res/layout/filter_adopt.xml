@@ -595,10 +595,10 @@
                     app:trackColorActive="@color/blue"
                     app:trackColorInactive="@color/light_blue"
                     android:valueFrom="0"
-                    android:valueTo="9000000"
+                    android:valueTo="900000"
                     app:haloColor="@color/light_blue"
                     app:tickColor="@color/blue"
-                    android:stepSize="500000"
+                    android:stepSize="50000"
                     />
 
 

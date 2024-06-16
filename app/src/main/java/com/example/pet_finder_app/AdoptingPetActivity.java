@@ -34,6 +34,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pet_finder_app.Class.AdoptPet;
 import com.example.pet_finder_app.Class.Pet;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.slider.RangeSlider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -70,6 +71,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
     private boolean isBreed = false;
     private boolean isPriceMin = false;
     private boolean isPriceMax = false;
+    private RangeSlider rangeSlider;
     ArrayAdapter<CharSequence> breedAdapter;
     ArrayAdapter<CharSequence> colorAdapter;
     private int minP, maxP;
@@ -212,6 +214,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
+                rangeSlider = dialogView.findViewById(R.id.priceBar);
                 cat = dialogView.findViewById(R.id.catCheckAdopt);
                 dog = dialogView.findViewById(R.id.dogCheckAdopt);
                 turtle = dialogView.findViewById(R.id.turtleCheckAdopt);
@@ -479,6 +482,32 @@ public class AdoptingPetActivity extends AppCompatActivity {
                     }
                 });
 
+                rangeSlider.addOnSliderTouchListener(new RangeSlider.OnSliderTouchListener() {
+                    @Override
+                    public void onStartTrackingTouch(@NonNull RangeSlider rangeSlider) {
+                        String values = rangeSlider.getValues().toString();
+                        minPrice.setText(rangeSlider.getValues().get(0).toString());
+                        maxPrice.setText(rangeSlider.getValues().get(1).toString());
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(@NonNull RangeSlider rangeSlider) {
+                        int minValue = Math.round(rangeSlider.getValues().get(0));
+                        int maxValue = Math.round(rangeSlider.getValues().get(1));
+
+                        minPrice.setText(String.valueOf(minValue));
+                        maxPrice.setText(String.valueOf(maxValue));
+
+                        minP = minValue;
+                        maxP = maxValue;
+
+                        isPriceMin = true;
+                        isPriceMax = true;
+                    }
+
+
+                });
+
                 minPrice.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -562,12 +591,13 @@ public class AdoptingPetActivity extends AppCompatActivity {
                                                     AdoptPet adoptPet = snap2.getValue(AdoptPet.class);
                                                     if (adoptPet != null && adoptPet.getIdPet().equals(pet.getIdPet())) {
                                                         int price = Integer.parseInt(adoptPet.getPrice());
-                                                        Log.d("Show price", "Pet ID: " + adoptPet.getIdPet() + " Price: " + price);
+//                                                        Log.d("Show price", "Pet ID: " + adoptPet.getIdPet() + " Price: " + price);
 
                                                         if ((minP <= price && maxP >= price) ||
                                                                 (maxP > 0 && minP == 0 && maxP >= price) ||
                                                                 (minP > 0 && maxP == 0 && minP <= price)) {
                                                             priceMatchFound = true;
+                                                            Log.d("Show price", "Pet ID: " + adoptPet.getIdPet() + " Price: " + price);
                                                             break;
                                                         }
                                                     }
@@ -577,7 +607,11 @@ public class AdoptingPetActivity extends AppCompatActivity {
                                                 } else {
                                                     int count = priceCheckCounter.incrementAndGet();
                                                     if (count == totalPets) {
+                                                        Log.d("Show price", "Hello There");
                                                         populateRecyclerView();
+                                                        filteredPets.clear();
+                                                        matches.set(false);
+                                                        onPriceCheckComplete(matches, pet, filteredPets, filters);
                                                         dialog.dismiss();
                                                     }
                                                 }
@@ -610,7 +644,6 @@ public class AdoptingPetActivity extends AppCompatActivity {
                 break;
             }
         }
-
         if (matches.get()) {
             filteredPets.add(pet);
         }
