@@ -338,22 +338,25 @@ public class AddingPetActivity extends AppCompatActivity {
             case 0: // Cat
                 breedArrayId = R.array.cat_breed;
                 break;
-            case 1:
-                breedArrayId = R.array.dog_breed;
+            case 1: // Cat
+                breedArrayId = R.array.cat_breed;
                 break;
             case 2:
-                breedArrayId = R.array.turtle_breed;
+                breedArrayId = R.array.dog_breed;
                 break;
             case 3:
-                breedArrayId = R.array.hamster_breed;
+                breedArrayId = R.array.turtle_breed;
                 break;
             case 4:
-                breedArrayId = R.array.rabbit_breed;
+                breedArrayId = R.array.hamster_breed;
                 break;
             case 5:
-                breedArrayId = R.array.duck_breed;
+                breedArrayId = R.array.rabbit_breed;
                 break;
             case 6:
+                breedArrayId = R.array.duck_breed;
+                break;
+            case 7:
                 breedArrayId = R.array.others_breed;
                 break;
             default:
@@ -926,6 +929,9 @@ public class AddingPetActivity extends AppCompatActivity {
                         }
                         Toast.makeText(AddingPetActivity.this, "All images uploaded successfully!", Toast.LENGTH_SHORT).show();
                     }
+                    else{
+                        Toast.makeText(AddingPetActivity.this, "You have to add images of pet and other fields", Toast.LENGTH_SHORT).show();
+                    }
                 }).addOnFailureListener(e -> {
                     Toast.makeText(AddingPetActivity.this, "Failed to get download URL: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
@@ -965,7 +971,9 @@ public class AddingPetActivity extends AppCompatActivity {
         DatabaseReference orderRef = databaseReference.child("AdoptOrder").push();
         addDatatoFirebase(petRef, adoptRef);
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(description) || TextUtils.isEmpty(price)
-                || TextUtils.isEmpty(weight))  {
+                || TextUtils.isEmpty(weight) || category.getSelectedItemPosition() == 0 || age.getSelectedItemPosition() == 0
+        || size.getSelectedItemPosition() == 0 || gender.getSelectedItemPosition() == 0 || color.getSelectedItemPosition() == 0
+        || breed.getSelectedItemPosition() == 0) {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;
         }

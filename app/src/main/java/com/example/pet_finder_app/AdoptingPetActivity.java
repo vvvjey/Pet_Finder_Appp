@@ -652,6 +652,11 @@ public class AdoptingPetActivity extends AppCompatActivity {
         isGender = false;
         isAge = false;
         isSize = false;
+        isColor = false;
+        isPriceMax = false;
+        isPriceMin = false;
+        isBreed = false;
+
 
         petList.clear();
         petList.addAll(filteredPets);
