@@ -134,7 +134,13 @@ public class HomepageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        ImageView petRec = findViewById(R.id.pet_rec);
+        petRec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), DogBreedRecActivity.class));
+            }
+        });
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
