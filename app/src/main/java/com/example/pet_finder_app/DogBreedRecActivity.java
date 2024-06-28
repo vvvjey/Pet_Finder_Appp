@@ -1,9 +1,4 @@
 package com.example.pet_finder_app;
-import static androidx.core.app.ActivityCompat.startActivityForResult;
-import static androidx.databinding.DataBindingUtil.setContentView;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,6 +12,9 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.pet_finder_app.Class.Recognition;
 
