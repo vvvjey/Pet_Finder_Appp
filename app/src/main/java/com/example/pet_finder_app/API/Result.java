@@ -1,9 +1,10 @@
 package com.example.pet_finder_app.API;
-import android.inputmethodservice.Keyboard;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
+
 public class Result {
+
+
 
     private List<String> destination_addresses;
     private List<String> origin_addresses;
@@ -25,18 +26,23 @@ public class Result {
         this.rows = rows;
     }
 
+    public List<Rows> getRows() {
+        return rows;
+    }
 
-
+    public String getStatus() {
+        return status;
+    }
 
     public class Rows {
-        public List<Elements> element;
+        public List<Elements> elements;
 
-        public List<Elements> getElement() {
-            return element;
+        public List<Elements> getElements() {
+            return elements;
         }
 
-        public void setElement(List<Elements> element) {
-            this.element = element;
+        public void setElements(List<Elements> elements) {
+            this.elements = elements;
         }
     }
     public class Elements {
