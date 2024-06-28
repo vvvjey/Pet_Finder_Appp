@@ -98,7 +98,10 @@ dependencies {
     implementation ("com.squareup.picasso:picasso:2.8")
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     //Model
+=======
+>>>>>>> main
 =======
 >>>>>>> main
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -113,7 +116,10 @@ dependencies {
     implementation ("org.tensorflow:tensorflow-lite-metadata:0.4.4")
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 =======
 >>>>>>> main
 }

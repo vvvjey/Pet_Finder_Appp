@@ -17,8 +17,4 @@ Shih Tzu
 chihuahua
 siberian husky
 welsh corgi
-<<<<<<< HEAD
-Yorkshire terrier
-=======
 orkshire terrier
->>>>>>> main
