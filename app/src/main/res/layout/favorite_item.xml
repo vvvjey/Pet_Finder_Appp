@@ -59,27 +59,42 @@
                 app:layout_constraintTop_toBottomOf="@+id/nameCat">
 
                 <TextView
-                    android:id="@+id/location_text"
+                    android:id="@+id/breed_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="@font/poppins"
-                    android:text="Thu Duc ( 2,5km )"
-                    android:textColor="@color/gray"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Casteddd"
                     android:textSize="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView7"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toEndOf="@+id/breed_text" />
 
-                <ImageView
-                    android:id="@+id/imageView7"
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/location" />
+                <TextView
+                    android:id="@+id/breed_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Breed: "
+                    android:textSize="8dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/age_value" />
 
+                <TextView
+                    android:id="@+id/age_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Age: "
+                    android:textSize="8dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/age_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Small"
+                    android:textSize="8dp"
+                    app:layout_constraintStart_toEndOf="@+id/age_text" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
@@ -97,7 +112,7 @@
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="48dp"
+            android:layout_marginBottom="56dp"
             android:background="@drawable/circle_gender"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent">

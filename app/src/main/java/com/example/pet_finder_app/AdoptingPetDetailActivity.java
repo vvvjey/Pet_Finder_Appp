@@ -11,6 +11,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -27,43 +28,47 @@ import com.squareup.picasso.Picasso;
 
 public class AdoptingPetDetailActivity extends AppCompatActivity {
     Toolbar arrowBack;
+    ImageView backBtn;
     String idPet;
     Pet pet;
     AdoptPet adopt;
     User user;
     Button adoptBtn;
+    ConstraintLayout owner_info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.pet_adopt_detail);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.adopt_detail), (v, insets) -> {
+        setContentView(R.layout.adopt_pet_detail);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.adoptDetail), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        arrowBack = findViewById(R.id.toolbarArrowBack);
-        arrowBack.setOnClickListener(new View.OnClickListener() {
+        backBtn = findViewById(R.id.back_btn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), AdoptingPetActivity.class));
             }
         });
-        TextView petAge = findViewById(R.id.agePetDetailAdopt);
-        TextView petBreed = findViewById(R.id.breedPetDetailAdopt);
-        TextView registerDay = findViewById(R.id.postTimeDetailAdopt);
-        TextView petSize = findViewById(R.id.sizePetDetailAdopt);
-        ImageView imageView = findViewById(R.id.imagePetDetailAdopt);
-        TextView petName = findViewById(R.id.namePetDetailAdopt);
-        TextView petPrice = findViewById(R.id.petPrice);
-        ImageView petGender = findViewById(R.id.genderPetDetailAdopt);
-        TextView petColor = findViewById(R.id.colorPetDetailAdopt);
-        TextView petWeight = findViewById(R.id.weightPetDetailAdopt);
+        TextView petAge = findViewById(R.id.age_value);
+        TextView petBreed = findViewById(R.id.breed_value);
+//        TextView registerDay = findViewById(R.id.postTimeDetailAdopt);
+        TextView petSize = findViewById(R.id.size_value);
+        ImageView imageView = findViewById(R.id.image_view);
+        TextView petName = findViewById(R.id.pet_name);
+        TextView petPrice = findViewById(R.id.price);
+        TextView petGender = findViewById(R.id.gender_value);
+        TextView petColor = findViewById(R.id.color_value);
+        TextView petWeight = findViewById(R.id.weight_value);
+        TextView petDescription = findViewById(R.id.pet_describe);
 
-        TextView nameUser = findViewById(R.id.namePosterPetDetailAdopt);
-        TextView phoneNumber = findViewById(R.id.phonePosterPetDetailAdopt);
-        TextView emailAddress = findViewById(R.id.emailPosterPetDetailAdopt);
+        TextView nameUser = findViewById(R.id.owner_name);
+        TextView phoneNumber = findViewById(R.id.user_phone);
+        TextView emailAddress = findViewById(R.id.user_email);
+        TextView addressUser = findViewById(R.id.user_location);
 
 
         idPet = getIntent().getStringExtra("idPet");
@@ -97,12 +102,14 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
                         Picasso.get().load(pet.getImgUrl().get(0)).into(imageView);
                         petAge.setText(pet.getAge());
                         petBreed.setText(pet.getBreed());
-                        registerDay.setText(pet.getRegisterDate());
+//                        registerDay.setText(pet.getRegisterDate());
                         petSize.setText(pet.getSize());
                         petName.setText(pet.getName());
-                        Picasso.get().load(pet.getGender()).into(petGender);
+                        petGender.setText(pet.getGender());
+//                        Picasso.get().load(pet.getGender()).into(petGender);
                         petColor.setText(pet.getColor());
                         petWeight.setText(pet.getWeight());
+                        petDescription.setText(pet.getDescription());
 
                         databaseReference.child("User").addValueEventListener(new ValueEventListener() {
                             @Override
@@ -113,6 +120,7 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
                                         nameUser.setText(user.getName());
                                         phoneNumber.setText(user.getPhoneNumber());
                                         emailAddress.setText(user.getEmail());
+                                        addressUser.setText(user.getAddress());
                                         break;
                                     }
                                 }
@@ -133,9 +141,17 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
         });
 
 
+        owner_info = findViewById(R.id.owner_info);
+        owner_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), OwnerpageActivity.class);
+                intent.putExtra("idUserPost", pet.getPostUserId());
+                startActivity(intent);
+            }
+        });
 
-
-        adoptBtn = findViewById(R.id.fillInAdopt);
+        adoptBtn = findViewById(R.id.adopt_btn);
         adoptBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

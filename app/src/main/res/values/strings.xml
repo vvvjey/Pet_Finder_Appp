@@ -25,6 +25,7 @@
     <string name="google_map_key">AIzaSyAEzDdHbGPBI_hDEE-dIvFuGh0NoPKR4JM</string>
 
     <string-array name="category">
+        <item android:label="choose">Choose type</item>
         <item android:label="cat">cat</item>
         <item android:label="dog">dog</item>
         <item android:label="turtle">turtle</item>
@@ -34,6 +35,7 @@
         <item android:label="others">others</item>
     </string-array>
     <string-array name="cat_breed">
+        <item android:label="choose">Choose breed</item>
         <item>Persian</item>
         <item>Maine Coon</item>
         <item>Exotic</item>
@@ -47,6 +49,7 @@
         <item>Others</item>
     </string-array>
     <string-array name="dog_breed">
+        <item android:label="choose">Choose breed</item>
         <item>Bulldog</item>
         <item>Labrador retriever</item>
         <item>Golden retriever</item>
@@ -60,6 +63,7 @@
         <item>Others</item>
     </string-array>
     <string-array name="turtle_breed">
+        <item android:label="choose">Choose breed</item>
         <item>Sea turtles</item>
         <item>Tortoise</item>
         <item>Snapping turtle</item>
@@ -68,6 +72,7 @@
         <item>Others</item>
     </string-array>
     <string-array name="hamster_breed">
+        <item android:label="choose">Choose breed</item>
         <item>Roborovski</item>
         <item>Campbell hamsters</item>
         <item>Syrian hamster</item>
@@ -75,6 +80,7 @@
         <item>Others</item>
     </string-array>
     <string-array name="rabbit_breed">
+        <item android:label="choose">Choose breed</item>
         <item>Flemish</item>
         <item>Netherland Dwarf</item>
         <item>Holland Lop</item>
@@ -82,6 +88,7 @@
         <item>Others</item>
     </string-array>
     <string-array name="duck_breed">
+        <item android:label="choose">Choose breed</item>
         <item>American Pekin</item>
         <item>Rouen duck</item>
         <item>Crested</item>
@@ -89,10 +96,12 @@
         <item>Others</item>
     </string-array>
     <string-array name="others_breed">
+        <item android:label="choose">Choose breed</item>
         <item>Viet Nam</item>
         <item>Others</item>
     </string-array>
     <string-array name="color">
+        <item android:label="choose">Choose color</item>
         <item android:label="color1">black</item>
         <item android:label="color2">white</item>
         <item android:label="color3">yellow</item>
@@ -100,15 +109,18 @@
         <item android:label="color4">others</item>
     </string-array>
     <string-array name="gender">
+        <item android:label="choose">Choose gender</item>
         <item android:label="gender1">male</item>
         <item android:label="gender2">female</item>
     </string-array>
     <string-array name="size">
+        <item android:label="choose">Choose size</item>
         <item android:label="size1">small</item>
         <item android:label="size2">medium</item>
         <item android:label="size3">large</item>
     </string-array>
     <string-array name="age">
+        <item android:label="choose">Choose age</item>
         <item android:label="age1">baby</item>
         <item android:label="age2">young</item>
         <item android:label="age3">adult</item>

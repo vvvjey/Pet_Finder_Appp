@@ -97,7 +97,10 @@ dependencies {
     implementation("com.google.firebase:firebase-database")
     implementation ("com.squareup.picasso:picasso:2.8")
 
+<<<<<<< HEAD
     //Model
+=======
+>>>>>>> main
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
@@ -109,5 +112,8 @@ dependencies {
     implementation ("org.tensorflow:tensorflow-lite-support:0.4.4")
     implementation ("org.tensorflow:tensorflow-lite-metadata:0.4.4")
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 }

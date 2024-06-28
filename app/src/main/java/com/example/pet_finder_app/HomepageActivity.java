@@ -37,7 +37,7 @@ import java.util.List;
 
 public class HomepageActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-
+    ImageView icon_chat;
     TextView seeAllAdopt,seeAllMissing, AdoptCount, MissingCount;
     ImageView icon_user;
     List<Pet> petList = new ArrayList<>();
@@ -134,7 +134,13 @@ public class HomepageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        ImageView petRec = findViewById(R.id.pet_rec);
+        petRec.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), DogBreedRecActivity.class));
+            }
+        });
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
@@ -222,7 +228,9 @@ public class HomepageActivity extends AppCompatActivity {
                         adoptPet.getPrice(),
                         pet.getGender(),
                         pet.getBreed(),
-                        pet.getAge()
+                        pet.getAge(),
+                        pet.getPostUserId(),
+                        pet.getIdPet()
                 ));
             }
         }
@@ -230,11 +238,11 @@ public class HomepageActivity extends AppCompatActivity {
             missingItems.add(new AdoptingCategoryDomain(
                     missingPet.getImgUrl().get(0),
                     missingPet.getName(),
-                    missingPet.getDateMissing(),
                     missingPet.getGender(),
                     missingPet.getBreed(),
                     missingPet.getAge(),
-                    missingPet.getAddressMissing()
+                    missingPet.getPostUserId(),
+                    missingPet.getIdPet()
             ));
         }
         Date currentTime = Calendar.getInstance().getTime();

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/owner_policy"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="1. Purpose:"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/purpose_value"
+        android:layout_width="350dp"
+        android:fontFamily="@font/poppins_medium"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="4dp"
+        android:text="This policy aims to define regulations and guidelines for users regarding pet adoption on our application."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/types"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="2. Regulations on types of pets:"
+        android:textSize="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/purpose_value"
+        app:layout_constraintTop_toBottomOf="@+id/purpose_value" />
+
+    <TextView
+        android:id="@+id/types_value"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="4dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="This policy aims to define regulations and guidelines for users regarding pet adoption on our application."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/types" />
+
+    <TextView
+        android:id="@+id/adoption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="3. Conditions for adoption:"
+        android:layout_marginTop="16dp"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="@+id/types_value"
+        app:layout_constraintTop_toBottomOf="@+id/types_value" />
+
+    <TextView
+        android:id="@+id/adoption_value"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="4dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Users must comply with the specific requirements set forth by the application's policy. Accurate and complete information about the pet and the adopter must be provided. Proof of care and protection for the pet may be required."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adoption" />
+</androidx.constraintlayout.widget.ConstraintLayout>

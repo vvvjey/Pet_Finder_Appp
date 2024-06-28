@@ -1,7 +1,7 @@
 package com.example.pet_finder_app;
 
 public class AdoptingCategoryDomain {
-    private String image_id, gender, favorite, status, idPet, statusOrder;
+    private String image_id, gender, favorite, status, idPet, statusOrder, idPostUser;
     private String name, location, breed, date_adopt, ranking, condition;
     private String age;
     private String price;
@@ -18,46 +18,60 @@ public class AdoptingCategoryDomain {
 //        this.status = status;
 //    }
 
-    public AdoptingCategoryDomain(String idPet, String image_id, String name, String favorite, String price, String gender, String breed, String age, String condition) {
+    public AdoptingCategoryDomain(String idPet, String image_id, String name, String price, String gender, String breed, String age, String condition, String idPostUser) {
         this.idPet = idPet;
         this.image_id = image_id;
         this.name = name;
-        this.favorite = favorite;
         this.price = price;
         this.gender = gender;
         this.breed = breed;
         this.age = age;
         this.condition = condition;
+        this.idPostUser = idPostUser;
     }
 
-    public AdoptingCategoryDomain(String image_id, String name, String price, String gender, String breed, String age) {
+    public AdoptingCategoryDomain(String image_id, String name, String price, String gender, String breed, String age, String idPostUser, String idPet) {
         this.image_id = image_id;
         this.name = name;
         this.price = price;
         this.gender = gender;
         this.breed = breed;
         this.age = age;
-    }
-    public AdoptingCategoryDomain(String image_id, String name, String date_adopt, String gender, String breed, String age, String location) {
-        this.image_id = image_id;
-        this.name = name;
-        this.date_adopt = date_adopt;
-        this.gender = gender;
-        this.breed = breed;
-        this.age = age;
-        this.location = location;
-    }
-    public AdoptingCategoryDomain(String idPet, String image_id, String name, String price, String gender, String breed, String age, String condition) {
+        this.idPostUser = idPostUser;
         this.idPet = idPet;
+    }
+
+    public AdoptingCategoryDomain(String image_id, String name, String gender, String breed, String age, String idPostUser, String idPet) {
         this.image_id = image_id;
         this.name = name;
-        this.price = price;
         this.gender = gender;
         this.breed = breed;
         this.age = age;
-        this.condition = condition;
+        this.idPostUser = idPostUser;
+        this.idPet = idPet;
     }
-    public AdoptingCategoryDomain(String idPet, String image_id, String name, String price, String gender, String breed, String age, String date_adopt, String ranking, String condition, String statusOrder) {
+//    public AdoptingCategoryDomain(String image_id, String name, String date_adopt, String gender, String breed, String age, String location, String idPostUser) {
+//        this.image_id = image_id;
+//        this.name = name;
+//        this.date_adopt = date_adopt;
+//        this.gender = gender;
+//        this.breed = breed;
+//        this.age = age;
+//        this.location = location;
+//        this.idPostUser = idPostUser;
+//    }
+//    public AdoptingCategoryDomain(String idPet, String image_id, String name, String price, String gender, String breed, String age, String condition, String idPostUser) {
+//        this.idPet = idPet;
+//        this.image_id = image_id;
+//        this.name = name;
+//        this.price = price;
+//        this.gender = gender;
+//        this.breed = breed;
+//        this.age = age;
+//        this.condition = condition;
+//        this.idPostUser = idPostUser;
+//    }
+    public AdoptingCategoryDomain(String idPet, String image_id, String name, String price, String gender, String breed, String age, String date_adopt, String ranking, String condition, String statusOrder, String idPostUser) {
         this.idPet = idPet;
         this.image_id = image_id;
         this.name = name;
@@ -69,6 +83,7 @@ public class AdoptingCategoryDomain {
         this.ranking = ranking;
         this.condition = condition;
         this.statusOrder = statusOrder;
+        this.idPostUser = idPostUser;
     }
 
 
@@ -174,5 +189,21 @@ public class AdoptingCategoryDomain {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getStatusOrder() {
+        return statusOrder;
+    }
+
+    public void setStatusOrder(String statusOrder) {
+        this.statusOrder = statusOrder;
+    }
+
+    public String getIdPostUser() {
+        return idPostUser;
+    }
+
+    public void setIdPostUser(String idPostUser) {
+        this.idPostUser = idPostUser;
     }
 }

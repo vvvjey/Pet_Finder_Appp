@@ -41,7 +41,16 @@
             android:parentActivityName=".HomepageActivity"
             >
         </activity>
+        <activity android:name=".DogBreedRecActivity"
+            android:parentActivityName=".HomepageActivity"
+            >
+        </activity>
         <activity android:name=".FillInforToAdoptActivity"
+            android:parentActivityName=".AdoptingPetDetailActivity"
+            >
+
+        </activity>
+        <activity android:name=".OwnerpageActivity"
             android:parentActivityName=".AdoptingPetDetailActivity"
             >
 

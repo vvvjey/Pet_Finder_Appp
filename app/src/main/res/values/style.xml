@@ -17,5 +17,12 @@
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="CustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabBackground">@drawable/tab_background_selector</item>
+        <item name="tabIndicatorColor">@android:color/transparent</item>
+        <item name="tabSelectedTextColor">@android:color/white</item>
+        <item name="tabTextColor">@android:color/darker_gray</item>
+    </style>
+
 
 </resources>
