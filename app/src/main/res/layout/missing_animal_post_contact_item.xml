@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginBottom="20dp"
+    android:outlineAmbientShadowColor="@color/shadow"
+    android:outlineSpotShadowColor="@color/shadow"
+    app:cardElevation="20dp"
+    app:strokeColor="@null">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/missingContactImg"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cat_category1"
+            tools:ignore="ContentDescription" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="310dp"
+            android:layout_height="120dp"
+            android:background="@color/white"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/missingContactImg"
+            app:layout_constraintTop_toTopOf="@+id/missingContactImg"
+            app:layout_constraintVertical_bias="1.0">
+
+            <TextView
+                android:id="@+id/missingContactName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Samantha"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout11"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="15dp"
+                android:background="@drawable/circle_gender"
+                app:layout_constraintBottom_toBottomOf="@+id/missingContactName"
+                app:layout_constraintStart_toEndOf="@+id/missingContactName"
+                app:layout_constraintTop_toTopOf="@+id/missingContactName">
+
+                <ImageView
+                    android:id="@+id/missingContactGender"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/male" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/age_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/poppins"
+                android:text="Description"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/missingContactName"
+                app:layout_constraintTop_toBottomOf="@+id/missingContactName" />
+
+            <TextView
+                android:id="@+id/missingContactDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/poppins"
+                android:text="Cat so cute"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/age_text"
+                app:layout_constraintStart_toEndOf="@+id/age_text"
+                app:layout_constraintTop_toTopOf="@+id/age_text"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/breed_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins"
+                android:text="Message"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/age_text"
+                app:layout_constraintTop_toBottomOf="@+id/age_text" />
+
+            <TextView
+                android:id="@+id/missingContactMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/poppins"
+                android:text="I have seen her,contact me"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/breed_text"
+                app:layout_constraintTop_toBottomOf="@+id/missingContactDescription" />
+
+            <TextView
+                android:id="@+id/missingContactTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/poppins"
+                android:text="Time"
+                android:textColor="@color/gray"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/missingContactMessage" />
+
+            <TextView
+                android:id="@+id/missingContactType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="70dp"
+                android:fontFamily="@font/poppins"
+                android:text="Missing"
+                android:textColor="@color/gray"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

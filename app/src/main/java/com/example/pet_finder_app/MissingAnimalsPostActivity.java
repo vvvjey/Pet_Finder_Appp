@@ -4,9 +4,13 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,9 +28,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.widget.PopupMenu;
 
 public class MissingAnimalsPostActivity extends AppCompatActivity {
-    Toolbar arrowBack;
+    Toolbar arrowBack, menuMissingPost;
     ListView lv;
     MissingAnimalPostAdapter adapter;
     ArrayList<MissingPet> arrayList;
@@ -44,6 +49,8 @@ public class MissingAnimalsPostActivity extends AppCompatActivity {
         protectedPostSection = findViewById(R.id.protectedPostSection);
 
         arrowBack = findViewById(R.id.toolbarArrowBack);
+        menuMissingPost = findViewById(R.id.menuMissingPost);
+
         arrayList = new ArrayList<>();
         lv = findViewById(R.id.lvMissingPost);
         adapter = new MissingAnimalPostAdapter(this, R.layout.missing_animal_post_item, arrayList);
@@ -85,6 +92,31 @@ public class MissingAnimalsPostActivity extends AppCompatActivity {
                 updateSectionStyle(protectedPostSection);
             }
         });
+        menuMissingPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupMenu(v);
+            }
+        });
+    }
+
+    private void showPopupMenu(View view) {
+        PopupMenu popup = new PopupMenu(this, view);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_missing_post, popup.getMenu());
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.missing_contact) {
+                    Intent intent = new Intent(MissingAnimalsPostActivity.this, MissingAnimalPostContactActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+        popup.show(); // This should be outside of the onMenuItemClick method
     }
 
     private void renderMissingPost(String statusMissing) {

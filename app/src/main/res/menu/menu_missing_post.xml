@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MissingAnimalsPostActivity">
+
+    <item
+        android:id="@+id/missing_contact"
+        android:icon="@android:drawable/ic_popup_reminder"
+        android:title="Missing contact"
+        app:showAsAction="always" />
+
+</menu>

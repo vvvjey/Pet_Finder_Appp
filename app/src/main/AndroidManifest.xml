@@ -148,6 +148,10 @@
             android:parentActivityName=".ProfileActivity"
             >
         </activity>
+        <activity android:name=".MissingAnimalPostContactActivity"
+            android:parentActivityName=".ProfileActivity"
+            >
+        </activity>
         <activity android:name=".AccountSettingActivity"
             android:parentActivityName=".ProfileActivity"
             >
