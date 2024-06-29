@@ -16,6 +16,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.pet_finder_app.Class.AdoptPet;
 import com.example.pet_finder_app.Class.Pet;
 import com.example.pet_finder_app.Class.User;
@@ -24,7 +27,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 public class AdoptingPetDetailActivity extends AppCompatActivity {
     Toolbar arrowBack;
@@ -34,6 +38,7 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
     AdoptPet adopt;
     User user;
     Button adoptBtn;
+    ImageSlider image_slider;
     ConstraintLayout owner_info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +62,7 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
         TextView petBreed = findViewById(R.id.breed_value);
 //        TextView registerDay = findViewById(R.id.postTimeDetailAdopt);
         TextView petSize = findViewById(R.id.size_value);
-        ImageView imageView = findViewById(R.id.image_view);
+//        ImageView imageView = findViewById(R.id.image_view);
         TextView petName = findViewById(R.id.pet_name);
         TextView petPrice = findViewById(R.id.price);
         TextView petGender = findViewById(R.id.gender_value);
@@ -70,10 +75,14 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
         TextView emailAddress = findViewById(R.id.user_email);
         TextView addressUser = findViewById(R.id.user_location);
 
+        image_slider = findViewById(R.id.image_view);
+        ArrayList<SlideModel> slideModels = new ArrayList<>();
 
         idPet = getIntent().getStringExtra("idPet");
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
+
+
 
 
         databaseReference.child("AdoptPet").addValueEventListener(new ValueEventListener() {
@@ -99,7 +108,16 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
                 for (DataSnapshot snap: snapshot.getChildren()){
                     if(idPet.equals(snap.getValue(Pet.class).getIdPet())) {
                         pet = snap.getValue(Pet.class);
-                        Picasso.get().load(pet.getImgUrl().get(0)).into(imageView);
+                        for (int i = 0; i < pet.getImgUrl().size(); i++){
+                            String imageUrl = pet.getImgUrl().get(i);
+                            if (imageUrl != null && !imageUrl.isEmpty()) {
+                                slideModels.add(new SlideModel(imageUrl, ScaleTypes.CENTER_CROP));
+                            } else {
+
+//                                slideModels.add(new SlideModel(imageUrl, ScaleTypes.CENTER_CROP));
+                            }
+                        }
+                        image_slider.setImageList(slideModels, ScaleTypes.CENTER_CROP);
                         petAge.setText(pet.getAge());
                         petBreed.setText(pet.getBreed());
 //                        registerDay.setText(pet.getRegisterDate());
