@@ -46,7 +46,7 @@
                             android:scaleType="centerCrop"
                             app:iss_auto_cycle="true"
                             app:iss_period="1000"
-                            app:iss_delay="1000"
+                            app:iss_delay="2000"
                             app:iss_corner_radius="20"
                             android:src="@drawable/xample" />
 
