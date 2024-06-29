@@ -34,7 +34,6 @@ import com.example.pet_finder_app.API.ProvincePlacesResponse;
 import com.example.pet_finder_app.API.WardPlaces;
 import com.example.pet_finder_app.API.WardPlacesReponse;
 import com.example.pet_finder_app.Class.MissingPet;
-import com.example.pet_finder_app.Class.Pet;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -382,7 +381,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
             String color = dropdownColor.getSelectedItem().toString();
             String description = descriptionPet.getText().toString();
             String gender = dropdownGender.getSelectedItem().toString();
-            String idPet = "1";
+            String idPet = missingPetRef.push().getKey();;
             String petName = animalName.getText().toString();
             Calendar cal = Calendar.getInstance();
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
@@ -650,11 +649,11 @@ public class FillInforAboutLostPet extends AppCompatActivity {
 //        if (petImageUrl != null && !petImageUrl.isEmpty()) {
 //            Picasso.get().load(petImageUrl).into(uploadImg.get(0));
 //        }
-        databaseReference.child("Missing Pet").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("Missing pet").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap: snapshot.getChildren()){
-                    Pet pet = snap.getValue(Pet.class);
+                    MissingPet pet = snap.getValue(MissingPet.class);
                     if(idPet.equals(snap.getValue(MissingPet.class).getIdPet())){
                         for (int i = 0; i < 5; i++){
                             if(!Objects.equals(pet.getImgUrl().get(i), "")){

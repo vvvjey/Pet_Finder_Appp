@@ -91,7 +91,7 @@ public class SearchingLostPetAdapter extends ArrayAdapter<MissingPet> {
                 intent.putExtra("petRegisterDate", missingPet.getRegisterDate());
                 intent.putExtra("petMissingDate", missingPet.getDateMissing());
                 intent.putExtra("petTypeMissing", missingPet.getTypeMissing());
-                intent.putExtra("petImageUrl", missingPet.getImgUrl().get(0));
+//                intent.putExtra("petImageUrl", missingPet.getImgUrl().get(0));
                 intent.putExtra("postUserId",missingPet.getPostUserId());
                 intent.putExtra("requestPoster",missingPet.getRequestPosterMissing());
                 intent.putExtra("desciptionPet",missingPet.getDescription());
