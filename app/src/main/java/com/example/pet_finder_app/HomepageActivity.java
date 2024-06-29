@@ -39,7 +39,7 @@ public class HomepageActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     ImageView icon_chat;
     TextView seeAllAdopt,seeAllMissing, AdoptCount, MissingCount;
-    ImageView icon_user;
+    ImageView icon_user,icon_chat;
     List<Pet> petList = new ArrayList<>();
     List<AdoptPet> adoptPets = new ArrayList<>();
     List<MissingPet> missingPets = new ArrayList<>();
