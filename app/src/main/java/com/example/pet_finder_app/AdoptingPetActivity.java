@@ -202,7 +202,9 @@ public class AdoptingPetActivity extends AppCompatActivity {
         favorite_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), FavoritePetActivity.class));
+                Intent intent = new Intent(getApplicationContext(), FavoritePetActivity.class);
+                intent.putExtra("typeFunction", "Adopt");
+                startActivity(intent);
             }
         });
         edit_btn.setOnClickListener(new View.OnClickListener() {
