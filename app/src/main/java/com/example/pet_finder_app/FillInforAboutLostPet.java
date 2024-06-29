@@ -649,6 +649,10 @@ public class FillInforAboutLostPet extends AppCompatActivity {
 //        if (petImageUrl != null && !petImageUrl.isEmpty()) {
 //            Picasso.get().load(petImageUrl).into(uploadImg.get(0));
 //        }
+        if (databaseReference == null) {
+            Log.e("MissingAnimalPostContactActivity", "Firebase Database reference is null");
+            return;
+        }
         databaseReference.child("Missing pet").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

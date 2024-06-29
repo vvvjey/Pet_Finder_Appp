@@ -125,13 +125,25 @@
                 android:id="@+id/deleteBtnMissing"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_weight="3"
+                android:layout_weight="1"
                 android:clickable="true"
                 android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="@+id/editBtn"
                 app:layout_constraintStart_toEndOf="@+id/editBtn"
                 app:layout_constraintTop_toTopOf="@+id/editBtn"
                 app:srcCompat="@drawable/deletebtn" />
+
+            <ImageView
+                android:id="@+id/doneBtnMissing"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/editBtn"
+                app:layout_constraintStart_toEndOf="@+id/editBtn"
+                app:layout_constraintTop_toTopOf="@+id/editBtn"
+                app:srcCompat="@drawable/done_icon" />
         </LinearLayout>
 
         <LinearLayout
