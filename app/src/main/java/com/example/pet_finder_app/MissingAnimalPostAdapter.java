@@ -87,6 +87,7 @@ public class MissingAnimalPostAdapter extends ArrayAdapter<MissingPet> {
         viewHolder.missingPetStatus.setText(missingPet.getStatusMissing());
         viewHolder.editBtnMissing = convertView.findViewById(R.id.editBtnMissing);
         viewHolder.deleteBtnMissing = convertView.findViewById(R.id.deleteBtnMissing);
+        viewHolder.doneBtnMissing = convertView.findViewById(R.id.doneBtnMissing);
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -189,6 +190,42 @@ public class MissingAnimalPostAdapter extends ArrayAdapter<MissingPet> {
                         .show();
             }
         });
+        viewHolder.doneBtnMissing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatabaseReference missingPetRef = FirebaseDatabase.getInstance().getReference().child("Missing pet");
+
+                missingPetRef.orderByChild("idPet").equalTo(missingPet.getIdPet()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            // Update status to "Done"
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                snapshot.getRef().child("status").setValue("Done").addOnCompleteListener(task -> {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(context, "Pet status updated to Done", Toast.LENGTH_SHORT).show();
+                                        // Update local data and notify adapter
+                                        missingPet.setStatusMissing("Done");
+                                        notifyDataSetChanged();
+                                    } else {
+                                        Toast.makeText(context, "Failed to update pet status", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        } else {
+                            Toast.makeText(context, "No matching pet found to update status", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e("Error", "Error querying database", databaseError.toException());
+                        Toast.makeText(context, "Failed to update pet status", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
         return convertView;
     }
     static class ViewHolder {
@@ -209,7 +246,7 @@ public class MissingAnimalPostAdapter extends ArrayAdapter<MissingPet> {
         TextView phonePoster;
         TextView gmailPoster;
         TextView locationMissingPet;
-        ImageView editBtnMissing,deleteBtnMissing;
+        ImageView editBtnMissing,deleteBtnMissing,doneBtnMissing;
 
     }
 }
