@@ -3,6 +3,7 @@ package com.example.pet_finder_app;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class OwnerpageActivity extends AppCompatActivity {
     private Toolbar arrowBack;
@@ -31,6 +33,7 @@ public class OwnerpageActivity extends AppCompatActivity {
     TextView user_address;
     TextView user_phone;
     TextView user_email;
+    ImageView user_img;
     String idUserPost;
     int countPet = 0;
     TabOwnerLayout tabOwnerLayout;
@@ -56,6 +59,7 @@ public class OwnerpageActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.your_tab_layout);
         viewPager2 = findViewById(R.id.view_pager);
+        user_img = findViewById(R.id.user_image);
 
         arrowBack = findViewById(R.id.toolbarArrowBack);
         arrowBack.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +80,7 @@ public class OwnerpageActivity extends AppCompatActivity {
                         user_address.setText(user.getAddress());
                         user_email.setText(user.getEmail());
                         user_phone.setText(user.getPhoneNumber());
+                        Picasso.get().load(user.getImgUser()).into(user_img);
                         break;
                     }
                 }

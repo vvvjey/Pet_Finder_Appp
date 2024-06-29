@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -74,6 +75,7 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
         TextView phoneNumber = findViewById(R.id.user_phone);
         TextView emailAddress = findViewById(R.id.user_email);
         TextView addressUser = findViewById(R.id.user_location);
+        ImageView user_img = findViewById(R.id.owner_img);
 
         image_slider = findViewById(R.id.image_view);
         ArrayList<SlideModel> slideModels = new ArrayList<>();
@@ -139,6 +141,7 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
                                         phoneNumber.setText(user.getPhoneNumber());
                                         emailAddress.setText(user.getEmail());
                                         addressUser.setText(user.getAddress());
+                                        Picasso.get().load(user.getImgUser()).into(user_img);
                                         break;
                                     }
                                 }

@@ -85,6 +85,7 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
     List<Uri> image = new ArrayList<>();
     List<ImageView> uploadImg = new ArrayList<>(5);
     List<ImageView> deleteImg = new ArrayList<>(5);
+    private List<Uri> imagesToDelete = new ArrayList<>();
     List<String> imageUrl = new ArrayList<>(Collections.nCopies(5, ""));
     List<String> imageUrlCheck = new ArrayList<>(Collections.nCopies(5, ""));
 
@@ -306,51 +307,12 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
         deleteImg.add(findViewById(R.id.deleteImg4));
         deleteImg.add(findViewById(R.id.deleteImg5));
 
-        deleteImg.get(0).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadImg.get(0).setImageDrawable(null);
-                imageUrlCheck.set(0, "no");
-                deleteImg.get(0).setImageDrawable(null);
-                Toast.makeText(FillInforToAdoptActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
-            }
-        });
-        deleteImg.get(1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadImg.get(1).setImageDrawable(null);
-                imageUrlCheck.set(1, "no");
-                deleteImg.get(1).setImageDrawable(null);
-                Toast.makeText(FillInforToAdoptActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
-            }
-        });
-        deleteImg.get(2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadImg.get(2).setImageDrawable(null);
-                imageUrlCheck.set(2, "no");
-                deleteImg.get(2).setImageDrawable(null);
-                Toast.makeText(FillInforToAdoptActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
-            }
-        });
-        deleteImg.get(3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadImg.get(3).setImageDrawable(null);
-                imageUrlCheck.set(3, "no");
-                deleteImg.get(3).setImageDrawable(null);
-                Toast.makeText(FillInforToAdoptActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
-            }
-        });
-        deleteImg.get(4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                uploadImg.get(4).setImageDrawable(null);
-                imageUrlCheck.set(4, "no");
-                deleteImg.get(4).setImageDrawable(null);
-                Toast.makeText(FillInforToAdoptActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
-            }
-        });
+        deleteImg.get(0).setOnClickListener(v -> deleteImage(0));
+        deleteImg.get(1).setOnClickListener(v -> deleteImage(1));
+        deleteImg.get(2).setOnClickListener(v -> deleteImage(2));
+        deleteImg.get(3).setOnClickListener(v -> deleteImage(3));
+        deleteImg.get(4).setOnClickListener(v -> deleteImage(4));
+
 
         showData();
     }
@@ -473,27 +435,44 @@ private final ActivityResultLauncher<Intent> activityResultLauncher = registerFo
         AtomicInteger uploadedCount = new AtomicInteger(0); // Counter for successful uploads
 
         for (Uri file : files) {
-            StorageReference ref = storageReference.child(UUID.randomUUID().toString());
-            ref.putFile(file).addOnSuccessListener(taskSnapshot -> {
-                ref.getDownloadUrl().addOnSuccessListener(uri -> {
-                    for (int i = 0; i < imageUrl.size(); i++) {
-                        if (imageUrl.get(i).equals("") || imageUrl.get(i).isEmpty()) {
-                            imageUrl.set(i, uri.toString());
-                            break;
+            if (!imagesToDelete.contains(file)) {
+                StorageReference ref = storageReference.child(UUID.randomUUID().toString());
+                ref.putFile(file).addOnSuccessListener(taskSnapshot -> {
+                    ref.getDownloadUrl().addOnSuccessListener(uri -> {
+                        for (int i = 0; i < imageUrl.size(); i++) {
+                            if (imageUrl.get(i).equals("") || imageUrl.get(i).isEmpty()) {
+                                imageUrl.set(i, uri.toString());
+                                break;
+                            }
                         }
-                    }
-                    uploadedCount.incrementAndGet(); //
+                        uploadedCount.incrementAndGet(); //
 
-                    if (uploadedCount.get() == files.size()) { // Check if all uploads are done
-                        uploadDataFirebase();
-                    }
+                        if (uploadedCount.get() == image.size() - imagesToDelete.size()) { // Check if all uploads are done
+                            uploadDataFirebase();
+                        }
+                    }).addOnFailureListener(e -> {
+                        Toast.makeText(FillInforToAdoptActivity.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
+                    });
+                    Toast.makeText(FillInforToAdoptActivity.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
                 }).addOnFailureListener(e -> {
-                    Toast.makeText(FillInforToAdoptActivity.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FillInforToAdoptActivity.this, "Failed!" + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
-                Toast.makeText(FillInforToAdoptActivity.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
-            }).addOnFailureListener(e -> {
-                Toast.makeText(FillInforToAdoptActivity.this, "Failed!" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            });
+            }
+        }
+    }
+    private void deleteImage(int index) {
+        Uri selectedImageUri = image.get(index);
+        if (selectedImageUri != null) {
+            // Mark the image as deleted
+            imagesToDelete.add(selectedImageUri);
+
+            // Update the UI to reflect deletion
+            uploadImg.get(index).setImageDrawable(null);
+            imageUrlCheck.set(index, "no");
+            imageUrl.set(index, "");
+            deleteImg.get(index).setImageDrawable(null);
+
+            Toast.makeText(FillInforToAdoptActivity.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
         }
     }
     private void uploadDataFirebase(){

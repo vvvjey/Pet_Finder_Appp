@@ -40,6 +40,44 @@
             app:layout_constraintVertical_bias="1.0">
 
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/edit_btn"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/rectangle_blue"
+                app:layout_constraintEnd_toStartOf="@+id/delete_btn">
+
+                <ImageView
+                    android:id="@+id/edit_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/edit_pet" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/delete_btn"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="50dp"
+                android:background="@drawable/rectangle_red"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:layout_editor_absoluteY="0dp">
+
+                <ImageView
+                    android:id="@+id/delete_img"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/delete" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/nameCat"
@@ -59,12 +97,11 @@
                 android:id="@+id/constraintLayout11"
                 android:layout_width="34dp"
                 android:layout_height="34dp"
-                android:layout_marginLeft="30dp"
                 android:background="@drawable/circle_gender"
-                app:layout_constraintBottom_toBottomOf="@+id/breed_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/breed_value"
-                app:layout_constraintTop_toTopOf="@+id/breed_text">
+                app:layout_constraintBottom_toBottomOf="@+id/age_text"
+                android:layout_marginLeft="20dp"
+                app:layout_constraintStart_toEndOf="@+id/age_value"
+                app:layout_constraintTop_toTopOf="@+id/age_text">
 
                 <ImageView
                     android:id="@+id/genderImg"
@@ -103,31 +140,6 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/status_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/poppins"
-                android:text="Status:"
-                android:textColor="@color/gray"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/age_text"
-                app:layout_constraintStart_toEndOf="@+id/age_value"
-                app:layout_constraintTop_toTopOf="@+id/age_text" />
-
-            <TextView
-                android:id="@+id/status_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:fontFamily="@font/poppins"
-                android:text="Castracted"
-                android:textColor="@color/gray"
-                app:layout_constraintBottom_toBottomOf="@+id/status_text"
-                app:layout_constraintStart_toEndOf="@+id/status_text"
-                app:layout_constraintTop_toTopOf="@+id/status_text" />
-
-            <TextView
                 android:id="@+id/breed_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -151,35 +163,6 @@
                 app:layout_constraintStart_toEndOf="@+id/breed_text"
                 app:layout_constraintTop_toTopOf="@+id/breed_text"
                 app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/value_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="VND"
-                android:textColor="@color/gray"
-                android:textSize="12dp"
-                android:layout_marginRight="70dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/price_value"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/price_value" />
-
-            <TextView
-                android:id="@+id/price_value"
-                android:layout_width="80dp"
-                android:textAlignment="viewEnd"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="95"
-                android:layout_marginRight="5dp"
-                android:textColor="@color/gray"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/nameCat"
-                app:layout_constraintEnd_toStartOf="@+id/value_text"
-                app:layout_constraintTop_toTopOf="@+id/nameCat" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

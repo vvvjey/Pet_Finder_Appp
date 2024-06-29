@@ -68,14 +68,16 @@
             android:orientation="horizontal"
             android:padding="8dp">
 
-            <TextView
-                android:id="@+id/resultMissing"
+            <Button
+                android:id="@+id/search_image"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="100dp"
                 android:layout_weight="1"
-                android:text="@string/searches"
-                android:textColor="@color/gray" />
+                android:background="@drawable/button_rounded_blue"
+                android:text="Search pet by image"
+                android:textSize="12dp"
+                app:backgroundTint="@null" />
 
             <ImageView
                 android:id="@+id/filterMissing"
