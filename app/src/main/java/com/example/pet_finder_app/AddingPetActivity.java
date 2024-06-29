@@ -809,45 +809,6 @@ public class AddingPetActivity extends AppCompatActivity {
         }
     }
 
-
-
-
-
-//    private void uploadImage(List<Uri> files) {
-//        FirebaseApp.initializeApp(this);
-//        storageReference = FirebaseStorage.getInstance().getReference();
-//
-//        AtomicInteger uploadedCount = new AtomicInteger(0); // Counter for successful uploads
-//
-//        for (Uri file : files) {
-//            StorageReference ref = storageReference.child(UUID.randomUUID().toString());
-//            ref.putFile(file).addOnSuccessListener(taskSnapshot -> {
-//                ref.getDownloadUrl().addOnSuccessListener(uri -> {
-//                    for (int i = 0; i < imageUrl.size(); i++) {
-//                        if (imageUrl.get(i).equals("") || imageUrl.get(i).isEmpty()) {
-//                            imageUrl.set(i, uri.toString());
-//                            break;
-//                        }
-//                    }
-//                    uploadedCount.incrementAndGet(); //
-//
-//                    if (uploadedCount.get() == files.size()) { // Check if all uploads are done
-//                        if (isImage) {
-//                            updateImage();
-//                        } else {
-//                            uploadDataFirebase();
-//                        }
-//                    }
-//                }).addOnFailureListener(e -> {
-//                    Toast.makeText(AddingPetActivity.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
-//                });
-//                Toast.makeText(AddingPetActivity.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
-//            }).addOnFailureListener(e -> {
-//                Toast.makeText(AddingPetActivity.this, "Failed!" + e.getMessage(), Toast.LENGTH_SHORT).show();
-//            });
-//        }
-//    }
-
     private void uploadImage(List<Uri> files) {
         FirebaseApp.initializeApp(this);
         storageReference = FirebaseStorage.getInstance().getReference();
