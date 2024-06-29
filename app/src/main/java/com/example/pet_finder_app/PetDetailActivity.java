@@ -18,13 +18,25 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public class    PetDetailActivity extends AppCompatActivity {
 
@@ -43,7 +55,8 @@ public class    PetDetailActivity extends AppCompatActivity {
     private TextView descriptionTextView;
     private TextView addressMissingTextView;
     private TextView statusMissingTextView;
-    private Button chatBtn;
+    private Button chatBtn,contactBtn;
+    String petName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,10 +81,11 @@ public class    PetDetailActivity extends AppCompatActivity {
         addressMissingTextView = findViewById(R.id.addressPetDetailMissing);
         statusMissingTextView = findViewById(R.id.petStatusDetailMissing);
         chatBtn = findViewById(R.id.chatBtn);
+        contactBtn = findViewById(R.id.contactBtn);
 //        Take data
         Intent intent = getIntent();
         String idPet = intent.getStringExtra("idPet");
-        String petName = intent.getStringExtra("petName");
+        petName = intent.getStringExtra("petName");
         String petAge = intent.getStringExtra("petAge");
         String petSize = intent.getStringExtra("petSize");
         String petBreed = intent.getStringExtra("petBreed");
@@ -90,6 +104,7 @@ public class    PetDetailActivity extends AppCompatActivity {
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         String postUserId = intent.getStringExtra("postUserId");
+
 
 
         petNameTextView.setText(petName);
@@ -127,6 +142,37 @@ public class    PetDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        contactBtn.setOnClickListener(new View.OnClickListener() {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference notificationsRef = database.getReference("Notification");
+                SimpleDateFormat sdf = new SimpleDateFormat("MMMM d 'at' h:mm a", Locale.getDefault());
+                String formattedDate = sdf.format(new Date());
+                // Create a new contact record
+                Map<String, Object> contact = new HashMap<>();
+                contact.put("fromUserId", currentUser.getUid());
+                contact.put("toUserId", postUserId);
+                contact.put("notifi_descrip", "You have a missing notification about " + getIntent().getStringExtra("petName") + " post");
+                contact.put("notifi_time", formattedDate);
+                contact.put("notifi_type", "Missing");
+
+
+
+                // Add a new record
+                notificationsRef.push().setValue(contact)
+                        .addOnSuccessListener(aVoid -> {
+                            Log.d("PetDetailActivity", "Notification record added successfully.");
+                            // You can show a success message or perform other actions
+                        })
+                        .addOnFailureListener(e -> {
+                            Log.w("PetDetailActivity", "Error adding notification record", e);
+                            // You can show an error message or perform other actions
+                        });
+            }
+        });
     }
+
 }
