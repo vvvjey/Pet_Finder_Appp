@@ -3,8 +3,14 @@ package com.example.pet_finder_app;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +30,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import com.example.pet_finder_app.Class.MissingPet;
+import com.example.pet_finder_app.Class.Recognition;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,6 +38,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -60,7 +68,15 @@ public class SearchingLostPetActivity extends AppCompatActivity {
     List<MissingPet> petListTemp = new ArrayList<>();
     List<String> imageUrls = new ArrayList<>();
     List<MissingPet> petList= new ArrayList<>();
-    ImageView filterMissing;
+    ImageView filterMissing, detect_image;
+    private final int IMAGE_PICK = 100;
+    Bitmap bitmap;
+    DetectorActivity detectorActivity;
+    Paint boxPaint = new Paint();
+    Paint textPain = new Paint();
+    float maxConf = 0.0f;
+    private Button search_image;
+    String highestConfLabel = "";
     private boolean clicked;
 
     private Animation getFromBottom() {
@@ -86,6 +102,7 @@ public class SearchingLostPetActivity extends AppCompatActivity {
         add_missing_btn = findViewById(R.id.add_missing_btn);
         favorite_btn = findViewById(R.id.favorite_btn);
         filterMissing = findViewById(R.id.filterMissing);
+        search_image = findViewById(R.id.search_image);
         ImageView notifiImg = findViewById(R.id.notification_homepage);
         notifiImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,12 +151,6 @@ public class SearchingLostPetActivity extends AppCompatActivity {
         });
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
-//        filterMissing.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getApplicationContext(), FilterMissingPet.class));
-//            }
-//        });
         renderAllMissingPost();
         filterMissing.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -504,6 +515,61 @@ public class SearchingLostPetActivity extends AppCompatActivity {
                 });
             }
         });
+        search_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isCategory = true;
+                petList.clear();
+                petList.addAll(petListTemp);
+                detectorActivity = new DetectorActivity();
+                detectorActivity.setModelFile("model.tflite");
+                detectorActivity.initialModel(SearchingLostPetActivity.this);
+
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, IMAGE_PICK);
+
+
+                View dialogView = LayoutInflater.from(SearchingLostPetActivity.this).inflate(R.layout.dectection, null);
+                dialog = new Dialog(SearchingLostPetActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(SearchingLostPetActivity.this);
+                builder.setView(dialogView);
+                dialog = builder.create();
+                dialog.show();
+                detect_image = dialogView.findViewById(R.id.detect_image);
+                Button search_pet = dialogView.findViewById(R.id.search_pet);
+                search_pet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String petBreedFound = detectPet();
+                        Log.d("ShowPetName", petBreedFound);
+                        databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                List<MissingPet> filteredPets = new ArrayList<>();
+                                for (DataSnapshot snap: snapshot.getChildren()){
+                                    MissingPet pet = snap.getValue(MissingPet.class);
+                                    assert pet != null;
+                                    if(pet.getBreed().equals(petBreedFound)){
+                                        filteredPets.add(pet);
+                                    }
+                                }
+                                petList.clear();
+                                petList.addAll(filteredPets);
+                                populateRecyclerView();
+                                dialog.dismiss();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    }
+                });
+            }
+        });
     }
 
     private String getFieldValue(MissingPet pet, String fieldName) {
@@ -671,6 +737,40 @@ public class SearchingLostPetActivity extends AppCompatActivity {
             add_missing_btn.startAnimation(getToBottom());
             favorite_btn.startAnimation(getToBottom());
             addBtn.startAnimation(getRotateClose());
+        }
+    }
+
+    private String detectPet(){
+        ArrayList<Recognition> recognitions =  detectorActivity.detect(bitmap);
+        Bitmap mutableBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+        Canvas canvas = new Canvas(mutableBitmap);
+
+        for(Recognition recognition: recognitions){
+
+            if(recognition.getConfidence() > 0.7 && recognition.getConfidence() > maxConf){
+                maxConf = recognition.getConfidence();
+                highestConfLabel = recognition.getLabelName();
+                RectF location = recognition.getLocation();
+                canvas.drawRect(location, boxPaint);
+                canvas.drawText(recognition.getLabelName() + ":" + recognition.getConfidence(), location.left, location.top, textPain);
+            }
+
+        }
+        detect_image.setImageBitmap(mutableBitmap);
+        return highestConfLabel;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == IMAGE_PICK && data != null){
+            Uri uri = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                detect_image.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
