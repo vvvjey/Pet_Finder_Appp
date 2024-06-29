@@ -39,7 +39,7 @@ public class SearchingLostPetAdapter extends ArrayAdapter<MissingPet> {
             viewHolder = new ViewHolder();
             viewHolder.missingPetImg = convertView.findViewById(R.id.missingPetImg);
             viewHolder.missingPetName = convertView.findViewById(R.id.missingPetName);
-            viewHolder.missingPetGender = convertView.findViewById(R.id.missingPetGender);
+            viewHolder.missingPetGender = convertView.findViewById(R.id.genderImg);
             viewHolder.missingPetStatus = convertView.findViewById(R.id.missingPetStatus);
             viewHolder.missingPetColor = convertView.findViewById(R.id.missingPetColor);
             viewHolder.typeMissing = convertView.findViewById(R.id.typeMissing);
@@ -55,19 +55,18 @@ public class SearchingLostPetAdapter extends ArrayAdapter<MissingPet> {
         Picasso.get().load(missingPet.getImgUrl().get(0)).into(viewHolder.missingPetImg);
 
         viewHolder.missingPetName.setText(missingPet.getName());
-        if (missingPet.getGender().equals("Male")) {
-            viewHolder.missingPetGender.setText("♂");
-        } else {
-            viewHolder.missingPetGender.setText("♀");
-
+        if(missingPet.getGender().equals("Male")){
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/male.png?alt=media&token=9326764f-5c4d-49ee-9b54-9cd6a6c5f418").into(viewHolder.missingPetGender);
+        }else{
+            Picasso.get().load("https://firebasestorage.googleapis.com/v0/b/petfinderserverside.appspot.com/o/female.png?alt=media&token=6be18497-fa44-4fc3-8b68-7ba80b622e75").into(viewHolder.missingPetGender);
         }
         if(missingPet.getTypeMissing().equals("Seen")){
             Log.d("TypeMissingValue", missingPet.getTypeMissing());
-            viewHolder.typeMissing.setBackgroundColor(Color.parseColor("#C3F1863F"));
+            viewHolder.typeMissing.setBackgroundColor(Color.parseColor("#13B654"));
         } else if(missingPet.getTypeMissing().equals("Protected")){
             viewHolder.typeMissing.setBackgroundColor(Color.parseColor("#D223447E"));
         } else {
-            viewHolder.typeMissing.setBackgroundColor(Color.parseColor("#BEEA8282"));
+            viewHolder.typeMissing.setBackgroundColor(Color.parseColor("#FF5E5E"));
         }
         viewHolder.typeMissing.setText(missingPet.getTypeMissing());
         viewHolder.missingPetColor.setText(missingPet.getColor());
@@ -91,12 +90,12 @@ public class SearchingLostPetAdapter extends ArrayAdapter<MissingPet> {
                 intent.putExtra("petRegisterDate", missingPet.getRegisterDate());
                 intent.putExtra("petMissingDate", missingPet.getDateMissing());
                 intent.putExtra("petTypeMissing", missingPet.getTypeMissing());
-                intent.putExtra("petImageUrl", missingPet.getImgUrl().get(0));
+//                intent.putExtra("petImageUrl", missingPet.getImgUrl().get(0));
                 intent.putExtra("postUserId",missingPet.getPostUserId());
                 intent.putExtra("requestPoster",missingPet.getRequestPosterMissing());
                 intent.putExtra("desciptionPet",missingPet.getDescription());
                 intent.putExtra("statusMissing",missingPet.getStatusMissing());
-
+                Log.d("request posster missing",missingPet.getRequestPosterMissing());
                 context.startActivity(intent);
             }
         });
@@ -106,7 +105,8 @@ public class SearchingLostPetAdapter extends ArrayAdapter<MissingPet> {
         CardView cardView;
         ImageView missingPetImg;
         TextView missingPetName;
-        TextView missingPetGender;
+//        TextView missingPetGender;
+        ImageView missingPetGender;
         TextView missingPetStatus;
         TextView missingPetColor;
         TextView missingPetRegisterDate;

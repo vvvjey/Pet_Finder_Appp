@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -38,6 +39,8 @@ public class MyPetActivity extends AppCompatActivity {
     List<User> users = new ArrayList<>();
     Button addNewPet;
     Toolbar arrowBack;
+    ImageView edit_btn;
+    private boolean isEdit = false;
     String idUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +75,7 @@ public class MyPetActivity extends AppCompatActivity {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
-
+        edit_btn = findViewById(R.id.edit_btn_home);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -147,8 +150,26 @@ public class MyPetActivity extends AppCompatActivity {
 
 
         recyclerView = findViewById(R.id.mypet_view);
-        MyPetAdapter petAdapter = new MyPetAdapter(MyPetActivity.this, PetList);
+        MyPetAdapter petAdapter = new MyPetAdapter(MyPetActivity.this, PetList, R.layout.my_pet_item);
         recyclerView.setAdapter(petAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
+        edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!isEdit){
+                    MyPetAdapter petAdapter = new MyPetAdapter(MyPetActivity.this, PetList, R.layout.my_pet_item_edit);
+                    recyclerView.setAdapter(petAdapter);
+                    edit_btn.setImageResource(R.drawable.deletebtn);
+                    isEdit = true;
+                }else{
+                    MyPetAdapter petAdapter = new MyPetAdapter(MyPetActivity.this, PetList, R.layout.my_pet_item);
+                    recyclerView.setAdapter(petAdapter);
+                    edit_btn.setImageResource(R.drawable.editbtn);
+                    isEdit = false;
+                }
+
+            }
+        });
+
     }
 }

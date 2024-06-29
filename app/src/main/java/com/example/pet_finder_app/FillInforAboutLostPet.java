@@ -2,6 +2,7 @@ package com.example.pet_finder_app;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.ClipData;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -55,11 +56,15 @@ import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -74,13 +79,19 @@ public class FillInforAboutLostPet extends AppCompatActivity {
     List<WardPlaces> wardList;
     private DatePickerDialog datePickerDialog;
     private Button dateButton,createMissingPostBtn,addImgBtn;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
     private EditText fullname,address,phoneNumber,request,animalName,descriptionPet;
     StorageReference storageReference;
     FloatingActionButton addImg;
-    Uri image;
-    ImageView uploadImg;
+    private List<Uri> imagesToDelete = new ArrayList<>();
+    List<Uri> image = new ArrayList<>();
+    List<ImageView> uploadImg = new ArrayList<>(5);
+    List<ImageView> deleteImg = new ArrayList<>(5);
 
-    List<String> imageUrl = new ArrayList<>();
+
+    List<String> imageUrl = new ArrayList<>(Collections.nCopies(5, ""));
+    List<String> imageUrlCheck = new ArrayList<>(Collections.nCopies(5, ""));
     Spinner dropdownPurpose ;
     Spinner dropdownCountry ;
     Spinner dropdownCity ;
@@ -105,7 +116,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
         descriptionPet = findViewById(R.id.descriptionPetInput);
         createMissingPostBtn = findViewById(R.id.createMissingPostBtn);
         addImg = findViewById(R.id.add_img);
-
+        imageUrlCheck = new ArrayList<>(Arrays.asList("no", "no", "no", "no", "no"));
          dropdownPurpose = findViewById(R.id.purposeSpinner);
          dropdownCountry = findViewById(R.id.countrySpinner);
          dropdownCity = findViewById(R.id.citySpinner);
@@ -116,7 +127,23 @@ public class FillInforAboutLostPet extends AppCompatActivity {
          dropdownColor = findViewById(R.id.colorSpinner);
          dropdownBreed = findViewById(R.id.breedSpinner);
          dropdownAge = findViewById(R.id.ageSpinner);
-        uploadImg = findViewById(R.id.uploadImg);
+        uploadImg.add(findViewById(R.id.uploadImg1));
+        uploadImg.add(findViewById(R.id.uploadImg2));
+        uploadImg.add(findViewById(R.id.uploadImg3));
+        uploadImg.add(findViewById(R.id.uploadImg4));
+        uploadImg.add(findViewById(R.id.uploadImg5));
+
+        deleteImg.add(findViewById(R.id.deleteImg1));
+        deleteImg.add(findViewById(R.id.deleteImg2));
+        deleteImg.add(findViewById(R.id.deleteImg3));
+        deleteImg.add(findViewById(R.id.deleteImg4));
+        deleteImg.add(findViewById(R.id.deleteImg5));
+
+        deleteImg.get(0).setOnClickListener(v -> deleteImage(0));
+        deleteImg.get(1).setOnClickListener(v -> deleteImage(1));
+        deleteImg.get(2).setOnClickListener(v -> deleteImage(2));
+        deleteImg.get(3).setOnClickListener(v -> deleteImage(3));
+        deleteImg.get(4).setOnClickListener(v -> deleteImage(4));
 
 
         String[] dropdownPurposeItems = new String[]{"Missing", "Seen", "Protected"};
@@ -305,7 +332,9 @@ public class FillInforAboutLostPet extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("*/*");
-                activityResultLauncher.launch(intent);
+                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                activityResultLauncher.launch(Intent.createChooser(intent, "Select Picture"));
             }
         });
 //        Handle create new missing pet post
@@ -319,7 +348,24 @@ public class FillInforAboutLostPet extends AppCompatActivity {
                 }
             }
         });
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
 
+    }
+    private void deleteImage(int index) {
+        Uri selectedImageUri = image.get(index);
+        if (selectedImageUri != null) {
+            // Mark the image as deleted
+            imagesToDelete.add(selectedImageUri);
+
+            // Update the UI to reflect deletion
+            uploadImg.get(index).setImageDrawable(null);
+            imageUrlCheck.set(index, "no");
+            imageUrl.set(index, "");
+            deleteImg.get(index).setImageDrawable(null);
+
+            Toast.makeText(FillInforAboutLostPet.this, "Image deleted successfully", Toast.LENGTH_SHORT).show();
+        }
     }
     private void createMissingPost(){
         try{
@@ -335,7 +381,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
             String color = dropdownColor.getSelectedItem().toString();
             String description = descriptionPet.getText().toString();
             String gender = dropdownGender.getSelectedItem().toString();
-            String idPet = "1";
+            String idPet = missingPetRef.push().getKey();;
             String petName = animalName.getText().toString();
             Calendar cal = Calendar.getInstance();
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
@@ -369,7 +415,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
             missingPetRef.child(missingPetKey).child("typeMissing").setValue(pet.getTypeMissing());
             missingPetRef.child(missingPetKey).child("addressMissing").setValue(pet.getAddressMissing());
             missingPetRef.child(missingPetKey).child("dateMissing").setValue(pet.getDateMissing());
-            missingPetRef.child(missingPetKey).child("requestPoster").setValue(pet.getRequestPosterMissing());
+            missingPetRef.child(missingPetKey).child("requestPosterMissing").setValue(pet.getRequestPosterMissing());
             missingPetRef.child(missingPetKey).child("postUserId").setValue(pet.getPostUserId());
             missingPetRef.child(missingPetKey).child("status").setValue(pet.getStatusMissing());
 
@@ -389,35 +435,40 @@ public class FillInforAboutLostPet extends AppCompatActivity {
         }
 
     }
-    private void    uploadImage(Uri file) {
+
+    private void uploadImage(List<Uri> files) {
         FirebaseApp.initializeApp(this);
         storageReference = FirebaseStorage.getInstance().getReference();
-        StorageReference ref = storageReference.child("missingPetAssets/" +UUID.randomUUID().toString());
-        ref.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        imageUrl.add(uri.toString());
-                        createMissingPost();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(FillInforAboutLostPet.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                Toast.makeText(FillInforAboutLostPet.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
 
+        AtomicInteger uploadedCount = new AtomicInteger(0); // Counter for successful uploads
+
+        for (Uri file : image) {
+            if (!imagesToDelete.contains(file)) { // Skip images that are marked for deletion
+                StorageReference ref = storageReference.child(UUID.randomUUID().toString());
+                ref.putFile(file).addOnSuccessListener(taskSnapshot -> {
+                    ref.getDownloadUrl().addOnSuccessListener(uri -> {
+                        for (int i = 0; i < imageUrl.size(); i++) {
+                            if (imageUrl.get(i).equals("") || imageUrl.get(i).isEmpty()) {
+                                imageUrl.set(i, uri.toString());
+                                break;
+                            }
+                        }
+                        uploadedCount.incrementAndGet();
+
+                        if (uploadedCount.get() == image.size() - imagesToDelete.size()) { // Check if all uploads are done, excluding deleted images
+                            createMissingPost();
+                        }
+                    }).addOnFailureListener(e -> {
+                        Toast.makeText(FillInforAboutLostPet.this, "Failed to get download URL", Toast.LENGTH_SHORT).show();
+                    });
+                    Toast.makeText(FillInforAboutLostPet.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+                }).addOnFailureListener(e -> {
+                    Toast.makeText(FillInforAboutLostPet.this, "Failed!" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(FillInforAboutLostPet.this, "Failed!" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        }
     }
+
     private boolean validateInputs() {
         String fullName = fullname.getText().toString().trim();
         String addressText = address.getText().toString().trim();
@@ -524,19 +575,55 @@ public class FillInforAboutLostPet extends AppCompatActivity {
         //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
 
     }
-    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-        @Override
-        public void onActivityResult(ActivityResult result) {
-            if (result.getResultCode() == RESULT_OK) {
-                if (result.getData() != null) {
-                    image = result.getData().getData();
-                    Glide.with(getApplicationContext()).load(image).into(uploadImg);
+    private final ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK) {
+                        if (result.getData() != null) {
+                            ClipData clipData = result.getData().getClipData();
+                            if (clipData != null) {
+                                for (int i = 0; i < clipData.getItemCount(); i++) {
+                                    Uri selectedImageUri = clipData.getItemAt(i).getUri();
+                                    handleSelectedImage(selectedImageUri);
+                                }
+                            } else {
+                                Uri selectedImageUri = result.getData().getData();
+                                handleSelectedImage(selectedImageUri);
+                            }
+                        } else {
+                            Toast.makeText(FillInforAboutLostPet.this, "Failed to get image data", Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(FillInforAboutLostPet.this, "Please select an image", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            } else {
-                Toast.makeText(FillInforAboutLostPet.this, "Please select an image", Toast.LENGTH_SHORT).show();
             }
+    );
+
+    private void handleSelectedImage(Uri selectedImageUri) {
+        if (selectedImageUri != null) {
+            image.add(selectedImageUri);
+            boolean imageSet = false;
+
+            for (int i = 0; i < imageUrlCheck.size(); i++) {
+                if (imageUrlCheck.get(i).equals("no")) {
+                    deleteImg.get(i).setImageResource(R.drawable.deletebtn);
+                    Glide.with(getApplicationContext()).load(selectedImageUri).into(uploadImg.get(i));
+                    imageUrlCheck.set(i, "yes");
+                    imageSet = true;
+                    break;
+                }
+            }
+
+            if (!imageSet) {
+                Toast.makeText(FillInforAboutLostPet.this, "No empty slot to set the image", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(FillInforAboutLostPet.this, "Failed to get image URI", Toast.LENGTH_SHORT).show();
         }
-    });
+    }
     private void FillDataEdit(){
         Intent intent = getIntent();
 
@@ -559,9 +646,32 @@ public class FillInforAboutLostPet extends AppCompatActivity {
         animalName.setText(petName);
         descriptionPet.setText(petDescription);
         request.setText(posterRequest);
-        if (petImageUrl != null && !petImageUrl.isEmpty()) {
-            Picasso.get().load(petImageUrl).into(uploadImg);
-        }
+//        if (petImageUrl != null && !petImageUrl.isEmpty()) {
+//            Picasso.get().load(petImageUrl).into(uploadImg.get(0));
+//        }
+        databaseReference.child("Missing pet").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap: snapshot.getChildren()){
+                    MissingPet pet = snap.getValue(MissingPet.class);
+                    if(idPet.equals(snap.getValue(MissingPet.class).getIdPet())){
+                        for (int i = 0; i < 5; i++){
+                            if(!Objects.equals(pet.getImgUrl().get(i), "")){
+                                imageUrl.set(i, pet.getImgUrl().get(i));
+//                                imageUrlCheckUpdate.set(i, pet.getImgUrl().get(i) );
+                                imageUrlCheck.set(i, pet.getImgUrl().get(i));
+                                Log.d("ShowImgUrl", pet.getImgUrl().get(i));
+                                Picasso.get().load(pet.getImgUrl().get(i)).into(uploadImg.get(i));
+                            }
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }});
 
         setSpinnerSelection(dropdownAge, petAge);
         setSpinnerSelection(dropdownSize, petSize);
@@ -573,9 +683,9 @@ public class FillInforAboutLostPet extends AppCompatActivity {
             dateButton.setText(petMissingDate);
         }
         addImg = findViewById(R.id.add_img);
-        if (petImageUrl != null && !petImageUrl.isEmpty()) {
-            Picasso.get().load(petImageUrl).into(uploadImg);
-        }
+//        if (petImageUrl != null && !petImageUrl.isEmpty()) {
+//            Picasso.get().load(petImageUrl).into(uploadImg.get(0));
+//        }
     }
     private void setSpinnerSelection(Spinner spinner, String value) {
         ArrayAdapter<String> adapter = (ArrayAdapter<String>) spinner.getAdapter();
@@ -700,33 +810,36 @@ public class FillInforAboutLostPet extends AppCompatActivity {
         void onImageUploadSuccess(String imageUrl);
         void onImageUploadFailure(String message);
     }
-    private void uploadImageUpdate(Uri file, OnImageUploadListener listener) {
+    private void uploadImageUpdate(List<Uri> file, OnImageUploadListener listener) {
         FirebaseApp.initializeApp(this);
         storageReference = FirebaseStorage.getInstance().getReference();
         StorageReference ref = storageReference.child("missingPetAssets" + UUID.randomUUID().toString());
-        ref.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        String imageUrl = uri.toString();
-                        listener.onImageUploadSuccess(imageUrl);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        listener.onImageUploadFailure("Failed to get download URL");
-                    }
-                });
-                Toast.makeText(FillInforAboutLostPet.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                listener.onImageUploadFailure("Failed!" + e.getMessage());
-            }
-        });
+        for (int i = 0; i < file.size(); i++){
+            ref.putFile(file.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            String imageUrl = uri.toString();
+                            listener.onImageUploadSuccess(imageUrl);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            listener.onImageUploadFailure("Failed to get download URL");
+                        }
+                    });
+                    Toast.makeText(FillInforAboutLostPet.this, "Image Uploaded!!", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    listener.onImageUploadFailure("Failed!" + e.getMessage());
+                }
+            });
+        }
+
     }
 
     private void updateMissingPetNodeWithNewImage(DatabaseReference missingPetNodeRef, DataSnapshot snapshot, String newImageUrl) {

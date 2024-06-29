@@ -4,8 +4,14 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,6 +39,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pet_finder_app.Class.AdoptPet;
 import com.example.pet_finder_app.Class.Pet;
+import com.example.pet_finder_app.Class.Recognition;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.slider.RangeSlider;
 import com.google.firebase.database.DataSnapshot;
@@ -41,6 +48,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -54,7 +62,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
     private FloatingActionButton addBtn, edit_btn, favorite_btn;
     private Toolbar arrowBack;
     private boolean clicked;
-    private ImageView filterAdopt;
+    private ImageView filterAdopt, detect_image;
     private TextView cat, dog, turtle, hamster, rabbit, duck, others, male, female, small, medium, large, baby, young, adult, senior;
     private static final int REQUEST_NOTIFICATION = 2;
     List<Pet> petList= new ArrayList<>();
@@ -74,6 +82,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
     private RangeSlider rangeSlider;
     ArrayAdapter<CharSequence> breedAdapter;
     ArrayAdapter<CharSequence> colorAdapter;
+    private Button search_image;
     private int minP, maxP;
     private String breedItem, colorItem, category, gender, size, age;
 
@@ -92,6 +101,15 @@ public class AdoptingPetActivity extends AppCompatActivity {
     private Animation getRotateOpen() {
         return AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim);
     }
+
+    private final int IMAGE_PICK = 100;
+    ImageView imageView;
+    Bitmap bitmap;
+    DetectorActivity detectorActivity;
+    Paint boxPaint = new Paint();
+    Paint textPain = new Paint();
+    float maxConf = 0.0f;
+    String highestConfLabel = "";
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -164,6 +182,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
         edit_btn = findViewById(R.id.edit_btn);
         favorite_btn = findViewById(R.id.favorite_btn);
         filterAdopt = findViewById(R.id.filterAdopt);
+        search_image = findViewById(R.id.search_image);
         ImageView notifiImg = findViewById(R.id.notification_homepage);
         notifiImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,13 +202,71 @@ public class AdoptingPetActivity extends AppCompatActivity {
         favorite_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), FavoritePetActivity.class));
+                Intent intent = new Intent(getApplicationContext(), FavoritePetActivity.class);
+                intent.putExtra("typeFunction", "Adopt");
+                startActivity(intent);
             }
         });
         edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), FillInforToAdoptActivity.class));
+            }
+        });
+
+        search_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isCategory = true;
+                petList.clear();
+                petList.addAll(petListTemp);
+                detectorActivity = new DetectorActivity();
+                detectorActivity.setModelFile("model.tflite");
+                detectorActivity.initialModel(AdoptingPetActivity.this);
+
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, IMAGE_PICK);
+
+
+                View dialogView = LayoutInflater.from(AdoptingPetActivity.this).inflate(R.layout.dectection, null);
+                dialog = new Dialog(AdoptingPetActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(AdoptingPetActivity.this);
+                builder.setView(dialogView);
+                dialog = builder.create();
+                dialog.show();
+                detect_image = dialogView.findViewById(R.id.detect_image);
+                Button search_pet = dialogView.findViewById(R.id.search_pet);
+                search_pet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String petBreedFound = detectPet();
+                        Log.d("ShowPetName", petBreedFound);
+                        databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                List<Pet> filteredPets = new ArrayList<>();
+                                for (DataSnapshot snap: snapshot.getChildren()){
+                                    Pet pet = snap.getValue(Pet.class);
+                                    assert pet != null;
+                                    if(pet.getBreed().equals(petBreedFound)){
+                                        filteredPets.add(pet);
+                                    }
+                                }
+                                petList.clear();
+                                petList.addAll(filteredPets);
+                                populateRecyclerView();
+                                dialog.dismiss();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+                    }
+                });
             }
         });
 
@@ -746,12 +823,41 @@ public class AdoptingPetActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
     }
 
+    private String detectPet(){
+        ArrayList<Recognition> recognitions =  detectorActivity.detect(bitmap);
+        Bitmap mutableBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+        Canvas canvas = new Canvas(mutableBitmap);
+
+        for(Recognition recognition: recognitions){
+
+            if(recognition.getConfidence() > 0.7 && recognition.getConfidence() > maxConf){
+                maxConf = recognition.getConfidence();
+                highestConfLabel = recognition.getLabelName();
+                RectF location = recognition.getLocation();
+                canvas.drawRect(location, boxPaint);
+                canvas.drawText(recognition.getLabelName() + ":" + recognition.getConfidence(), location.left, location.top, textPain);
+            }
+
+        }
+        detect_image.setImageBitmap(mutableBitmap);
+        return highestConfLabel;
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_NOTIFICATION && resultCode == RESULT_OK) {
             onBackPressed();
+        }
+
+        if(requestCode == IMAGE_PICK && data != null){
+            Uri uri = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+                detect_image.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
