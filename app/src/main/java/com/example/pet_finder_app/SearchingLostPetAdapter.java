@@ -96,7 +96,7 @@ public class SearchingLostPetAdapter extends ArrayAdapter<MissingPet> {
                 intent.putExtra("requestPoster",missingPet.getRequestPosterMissing());
                 intent.putExtra("desciptionPet",missingPet.getDescription());
                 intent.putExtra("statusMissing",missingPet.getStatusMissing());
-
+                Log.d("request posster missing",missingPet.getRequestPosterMissing());
                 context.startActivity(intent);
             }
         });

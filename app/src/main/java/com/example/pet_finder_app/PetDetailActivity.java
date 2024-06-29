@@ -40,7 +40,7 @@ import java.util.Map;
 
 public class    PetDetailActivity extends AppCompatActivity {
 
-    Toolbar arrowBack;
+    ImageView arrowBack;
     private ImageView petImageView;
     private TextView petNameTextView;
     private TextView petAgeTextView;
@@ -74,12 +74,12 @@ public class    PetDetailActivity extends AppCompatActivity {
         petBreedTextView = findViewById(R.id.breedPetDetailMissing);
         petGenderImageView = findViewById(R.id.genderPetDetailMissing);
         petColorTextView = findViewById(R.id.colorPetDetailMissing);
-        petMissingDateTextView = findViewById(R.id.postTimeDetailMissing);
+//        petMissingDateTextView = findViewById(R.id.postTimeDetailMissing);
         petTypeMissingTextView = findViewById(R.id.typeMissingPetDetailMissing);
         requestPosterTextView = findViewById(R.id.requestPosterPetDetailMissing);
         descriptionTextView = findViewById(R.id.descriptionPetDetailMissing);
         addressMissingTextView = findViewById(R.id.addressPetDetailMissing);
-        statusMissingTextView = findViewById(R.id.petStatusDetailMissing);
+//        statusMissingTextView = findViewById(R.id.petStatusDetailMissing);
         chatBtn = findViewById(R.id.chatBtn);
         contactBtn = findViewById(R.id.contactBtn);
 //        Take data
@@ -105,7 +105,7 @@ public class    PetDetailActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         String postUserId = intent.getStringExtra("postUserId");
 
-
+//        Log.d("Request" , requestPoster);
 
         petNameTextView.setText(petName);
         petAgeTextView.setText(petAge);
@@ -117,13 +117,13 @@ public class    PetDetailActivity extends AppCompatActivity {
             petGenderImageView.setImageResource(R.drawable.female);
         }
         petColorTextView.setText(petColor);
-        petMissingDateTextView.setText(petMissingDate);
+//        petMissingDateTextView.setText(petMissingDate);
         petTypeMissingTextView.setText(petTypeMissing);
         requestPosterTextView.setText(requestPoster);
         descriptionTextView.setText(description);
         addressMissingTextView.setText(addressMissing);
         Picasso.get().load(petImageUrl).into(petImageView);
-        statusMissingTextView.setText(statusMissing);
+//        statusMissingTextView.setText(statusMissing);
 
         arrowBack = findViewById(R.id.toolbarArrowBack);
         arrowBack.setOnClickListener(new View.OnClickListener() {

@@ -369,7 +369,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
             missingPetRef.child(missingPetKey).child("typeMissing").setValue(pet.getTypeMissing());
             missingPetRef.child(missingPetKey).child("addressMissing").setValue(pet.getAddressMissing());
             missingPetRef.child(missingPetKey).child("dateMissing").setValue(pet.getDateMissing());
-            missingPetRef.child(missingPetKey).child("requestPoster").setValue(pet.getRequestPosterMissing());
+            missingPetRef.child(missingPetKey).child("requestPosterMissing").setValue(pet.getRequestPosterMissing());
             missingPetRef.child(missingPetKey).child("postUserId").setValue(pet.getPostUserId());
             missingPetRef.child(missingPetKey).child("status").setValue(pet.getStatusMissing());
 
