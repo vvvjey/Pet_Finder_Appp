@@ -77,15 +77,16 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
 
 // Iterate through the 'predictions' array in the JSON response
 
-        String first = "tram cuu ho cho meo";
-        String second[]={"Ha Noi", "TPHCM"};
+        String first = "cuu ho thu cung";
+
+        int limit = 10;
    //     String place_id = "Uox-Qa5QGqtr2nUh1GixtUG8dVHUY4StUeNLLa5YgKxFxWGAEnQi6r3u_SzmYb66uSZ99M8xVv6xZ2UuE531arTLYfYQ";
-        String input =  first + second[1];
-        PlaceApi.apiInterface.getPlace(getString(R.string.goong_map_api_key),input).enqueue(new Callback<PlaceResponse>() {
+        String input =  first;
+        PlaceApi.apiInterface.getPlace(getString(R.string.goong_map_api_key),input,limit).enqueue(new Callback<PlaceResponse>() {
             @Override
             public void onResponse(Call<PlaceResponse> call, Response<PlaceResponse> response) {
                 int predSize = response.body().getPredictions().size();
-                for(int i = 0; i < 2;i++)
+                for(int i = 0; i < predSize ;i++)
                 {
                     String place_id = String.valueOf(response.body().getPredictions().get(i).getPlace_id());
 
