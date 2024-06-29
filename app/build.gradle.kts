@@ -53,16 +53,16 @@ dependencies {
 
 
 //    GSON JSON HANDLE API
-    implementation ("com.google.code.gson:gson:2.10.1")
-    implementation ("com.squareup.retrofit2:retrofit:2.11.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.11.0")
-    implementation ("com.daimajia.swipelayout:library:1.2.0@aar")
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.daimajia.swipelayout:library:1.2.0@aar")
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.google.android.gms:play-services-location:21.2.0")
     implementation("com.google.android.gms:play-services-maps:18.2.0")
     implementation(platform("com.google.firebase:firebase-bom:+"))
     implementation("com.google.firebase:firebase-firestore")
-    implementation ("com.firebaseui:firebase-ui-firestore:8.0.2")
+    implementation("com.firebaseui:firebase-ui-firestore:8.0.2")
 
 
     implementation("com.google.firebase:firebase-analytics")
@@ -73,15 +73,17 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.4.0")
     implementation("com.squareup.retrofit2:converter-gson:2.3.0")
     implementation("com.squareup.retrofit2:adapter-rxjava2:2.4.0")
-    implementation ("com.squareup.okhttp3:okhttp:3.6.0")
+    implementation("com.squareup.okhttp3:okhttp:3.6.0")
     //Rx
     implementation("io.reactivex.rxjava2:rxjava:2.2.2")
     implementation("com.jakewharton.rxrelay2:rxrelay:2.0.0")
     implementation("io.reactivex.rxjava2:rxandroid:2.0.2")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
 
-    implementation ("androidx.recyclerview:recyclerview:1.1.0")
+
+    implementation("androidx.recyclerview:recyclerview:1.1.0")
     // chatbot
-    implementation ("com.android.volley:volley:1.1.1")
+    implementation("com.android.volley:volley:1.1.1")
 
 
 
@@ -95,31 +97,20 @@ dependencies {
     implementation("com.firebaseui:firebase-ui-auth:8.0.2")
     implementation("com.firebaseui:firebase-ui-storage:8.0.2")
     implementation("com.google.firebase:firebase-database")
-    implementation ("com.squareup.picasso:picasso:2.8")
+    implementation("com.squareup.picasso:picasso:2.8")
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     //Model
-=======
->>>>>>> main
-=======
->>>>>>> main
+
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation ("org.tensorflow:tensorflow-lite:2.14.0")
-    implementation ("org.tensorflow:tensorflow-lite-gpu:2.14.0")
-    implementation ("org.tensorflow:tensorflow-lite-support:0.4.4")
-    implementation ("org.tensorflow:tensorflow-lite-metadata:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite:2.14.0")
+    implementation("org.tensorflow:tensorflow-lite-gpu:2.14.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.4.4")
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> main
-=======
->>>>>>> main
 }
