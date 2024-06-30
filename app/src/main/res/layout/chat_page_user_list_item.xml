@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/user_chat_layout"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="70dp">
 
     <ImageView
