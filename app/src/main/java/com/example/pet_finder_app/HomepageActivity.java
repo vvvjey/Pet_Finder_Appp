@@ -257,13 +257,13 @@ public class HomepageActivity extends AppCompatActivity {
         AdoptCount.setText(Integer.toString(countAdopt));
         MissingCount.setText(Integer.toString(countMissing));
         recyclerView = findViewById(R.id.adoptCategoryView);
-        AdoptingCategoryAdapter petAdapter = new AdoptingCategoryAdapter(petItems, R.layout.adopting_pet_category, "Adopt");
+        AdoptingCategoryAdapter petAdapter = new AdoptingCategoryAdapter(petItems, R.layout.adopting_pet_category, "adopt");
         recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 5,5));
         recyclerView.setAdapter(petAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.HORIZONTAL, false));
 
         recyclerView = findViewById(R.id.missingCategoryView);
-        AdoptingCategoryAdapter missingAdapter = new AdoptingCategoryAdapter(missingItems, R.layout.adopting_pet_category, "Missing");
+        AdoptingCategoryAdapter missingAdapter = new AdoptingCategoryAdapter(missingItems, R.layout.adopting_pet_category, "missing");
         recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 5,5));
         recyclerView.setAdapter(missingAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.HORIZONTAL, false));

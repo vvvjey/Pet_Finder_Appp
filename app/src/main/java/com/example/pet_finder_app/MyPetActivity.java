@@ -20,6 +20,8 @@ import com.example.pet_finder_app.Class.AdoptOrder;
 import com.example.pet_finder_app.Class.AdoptPet;
 import com.example.pet_finder_app.Class.Pet;
 import com.example.pet_finder_app.Class.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +43,9 @@ public class MyPetActivity extends AppCompatActivity {
     Toolbar arrowBack;
     ImageView edit_btn;
     private boolean isEdit = false;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+
     String idUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,8 @@ public class MyPetActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         addNewPet = findViewById(R.id.btn_add_pet);
         arrowBack = findViewById(R.id.toolbarArrowBack);
@@ -112,7 +119,7 @@ public class MyPetActivity extends AppCompatActivity {
         });
 
 
-        idUser = "1";
+        idUser = currentUser.getUid();
     }
 
     private void populateRecyclerView() {

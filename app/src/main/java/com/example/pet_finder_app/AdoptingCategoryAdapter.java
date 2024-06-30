@@ -12,6 +12,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pet_finder_app.Class.FavoritePet;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +29,9 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
     private List<String> favoriteIdPet = new ArrayList<>();
     private int layoutResourceId;
     private String statusPet;
-    private String idUser = "1";
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private FirebaseUser currentUser = mAuth.getCurrentUser();
+    private String idUser;
     FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = firebaseDatabase.getReference().child("FavoritePet");
     private boolean isFavorite = false;
@@ -93,7 +97,7 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
         });
 
         if (holder.status != null) {
-            if(statusPet.equals("Adopt")){
+            if(statusPet.equals("adopt")){
                 holder.status.setImageResource(R.drawable.adopt);
             }else{
                 holder.status.setImageResource(R.drawable.mising);
@@ -192,6 +196,7 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
             date_adopt = itemView.findViewById(R.id.date_adopt);
             ranking = itemView.findViewById(R.id.ranking);
             condition = itemView.findViewById(R.id.status_value);
+            idUser = currentUser.getUid();
         }
     }
 }

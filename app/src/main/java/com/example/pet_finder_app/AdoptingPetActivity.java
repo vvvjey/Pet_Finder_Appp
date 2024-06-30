@@ -203,7 +203,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), FavoritePetActivity.class);
-                intent.putExtra("typeFunction", "Adopt");
+                intent.putExtra("typeFunction", "adopt");
                 startActivity(intent);
             }
         });

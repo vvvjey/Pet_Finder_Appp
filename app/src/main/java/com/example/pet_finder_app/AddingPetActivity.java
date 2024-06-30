@@ -35,6 +35,8 @@ import com.example.pet_finder_app.Class.AdoptPet;
 import com.example.pet_finder_app.Class.Pet;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -59,6 +61,8 @@ public class AddingPetActivity extends AppCompatActivity {
     Button backPet;
     FloatingActionButton addImg;
     List<Uri> image = new ArrayList<>();
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
 
     List<ImageView> uploadImg = new ArrayList<>(5);
     List<ImageView> deleteImg = new ArrayList<>(5);
@@ -115,7 +119,8 @@ public class AddingPetActivity extends AppCompatActivity {
         uploadImg.add(findViewById(R.id.uploadImg3));
         uploadImg.add(findViewById(R.id.uploadImg4));
         uploadImg.add(findViewById(R.id.uploadImg5));
-
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         activity = getIntent().getStringExtra("activity");
 
@@ -890,7 +895,11 @@ public class AddingPetActivity extends AppCompatActivity {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;
         }
-        pet = new Pet(ageItem,breedItem, "2", colorItem, description, genderItem, idPetKey, imageUrl, name, calendarText, sizeItem, categoryItem, weight,"1") ;
+        if(currentUser != null){
+            pet = new Pet(ageItem,breedItem, "2", colorItem, description, genderItem, idPetKey, imageUrl, name, calendarText, sizeItem, categoryItem, weight,currentUser.getUid());
+        }else{
+            pet = new Pet(ageItem,breedItem, "2", colorItem, description, genderItem, idPetKey, imageUrl, name, calendarText, sizeItem, categoryItem, weight,"1");
+        }
         adopt = new AdoptPet(null, idAdoptKey, idPetKey, price, "Castrated");
         petRef.setValue(pet);
         adoptRef.setValue(adopt);

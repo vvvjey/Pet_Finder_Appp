@@ -20,6 +20,8 @@ import com.example.pet_finder_app.Class.AdoptPet;
 import com.example.pet_finder_app.Class.Pet;
 import com.example.pet_finder_app.HistoryAdapter;
 import com.example.pet_finder_app.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,7 +42,11 @@ public class RejectRequest extends Fragment {
     List<Pet> petList = new ArrayList<>();
     List<AdoptPet> adoptPets = new ArrayList<>();
     List<AdoptOrder> adoptOrders = new ArrayList<>();
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+
     String idUser;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +62,10 @@ public class RejectRequest extends Fragment {
         super.onCreate(savedInstanceState);
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
-        idUser = "1";
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+
+        idUser = currentUser.getUid();
 
         databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
             @Override
