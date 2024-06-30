@@ -819,7 +819,6 @@ public class AdoptingPetActivity extends AppCompatActivity {
                 ));
             }
         }
-        Collections.reverse(petItems);
         AdoptingPetAdapter petAdapter = new AdoptingPetAdapter(petItems, this);
         recyclerView.setAdapter(petAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
