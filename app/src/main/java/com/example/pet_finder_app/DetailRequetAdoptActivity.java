@@ -21,6 +21,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.pet_finder_app.Class.AdoptOrder;
 import com.example.pet_finder_app.Class.Appoitment;
 import com.example.pet_finder_app.Class.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +35,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 
 public class DetailRequetAdoptActivity extends AppCompatActivity {
@@ -44,10 +49,13 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
     AdoptOrder adoptOrder;
     User user;
     Appoitment appointment;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+
     List<String> timeStatus = new ArrayList<>();
     List<String> imageUrl = new ArrayList<>(Collections.nCopies(5, ""));
     List<ImageView> uploadImg = new ArrayList<>(5);
-    String ipPet, ipAdopt, idOrder, idUser;
+    String ipPet, ipAdopt, idOrder, idUser, idPostUser;
     EditText addressEdt, nameEdt, dateBirthEdt, requestEdt, dateMeetEdt, phoneEdt, emailEdt, timeEdt, genderEdt;
     String fullName, dateBirth, gender, email, address, country, city,district, ward, phone, requestMsg, dateMeet, timeMeet, fullAddress;
 
@@ -77,6 +85,9 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
         dateMeetEdt = findViewById(R.id.dateMeet_value);
         timeEdt = findViewById(R.id.time_value);
         emailEdt = findViewById(R.id.email_value);
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        idUser = currentUser.getUid();
 
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,6 +114,7 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
                 acceptBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        saveNotification("Accept");
                         databaseReference.child("AdoptOrder").child(idOrder).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -171,6 +183,7 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
                 rejectBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        saveNotification("Reject");
                         databaseReference.child("AdoptOrder").child(idOrder).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -231,8 +244,8 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
                     AdoptOrder tempOrder = snap.getValue(AdoptOrder.class);
                     if (tempOrder != null && idOrder.equals(tempOrder.getIdOrder()) && "Pretending".equals(tempOrder.getStatus())) {
                         adoptOrder = tempOrder;
-                        idUser = adoptOrder.getUserId();
-                        Log.d("Show id User: ", idUser);
+                        idPostUser = adoptOrder.getUserId();
+                        Log.d("Show id User: ", idPostUser);
                         fetchUser();
                         fetchAppointment();
                         break;
@@ -248,13 +261,13 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
     }
 
     private void fetchUser() {
-        if (idUser == null) return;
+        if (idPostUser == null) return;
         databaseReference.child("User").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     User tempUser = snap.getValue(User.class);
-                    if (tempUser != null && idUser.equals(tempUser.getUserId())) {
+                    if (tempUser != null && idPostUser.equals(tempUser.getUserId())) {
                         user = tempUser;
                         Log.d("Show id UserTemp: ", user.getUserId());
                         if (user != null && appointment != null && adoptOrder != null) {
@@ -317,5 +330,36 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
                 Picasso.get().load(adoptOrder.getImageUrl().get(i)).into(uploadImg.get(i));
             }
         }
+    }
+
+    public void saveNotification(String statusBtn){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference notificationsRef = database.getReference("Notification");
+        SimpleDateFormat sdf = new SimpleDateFormat("MMMM d 'at' h:mm a", Locale.getDefault());
+        String formattedDate = sdf.format(new Date());
+        Map<String, Object> contact = new HashMap<>();
+        contact.put("fromUserId", idUser);
+        contact.put("toUserId", idPostUser);
+        if(statusBtn.equals("Reject")){
+            contact.put("notifi_descrip", "A pet request has been cancelled");
+        }
+        else{
+            contact.put("notifi_descrip", "A pet request has been accepted");
+        }
+        contact.put("notifi_time", formattedDate);
+        contact.put("notifi_type", "Adopt");
+
+
+
+        // Add a new record
+        notificationsRef.push().setValue(contact)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("PetDetailActivity", "Notification record added successfully.");
+                    // You can show a success message or perform other actions
+                })
+                .addOnFailureListener(e -> {
+                    Log.w("PetDetailActivity", "Error adding notification record", e);
+                    // You can show an error message or perform other actions
+                });
     }
 }

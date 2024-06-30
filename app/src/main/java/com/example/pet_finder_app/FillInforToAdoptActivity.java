@@ -57,7 +57,10 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -303,6 +306,8 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 uploadImage(image);
+                saveNotification();
+
             }
 
         });
@@ -530,6 +535,33 @@ private final ActivityResultLauncher<Intent> activityResultLauncher = registerFo
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
         String formattedDate = dateFormat.format(currentTime);
         statusTime.add(formattedDate);
+    }
+
+    public void saveNotification(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference notificationsRef = database.getReference("Notification");
+        SimpleDateFormat sdf = new SimpleDateFormat("MMMM d 'at' h:mm a", Locale.getDefault());
+        String formattedDate = sdf.format(new Date());
+        // Create a new contact record
+        Map<String, Object> contact = new HashMap<>();
+        contact.put("fromUserId", currentUser.getUid());
+        contact.put("toUserId", idPostUser);
+        contact.put("notifi_descrip", fullName + " wants to adopt " + namePet);
+        contact.put("notifi_time", formattedDate);
+        contact.put("notifi_type", "Adopt");
+
+
+
+        // Add a new record
+        notificationsRef.push().setValue(contact)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("PetDetailActivity", "Notification record added successfully.");
+                    // You can show a success message or perform other actions
+                })
+                .addOnFailureListener(e -> {
+                    Log.w("PetDetailActivity", "Error adding notification record", e);
+                    // You can show an error message or perform other actions
+                });
     }
 
 }
