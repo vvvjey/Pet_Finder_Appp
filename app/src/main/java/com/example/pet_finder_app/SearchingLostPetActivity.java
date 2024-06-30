@@ -36,6 +36,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
@@ -643,7 +644,8 @@ public class SearchingLostPetActivity extends AppCompatActivity {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference missingPetRef = firebaseDatabase.getReference().child("Missing pet");
-        missingPetRef.orderByKey().addValueEventListener(new ValueEventListener() {
+        Query query = missingPetRef.orderByChild("status").equalTo("Waiting");
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.d("MissingPetData", "3");
