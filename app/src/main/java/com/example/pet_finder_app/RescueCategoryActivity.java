@@ -76,73 +76,73 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
 
         String first = "tram cuu ho cho meo";
         String second[]={"Ha Noi", "TPHCM"};
-   //     String place_id = "Uox-Qa5QGqtr2nUh1GixtUG8dVHUY4StUeNLLa5YgKxFxWGAEnQi6r3u_SzmYb66uSZ99M8xVv6xZ2UuE531arTLYfYQ";
+        //     String place_id = "Uox-Qa5QGqtr2nUh1GixtUG8dVHUY4StUeNLLa5YgKxFxWGAEnQi6r3u_SzmYb66uSZ99M8xVv6xZ2UuE531arTLYfYQ";
         String input =  first + second[1];
         PlaceApi.apiInterface.getPlace(getString(R.string.goong_map_api_key),input).enqueue(new Callback<PlaceResponse>() {
-            @Override
-            public void onResponse(Call<PlaceResponse> call, Response<PlaceResponse> response) {
-                int predSize = response.body().getPredictions().size();
-                for(int i = 0; i < 2;i++)
-                {
-                    String place_id = String.valueOf(response.body().getPredictions().get(i).getPlace_id());
+                                                                                                @Override
+                                                                                                public void onResponse(Call<PlaceResponse> call, Response<PlaceResponse> response) {
+                                                                                                    int predSize = response.body().getPredictions().size();
+                                                                                                    for(int i = 0; i < 2;i++)
+                                                                                                    {
+                                                                                                        String place_id = String.valueOf(response.body().getPredictions().get(i).getPlace_id());
 
-                    String main_text = String.valueOf(response.body().getPredictions().get(i).getStructured_formatting().getMain_text());
-                    String secondary_text = String.valueOf(response.body().getPredictions().get(i).getStructured_formatting().getSecondary_text());
+                                                                                                        String main_text = String.valueOf(response.body().getPredictions().get(i).getStructured_formatting().getMain_text());
+                                                                                                        String secondary_text = String.valueOf(response.body().getPredictions().get(i).getStructured_formatting().getSecondary_text());
 
-                    int size = response.body().getPredictions().get(i).getTerms().size();
-                    String province = response.body().getPredictions().get(i).getTerms().get(size - 1).getValue();
-                    Log.d("Province", province);
-                    Log.d("Name",main_text);
-                    Log.d("Place_id",place_id);
-                    PlaceDetailApi.apiInterface.getPlaceDetail(getString(R.string.goong_map_api_key), place_id).enqueue(new Callback<PlaceDetailResponse>() {
-                        @Override
-                        public void onResponse(Call<PlaceDetailResponse> call, Response<PlaceDetailResponse> response) {
+                                                                                                        int size = response.body().getPredictions().get(i).getTerms().size();
+                                                                                                        String province = response.body().getPredictions().get(i).getTerms().get(size - 1).getValue();
+                                                                                                        Log.d("Province", province);
+                                                                                                        Log.d("Name",main_text);
+                                                                                                        Log.d("Place_id",place_id);
+                                                                                                        PlaceDetailApi.apiInterface.getPlaceDetail(getString(R.string.goong_map_api_key), place_id).enqueue(new Callback<PlaceDetailResponse>() {
+                                                                                                            @Override
+                                                                                                            public void onResponse(Call<PlaceDetailResponse> call, Response<PlaceDetailResponse> response) {
 
-                        String lat = String.valueOf(response.body().getResult().getGeometry().getLocation().getLat());
-                        String lng = String.valueOf(response.body().getResult().getGeometry().getLocation().getLng());
+                                                                                                                String lat = String.valueOf(response.body().getResult().getGeometry().getLocation().getLat());
+                                                                                                                String lng = String.valueOf(response.body().getResult().getGeometry().getLocation().getLng());
 
-                        String destinations = lat +","+ lng ;
+                                                                                                                String destinations = lat +","+ lng ;
 
-                            String vehicles = "car";
-                            String origins = "10.8700,106.8031";
+                                                                                                                String vehicles = "car";
+                                                                                                                String origins = "10.8700,106.8031";
 
-                            DistanceAPI.apiInterface.getDistance(getString(R.string.goong_map_api_key),origins,destinations,vehicles).enqueue(new Callback<DistanceResult>() {
-                                @Override
-                                public void onResponse(Call<DistanceResult> call, Response<DistanceResult> response) {
-                                    String distance = response.body().getRows().get(0).getElements().get(0).getDistance().getText();
-                                    Log.d("Distance",distance);
+                                                                                                                DistanceAPI.apiInterface.getDistance(getString(R.string.goong_map_api_key),origins,destinations,vehicles).enqueue(new Callback<DistanceResult>() {
+                                                                                                                    @Override
+                                                                                                                    public void onResponse(Call<DistanceResult> call, Response<DistanceResult> response) {
+                                                                                                                        String distance = response.body().getRows().get(0).getElements().get(0).getDistance().getText();
+                                                                                                                        Log.d("Distance",distance);
 //                                    RescueList.add(new RescueCategoryDomain(R.drawable.rescue_station1, main_text,province,distance));
 
-                                    DatabaseReference newStationRef = rootRef.child(place_id);
+                                                                                                                        DatabaseReference newStationRef = rootRef.child(place_id);
 
-                        // Set station details under the newly created child node
-                                    newStationRef.child("address").setValue(secondary_text);
-                                    newStationRef.child("name").setValue(main_text);
-                                    newStationRef.child("province").setValue(province);
-                                    newStationRef.child("distance").setValue(distance);
-                                }
+                                                                                                                        // Set station details under the newly created child node
+                                                                                                                        newStationRef.child("address").setValue(secondary_text);
+                                                                                                                        newStationRef.child("name").setValue(main_text);
+                                                                                                                        newStationRef.child("province").setValue(province);
+                                                                                                                        newStationRef.child("distance").setValue(distance);
+                                                                                                                    }
 
-                                @Override
-                                public void onFailure(Call<DistanceResult> call, Throwable throwable) {
+                                                                                                                    @Override
+                                                                                                                    public void onFailure(Call<DistanceResult> call, Throwable throwable) {
 
-                                }
-                            });
-                        }
+                                                                                                                    }
+                                                                                                                });
+                                                                                                            }
 
-                        @Override
-                        public void onFailure(Call<PlaceDetailResponse> call, Throwable throwable) {
+                                                                                                            @Override
+                                                                                                            public void onFailure(Call<PlaceDetailResponse> call, Throwable throwable) {
 
-                        }
-                    });
-                }
-            }
-            @Override
-            public void onFailure(Call<PlaceResponse> call, Throwable throwable) {
+                                                                                                            }
+                                                                                                        });
+                                                                                                    }
+                                                                                                }
+                                                                                                @Override
+                                                                                                public void onFailure(Call<PlaceResponse> call, Throwable throwable) {
 
-            }
+                                                                                                }
 
 
-        }
+                                                                                            }
         );
 
 
@@ -155,27 +155,9 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
                     RescueStation rescueStation = stationSnapshot.getValue(RescueStation.class);
                     RescueList.add(rescueStation);
 
-//                    String name = stationSnapshot.child("name").getValue(String.class);
-//                    String address = stationSnapshot.child("address").getValue(String.class);
-//                    String distance= stationSnapshot.child("distance").getValue(String.class);
-//
-//
-//                    // Optional
-//
-//                    // Get the unique station ID for potential future use (optional)
-//                    String stationId = stationSnapshot.getKey();
-//                    // Create RescueCategoryDomain object with Firebase data
-//                    RescueCategoryDomain station = new RescueCategoryDomain(
-//                            R.drawable.rescue_station1,
-//                            name, address, distance);
-
                 }
                 populateRecyclerView();
 
-                // Notify adapter (if using one) about data change for list update
-//                if (yourAdapter != null) {
-//                    yourAdapter.notifyDataSetChanged();
-//                }
             }
 
             @Override
@@ -183,14 +165,6 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
                 // Handle errors
             }
         });
-
-
-
-//        RescueList.add(new RescueCategoryDomain(R.drawable.rescue_station1, "SaiGon Pet Adoption","Quan 9, TPHCM", "0.4 kms"));
-//        RescueList.add(new RescueCategoryDomain(R.drawable.rescue_station1, "SaiGon Pet Adoption","Quan 9, TPHCM", "0.4 kms"));
-//        RescueList.add(new RescueCategoryDomain(R.drawable.rescue_station1, "SaiGon Pet Adoption","Quan 9, TPHCM", "0.4 kms"));
-//        RescueList.add(new RescueCategoryDomain(R.drawable.rescue_station1, "SaiGon Pet Adoption","Quan 9, TPHCM", "0.4 kms"));
- //      RescueList.add(new RescueCategoryDomain(R.drawable.rescue_station1, "SaiGon Pet Adoption","Quan 9, TPHCM", "0.4 kms"));
 
         gomap = findViewById(R.id.gomap);
 
