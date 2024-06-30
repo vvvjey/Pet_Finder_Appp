@@ -141,7 +141,7 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
                                     if(pet.getPostUserId().equals(snap.getValue(User.class).getUserId())) {
                                         user = snap.getValue(User.class);
                                         Log.d("ShowIdUserAdD", user.getUserId());
-                                        nameUser.setText(user.getName());
+                                        nameUser.setText(user.getFullname());
                                         phoneNumber.setText(user.getPhoneNumber());
                                         emailAddress.setText(user.getEmail());
                                         addressUser.setText(user.getAddress());

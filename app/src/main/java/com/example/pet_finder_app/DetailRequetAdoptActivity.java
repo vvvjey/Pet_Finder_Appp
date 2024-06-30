@@ -315,7 +315,7 @@ public class DetailRequetAdoptActivity extends AppCompatActivity {
             return;
         }
 
-        nameEdt.setText(user.getName());
+        nameEdt.setText(user.getFullname());
         dateBirthEdt.setText(user.getDateBirth());
         genderEdt.setText(user.getGender());
         addressEdt.setText(user.getAddress());

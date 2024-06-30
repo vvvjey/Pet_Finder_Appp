@@ -61,7 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     User user = snap.getValue(User.class);
                     if (user != null && user.getUserId() != null && user.getUserId().equals(idUser)) {
-                        user_name.setText(user.getName());
+                        user_name.setText(user.getFullname());
                         user_location.setText(user.getAddress());
                         Picasso.get().load(user.getImgUser()).into(user_img);
                     }
