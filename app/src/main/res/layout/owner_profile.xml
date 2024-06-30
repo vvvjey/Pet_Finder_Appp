@@ -67,8 +67,8 @@
 
                     <ImageView
                         android:id="@+id/call_btn"
-                        android:layout_width="42dp"
-                        android:layout_height="42dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_marginEnd="15dp"
                         android:clickable="true"
                         android:focusable="true"
@@ -79,12 +79,12 @@
 
                     <ImageView
                         android:id="@+id/chat_btn"
-                        android:layout_width="42dp"
+                        android:layout_width="40dp"
                         android:layout_height="42dp"
                         android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:focusable="true"
+                        android:layout_marginBottom="20dp"
                         android:clickable="true"
+                        android:focusable="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:srcCompat="@drawable/chat_message" />
@@ -112,9 +112,11 @@
 
                     <TextView
                         android:id="@+id/user_addressP"
-                        android:layout_width="240dp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6dp"
+                        android:ellipsize="end"
+                        android:maxLines="2"
                         android:fontFamily="@font/poppins"
                         android:text="123A, Le Hong Phong, Vung Tau City, Ba Ria-Vung Tau"
                         android:textSize="14dp"
