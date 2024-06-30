@@ -1,6 +1,5 @@
 package com.example.pet_finder_app;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,107 +82,13 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
         if (holder.location != null) {
             holder.location.setText(pet.getLocation());
         }
-        isFavorite = false;
         holder.favorite.setImageResource(R.drawable.non_favorate); // default icon
-        databaseReference.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                FavoritePet favoritePet = snapshot.getValue(FavoritePet.class);
-//                if(favoritePet != null){
-//                    favoriteIdPet = favoritePet.getFavoritePet();
-//                    for(String idPetF : favoriteIdPet){
-//                        if(idPetF.equals(pet.getIdPet())){
-//                            Log.d("Show favorite", "IdPet: " + pet.getIdPet());
-//                            holder.favorite.setImageResource(R.drawable.favorate); // update to favorite icon
-//                            isFavorite = true;
-//                        }
-//                    }
-//                }
-                if(favoritePet != null ){
-                    Log.d("Show favorite", "IdPet: " + pet.getIdPet());
-                    if (favoritePet.getFavoritePet().contains(pet.getIdPet())) {
-                        holder.favorite.setImageResource(R.drawable.favorate); // update to favorite icon
-                        isFavorite = true;
-                        Log.d("Show favorite", "IdPet2: " + pet.getIdPet());
-                    }
-                else{
-                        Log.d("Show favorite", "IdPet2: " + pet.getIdPet());
-                        isFavorite = false;
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+        updateFavoriteIcon(holder, pet);
 
         holder.favorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.favorite.setImageResource(R.drawable.non_favorate); // default icon
-                databaseReference.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        FavoritePet favoritePet = snapshot.getValue(FavoritePet.class);
-//                if(favoritePet != null){
-//                    favoriteIdPet = favoritePet.getFavoritePet();
-//                    for(String idPetF : favoriteIdPet){
-//                        if(idPetF.equals(pet.getIdPet())){
-//                            Log.d("Show favorite", "IdPet: " + pet.getIdPet());
-//                            holder.favorite.setImageResource(R.drawable.favorate); // update to favorite icon
-//                            isFavorite = true;
-//                        }
-//                    }
-//                }
-                        if(favoritePet != null ){
-                            Log.d("Show favorite", "IdPet: " + pet.getIdPet());
-                            if (favoritePet.getFavoritePet().contains(pet.getIdPet())) {
-                                holder.favorite.setImageResource(R.drawable.favorate); // update to favorite icon
-                                isFavorite = true;
-                                Log.d("Show favorite", "IdPet2: " + pet.getIdPet());
-                            }
-                            else{
-                                Log.d("Show favorite", "IdPet2: " + pet.getIdPet());
-                                isFavorite = false;
-                            }
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                    }
-                });
-                databaseReference.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Log.d("Show favorite", "IdPet: " + pet.getIdPet() + isFavorite);
-                        FavoritePet favoritePet = snapshot.getValue(FavoritePet.class);
-                        if (favoritePet == null) {
-                            favoriteIdPet.add(pet.getIdPet());
-                            favoritePet = new FavoritePet(idUser, new ArrayList<>());
-                            holder.favorite.setImageResource(R.drawable.favorate);
-                        }
-                        if (isFavorite) {
-                            favoritePet.getFavoritePet().remove(pet.getIdPet());
-                            holder.favorite.setImageResource(R.drawable.non_favorate);
-
-                            isFavorite = false;
-                        } else {
-                            favoritePet.getFavoritePet().add(pet.getIdPet());
-                            holder.favorite.setImageResource(R.drawable.favorate);
-                            isFavorite = true;
-                        }
-
-                        databaseReference.child(idUser).setValue(favoritePet);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                    }
-                });
+                toggleFavoriteStatus(holder, pet);
             }
         });
 
@@ -218,6 +123,52 @@ public class AdoptingCategoryAdapter extends RecyclerView.Adapter<AdoptingCatego
         if (holder.condition != null) {
             holder.condition.setText(pet.getCondition());
         }
+    }
+
+    private void updateFavoriteIcon(@NonNull MyViewHolder holder, AdoptingCategoryDomain pet) {
+        databaseReference.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                FavoritePet favoritePet = snapshot.getValue(FavoritePet.class);
+                if (favoritePet != null && favoritePet.getFavoritePet().contains(pet.getIdPet())) {
+                    holder.favorite.setImageResource(R.drawable.favorate); // update to favorite icon
+                } else {
+                    holder.favorite.setImageResource(R.drawable.non_favorate); // default icon
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    private void toggleFavoriteStatus(@NonNull MyViewHolder holder, AdoptingCategoryDomain pet) {
+        databaseReference.child(idUser).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                FavoritePet favoritePet = snapshot.getValue(FavoritePet.class);
+                if (favoritePet == null) {
+                    favoritePet = new FavoritePet(idUser, new ArrayList<>());
+                }
+
+                List<String> favoriteList = favoritePet.getFavoritePet();
+                if (favoriteList.contains(pet.getIdPet())) {
+                    favoriteList.remove(pet.getIdPet());
+                    holder.favorite.setImageResource(R.drawable.non_favorate);
+                } else {
+                    favoriteList.add(pet.getIdPet());
+                    holder.favorite.setImageResource(R.drawable.favorate);
+                }
+
+                favoritePet.setFavoritePet(favoriteList);
+                databaseReference.child(idUser).setValue(favoritePet);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

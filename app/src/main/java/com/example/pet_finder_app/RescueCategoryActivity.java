@@ -46,7 +46,7 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
     private RecyclerView recyclerView;
     Toolbar arrowBack;
     ConstraintLayout gomap;
-    String locationInput="";
+    String destinations="";
     DatabaseReference dtbRef = FirebaseDatabase.getInstance().getReference().child("RescueStation");
 
     private FirebaseAuth auth;
@@ -71,6 +71,7 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
             }
         });
         List<RescueCategoryDomain> RescueList = new ArrayList<RescueCategoryDomain>();
+
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("RescueStation");
 
 
@@ -105,7 +106,7 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
                         String lat = String.valueOf(response.body().getResult().getGeometry().getLocation().getLat());
                         String lng = String.valueOf(response.body().getResult().getGeometry().getLocation().getLng());
 
-                        String destinations = lat +","+ lng ;
+                         destinations = lat +","+ lng ;
 
                             String vehicles = "car";
                             String origins = "10.8700,106.8031";
@@ -124,6 +125,8 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
                                     newStationRef.child("name").setValue(main_text);
                                     newStationRef.child("province").setValue(province);
                                     newStationRef.child("distance").setValue(distance);
+                                    newStationRef.child("place_id").setValue(place_id);
+                                    newStationRef.child("geoCode").setValue(destinations);
                                 }
 
                                 @Override
@@ -159,7 +162,8 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
                     String name = stationSnapshot.child("name").getValue(String.class);
                     String address = stationSnapshot.child("address").getValue(String.class);
                     String distance= stationSnapshot.child("distance").getValue(String.class);
-
+                    String geoCode= stationSnapshot.child("geoCode").getValue(String.class);
+                    String place_id = stationSnapshot.getKey();
 
                     // Optional
 
@@ -170,7 +174,8 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
                     RescueCategoryDomain station = new RescueCategoryDomain(
                             R.drawable.rescue_station1,
                             name, address, distance);
-
+                    station.setPlace_id(place_id);
+                    station.setGeocode(geoCode);
                     RescueList.add(station);
                 }
 

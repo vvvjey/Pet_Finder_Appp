@@ -9,9 +9,9 @@
     android:layout_marginTop="10dp"
     android:layout_marginEnd="20dp"
     android:layout_marginStart="20dp"
+    app:cardElevation="20dp"
     android:layout_marginBottom="10dp"
-    app:strokeColor="@color/blue"
-    app:strokeWidth="3dp"
+    app:strokeWidth="0dp"
     app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,8 +21,8 @@
 
         <ImageView
             android:id="@+id/catImg"
-            android:layout_width="0dp"
-            android:layout_height="180dp"
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,10 +35,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
+            android:background="@drawable/rectangle_shape"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/catImg">
+            app:layout_constraintTop_toBottomOf="@+id/catImg"
+            app:layout_constraintVertical_bias="1.0">
 
             <TextView
                 android:id="@+id/date_value"
@@ -56,8 +59,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="10dp"
-                android:textStyle="bold"
                 android:text="@string/registration_date"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/color"
                 app:layout_constraintTop_toBottomOf="@+id/color" />
@@ -98,8 +101,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30pt"
-                android:textStyle="bold"
                 android:text="@string/status"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/age_value"
                 app:layout_constraintStart_toEndOf="@+id/age_value"
                 app:layout_constraintTop_toTopOf="@+id/age_value" />
@@ -119,8 +122,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:textStyle="bold"
                 android:text="@string/age_text"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/nameCat"
                 app:layout_constraintTop_toBottomOf="@+id/nameCat" />
 
@@ -158,9 +161,9 @@
 
             <ImageView
                 android:id="@+id/gender"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="8dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="20dp"
 
                 app:layout_constraintBottom_toBottomOf="@+id/nameCat"
                 app:layout_constraintStart_toEndOf="@+id/nameCat"
@@ -176,6 +179,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/yellow_cat"
                 android:textStyle="bold"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

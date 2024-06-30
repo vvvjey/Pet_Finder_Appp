@@ -16,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Pet_Finder_App"
+
         tools:targetApi="31">
 
         <meta-data
@@ -65,15 +66,15 @@
             >
         </activity>
 
-        <activity android:name=".FilterMissingPet"
-            android:parentActivityName=".SearchingLostPetActivity"
-            >
-        </activity>
+<!--        <activity android:name=".FilterMissingPet"-->
+<!--            android:parentActivityName=".SearchingLostPetActivity"-->
+<!--            >-->
+<!--        </activity>-->
 
-        <activity android:name=".FilterAdopt"
-            android:parentActivityName=".AdoptingPetActivity"
-            >
-        </activity>
+<!--        <activity android:name=".FilterAdopt"-->
+<!--            android:parentActivityName=".AdoptingPetActivity"-->
+<!--            >-->
+<!--        </activity>-->
 
         <activity android:name=".RegisterActivity"
             android:parentActivityName=".LoginActivity"
@@ -145,6 +146,10 @@
         </activity>
 
         <activity android:name=".MissingAnimalsPostActivity"
+            android:parentActivityName=".ProfileActivity"
+            >
+        </activity>
+        <activity android:name=".MissingAnimalPostContactActivity"
             android:parentActivityName=".ProfileActivity"
             >
         </activity>

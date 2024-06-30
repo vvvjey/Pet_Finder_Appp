@@ -2,16 +2,18 @@ package com.example.pet_finder_app;
 
 public class NotificationDomain {
     private int img_avatar;
-    private String notif_name, notifi_descrip, notifi_time;
+    private String notifi_descrip, notifi_time,notifi_type,toUserId,fromUserId;
 
     public NotificationDomain() {
     }
 
-    public NotificationDomain(int img_avatar, String notif_name, String notifi_descrip, String notifi_time) {
+    public NotificationDomain(int img_avatar, String notifi_descrip, String notifi_time,String notifi_type,String toUserId,String fromUserId) {
         this.img_avatar = img_avatar;
-        this.notif_name = notif_name;
         this.notifi_descrip = notifi_descrip;
         this.notifi_time = notifi_time;
+        this.notifi_type = notifi_type;
+        this.toUserId = toUserId;
+        this.fromUserId = fromUserId;
     }
 
     public int getImg_avatar() {
@@ -22,13 +24,7 @@ public class NotificationDomain {
         this.img_avatar = img_avatar;
     }
 
-    public String getNotif_name() {
-        return notif_name;
-    }
 
-    public void setNotif_name(String notif_name) {
-        this.notif_name = notif_name;
-    }
 
     public String getNotifi_descrip() {
         return notifi_descrip;
@@ -44,5 +40,29 @@ public class NotificationDomain {
 
     public void setNotifi_time(String notifi_time) {
         this.notifi_time = notifi_time;
+    }
+
+    public String getNotifi_type() {
+        return notifi_type;
+    }
+
+    public void setNotifi_type(String notifi_type) {
+        this.notifi_type = notifi_type;
+    }
+
+    public String getFromUserId() {
+        return fromUserId;
+    }
+
+    public void setFromUserId(String fromId) {
+        this.fromUserId = fromId;
+    }
+
+    public String getToUserId() {
+        return toUserId;
+    }
+
+    public void setToUserId(String toId) {
+        this.toUserId = toId;
     }
 }

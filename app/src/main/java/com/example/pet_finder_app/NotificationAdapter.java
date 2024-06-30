@@ -1,5 +1,6 @@
 package com.example.pet_finder_app;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -35,10 +42,33 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         NotificationDomain notifi = listNotifi.get(position);
+        String fromUserId = notifi.getFromUserId();
         holder.img_avatar.setImageResource(notifi.getImg_avatar());
-        holder.notif_name.setText(notifi.getNotif_name());
         holder.notifi_descrip.setText(notifi.getNotifi_descrip());
         holder.notifi_time.setText(notifi.getNotifi_time());
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(fromUserId);
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String username = dataSnapshot.child("fullname").getValue(String.class);
+                    if (username != null) {
+                        holder.notif_name.setText(username);
+                    } else {
+                        Log.d("name", "Username is null");
+                        holder.notif_name.setText("Unknown User");
+                    }
+                } else {
+                    holder.notif_name.setText("Unknown User");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("NotificationAdapter", "Error fetching username", databaseError.toException());
+                holder.notif_name.setText("Error");
+            }
+        });
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{

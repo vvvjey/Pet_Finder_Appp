@@ -3,10 +3,8 @@
 
     <item
         android:drawable="@drawable/searchsearch_location"
-        android:width="32dp"
-        android:height="32dp"
-        android:right="10dp"
-        android:left="5dp"
+        android:width="30dp"
+        android:height="30dp"
         />
 
 </layer-list >
