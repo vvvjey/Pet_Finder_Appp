@@ -2,6 +2,7 @@ package com.example.pet_finder_app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +14,22 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pet_finder_app.Class.User;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.MyViewHolder> {
-
+    FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();;
+    DatabaseReference databaseReference = firebaseDatabase.getReference();;
     private List<AppointmentItem> ListAppointment;
     private Context mContext;
+    private String senderName;
 
     public AppointmentAdapter(List<AppointmentItem> ListAppointment, Context context){
         this.ListAppointment = ListAppointment;
@@ -41,6 +50,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         AppointmentItem appointmentItem = ListAppointment.get(position);
         if (holder.image_id != null) {
             Picasso.get().load(appointmentItem.getImageId()).into(holder.image_id);
@@ -54,7 +64,27 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
         holder.date.setText(appointmentItem.getDate());
         holder.time.setText(appointmentItem.getTime());
         holder.date.setText(appointmentItem.getDate());
-        holder.sender.setText(appointmentItem.getSender());
+        databaseReference.child("User").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot snap: snapshot.getChildren()){
+                    User user = snap.getValue(User.class);
+                    Log.d("ShowSenderId", "IdSender1" + appointmentItem.getSender());
+                    assert user != null;
+                    Log.d("ShowSenderId", "IdSender2" + user.getUserId());
+                    if(user.getUserId() != null && appointmentItem.getSender() != null && user.getUserId().equals(appointmentItem.getSender())){
+                        senderName = user.getFullname();
+                        holder.sender.setText(senderName);
+                        Log.d("ShowSenderId", appointmentItem.getSender());
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         // Set click listener for the item
         holder.detailBtn.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +114,7 @@ public class AppointmentAdapter extends RecyclerView.Adapter<AppointmentAdapter.
             sender = itemView.findViewById(R.id.sender_value);
             gender = itemView.findViewById(R.id.genderImg);
             detailBtn = itemView.findViewById(R.id.btn_detail_appointment);
+
         }
     }
 }

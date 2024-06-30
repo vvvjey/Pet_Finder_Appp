@@ -51,12 +51,12 @@ public class User {
         this.gender = gender;
     }
 
-    public String getName() {
+    public String getFullname() {
         return fullname;
     }
 
-    public void setName(String name) {
-        this.fullname = name;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getPhoneNumber() {

@@ -390,7 +390,7 @@ public class AppointmentDetail extends AppCompatActivity {
         breedPet.setText(pet.getBreed());
         statusPet.setText(pet.getTypeId());
         pricePet.setText(adoptPet.getPrice());
-        userName.setText(user.getName());
+        userName.setText(user.getFullname());
         userAge.setText(user.getDateBirth());
         userPhone.setText(user.getPhoneNumber());
         userEmail.setText(user.getEmail());

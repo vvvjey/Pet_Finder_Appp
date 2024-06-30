@@ -227,7 +227,7 @@ public class HistoryAdoptDetailActivity extends AppCompatActivity {
                                     Log.d("Show id user", idUser);
                                     if(idUser.equals(snap.getValue(User.class).getUserId())) {
                                         user = snap.getValue(User.class);
-                                        nameUser.setText(user.getName());
+                                        nameUser.setText(user.getFullname());
                                         dateBrith.setText(user.getDateBirth());
                                         gender.setText(user.getGender());
                                         address.setText(user.getAddress());

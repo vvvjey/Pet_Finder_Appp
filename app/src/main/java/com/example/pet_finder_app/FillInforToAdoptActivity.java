@@ -422,7 +422,7 @@ private final ActivityResultLauncher<Intent> activityResultLauncher = registerFo
                     if(idUser.equals(snap.getValue(User.class).getUserId())){
 //                        Log.d("ShowIntent", "GetTheRightThing");
                         user = snap.getValue(User.class);
-                        nameEdt.setText(user.getName());
+                        nameEdt.setText(user.getFullname());
                         genderSpinner.setSelection(genderAdapter.getPosition(user.getGender()));
                         dateBirthEdt.setText(user.getDateBirth());
                         phoneEdt.setText(user.getPhoneNumber());
