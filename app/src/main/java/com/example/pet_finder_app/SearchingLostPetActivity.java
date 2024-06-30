@@ -40,6 +40,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -636,6 +637,7 @@ public class SearchingLostPetActivity extends AppCompatActivity {
         for(MissingPet missingPet : petList){
             arrayList.add(missingPet);
         }
+        Collections.reverse(arrayList);
         adapter.notifyDataSetChanged();
     }
     private void renderAllMissingPost(){

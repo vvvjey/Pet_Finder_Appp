@@ -89,6 +89,9 @@
                 android:text="Samantha"
                 android:textSize="21dp"
                 android:textStyle="bold"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:ellipsize="end"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

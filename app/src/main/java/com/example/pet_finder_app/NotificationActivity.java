@@ -21,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class NotificationActivity extends AppCompatActivity {
@@ -77,6 +78,7 @@ public class NotificationActivity extends AppCompatActivity {
                                 NotificationDomain notification = snapshot.getValue(NotificationDomain.class);
                             NotifiList.add(notification);
                         }
+                        Collections.reverse(NotifiList);
                         notificationAdapter.notifyDataSetChanged();
                     }
 

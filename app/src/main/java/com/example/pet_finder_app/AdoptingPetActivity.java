@@ -50,6 +50,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -818,6 +819,7 @@ public class AdoptingPetActivity extends AppCompatActivity {
                 ));
             }
         }
+        Collections.reverse(petItems);
         AdoptingPetAdapter petAdapter = new AdoptingPetAdapter(petItems, this);
         recyclerView.setAdapter(petAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
