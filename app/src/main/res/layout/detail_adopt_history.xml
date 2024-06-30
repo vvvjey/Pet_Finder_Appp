@@ -5,6 +5,7 @@
     android:id="@+id/history_adopt_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".HistoryAdoptDetailActivity">
 
 
@@ -54,6 +55,7 @@
                 android:layout_height="180dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="30dp"
+                android:elevation="10dp"
                 android:background="@drawable/rectangle_shape">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
