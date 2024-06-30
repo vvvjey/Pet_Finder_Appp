@@ -82,7 +82,7 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
                                                                                                 @Override
                                                                                                 public void onResponse(Call<PlaceResponse> call, Response<PlaceResponse> response) {
                                                                                                     int predSize = response.body().getPredictions().size();
-                                                                                                    for(int i = 0; i < 2;i++)
+                                                                                                    for(int i = 0; i < 4;i++)
                                                                                                     {
                                                                                                         String place_id = String.valueOf(response.body().getPredictions().get(i).getPlace_id());
 
