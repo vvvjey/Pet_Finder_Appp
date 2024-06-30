@@ -259,7 +259,7 @@ public class UserAccountActivity extends AppCompatActivity {
         // Create a Map to store user information
         Map<String, Object> userInfo = new HashMap<>();
         userInfo.put("email", newEmail);
-        userInfo.put("name", newName);
+        userInfo.put("fullname", newName);
         userInfo.put("gender", newGender);
         userInfo.put("address", newAddress);
         userInfo.put("phonenumber", newPhoneNumber);
@@ -308,7 +308,7 @@ public class UserAccountActivity extends AppCompatActivity {
                     User user = dataSnapshot.getValue(User.class);
                     // Extract the fullname from the snapshot
                     String email = dataSnapshot.child("email").getValue(String.class);
-                    String name  = dataSnapshot.child("name").getValue(String.class);
+                    String name  = dataSnapshot.child("fullname").getValue(String.class);
                     String gender = dataSnapshot.child("gender").getValue(String.class);
                     String address =dataSnapshot.child("address").getValue(String.class);
 
