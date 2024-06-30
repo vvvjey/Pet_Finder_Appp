@@ -34,6 +34,7 @@ import com.example.pet_finder_app.API.ProvincePlacesResponse;
 import com.example.pet_finder_app.API.WardPlaces;
 import com.example.pet_finder_app.API.WardPlacesReponse;
 import com.example.pet_finder_app.Class.MissingPet;
+import com.example.pet_finder_app.Class.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -103,6 +104,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
     Spinner dropdownAge ;
     Spinner dropdownSize ;
     private boolean isEditMode;
+    private String idUser;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -165,7 +167,8 @@ public class FillInforAboutLostPet extends AppCompatActivity {
         ArrayAdapter<String> dropdownColorAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, dropdownColorItems);
         ArrayAdapter<String> dropdownBreedAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, dropdownBreedItems);
         ArrayAdapter<String> dropdownAgeAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, dropdownAgeItems);
-
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
 
         dropdownPurpose.setAdapter(dropdownPurposeAdapter);
         dropdownCountry.setAdapter(dropdownCountryAdapter);
@@ -348,8 +351,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
                 }
             }
         });
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
+
 
     }
     private void deleteImage(int index) {
@@ -640,12 +642,10 @@ public class FillInforAboutLostPet extends AppCompatActivity {
 
         String typeMissing = intent.getStringExtra("petTypeMissing");
         String petDescription = intent.getStringExtra("desciptionPet");
-        String posterRequest = intent.getStringExtra("requestPoster");
 
         String petImageUrl = intent.getStringExtra("petImageUrl");
         animalName.setText(petName);
         descriptionPet.setText(petDescription);
-        request.setText(posterRequest);
 //        if (petImageUrl != null && !petImageUrl.isEmpty()) {
 //            Picasso.get().load(petImageUrl).into(uploadImg.get(0));
 //        }
@@ -658,7 +658,10 @@ public class FillInforAboutLostPet extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot snap: snapshot.getChildren()){
                     MissingPet pet = snap.getValue(MissingPet.class);
-                    if(idPet.equals(snap.getValue(MissingPet.class).getIdPet())){
+                    Log.d("ShowIdPetPost", idPet);
+                    if(idPet.equals(pet.getIdPet())){
+                        request.setText(pet.getRequestPosterMissing());
+                        idUser = pet.getPostUserId();
                         for (int i = 0; i < 5; i++){
                             if(!Objects.equals(pet.getImgUrl().get(i), "")){
                                 imageUrl.set(i, pet.getImgUrl().get(i));
@@ -668,6 +671,26 @@ public class FillInforAboutLostPet extends AppCompatActivity {
                                 Picasso.get().load(pet.getImgUrl().get(i)).into(uploadImg.get(i));
                             }
                         }
+                        databaseReference.child("User").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                for (DataSnapshot snap: snapshot.getChildren()){
+                                    User user = snap.getValue(User.class);
+                                    if(idUser.equals(snap.getValue(User.class).getUserId())){
+                                        assert user != null;
+                                        fullname.setText(user.getName());
+                                        Log.d("ShowImgUrl", user.getName());
+                                        address.setText(user.getAddress());
+                                        phoneNumber.setText(user.getPhoneNumber());
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }});
+
                     }
                 }
             }
