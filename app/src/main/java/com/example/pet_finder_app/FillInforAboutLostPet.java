@@ -110,9 +110,9 @@ public class FillInforAboutLostPet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fill_infor_about_lost_pet);
         arrowBack = (Toolbar) findViewById(R.id.toolbarArrowBack6);
-        fullname = findViewById(R.id.fullNameInput);
+//        fullname = findViewById(R.id.fullNameInput);
         address = findViewById(R.id.addressInput);
-        phoneNumber = findViewById(R.id.phoneNumberInput);
+//        phoneNumber = findViewById(R.id.phoneNumberInput);
         request = findViewById(R.id.requestInput);
         animalName = findViewById(R.id.animalNameInput);
         descriptionPet = findViewById(R.id.descriptionPetInput);
@@ -149,7 +149,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
 
 
         String[] dropdownPurposeItems = new String[]{"Missing", "Seen", "Protected"};
-        String[] dropdownCountryItems = new String[]{"Vietnam"};
+//        String[] dropdownCountryItems = new String[]{"Vietnam"};
         String[] dropdownSizeItems = new String[]{"Small","Medium","Large"};
         String[] dropdownGenderItems = new String[]{"Male","Female"};
         String[] dropdownColorItems = new String[]{"Red","Yellow","Brown","Black","White","Other"};
@@ -161,7 +161,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
         List<String> districtName = new ArrayList<>();
         List<String> wardName = new ArrayList<>();
         ArrayAdapter<String> dropdownPurposeAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,dropdownPurposeItems);
-        ArrayAdapter<String> dropdownCountryAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,dropdownCountryItems);
+//        ArrayAdapter<String> dropdownCountryAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,dropdownCountryItems);
         ArrayAdapter<String> dropdownSizeAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,dropdownSizeItems);
         ArrayAdapter<String> dropdownGenderAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, dropdownGenderItems);
         ArrayAdapter<String> dropdownColorAdapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, dropdownColorItems);
@@ -171,7 +171,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference();
 
         dropdownPurpose.setAdapter(dropdownPurposeAdapter);
-        dropdownCountry.setAdapter(dropdownCountryAdapter);
+//        dropdownCountry.setAdapter(dropdownCountryAdapter);
         dropdownSize.setAdapter(dropdownSizeAdapter);
         dropdownGender.setAdapter(dropdownGenderAdapter);
         dropdownColor.setAdapter(dropdownColorAdapter);
@@ -199,129 +199,129 @@ public class FillInforAboutLostPet extends AppCompatActivity {
 //
 
 
-        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyy").create();
-//        Initial retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://vapi.vnappmob.com")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-        ApiService api = retrofit.create(ApiService.class);
-
-//////////////////////////////////////////////////////
-//        CALL GET ALL PROVINCE
-        Call<ProvincePlacesResponse> provinceCall = api.getListProvinces();
-        provinceCall.enqueue(new Callback<ProvincePlacesResponse>() {
-            @Override
-            public void onResponse(Call<ProvincePlacesResponse> call, Response<ProvincePlacesResponse> response) {
-                if (response.isSuccessful()) {
-                    ProvincePlacesResponse provincesResponse = response.body();
-                    if (provincesResponse != null) {
-                        provinceList = provincesResponse.getResults();
-                        for (ProvincePlaces province : provinceList) {
-                            provinceNames.add(province.getProvinceName());
-                        }
-                        ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(FillInforAboutLostPet.this, android.R.layout.simple_spinner_dropdown_item, provinceNames);
-                        dropdownCity.setAdapter(cityAdapter);
-                    }
-                } else {
-                    Log.e("API Error", "Failed to fetch provinces: " + response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ProvincePlacesResponse> call, Throwable t) {
-                Log.e("API Error", "Failed to fetch provinces: " + t.getMessage());
-            }
-        });
-        //CALL GET DISTRICT BASED ON PROVINCE
-
-        dropdownCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedProvinceName = (String) parent.getItemAtPosition(position);
-
-                for (ProvincePlaces province : provinceList) {
-                    if (province.getProvinceName().equals(selectedProvinceName)) {
-                        Log.d("Selected Province ID", province.getProvinceId());
-                        Call<DistrictPlacesResponse> districtCall = api.getDistrictById(province.getProvinceId());
-                        districtCall.enqueue(new Callback<DistrictPlacesResponse>() {
-                            @Override
-                            public void onResponse(Call<DistrictPlacesResponse> call, Response<DistrictPlacesResponse> response) {
-                                if (response.isSuccessful()) {
-                                    DistrictPlacesResponse districtsResponse = response.body();
-                                    if (districtsResponse != null) {
-                                        districtList = districtsResponse.getResults();
-                                        districtName.clear();
-                                        for (DistrictPlaces district : districtList) {
-                                            districtName.add(district.getDistrict_name());
-                                        }
-                                        ArrayAdapter<String> districtAdapter = new ArrayAdapter<>(FillInforAboutLostPet.this, android.R.layout.simple_spinner_dropdown_item, districtName);
-                                        dropdownDistrict.setAdapter(districtAdapter);
-                                    }
-                                } else {
-                                    Log.e("API Error", "Failed to fetch provinces: " + response.message());
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<DistrictPlacesResponse> call, Throwable throwable) {
-                                Log.e("API Error", "Failed to fetch provinces: " + throwable.getMessage());
-                            }
-                        });
-                        break;
-                    }
-                }
-            }
-            //CALL GET DISTRICT BASED ON PROVINCE
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-// CALL GET WARD BASED ON DISTRICT
-        dropdownDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedDistrictName = (String) parent.getItemAtPosition(position);
-                for (DistrictPlaces district : districtList) {
-                    if (district.getDistrict_name().equals(selectedDistrictName)) {
-                        Log.d("Selected District ID", district.getDistrict_id());
-                        Call<WardPlacesReponse> wardCall = api.getWardById(district.getDistrict_id());
-                        wardCall.enqueue(new Callback<WardPlacesReponse>() {
-                            @Override
-                            public void onResponse(Call<WardPlacesReponse> call, Response<WardPlacesReponse> response) {
-                                if (response.isSuccessful()) {
-                                    WardPlacesReponse wardsResponse = response.body();
-                                    if (wardsResponse != null) {
-                                        wardList = wardsResponse.getResults();
-                                        wardName.clear();
-                                        for (WardPlaces ward : wardList) {
-                                            wardName.add(ward.getWard_name());
-                                        }
-                                        ArrayAdapter<String> wardAdapter = new ArrayAdapter<>(FillInforAboutLostPet.this, android.R.layout.simple_spinner_dropdown_item, wardName);
-                                        dropdownWard.setAdapter(wardAdapter);
-                                    }
-                                } else {
-                                    Log.e("API Error", "Failed to fetch provinces: " + response.message());
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Call<WardPlacesReponse> call, Throwable throwable) {
-                                Log.e("API Error", "Failed to fetch provinces: " + throwable.getMessage());
-                            }
-                        });
-                        break;
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+//        Gson gson = new GsonBuilder().setDateFormat("dd-MM-yyy").create();
+////        Initial retrofit
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl("https://vapi.vnappmob.com")
+//                .addConverterFactory(GsonConverterFactory.create(gson))
+//                .build();
+//        ApiService api = retrofit.create(ApiService.class);
+//
+////////////////////////////////////////////////////////
+////        CALL GET ALL PROVINCE
+//        Call<ProvincePlacesResponse> provinceCall = api.getListProvinces();
+//        provinceCall.enqueue(new Callback<ProvincePlacesResponse>() {
+//            @Override
+//            public void onResponse(Call<ProvincePlacesResponse> call, Response<ProvincePlacesResponse> response) {
+//                if (response.isSuccessful()) {
+//                    ProvincePlacesResponse provincesResponse = response.body();
+//                    if (provincesResponse != null) {
+//                        provinceList = provincesResponse.getResults();
+//                        for (ProvincePlaces province : provinceList) {
+//                            provinceNames.add(province.getProvinceName());
+//                        }
+//                        ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(FillInforAboutLostPet.this, android.R.layout.simple_spinner_dropdown_item, provinceNames);
+//                        dropdownCity.setAdapter(cityAdapter);
+//                    }
+//                } else {
+//                    Log.e("API Error", "Failed to fetch provinces: " + response.message());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ProvincePlacesResponse> call, Throwable t) {
+//                Log.e("API Error", "Failed to fetch provinces: " + t.getMessage());
+//            }
+//        });
+//        //CALL GET DISTRICT BASED ON PROVINCE
+//
+//        dropdownCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String selectedProvinceName = (String) parent.getItemAtPosition(position);
+//
+//                for (ProvincePlaces province : provinceList) {
+//                    if (province.getProvinceName().equals(selectedProvinceName)) {
+//                        Log.d("Selected Province ID", province.getProvinceId());
+//                        Call<DistrictPlacesResponse> districtCall = api.getDistrictById(province.getProvinceId());
+//                        districtCall.enqueue(new Callback<DistrictPlacesResponse>() {
+//                            @Override
+//                            public void onResponse(Call<DistrictPlacesResponse> call, Response<DistrictPlacesResponse> response) {
+//                                if (response.isSuccessful()) {
+//                                    DistrictPlacesResponse districtsResponse = response.body();
+//                                    if (districtsResponse != null) {
+//                                        districtList = districtsResponse.getResults();
+//                                        districtName.clear();
+//                                        for (DistrictPlaces district : districtList) {
+//                                            districtName.add(district.getDistrict_name());
+//                                        }
+//                                        ArrayAdapter<String> districtAdapter = new ArrayAdapter<>(FillInforAboutLostPet.this, android.R.layout.simple_spinner_dropdown_item, districtName);
+//                                        dropdownDistrict.setAdapter(districtAdapter);
+//                                    }
+//                                } else {
+//                                    Log.e("API Error", "Failed to fetch provinces: " + response.message());
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call<DistrictPlacesResponse> call, Throwable throwable) {
+//                                Log.e("API Error", "Failed to fetch provinces: " + throwable.getMessage());
+//                            }
+//                        });
+//                        break;
+//                    }
+//                }
+//            }
+//            //CALL GET DISTRICT BASED ON PROVINCE
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
+//// CALL GET WARD BASED ON DISTRICT
+//        dropdownDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                String selectedDistrictName = (String) parent.getItemAtPosition(position);
+//                for (DistrictPlaces district : districtList) {
+//                    if (district.getDistrict_name().equals(selectedDistrictName)) {
+//                        Log.d("Selected District ID", district.getDistrict_id());
+//                        Call<WardPlacesReponse> wardCall = api.getWardById(district.getDistrict_id());
+//                        wardCall.enqueue(new Callback<WardPlacesReponse>() {
+//                            @Override
+//                            public void onResponse(Call<WardPlacesReponse> call, Response<WardPlacesReponse> response) {
+//                                if (response.isSuccessful()) {
+//                                    WardPlacesReponse wardsResponse = response.body();
+//                                    if (wardsResponse != null) {
+//                                        wardList = wardsResponse.getResults();
+//                                        wardName.clear();
+//                                        for (WardPlaces ward : wardList) {
+//                                            wardName.add(ward.getWard_name());
+//                                        }
+//                                        ArrayAdapter<String> wardAdapter = new ArrayAdapter<>(FillInforAboutLostPet.this, android.R.layout.simple_spinner_dropdown_item, wardName);
+//                                        dropdownWard.setAdapter(wardAdapter);
+//                                    }
+//                                } else {
+//                                    Log.e("API Error", "Failed to fetch provinces: " + response.message());
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call<WardPlacesReponse> call, Throwable throwable) {
+//                                Log.e("API Error", "Failed to fetch provinces: " + throwable.getMessage());
+//                            }
+//                        });
+//                        break;
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -344,6 +344,13 @@ public class FillInforAboutLostPet extends AppCompatActivity {
         createMissingPostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //            Handle validate required input
+                if(!validateInputs()){
+                    Toast.makeText(FillInforAboutLostPet.this, "Missing required input", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if (isEditMode) {
                     updateMissingPost("1");
                 } else {
@@ -371,6 +378,7 @@ public class FillInforAboutLostPet extends AppCompatActivity {
     }
     private void createMissingPost(){
         try{
+
             DatabaseReference missingPetRef = FirebaseDatabase.getInstance().getReference().child("Missing pet");
             FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
@@ -394,10 +402,14 @@ public class FillInforAboutLostPet extends AppCompatActivity {
             String id = "1";
             String postUserId = currentUser.getUid();
             String typeMissing = dropdownPurpose.getSelectedItem().toString();
-            String addressMissing = "address";
+            String addressMissing = address.getText().toString();
             String dateMissing = dateButton.getText().toString();
             String requestPoster = request.getText().toString();
             String statusMissing = "Waiting";
+
+
+
+
 
             MissingPet pet = new MissingPet(age,breed, categoryId, color, description, gender, idPet, imageUrl, petName, registerDate, size, typeId, weight, id, typeMissing,addressMissing, dateMissing, requestPoster,postUserId,statusMissing);
             missingPetRef.child(missingPetKey).child("age").setValue(pet.getAge());
@@ -472,24 +484,13 @@ public class FillInforAboutLostPet extends AppCompatActivity {
     }
 
     private boolean validateInputs() {
-        String fullName = fullname.getText().toString().trim();
         String addressText = address.getText().toString().trim();
-        String phoneNumberText = phoneNumber.getText().toString().trim();
         String animalNameText = animalName.getText().toString().trim();
         String descriptionPetText = descriptionPet.getText().toString().trim();
-
-        if (fullName.isEmpty()) {
-            fullname.setError("Full name is required");
-            return false;
-        }
+        String userRequestText = request.getText().toString().trim();
 
         if (addressText.isEmpty()) {
             address.setError("Address is required");
-            return false;
-        }
-
-        if (phoneNumberText.isEmpty()) {
-            phoneNumber.setError("Phone number is required");
             return false;
         }
 
@@ -500,6 +501,10 @@ public class FillInforAboutLostPet extends AppCompatActivity {
 
         if (descriptionPetText.isEmpty()) {
             descriptionPet.setError("Description is required");
+            return false;
+        }
+        if (userRequestText.isEmpty()) {
+            address.setError("user request is required");
             return false;
         }
 

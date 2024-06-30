@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -74,6 +75,7 @@ public class    PetDetailActivity extends AppCompatActivity {
     String postUserId;
     String idPet;
     String description;
+    ConstraintLayout owner_info;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -183,6 +185,15 @@ public class    PetDetailActivity extends AppCompatActivity {
                 List<String> userIds = Arrays.asList(currentUserId, postUserId);
                 Intent intent = new Intent(getApplicationContext(), ChatPageChatBoxActivity.class);
                 intent.putExtra("userIds", userIds.toArray(new String[0]));
+                startActivity(intent);
+            }
+        });
+        owner_info = findViewById(R.id.owner_info);
+        owner_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), OwnerpageActivity.class);
+                intent.putExtra("idUserPost", postUserId);
                 startActivity(intent);
             }
         });
