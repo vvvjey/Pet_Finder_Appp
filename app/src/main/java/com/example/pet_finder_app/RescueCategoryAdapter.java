@@ -2,6 +2,7 @@ package com.example.pet_finder_app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -45,9 +49,13 @@ public class RescueCategoryAdapter extends RecyclerView.Adapter<RescueCategoryAd
         holder.distance.setText(rescue.getDistance());
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
+            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("RescueStation");
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(context, RescueDetailActivity.class);
+                intent.putExtra("stationId", rescue.getPlace_id());
+                Log.d("Place_id",rescue.getPlace_id());
                 context.startActivity(intent);
             }
         });

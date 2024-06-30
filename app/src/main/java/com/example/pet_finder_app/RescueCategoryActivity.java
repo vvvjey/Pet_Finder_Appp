@@ -43,6 +43,7 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
     private RecyclerView recyclerView;
     Toolbar arrowBack;
     ConstraintLayout gomap;
+    String destinations="";
     List<RescueStation> RescueList = new ArrayList<RescueStation>();
     String locationInput="";
     DatabaseReference dtbRef = FirebaseDatabase.getInstance().getReference().child("RescueStation");
@@ -68,21 +69,24 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
                 startActivity(new Intent(getApplicationContext(),HomepageActivity.class));
             }
         });
+        List<RescueCategoryDomain> RescueList = new ArrayList<RescueCategoryDomain>();
+
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("RescueStation");
 
 
 
 // Iterate through the 'predictions' array in the JSON response
 
-        String first = "tram cuu ho cho meo";
-        String second[]={"Ha Noi", "TPHCM"};
+        String first = "cuu ho thu cung";
+
+        int limit = 10;
    //     String place_id = "Uox-Qa5QGqtr2nUh1GixtUG8dVHUY4StUeNLLa5YgKxFxWGAEnQi6r3u_SzmYb66uSZ99M8xVv6xZ2UuE531arTLYfYQ";
-        String input =  first + second[1];
-        PlaceApi.apiInterface.getPlace(getString(R.string.goong_map_api_key),input).enqueue(new Callback<PlaceResponse>() {
+        String input =  first;
+        PlaceApi.apiInterface.getPlace(getString(R.string.goong_map_api_key),input,limit).enqueue(new Callback<PlaceResponse>() {
             @Override
             public void onResponse(Call<PlaceResponse> call, Response<PlaceResponse> response) {
                 int predSize = response.body().getPredictions().size();
-                for(int i = 0; i < 2;i++)
+                for(int i = 0; i < predSize ;i++)
                 {
                     String place_id = String.valueOf(response.body().getPredictions().get(i).getPlace_id());
 
@@ -101,7 +105,7 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
                         String lat = String.valueOf(response.body().getResult().getGeometry().getLocation().getLat());
                         String lng = String.valueOf(response.body().getResult().getGeometry().getLocation().getLng());
 
-                        String destinations = lat +","+ lng ;
+                         destinations = lat +","+ lng ;
 
                             String vehicles = "car";
                             String origins = "10.8700,106.8031";
@@ -120,6 +124,8 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
                                     newStationRef.child("name").setValue(main_text);
                                     newStationRef.child("province").setValue(province);
                                     newStationRef.child("distance").setValue(distance);
+                                    newStationRef.child("place_id").setValue(place_id);
+                                    newStationRef.child("geoCode").setValue(destinations);
                                 }
 
                                 @Override
@@ -152,22 +158,26 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
                 RescueList.clear(); // Clear default list before adding stations from Firebase
 
                 for (DataSnapshot stationSnapshot : dataSnapshot.getChildren()) {
+                    String name = stationSnapshot.child("name").getValue(String.class);
+                    String address = stationSnapshot.child("address").getValue(String.class);
+                    String distance= stationSnapshot.child("distance").getValue(String.class);
+                    String geoCode= stationSnapshot.child("geoCode").getValue(String.class);
+                    String place_id = stationSnapshot.getKey();
+
+                    // Optional
+
+                    // Get the unique station ID for potential future use (optional)
+                    String stationId = stationSnapshot.getKey();
+
+                    // Create RescueCategoryDomain object with Firebase data
+                    RescueCategoryDomain station = new RescueCategoryDomain(
+                            R.drawable.rescue_station1,
+                            name, address, distance);
+                    station.setPlace_id(place_id);
+                    station.setGeocode(geoCode);
+                    RescueList.add(station);
                     RescueStation rescueStation = stationSnapshot.getValue(RescueStation.class);
                     RescueList.add(rescueStation);
-
-//                    String name = stationSnapshot.child("name").getValue(String.class);
-//                    String address = stationSnapshot.child("address").getValue(String.class);
-//                    String distance= stationSnapshot.child("distance").getValue(String.class);
-//
-//
-//                    // Optional
-//
-//                    // Get the unique station ID for potential future use (optional)
-//                    String stationId = stationSnapshot.getKey();
-//                    // Create RescueCategoryDomain object with Firebase data
-//                    RescueCategoryDomain station = new RescueCategoryDomain(
-//                            R.drawable.rescue_station1,
-//                            name, address, distance);
 
                 }
                 populateRecyclerView();

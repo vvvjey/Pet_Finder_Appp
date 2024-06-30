@@ -2,7 +2,7 @@ package com.example.pet_finder_app;
 
 public class RescueCategoryDomain {
     private int image_id;
-    private String name, location, distance;
+    private String name, location, distance,place_id,geocode;
 
     public RescueCategoryDomain() {
     }
@@ -12,6 +12,15 @@ public class RescueCategoryDomain {
         this.name = name;
         this.location = location;
         this.distance = distance;
+
+    }
+
+    public String getGeocode() {
+        return geocode;
+    }
+
+    public void setGeocode(String geocode) {
+        this.geocode = geocode;
     }
 
     public int getImage_id() {
@@ -44,5 +53,13 @@ public class RescueCategoryDomain {
 
     public void setDistance(String distance) {
         this.distance = distance;
+    }
+
+    public String getPlace_id() {
+        return place_id;
+    }
+
+    public void setPlace_id(String place_id) {
+        this.place_id = place_id;
     }
 }

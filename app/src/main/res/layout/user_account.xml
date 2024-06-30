@@ -211,7 +211,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:textColor="@color/black"
-            android:hint="Ho Chi Minh City"
+            android:hint="Ho Chi Minh"
             android:background="@drawable/edittext_rounded"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -220,6 +220,115 @@
 
             />
         <TextView
+            android:id="@+id/city_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="City"
+            android:fontFamily="@font/poppins"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/editAddress"
+            />
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/border_radius_form_6dp"
+            android:orientation="vertical"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+
+            app:layout_constraintTop_toBottomOf="@id/city_text">
+
+
+
+            <Spinner
+                android:id="@+id/citySpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+              />
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/district_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="District"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+            android:fontFamily="@font/poppins"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+
+             />
+
+
+
+        <LinearLayout
+            android:id="@+id/district_linear"
+            android:layout_width="match_parent"
+
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border_radius_form_6dp"
+            android:orientation="vertical"
+            android:layout_height="60dp"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/district_text">
+
+
+            <Spinner
+                android:id="@+id/districtSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/ward"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Ward"
+            app:layout_constraintTop_toBottomOf="@+id/district_linear"
+            android:fontFamily="@font/poppins"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            />
+        <LinearLayout
+            android:id="@+id/ward_linear"
+            android:layout_width="match_parent"
+
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/border_radius_form_6dp"
+            android:orientation="vertical"
+
+            android:layout_height="60dp"
+            android:textSize="20sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/ward">
+
+
+
+            <Spinner
+                android:id="@+id/wardSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+        <TextView
             android:id="@+id/phoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -227,8 +336,9 @@
             android:fontFamily="@font/poppins"
             android:textSize="14dp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/editAddress"
             android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/ward_linear"
+
             />
         <EditText
             android:id="@+id/editPhoneNumber"

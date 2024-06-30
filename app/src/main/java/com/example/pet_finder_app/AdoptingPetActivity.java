@@ -829,13 +829,15 @@ public class AdoptingPetActivity extends AppCompatActivity {
         Canvas canvas = new Canvas(mutableBitmap);
 
         for(Recognition recognition: recognitions){
-
+            Log.d("Pet type ",recognition.getLabelName());
+            Log.d("Conf",String.valueOf(recognition.getConfidence()));
             if(recognition.getConfidence() > 0.7 && recognition.getConfidence() > maxConf){
                 maxConf = recognition.getConfidence();
                 highestConfLabel = recognition.getLabelName();
                 RectF location = recognition.getLocation();
-                canvas.drawRect(location, boxPaint);
-                canvas.drawText(recognition.getLabelName() + ":" + recognition.getConfidence(), location.left, location.top, textPain);
+
+                //canvas.drawRect(location, boxPaint);
+              //  canvas.drawText(recognition.getLabelName() + ":" + recognition.getConfidence(), location.left, location.top, textPain);
             }
 
         }
