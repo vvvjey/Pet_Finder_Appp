@@ -3,11 +3,9 @@ package com.example.pet_finder_app;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -26,8 +24,8 @@ import com.example.pet_finder_app.API.PlaceApi;
 import com.example.pet_finder_app.API.PlaceDetailApi;
 import com.example.pet_finder_app.API.PlaceDetailResponse;
 import com.example.pet_finder_app.API.PlaceResponse;
+import com.example.pet_finder_app.Class.RescueStation;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +34,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -46,6 +43,7 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
     private RecyclerView recyclerView;
     Toolbar arrowBack;
     ConstraintLayout gomap;
+    List<RescueStation> RescueList = new ArrayList<RescueStation>();
     String locationInput="";
     DatabaseReference dtbRef = FirebaseDatabase.getInstance().getReference().child("RescueStation");
 
@@ -70,7 +68,6 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
                 startActivity(new Intent(getApplicationContext(),HomepageActivity.class));
             }
         });
-        List<RescueCategoryDomain> RescueList = new ArrayList<RescueCategoryDomain>();
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("RescueStation");
 
 
@@ -155,23 +152,25 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
                 RescueList.clear(); // Clear default list before adding stations from Firebase
 
                 for (DataSnapshot stationSnapshot : dataSnapshot.getChildren()) {
-                    String name = stationSnapshot.child("name").getValue(String.class);
-                    String address = stationSnapshot.child("address").getValue(String.class);
-                    String distance= stationSnapshot.child("distance").getValue(String.class);
+                    RescueStation rescueStation = stationSnapshot.getValue(RescueStation.class);
+                    RescueList.add(rescueStation);
 
+//                    String name = stationSnapshot.child("name").getValue(String.class);
+//                    String address = stationSnapshot.child("address").getValue(String.class);
+//                    String distance= stationSnapshot.child("distance").getValue(String.class);
+//
+//
+//                    // Optional
+//
+//                    // Get the unique station ID for potential future use (optional)
+//                    String stationId = stationSnapshot.getKey();
+//                    // Create RescueCategoryDomain object with Firebase data
+//                    RescueCategoryDomain station = new RescueCategoryDomain(
+//                            R.drawable.rescue_station1,
+//                            name, address, distance);
 
-                    // Optional
-
-                    // Get the unique station ID for potential future use (optional)
-                    String stationId = stationSnapshot.getKey();
-
-                    // Create RescueCategoryDomain object with Firebase data
-                    RescueCategoryDomain station = new RescueCategoryDomain(
-                            R.drawable.rescue_station1,
-                            name, address, distance);
-
-                    RescueList.add(station);
                 }
+                populateRecyclerView();
 
                 // Notify adapter (if using one) about data change for list update
 //                if (yourAdapter != null) {
@@ -202,10 +201,7 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
             }
         });
 
-        recyclerView = findViewById(R.id.rescue_view);
-        RescueCategoryAdapter rescueAdapter = new RescueCategoryAdapter(RescueList,this);
-        recyclerView.setAdapter(rescueAdapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
+
 
     }
 
@@ -224,7 +220,18 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
             }
         });
     }
-
+    private void populateRecyclerView() {
+        List<RescueCategoryDomain> rescueCategoryDomainList = new ArrayList<>();
+        for(RescueStation rescueStation : RescueList){
+            rescueCategoryDomainList.add(new RescueCategoryDomain(
+                    R.drawable.rescue_station1,
+                    rescueStation.getName(), rescueStation.getAddress(), rescueStation.getDistance()));
+        }
+        recyclerView = findViewById(R.id.rescue_view);
+        RescueCategoryAdapter rescueAdapter = new RescueCategoryAdapter(rescueCategoryDomainList,this);
+        recyclerView.setAdapter(rescueAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
+    }
     private void DistanceMatrix(String api_key,String origins, String destinations){
         String vehicles = "car";
         origins = "10.8700,106.8031";
