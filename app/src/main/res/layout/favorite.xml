@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/favorite"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".FavoritePetActivity">
 
@@ -43,16 +44,6 @@
         app:layout_constraintStart_toEndOf="@+id/favorite_title"
         app:layout_constraintTop_toTopOf="@+id/favorite_title"
         app:srcCompat="@drawable/grid_black" />
-
-    <ImageView
-        android:id="@+id/imageView18"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/favorite_title"
-        app:layout_constraintStart_toEndOf="@+id/grid_view"
-        app:layout_constraintTop_toTopOf="@+id/favorite_title"
-        app:srcCompat="@drawable/filter_black" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoriteView"

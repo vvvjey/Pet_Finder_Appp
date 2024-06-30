@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/myshop"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MyShopActivity">
@@ -156,10 +157,10 @@
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/adopt_value" />
+                                app:layout_constraintTop_toBottomOf="@+id/request_value" />
 
                             <TextView
-                                android:id="@+id/adopt_value"
+                                android:id="@+id/request_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="30dp"
                                 android:layout_marginTop="10dp"
@@ -189,6 +190,7 @@
                         android:outlineSpotShadowColor="@color/gray">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/appointment"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
@@ -205,10 +207,10 @@
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/protect_value" />
+                                app:layout_constraintTop_toBottomOf="@+id/appointment_value" />
 
                             <TextView
-                                android:id="@+id/protect_value"
+                                android:id="@+id/appointment_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="30dp"
                                 android:layout_marginTop="10dp"
@@ -238,6 +240,7 @@
                         android:outlineSpotShadowColor="@color/gray">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/success"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
@@ -254,10 +257,10 @@
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/die_value" />
+                                app:layout_constraintTop_toBottomOf="@+id/success_value" />
 
                             <TextView
-                                android:id="@+id/die_value"
+                                android:id="@+id/success_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="30dp"
                                 android:layout_marginTop="10dp"
@@ -287,6 +290,7 @@
                         android:outlineSpotShadowColor="@color/gray">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cancelled"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
@@ -297,17 +301,17 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_weight="0.25"
                                 android:fontFamily="@font/poppins"
-                                android:text="Canceled"
+                                android:text="Cancelled"
                                 android:textAlignment="center"
                                 android:textColor="@color/dark_gray"
                                 android:textSize="10sp"
                                 android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/rescued_value" />
+                                app:layout_constraintTop_toBottomOf="@+id/cancelled_value" />
 
                             <TextView
-                                android:id="@+id/rescued_value"
+                                android:id="@+id/cancelled_value"
                                 android:layout_width="wrap_content"
                                 android:layout_height="30dp"
                                 android:layout_marginTop="10dp"

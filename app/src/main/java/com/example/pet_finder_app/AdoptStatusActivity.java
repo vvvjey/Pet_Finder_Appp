@@ -21,6 +21,7 @@ import com.example.pet_finder_app.Class.AdoptPet;
 import com.example.pet_finder_app.Class.Pet;
 import com.example.pet_finder_app.Class.User;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -150,7 +151,26 @@ public class AdoptStatusActivity extends AppCompatActivity {
 
         tabAdoptAdapter = new TabAdoptAdapter(this);
         viewPager2.setAdapter(tabAdoptAdapter);
-
+        new TabLayoutMediator(tabLayout, viewPager2,
+                (tab, position) -> {
+                    switch (position) {
+                        case 0:
+                            tab.setText("Request");
+                            break;
+                        case 1:
+                            tab.setText("Appointment");
+                            break;
+                        case 2:
+                            tab.setText("Success");
+                            break;
+                        case 3:
+                            tab.setText("Canceled");
+                            break;
+                    }
+                }
+        ).attach();
+        int initialTabPosition = getIntent().getIntExtra("TAB_POSITION", 0);
+        viewPager2.setCurrentItem(initialTabPosition, false);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

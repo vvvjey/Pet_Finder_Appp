@@ -3,11 +3,9 @@ package com.example.pet_finder_app;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -26,8 +24,8 @@ import com.example.pet_finder_app.API.PlaceApi;
 import com.example.pet_finder_app.API.PlaceDetailApi;
 import com.example.pet_finder_app.API.PlaceDetailResponse;
 import com.example.pet_finder_app.API.PlaceResponse;
+import com.example.pet_finder_app.Class.RescueStation;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,7 +34,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,6 +44,8 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
     Toolbar arrowBack;
     ConstraintLayout gomap;
     String destinations="";
+    List<RescueStation> RescueList = new ArrayList<RescueStation>();
+    String locationInput="";
     DatabaseReference dtbRef = FirebaseDatabase.getInstance().getReference().child("RescueStation");
 
     private FirebaseAuth auth;
@@ -177,7 +176,11 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
                     station.setPlace_id(place_id);
                     station.setGeocode(geoCode);
                     RescueList.add(station);
+                    RescueStation rescueStation = stationSnapshot.getValue(RescueStation.class);
+                    RescueList.add(rescueStation);
+
                 }
+                populateRecyclerView();
 
                 // Notify adapter (if using one) about data change for list update
 //                if (yourAdapter != null) {
@@ -208,10 +211,7 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
             }
         });
 
-        recyclerView = findViewById(R.id.rescue_view);
-        RescueCategoryAdapter rescueAdapter = new RescueCategoryAdapter(RescueList,this);
-        recyclerView.setAdapter(rescueAdapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
+
 
     }
 
@@ -230,7 +230,18 @@ public class RescueCategoryActivity extends AppCompatActivity implements Locatio
             }
         });
     }
-
+    private void populateRecyclerView() {
+        List<RescueCategoryDomain> rescueCategoryDomainList = new ArrayList<>();
+        for(RescueStation rescueStation : RescueList){
+            rescueCategoryDomainList.add(new RescueCategoryDomain(
+                    R.drawable.rescue_station1,
+                    rescueStation.getName(), rescueStation.getAddress(), rescueStation.getDistance()));
+        }
+        recyclerView = findViewById(R.id.rescue_view);
+        RescueCategoryAdapter rescueAdapter = new RescueCategoryAdapter(rescueCategoryDomainList,this);
+        recyclerView.setAdapter(rescueAdapter);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.VERTICAL, false));
+    }
     private void DistanceMatrix(String api_key,String origins, String destinations){
         String vehicles = "car";
         origins = "10.8700,106.8031";

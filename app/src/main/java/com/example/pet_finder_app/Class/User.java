@@ -1,18 +1,18 @@
 package com.example.pet_finder_app.Class;
 
 public class User {
-    private String address,dateBirth,email, gender,name,phoneNumber, roleId,userId, imgUser;
+    private String address,dateBirth,email, gender,fullname,phoneNumber, roleId,userId, imgUser;
 
     public User(){
 
     }
 
-    public User(String address, String dateBirth, String email, String gender, String name, String phoneNumber, String roleId, String userId, String imgUser) {
+    public User(String address, String dateBirth, String email, String gender, String fullname, String phoneNumber, String roleId, String userId, String imgUser) {
         this.address = address;
         this.dateBirth = dateBirth;
         this.email = email;
         this.gender = gender;
-        this.name = name;
+        this.fullname = fullname;
         this.phoneNumber = phoneNumber;
         this.roleId = roleId;
         this.userId = userId;
@@ -51,12 +51,12 @@ public class User {
         this.gender = gender;
     }
 
-    public String getName() {
-        return name;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getPhoneNumber() {

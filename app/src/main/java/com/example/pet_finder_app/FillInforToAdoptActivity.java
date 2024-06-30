@@ -39,6 +39,8 @@ import com.example.pet_finder_app.Class.Pet;
 import com.example.pet_finder_app.Class.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -55,7 +57,10 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -84,6 +89,8 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
     FloatingActionButton addImg;
     List<Uri> image = new ArrayList<>();
     List<ImageView> uploadImg = new ArrayList<>(5);
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
     List<ImageView> deleteImg = new ArrayList<>(5);
     private List<Uri> imagesToDelete = new ArrayList<>();
     List<String> imageUrl = new ArrayList<>(Collections.nCopies(5, ""));
@@ -99,7 +106,7 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
 
     EditText addressEdt, nameEdt, dateBirthEdt, requestEdt, dateMeetEdt, phoneEdt, emailEdt;
     String fullName, dateBirth, gender, email, address, country, city,district, ward, phone, requestMsg, dateMeet, timeMeet, dayMeet, fullAddress;
-    String idOrder, idUser, idMeet, idPet, namePet;
+    String idOrder, idUser, idMeet, idPet, namePet, idPostUser;
     @SuppressLint("MissingInflatedId")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,9 +149,11 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
                 activityResultLauncher.launch(Intent.createChooser(intent, "Select Picture"));
             }
         });
-
-        idUser = "2";
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        idUser = currentUser.getUid();
         idPet = getIntent().getStringExtra("idPet");
+        idPostUser = getIntent().getStringExtra("idPostUser");
         namePet = getIntent().getStringExtra("namePet");
         String[] dropdownCountryItems = new String[]{"Vietnam"};
         List<String> provinceNames = new ArrayList<>();
@@ -297,6 +306,8 @@ public class FillInforToAdoptActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 uploadImage(image);
+                saveNotification();
+
             }
 
         });
@@ -411,7 +422,7 @@ private final ActivityResultLauncher<Intent> activityResultLauncher = registerFo
                     if(idUser.equals(snap.getValue(User.class).getUserId())){
 //                        Log.d("ShowIntent", "GetTheRightThing");
                         user = snap.getValue(User.class);
-                        nameEdt.setText(user.getName());
+                        nameEdt.setText(user.getFullname());
                         genderSpinner.setSelection(genderAdapter.getPosition(user.getGender()));
                         dateBirthEdt.setText(user.getDateBirth());
                         phoneEdt.setText(user.getPhoneNumber());
@@ -485,8 +496,8 @@ private final ActivityResultLauncher<Intent> activityResultLauncher = registerFo
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;
         }
-        adoptOrder = new AdoptOrder(idOrder, idPet, "2", requestMsg, "Pretending",statusTime, imageUrl);
-        appoitment = new Appoitment(idOrder,dateMeet, idMeet, "1", "2", timeMeet);
+        adoptOrder = new AdoptOrder(idOrder, idPet, idUser, requestMsg, "Pretending",statusTime, imageUrl);
+        appoitment = new Appoitment(idOrder,dateMeet, idMeet, idPostUser, idUser, timeMeet);
         adoptRef.setValue(adoptOrder);
         meetRef.setValue(appoitment);
         Toast.makeText(FillInforToAdoptActivity.this, "Request adopt added successfully", Toast.LENGTH_SHORT).show();
@@ -524,6 +535,33 @@ private final ActivityResultLauncher<Intent> activityResultLauncher = registerFo
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
         String formattedDate = dateFormat.format(currentTime);
         statusTime.add(formattedDate);
+    }
+
+    public void saveNotification(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference notificationsRef = database.getReference("Notification");
+        SimpleDateFormat sdf = new SimpleDateFormat("MMMM d 'at' h:mm a", Locale.getDefault());
+        String formattedDate = sdf.format(new Date());
+        // Create a new contact record
+        Map<String, Object> contact = new HashMap<>();
+        contact.put("fromUserId", currentUser.getUid());
+        contact.put("toUserId", idPostUser);
+        contact.put("notifi_descrip", fullName + " wants to adopt " + namePet);
+        contact.put("notifi_time", formattedDate);
+        contact.put("notifi_type", "Adopt");
+
+
+
+        // Add a new record
+        notificationsRef.push().setValue(contact)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("PetDetailActivity", "Notification record added successfully.");
+                    // You can show a success message or perform other actions
+                })
+                .addOnFailureListener(e -> {
+                    Log.w("PetDetailActivity", "Error adding notification record", e);
+                    // You can show an error message or perform other actions
+                });
     }
 
 }

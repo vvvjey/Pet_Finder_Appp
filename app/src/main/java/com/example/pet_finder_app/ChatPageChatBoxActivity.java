@@ -1,11 +1,13 @@
 package com.example.pet_finder_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,6 +41,7 @@ public class ChatPageChatBoxActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<String> userIds;
     TextView receiverName;
+    Toolbar arrowBack;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat_page_chatbox);
@@ -46,12 +49,14 @@ public class ChatPageChatBoxActivity extends AppCompatActivity {
         sendMessageBtn = findViewById(R.id.message_send_btn);
         recyclerView = findViewById(R.id.recyclerView);
         receiverName = findViewById(R.id.receiverName);
+        arrowBack = findViewById(R.id.toolbarArrowBack);
+
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
         chatroomId = getIntent().getStringExtra("chatroomId");
         username = getIntent().getStringExtra("username");
-        String[] userIdsArray = getIntent().getStringArrayExtra("userIds");
+            String[] userIdsArray = getIntent().getStringArrayExtra("userIds");
 
         receiverName.setText(username);
 
@@ -74,6 +79,12 @@ public class ChatPageChatBoxActivity extends AppCompatActivity {
         }
         Log.d("ChatPageChatBoxActivity", "Chatroom ID: " + chatroomId);
         Log.d("ChatPageChatBoxActivity", "User IDs: " + userIds.toString());
+        arrowBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),ChatPageActivity.class));
+            }
+        });
         sendMessageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

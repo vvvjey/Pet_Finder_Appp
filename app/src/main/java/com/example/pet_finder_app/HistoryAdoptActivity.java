@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pet_finder_app.Class.AdoptOrder;
 import com.example.pet_finder_app.Class.AdoptPet;
 import com.example.pet_finder_app.Class.Pet;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,6 +43,9 @@ public class HistoryAdoptActivity extends AppCompatActivity {
     List<AdoptPet> adoptPets = new ArrayList<>();
     List<AdoptOrder> adoptOrders = new ArrayList<>();
     String idUser;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+
     public interface OnDetailButtonClickListener {
         void onDetailButtonClick(int position);
     }
@@ -65,7 +71,10 @@ public class HistoryAdoptActivity extends AppCompatActivity {
         });
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
-        idUser = "1";
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+
+        idUser = currentUser.getUid();
         recyclerView = findViewById(R.id.history_adopt_view);
 
         databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
@@ -159,6 +168,7 @@ public class HistoryAdoptActivity extends AppCompatActivity {
                 }
             }
         }
+        Collections.reverse(petItems);
         HistoryAdapter petAdapter = new HistoryAdapter(petItems, HistoryAdoptActivity.this);
         recyclerView.setAdapter(petAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(HistoryAdoptActivity.this, 1));

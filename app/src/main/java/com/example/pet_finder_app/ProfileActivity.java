@@ -30,12 +30,16 @@ public class ProfileActivity extends AppCompatActivity {
     TextView user_name, user_location;
     ImageView user_img;
     User user;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+
     String idUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
         auth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference();
@@ -49,7 +53,7 @@ public class ProfileActivity extends AppCompatActivity {
         user_name = findViewById(R.id.user_name);
         user_location = findViewById(R.id.user_location);
         user_img = findViewById(R.id.user_img);
-        idUser = "1";
+        idUser = currentUser.getUid();
 
         databaseReference.child("User").addValueEventListener(new ValueEventListener() {
             @Override
@@ -57,7 +61,7 @@ public class ProfileActivity extends AppCompatActivity {
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     User user = snap.getValue(User.class);
                     if (user != null && user.getUserId() != null && user.getUserId().equals(idUser)) {
-                        user_name.setText(user.getName());
+                        user_name.setText(user.getFullname());
                         user_location.setText(user.getAddress());
                         Picasso.get().load(user.getImgUser()).into(user_img);
                     }
