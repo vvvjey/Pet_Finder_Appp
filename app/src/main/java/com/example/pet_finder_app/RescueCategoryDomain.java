@@ -2,16 +2,18 @@ package com.example.pet_finder_app;
 
 public class RescueCategoryDomain {
     private int image_id;
-    private String name, location, distance,place_id,geocode;
+    private String name, address, distance,place_id,geocode;
 
     public RescueCategoryDomain() {
     }
 
-    public RescueCategoryDomain(int image_id, String name, String location, String distance) {
+    public RescueCategoryDomain(int image_id, String name, String address, String distance, String place_id, String geocode) {
         this.image_id = image_id;
         this.name = name;
-        this.location = location;
+        this.address = address;
         this.distance = distance;
+        this.place_id = place_id;
+        this.geocode = geocode;
 
     }
 
@@ -39,12 +41,12 @@ public class RescueCategoryDomain {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+    public String getAddress() {
+        return address;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getDistance() {

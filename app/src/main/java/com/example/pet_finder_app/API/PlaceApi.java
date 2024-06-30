@@ -25,7 +25,8 @@ public interface PlaceApi {
 //                               @Query("vehicle") String vehicle
 //                               );
     Call<PlaceResponse> getPlace(@Query("api_key") String key,
-                                 @Query("input") String input
+                                 @Query("input") String input,
+                                 @Query("limit") int limit
     );
 
 }
