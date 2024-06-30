@@ -31,7 +31,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="5dp"
             android:layout_weight="0"
-            app:srcCompat="@drawable/ava"
+            app:srcCompat="@drawable/avatar"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
