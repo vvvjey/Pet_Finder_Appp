@@ -56,7 +56,7 @@ public class ChatPageChatBoxActivity extends AppCompatActivity {
 
         chatroomId = getIntent().getStringExtra("chatroomId");
         username = getIntent().getStringExtra("username");
-        String[] userIdsArray = getIntent().getStringArrayExtra("userIds");
+            String[] userIdsArray = getIntent().getStringArrayExtra("userIds");
 
         receiverName.setText(username);
 

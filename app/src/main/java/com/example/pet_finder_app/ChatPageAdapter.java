@@ -95,7 +95,6 @@ public class ChatPageAdapter extends FirestoreRecyclerAdapter<Chatroom, ChatPage
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     String fullName = snapshot.child("fullname").getValue(String.class);
-                    Log.d("full name",fullName);
                     callback.onCallback(fullName);
                 }
             }

@@ -1,5 +1,6 @@
 package com.example.pet_finder_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,12 +19,17 @@ import com.example.pet_finder_app.Class.Pet;
 import com.example.pet_finder_app.Class.User;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class OwnerpageActivity extends AppCompatActivity {
     private Toolbar arrowBack;
@@ -33,10 +39,13 @@ public class OwnerpageActivity extends AppCompatActivity {
     TextView user_address;
     TextView user_phone;
     TextView user_email;
-    ImageView user_img;
+    ImageView user_img,chat_icon;
     String idUserPost;
     int countPet = 0;
     TabOwnerLayout tabOwnerLayout;
+    FirebaseAuth mAuth;
+    FirebaseUser currentUser;
+    String fullnameChat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +69,7 @@ public class OwnerpageActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.your_tab_layout);
         viewPager2 = findViewById(R.id.view_pager);
         user_img = findViewById(R.id.user_image);
+        chat_icon = findViewById(R.id.chat_btn);
 
         arrowBack = findViewById(R.id.toolbarArrowBack);
         arrowBack.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +78,21 @@ public class OwnerpageActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+        mAuth = FirebaseAuth.getInstance();
 
+        currentUser = mAuth.getCurrentUser();
+
+        chat_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String currentUserId = currentUser.getUid();
+                List<String> userIds = Arrays.asList(currentUserId, idUserPost);
+                Intent intent = new Intent(getApplicationContext(), ChatPageChatBoxActivity.class);
+                intent.putExtra("username",fullnameChat);
+                intent.putExtra("userIds", userIds.toArray(new String[0]));
+                startActivity(intent);
+            }
+        });
         databaseReference.child("User").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -76,6 +100,7 @@ public class OwnerpageActivity extends AppCompatActivity {
                     User user = snap.getValue(User.class);
                     assert user != null;
                     if(user.getUserId() != null && user.getUserId().equals(idUserPost)){
+                        fullnameChat = user.getFullname();
                         userName.setText(user.getFullname());
                         user_address.setText(user.getAddress());
                         user_email.setText(user.getEmail());
