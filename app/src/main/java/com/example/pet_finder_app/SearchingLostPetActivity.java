@@ -643,7 +643,7 @@ public class SearchingLostPetActivity extends AppCompatActivity {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference missingPetRef = firebaseDatabase.getReference().child("Missing pet");
-        missingPetRef.orderByChild("status").equalTo("Waiting").addValueEventListener(new ValueEventListener() {
+        missingPetRef.orderByKey().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Log.d("MissingPetData", "3");

@@ -103,37 +103,6 @@
                 android:orientation="vertical"
                 android:paddingLeft="12dp"
                 android:paddingTop="6dp"
-                android:paddingRight="12dp"
-                android:paddingBottom="6dp">
-
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="Full name"
-                    android:textColor="#B3B3B3" />
-
-                <EditText
-                    android:id="@+id/fullNameInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="6dp"
-                    android:background="#00FFFFFF"
-                    android:ems="10"
-                    android:hint="Ex : Jey Hoang"
-                    android:inputType="text"
-                    android:textSize="20sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/border_radius_form_6dp"
-                android:orientation="vertical"
-                android:paddingLeft="12dp"
-                android:paddingTop="6dp"
                 android:paddingRight="12dp">
 
                 <TextView
@@ -141,7 +110,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="Address" />
+                    android:text="Address missing" />
 
                 <EditText
                     android:id="@+id/addressInput"
@@ -150,140 +119,7 @@
                     android:layout_marginBottom="6dp"
                     android:background="#00FFFFFF"
                     android:ems="10"
-                    android:hint="Ex : 65 Thu Duc"
-                    android:inputType="text" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/border_radius_form_6dp"
-                android:orientation="vertical"
-                android:paddingLeft="12dp"
-                android:paddingTop="6dp"
-                android:paddingRight="12dp">
-
-                <TextView
-                    android:id="@+id/country_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="Country"
-                    android:textColor="#B3B3B3" />
-
-                <Spinner
-                    android:id="@+id/countrySpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="6dp"
-                    android:spinnerMode="dropdown" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/border_radius_form_6dp"
-                android:orientation="vertical"
-                android:paddingLeft="12dp"
-                android:paddingTop="6dp"
-                android:paddingRight="12dp">
-
-                <TextView
-                    android:id="@+id/city_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="City"
-                    android:textColor="#B3B3B3" />
-
-                <Spinner
-                    android:id="@+id/citySpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/border_radius_form_6dp"
-                android:orientation="vertical"
-                android:paddingLeft="12dp"
-                android:paddingTop="6dp"
-                android:paddingRight="12dp">
-
-                <TextView
-                    android:id="@+id/district_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="District"
-                    android:textColor="#B3B3B3" />
-
-                <Spinner
-                    android:id="@+id/districtSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/border_radius_form_6dp"
-                android:orientation="vertical"
-                android:paddingLeft="12dp"
-                android:paddingTop="6dp"
-                android:paddingRight="12dp">
-
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="Ward"
-                    android:textColor="#B3B3B3" />
-
-                <Spinner
-                    android:id="@+id/wardSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:spinnerMode="dropdown" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/border_radius_form_6dp"
-                android:orientation="vertical"
-                android:paddingLeft="12dp"
-                android:paddingTop="6dp"
-                android:paddingRight="12dp">
-
-                <TextView
-                    android:id="@+id/phone_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:text="Phone" />
-
-                <EditText
-                    android:id="@+id/phoneNumberInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="6dp"
-                    android:background="#00FFFFFF"
-                    android:ems="10"
-                    android:hint="Ex : 0123456789"
+                    android:hint="Ex : 65 Thu Duc , near gas station"
                     android:inputType="text" />
             </LinearLayout>
 
@@ -339,7 +175,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="Name" />
+                    android:text="Name/Description name" />
 
                 <EditText
                     android:id="@+id/animalNameInput"
@@ -550,40 +386,10 @@
                     android:inputType="text" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/area_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="Area Missing | Seen | Protected"
-                android:textColor="#5F5B5B"
-                android:textSize="20sp" />
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="12dp">
-
-
-                <EditText
-                    android:id="@+id/editTextText2"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:background="@drawable/rectangle_shape"
-                    android:drawableStart="@drawable/custom_search"
-                    android:drawableEnd="@drawable/custom_location"
-                    android:elevation="8dp"
-                    android:ems="10"
-                    android:fontFamily=""
-                    android:hint="Choose your location"
-                    android:inputType="text"
-                    android:outlineSpotShadowColor="@color/shadow"
-                    android:padding="8dp"
-                    android:textSize="17dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_marginBottom="12dp"/>
 
             <TextView
                 android:id="@+id/date_text"
