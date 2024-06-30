@@ -69,7 +69,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageView3"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/faq" />
+                    app:srcCompat="@drawable/icon_bot" />
 
                 <ImageView
                     android:id="@+id/imageView3"
