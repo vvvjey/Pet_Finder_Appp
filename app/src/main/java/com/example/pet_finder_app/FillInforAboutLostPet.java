@@ -683,8 +683,8 @@ public class FillInforAboutLostPet extends AppCompatActivity {
                                     User user = snap.getValue(User.class);
                                     if(idUser.equals(snap.getValue(User.class).getUserId())){
                                         assert user != null;
-                                        fullname.setText(user.getName());
-                                        Log.d("ShowImgUrl", user.getName());
+                                        fullname.setText(user.getFullname());
+                                        Log.d("ShowImgUrl", user.getFullname());
                                         address.setText(user.getAddress());
                                         phoneNumber.setText(user.getPhoneNumber());
                                     }

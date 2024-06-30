@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -161,7 +162,7 @@ public class RejectRequest extends Fragment {
             }
         }
 
-
+        Collections.reverse(petItems);
         HistoryAdapter petAdapter = new HistoryAdapter(petItems, getContext());
         recyclerView.setAdapter(petAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));

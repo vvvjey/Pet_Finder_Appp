@@ -134,13 +134,6 @@ public class HomepageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        ImageView petRec = findViewById(R.id.pet_rec);
-        petRec.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), DogBreedRecActivity.class));
-            }
-        });
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
         databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
@@ -258,13 +251,13 @@ public class HomepageActivity extends AppCompatActivity {
         MissingCount.setText(Integer.toString(countMissing));
         recyclerView = findViewById(R.id.adoptCategoryView);
         AdoptingCategoryAdapter petAdapter = new AdoptingCategoryAdapter(petItems, R.layout.adopting_pet_category, "adopt");
-        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 5,5));
+        recyclerView.addItemDecoration(new SpaceItemDecoration(5, 5, 5,5));
         recyclerView.setAdapter(petAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.HORIZONTAL, false));
 
         recyclerView = findViewById(R.id.missingCategoryView);
         AdoptingCategoryAdapter missingAdapter = new AdoptingCategoryAdapter(missingItems, R.layout.adopting_pet_category, "missing");
-        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 5,5));
+        recyclerView.addItemDecoration(new SpaceItemDecoration(5, 5, 5,5));
         recyclerView.setAdapter(missingAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 1, RecyclerView.HORIZONTAL, false));
     }

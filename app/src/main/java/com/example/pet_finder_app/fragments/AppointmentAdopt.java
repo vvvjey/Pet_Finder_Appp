@@ -30,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -185,6 +186,7 @@ public class AppointmentAdopt extends Fragment {
                     Log.d("No Appointment Found", "No Appointment found");
                 }
             }
+        Collections.reverse(appointmentItems);
         AppointmentAdapter appointmentAdapter = new AppointmentAdapter(appointmentItems , getContext());
         recyclerView.setAdapter(appointmentAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));

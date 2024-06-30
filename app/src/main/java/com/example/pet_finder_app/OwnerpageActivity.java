@@ -100,8 +100,8 @@ public class OwnerpageActivity extends AppCompatActivity {
                     User user = snap.getValue(User.class);
                     assert user != null;
                     if(user.getUserId() != null && user.getUserId().equals(idUserPost)){
-                        userName.setText(user.getName());
-                        fullnameChat = user.getName();
+                        fullnameChat = user.getFullname();
+                        userName.setText(user.getFullname());
                         user_address.setText(user.getAddress());
                         user_email.setText(user.getEmail());
                         user_phone.setText(user.getPhoneNumber());
