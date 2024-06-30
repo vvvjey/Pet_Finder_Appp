@@ -2,6 +2,7 @@ package com.example.pet_finder_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -131,12 +132,15 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
                         petWeight.setText(pet.getWeight());
                         petDescription.setText(pet.getDescription());
 
+                        Log.d("ShowIdUserAdD", "Pet: " + pet.getPostUserId());
+
                         databaseReference.child("User").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 for (DataSnapshot snap: snapshot.getChildren()){
                                     if(pet.getPostUserId().equals(snap.getValue(User.class).getUserId())) {
                                         user = snap.getValue(User.class);
+                                        Log.d("ShowIdUserAdD", user.getUserId());
                                         nameUser.setText(user.getName());
                                         phoneNumber.setText(user.getPhoneNumber());
                                         emailAddress.setText(user.getEmail());
@@ -178,6 +182,7 @@ public class AdoptingPetDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), FillInforToAdoptActivity.class);
                 intent.putExtra("idPet", pet.getIdPet());
+                intent.putExtra("idPostUser", pet.getPostUserId());
                 intent.putExtra("namePet", pet.getName());
                 startActivity(intent);
             }

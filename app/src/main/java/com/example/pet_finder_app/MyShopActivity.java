@@ -19,6 +19,8 @@ import com.example.pet_finder_app.Class.AdoptOrder;
 import com.example.pet_finder_app.Class.AdoptPet;
 import com.example.pet_finder_app.Class.Pet;
 import com.example.pet_finder_app.Class.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +39,9 @@ public class MyShopActivity extends AppCompatActivity {
     List<AdoptPet> adoptPets = new ArrayList<>();
     List<AdoptOrder> adoptOrders = new ArrayList<>();
     List<User> users = new ArrayList<>();
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+
     String idUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +86,8 @@ public class MyShopActivity extends AppCompatActivity {
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
         databaseReference.child("Pet").addValueEventListener(new ValueEventListener() {
             @Override
@@ -130,7 +137,7 @@ public class MyShopActivity extends AppCompatActivity {
             }
         });
 
-        idUser = "1";
+        idUser = currentUser.getUid();
 
 
     }

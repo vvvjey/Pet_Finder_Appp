@@ -75,7 +75,7 @@ public class OwnerpageActivity extends AppCompatActivity {
                 for (DataSnapshot snap: snapshot.getChildren()){
                     User user = snap.getValue(User.class);
                     assert user != null;
-                    if(user.getUserId().equals(idUserPost)){
+                    if(user.getUserId() != null && user.getUserId().equals(idUserPost)){
                         userName.setText(user.getName());
                         user_address.setText(user.getAddress());
                         user_email.setText(user.getEmail());

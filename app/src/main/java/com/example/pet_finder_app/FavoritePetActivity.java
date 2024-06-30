@@ -19,6 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.pet_finder_app.Class.FavoritePet;
 import com.example.pet_finder_app.Class.MissingPet;
 import com.example.pet_finder_app.Class.Pet;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,7 +36,9 @@ public class FavoritePetActivity extends AppCompatActivity {
     List<Pet> petList = new ArrayList<>();
     String typeFunction;
     List<String> listIdFavorite = new ArrayList<>();
-    String idUser = "1";
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+    String idUser;
     Toolbar arrowBack;
 
     private boolean isGrid = true;
@@ -54,12 +58,16 @@ public class FavoritePetActivity extends AppCompatActivity {
         typeFunction = intent.getStringExtra("typeFunction");
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
-
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        idUser = currentUser.getUid();
+        Log.d("ShowIdUserF", idUser);
         databaseReference.child("FavoritePet").child(idUser).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 FavoritePet favoritePet = snapshot.getValue(FavoritePet.class);
                 if (favoritePet != null) {
+                    Log.d("Show FavoriteidPet", "Yes you are in");
                     listIdFavorite = favoritePet.getFavoritePet();
                     fetchFavoritePets(databaseReference);
                 }
@@ -133,9 +141,9 @@ public class FavoritePetActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.favoriteView);
 //        recyclerView.addItemDecoration(new SpaceItemDecoration(20, 20, 40, 40));
-        AdoptingCategoryAdapter favoriteAdapter = new AdoptingCategoryAdapter(FavoriteList, R.layout.favorite_item, "Missing");
+        AdoptingCategoryAdapter favoriteAdapter = new AdoptingCategoryAdapter(FavoriteList, R.layout.favorite_item, "missing");
         if(typeFunction.equals("adopt")){
-            favoriteAdapter = new AdoptingCategoryAdapter(FavoriteList, R.layout.favorite_item, "Adopt");
+            favoriteAdapter = new AdoptingCategoryAdapter(FavoriteList, R.layout.favorite_item, "adopt");
         }
         recyclerView.setAdapter(favoriteAdapter);
         recyclerView.setLayoutManager(new GridLayoutManager(FavoritePetActivity.this, 2));
@@ -146,18 +154,18 @@ public class FavoritePetActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (isGrid) {
                     recyclerView.setLayoutManager(new GridLayoutManager(FavoritePetActivity.this, 1, RecyclerView.VERTICAL, false));
-                    AdoptingCategoryAdapter horizontalAdapter = new AdoptingCategoryAdapter(FavoriteList, R.layout.favorite_item_horz, "Missing");
+                    AdoptingCategoryAdapter horizontalAdapter = new AdoptingCategoryAdapter(FavoriteList, R.layout.favorite_item_horz, "missing");
                     if(typeFunction.equals("adopt")){
-                        horizontalAdapter = new AdoptingCategoryAdapter(FavoriteList, R.layout.favorite_item_horz, "Adopt");
+                        horizontalAdapter = new AdoptingCategoryAdapter(FavoriteList, R.layout.favorite_item_horz, "adopt");
                     }
                     recyclerView.setAdapter(horizontalAdapter);
                     imageView.setImageResource(R.drawable.list_view);
                     isGrid = false;
                 } else {
                     recyclerView.setLayoutManager(new GridLayoutManager(FavoritePetActivity.this, 2, RecyclerView.VERTICAL, false));
-                    AdoptingCategoryAdapter horizontalAdapter = new AdoptingCategoryAdapter(FavoriteList, R.layout.favorite_item, "Missing");
+                    AdoptingCategoryAdapter horizontalAdapter = new AdoptingCategoryAdapter(FavoriteList, R.layout.favorite_item, "missing");
                     if(typeFunction.equals("adopt")){
-                        horizontalAdapter = new AdoptingCategoryAdapter(FavoriteList, R.layout.favorite_item, "Adopt");
+                        horizontalAdapter = new AdoptingCategoryAdapter(FavoriteList, R.layout.favorite_item, "adopt");
                     }
                     recyclerView.setAdapter(horizontalAdapter);
                     imageView.setImageResource(R.drawable.grid_black);
