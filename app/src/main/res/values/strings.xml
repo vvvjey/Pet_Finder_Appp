@@ -51,15 +51,16 @@
     <string-array name="dog_breed">
         <item android:label="choose">Choose breed</item>
         <item>Bulldog</item>
-        <item>Labrador retriever</item>
-        <item>Golden retriever</item>
-        <item>Husky</item>
-        <item>Poodle</item>
-        <item>Rottweiler</item>
-        <item>Alaska</item>
-        <item>American Shorthaired</item>
-        <item>Beagle</item>
-        <item>Dachshund</item>
+        <item>Labrador retriever dog</item>
+        <item>Golden retriever dog</item>
+        <item>Husky dog</item>
+        <item>Poodle dog</item>
+        <item>Rottweiler dog</item>
+        <item>Alaska dog</item>
+        <item>American Shorthaired dog</item>
+        <item>Beagle dog</item>
+        <item>American Coca Cola Spaniel</item>
+        <item>Jindo dog</item>
         <item>Others</item>
     </string-array>
     <string-array name="turtle_breed">
