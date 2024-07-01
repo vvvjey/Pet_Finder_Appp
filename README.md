@@ -7,13 +7,13 @@ Nguyễn Sơn Hà
 Nguyễn Lương Huy
 Nguyễn Anh Thư
 Bùi Thư Hương
+**In this app we provide main functions like Missing,Adopt pet,Chat realtime/Notification,Filter By Image(Pet detection using model YOLO V8),Find list near rescue station(Goong map API )**
 
-Home page
+
+
+**Home page**
 
 ![image](https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/614a54d9-490d-4844-af22-7b745df514d0)
-
-
-**In this app we provide main functions like Missing,Adopt pet,Chat realtime/Notification,Filter By Image(Pet detection using model YOLO V8),Find list near rescue station(Goong map API )**
 
 **Missing Pet :** 
 
