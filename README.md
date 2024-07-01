@@ -2,11 +2,11 @@
 
 Member list :
 
-Hoàng Văn Tú ( Leader )
-Nguyễn Sơn Hà
-Nguyễn Lương Huy
-Nguyễn Anh Thư
-Bùi Thư Hương
+Hoàng Văn Tú ( Leader )\
+Nguyễn Sơn Hà\
+Nguyễn Lương Huy\
+Nguyễn Anh Thư\
+Bùi Thư Hương\
 **In this app we provide main functions like Missing,Adopt pet,Chat realtime/Notification,Filter By Image(Pet detection using model YOLO V8),Find list near rescue station(Goong map API )**
 
 
