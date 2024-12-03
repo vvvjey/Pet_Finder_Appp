@@ -28,6 +28,7 @@ In Post owner
   <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/ababf278-8d64-4d51-868d-5ac8d3772869" width="42%" />
   <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/3e68ef36-3d30-406d-a87c-d9531d95d94a" width="42%" />
 </p>
+
 **Adopt Pet :** 
 
 We provide like a e-commerce platform selling or adopting pet in here , both user and pet owner manegement
@@ -78,6 +79,7 @@ By using model YOLO v8 (pet detection) , we integrate into app filter
   <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/379e2b7e-efc7-4dc1-8188-04c234f89f57" width="23%" />
   <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/2f573cf7-1461-4d4d-9b13-0dc67273c970" width="23%" />
 </p>
+
 **Chat bot :** 
 
 We add chatbot feature for increasing user experience, chat bot provide simple question related to pet care, pet detail . . .
