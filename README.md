@@ -18,26 +18,25 @@ Bùi Thư Hương\
 **Missing Pet :** 
 
 In Client : 
-
-![image](https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/f3db9d8d-91a3-4a88-bd80-1629d782de96)
-
-![image](https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/9d445bee-bdb4-4d7f-8837-7cb46b20cd4c)
-
+<p align="center">
+  <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/f3db9d8d-91a3-4a88-bd80-1629d782de96" width="45%" />
+  <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/9d445bee-bdb4-4d7f-8837-7cb46b20cd4c" width="45%" />
+</p>
 In Post owner
 
-![image](https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/ababf278-8d64-4d51-868d-5ac8d3772869)
-
-![image](https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/3e68ef36-3d30-406d-a87c-d9531d95d94a)
-
+<p align="center">
+  <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/ababf278-8d64-4d51-868d-5ac8d3772869" width="45%" />
+  <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/3e68ef36-3d30-406d-a87c-d9531d95d94a" width="45%" />
+</p>
 **Adopt Pet :** 
 
 We provide like a e-commerce platform selling or adopting pet in here , both user and pet owner manegement
 
 In client :
-
-![image](https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/590fde8f-e00c-4e84-855b-3f83fa4d56a7)
-![image](https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/a2bbc14f-590e-4417-9543-bdbd77371d5c)
-
+<p align="center">
+  <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/590fde8f-e00c-4e84-855b-3f83fa4d56a7" width="45%" />
+  <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/a2bbc14f-590e-4417-9543-bdbd77371d5c" width="45%" />
+</p>
 
 
 In pet owner : 
@@ -45,12 +44,13 @@ In pet owner :
 To be adopted a pet , user have to pass stages(Request stage,Appointment stage,Succes/Cancel stage):
 
 ` `send form request -> pet owner pick form to  apointment stage -> success stage / cancel stage
+<p align="center">
+  <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/191730ad-dd14-4bdc-a6d8-1f1abb4a5fb7" width="25%" />
+  <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/7d4b9121-17be-4edc-b1fe-8021d1208850" width="25%" />
+  <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/56e8813d-a73d-4720-9d67-487ad6189107" width="25%" />
+  <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/d5c9e841-9e3b-4e5f-9faa-f0c4c8edfda7" width="25%" />
 
-![image](https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/191730ad-dd14-4bdc-a6d8-1f1abb4a5fb7)
-![image](https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/7d4b9121-17be-4edc-b1fe-8021d1208850)
-![image](https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/56e8813d-a73d-4720-9d67-487ad6189107)
-![image](https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/d5c9e841-9e3b-4e5f-9faa-f0c4c8edfda7)
-
+</p>
 
 **Chat real time / Notification :** 
 
