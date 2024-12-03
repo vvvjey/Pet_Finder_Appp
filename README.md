@@ -43,7 +43,7 @@ In pet owner :
 
 To be adopted a pet , user have to pass stages(Request stage,Appointment stage,Succes/Cancel stage):
 
-` `send form request -> pet owner pick form to  apointment stage -> success stage / cancel stage
+send form request -> pet owner pick form to  apointment stage -> success stage / cancel stage
 <p align="center">
   <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/191730ad-dd14-4bdc-a6d8-1f1abb4a5fb7" width="25%" />
   <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/7d4b9121-17be-4edc-b1fe-8021d1208850" width="25%" />
@@ -68,9 +68,9 @@ By using model YOLO v8 (pet detection) , we integrate into app filter
 
 -Scenario : 
 
-`	`+Adopt : U find a pet in the real life and want to have one, u capture image and put in the app , app will show u the result
++Adopt : U find a pet in the real life and want to have one, u capture image and put in the app , app will show u the result
 
-`	`+Missing : U lost pet and want to find in the app whether app have any post have seen post like my pet 
++Missing : U lost pet and want to find in the app whether app have any post have seen post like my pet 
 
 <p align="center">
   <img src="https://github.com/vvvjey/Pet_Finder_Appp/assets/96104405/66456ded-7c56-475a-ba35-087c978954b7" width="23%" />
